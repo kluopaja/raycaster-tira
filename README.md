@@ -4,4 +4,6 @@
 
 [Week report 1](https://github.com/kluopaja/raycaster-tira/blob/master/doc/week_reports/week1.md)
 
+[Week report 2](https://github.com/kluopaja/raycaster-tira/blob/master/doc/week_reports/week2.md)
+
 [Code coverage report](https://kluopaja.github.io/raycaster-tira/doc/coverage/coverage.html)
