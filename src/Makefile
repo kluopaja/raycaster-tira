@@ -19,4 +19,4 @@ clean :
 coverage :
 	@mkdir -p cov
 	cov/test
-	gcovr -r . --html -o cov/coverage.html
+	gcovr -r . --html --html-details -o cov/coverage.html
