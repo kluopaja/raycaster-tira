@@ -1,4 +1,4 @@
-#include "geometry.hpp"
+#include "geometry.h"
 
 #include <gmock/gmock-more-matchers.h>
 #include <gtest/gtest.h>
