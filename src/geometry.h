@@ -7,7 +7,7 @@
 #include <vector>
 
 const double INF = std::numeric_limits<double>::infinity();
-const double EPS = 1e-11;
+const double EPS = 1e-10;
 
 class Triangle;
 class Ray;
