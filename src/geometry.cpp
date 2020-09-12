@@ -230,7 +230,7 @@ void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
       new_points.push_back(points[i]);
     }
     size_t nxt_i = i + 1;
-    if (i == points.size()) i = 0;
+    if (nxt_i == points.size()) nxt_i = 0;
 
     Vec3 a = points[i];
     Vec3 b = points[nxt_i];
