@@ -5,18 +5,9 @@
 #include <tuple>
 #include <vector>
 
-TrianglePoint Tree::getClosestRayIntersection(const Ray &r) {
-  return root->getClosestRayIntersection(r);
-};
-
-Tree buildKdTree(std::vector<Triangle *> triangles, double k_t, double k_i) {
-  TreeBuilder builder(k_t, k_i);
-  return builder.build(triangles);
-}
-
-Node::Node(Node *left, Node *right, const Voxel &voxel, const AxisPlane &plane)
+Node::Node(Node* left, Node* right, const Voxel& voxel, const AxisPlane& plane)
     : left(left), right(right), voxel(voxel), plane(plane) {}
-Node::Node(const Voxel &voxel, const std::vector<Triangle *> &triangles)
+Node::Node(const Voxel& voxel, const std::vector<Triangle*>& triangles)
     : voxel(voxel), triangles(triangles) {}
 Node::~Node() {
   delete left;
@@ -66,7 +57,7 @@ TreeBuilder::TreeBuilder(double traversal_cost, double intersection_cost)
 Tree TreeBuilder::build(const std::vector<Triangle*>& triangles) const {
   Voxel voxel = boundingBox(triangles);
   std::vector<ClipTriangle> clip_triangles = createClipTriangles(triangles);
-  Node *root = recursiveBuild(clip_triangles, voxel);
+  Node* root = recursiveBuild(clip_triangles, voxel);
   return Tree(root);
 }
 Voxel TreeBuilder::boundingBox(const std::vector<Triangle*>& triangles) const {
@@ -111,9 +102,9 @@ Node* TreeBuilder::recursiveBuild(std::vector<ClipTriangle>& clip_triangles,
   Voxel right_voxel(voxel);
   left_voxel.clip(split_plane.plane, 0);
   right_voxel.clip(split_plane.plane, 1);
-  Node *left = recursiveBuild(split.left, left_voxel);
-  Node *right = recursiveBuild(split.right, right_voxel);
-  Node *node = new Node(left, right, voxel, split_plane.plane);
+  Node* left = recursiveBuild(split.left, left_voxel);
+  Node* right = recursiveBuild(split.right, right_voxel);
+  Node* node = new Node(left, right, voxel, split_plane.plane);
   return node;
 }
 SplitPlane TreeBuilder::findPlane(
@@ -260,4 +251,8 @@ std::pair<double, double> TreeBuilder::relative_subvoxel_areas(
   double sa_right = base_perimeter * (side_length - left_length) + base_area;
   double sa_total = side_area + base_area;
   return {sa_left / sa_total, sa_right / sa_total};
+}
+Tree buildKdTree(std::vector<Triangle*> triangles, double k_t, double k_i) {
+  TreeBuilder builder(k_t, k_i);
+  return builder.build(triangles);
 }
