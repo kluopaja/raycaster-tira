@@ -82,7 +82,7 @@ Voxel::Voxel(const Vec3& lo, const Vec3& hi) : lo(lo), hi(hi) {}
 //     the intersection with the voxel border will be treated
 //     as intersection with the voxel!
 
-bool Voxel::intersects(const Ray& r) {
+bool Voxel::intersects(const Ray& r) const {
   double t_min, t_max;
   double ty_min, ty_max;
   if (r.inv_direction[0] >= 0) {
@@ -164,13 +164,13 @@ std::ostream& operator<<(std::ostream& out, const Voxel& a) {
 }
 Triangle::Triangle(const Vec3& p0, const Vec3& p1, const Vec3& p2)
     : p0(p0), p1(p1), p2(p2) {}
-Vec3 Triangle::pointFromBary(const Vec2& coords) {
+Vec3 Triangle::pointFromBary(const Vec2& coords) const {
   assert(coords[0] + coords[1] < 1 + EPS);
   return (1.0 - coords[0] - coords[1]) * p0 + coords[0] * p1 + coords[1] * p2;
 }
 // For explanation see
 // https://cadxfem.org/inf/Fast%20MinimumStorage%20RayTriangle%20Intersection.pdf
-RayIntersection Triangle::getRayIntersection(const Ray& r) {
+RayIntersection Triangle::getRayIntersection(const Ray& r) const {
   Vec3 edge1 = p1 - p0;
   Vec3 edge2 = p2 - p0;
   Vec3 pvec = r.direction.cross(edge2);
@@ -206,7 +206,7 @@ PlanePolygon::PlanePolygon(const Vec3& a, const Vec3& b, const Vec3& c)
 }
 PlanePolygon::PlanePolygon(const Triangle* t)
     : PlanePolygon(t->p0, t->p1, t->p2) {}
-Voxel PlanePolygon::getBoundingBox() {
+Voxel PlanePolygon::getBoundingBox() const {
   Voxel bounds(INF, -INF);
   for (int i = 0; i < points.size(); ++i) {
     bounds.cover(points[i]);
@@ -247,13 +247,13 @@ void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
   }
   points = new_points;
 }
-size_t PlanePolygon::size() { return points.size(); }
+size_t PlanePolygon::size() const { return points.size(); }
 // Returns whether triangle has positive area overlap
 // with side 0 and 1 of plane
 // 'side' is the side to which plane belongs to
 // (subtrees the triangle should be added to)
 std::pair<bool, bool> ClipTriangle::overlapsSides(const AxisPlane& plane,
-                                                  bool side) {
+                                                  bool side) const {
   if (box.hi[plane.axis] < plane.pos - EPS) {
     return {1, 0};
   }
@@ -268,8 +268,8 @@ std::pair<bool, bool> ClipTriangle::overlapsSides(const AxisPlane& plane,
   }
   return {1, 1};
 }
-double ClipTriangle::max(int axis) { return box.hi[axis]; }
-double ClipTriangle::min(int axis) { return box.lo[axis]; }
+double ClipTriangle::max(int axis) const { return box.hi[axis]; }
+double ClipTriangle::min(int axis) const { return box.lo[axis]; }
 void ClipTriangle::clip(const AxisPlane& plane, bool side) {
   assert(side != 0 || (plane.pos > min(plane.axis) - EPS));
   assert(side != 1 || (plane.pos < max(plane.axis) + EPS));

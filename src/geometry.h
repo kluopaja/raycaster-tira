@@ -19,20 +19,20 @@ class Vec2 {
   Vec2() = default;
   Vec2(double x);
   Vec2(double x, double y);
-  double dot(const Vec2& b);
+  double dot(const Vec2& b) const;
   friend Vec2 operator+(const Vec2& a, const Vec2& b);
   friend Vec2 operator-(const Vec2& a, const Vec2& b);
   friend Vec2 operator*(const Vec2& a, const double b);
   friend Vec2 operator*(const double b, const Vec2& a);
   double& operator[](int index);
   double operator[](int index) const;
-  double norm();
+  double norm() const;
   friend std::ostream& operator<<(std::ostream& out, const Vec2& a);
 
  private:
   double v[2];
 };
-inline double Vec2::dot(const Vec2& b) { return v[0] * b.v[0] + v[1] * b.v[1]; }
+inline double Vec2::dot(const Vec2& b) const { return v[0] * b.v[0] + v[1] * b.v[1]; }
 inline Vec2 operator+(const Vec2& a, const Vec2& b) {
   return Vec2(a.v[0] + b.v[0], a.v[1] + b.v[1]);
 }
@@ -47,7 +47,7 @@ inline Vec2 operator*(const double b, const Vec2& a) {
 }
 inline double& Vec2::operator[](int index) { return v[index]; }
 inline double Vec2::operator[](int index) const { return v[index]; }
-inline double Vec2::norm() { return std::sqrt(this->dot(*this)); }
+inline double Vec2::norm() const { return std::sqrt(this->dot(*this)); }
 class Vec3 {
  public:
   Vec3() = default;
@@ -61,9 +61,8 @@ class Vec3 {
   friend Vec3 operator*(const double b, const Vec3& a);
   double& operator[](int index);
   double operator[](int index) const;
-  double norm();
+  double norm() const;
   friend std::ostream& operator<<(std::ostream& out, const Vec3& a);
-
  private:
   double v[3];
 };
@@ -88,7 +87,7 @@ inline Vec3 operator*(const double b, const Vec3& a) {
 }
 inline double& Vec3::operator[](int index) { return v[index]; }
 inline double Vec3::operator[](int index) const { return v[index]; }
-inline double Vec3::norm() { return std::sqrt(this->dot(*this)); }
+inline double Vec3::norm() const { return std::sqrt(this->dot(*this)); }
 // A point on a triangle
 struct TrianglePoint {
   Triangle* triangle;
@@ -100,7 +99,7 @@ class Voxel {
   Vec3 hi;
   Voxel() = default;
   Voxel(const Vec3& a, const Vec3& b);
-  bool intersects(const Ray& r);
+  bool intersects(const Ray& r) const;
   // Clips triangle leaving side 'side' of plane
   void clip(const AxisPlane& plane, bool side);
   // Extends voxel to cover point p
@@ -120,21 +119,21 @@ class Triangle {
   Triangle() = default;
   Triangle(const Vec3& p0, const Vec3& p1, const Vec3& p2);
   // Returns the point corresponding to barycentric coordinates coords
-  Vec3 pointFromBary(const Vec2& coords);
+  Vec3 pointFromBary(const Vec2& coords) const;
   // Finds non-parallel intersections between ray r and *this
   // distance == inf if no intersection was found
   // can return distance < 0 if the line r intersects
   // the triangle before the origin of r!
-  RayIntersection getRayIntersection(const Ray& r);
+  RayIntersection getRayIntersection(const Ray& r) const;
 };
 std::ostream& operator<<(std::ostream& out, const Triangle& t);
 class PlanePolygon {
  public:
   PlanePolygon(const Vec3& a, const Vec3& b, const Vec3& c);
   PlanePolygon(const Triangle* t);
-  Voxel getBoundingBox();
+  Voxel getBoundingBox() const;
   void intersect(const AxisPlane& plane, bool side);
-  size_t size();
+  size_t size() const;
   Vec3& operator[](size_t index);
   Vec3 operator[](size_t index) const;
 
@@ -158,11 +157,11 @@ class ClipTriangle {
   ClipTriangle(Triangle* triangle) : triangle(triangle), polygon(triangle) {
     box = polygon.getBoundingBox();
   }
-  bool isAxisAligned(int axis);
+  bool isAxisAligned(int axis) const;
   // returns subtrees the triangle should be added to
-  std::pair<bool, bool> overlapsSides(const AxisPlane& plane, bool side);
-  double max(int axis);
-  double min(int axis);
+  std::pair<bool, bool> overlapsSides(const AxisPlane& plane, bool side) const;
+  double max(int axis) const;
+  double min(int axis) const;
   // Updates ClipTriangle so that side 'side' of plane is remains
   // The result should never be empty!
   void clip(const AxisPlane& plane, bool side);
@@ -185,7 +184,7 @@ class ClipTriangle {
   PlanePolygon polygon;
   Voxel box;
 };
-inline bool ClipTriangle::isAxisAligned(int axis) {
+inline bool ClipTriangle::isAxisAligned(int axis) const {
   return std::abs(box.hi[axis] - box.lo[axis]) < EPS;
 }
 class Ray {
