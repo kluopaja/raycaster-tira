@@ -206,7 +206,7 @@ PlanePolygon::PlanePolygon(const Triangle* t)
     : PlanePolygon(t->p0, t->p1, t->p2) {}
 Voxel PlanePolygon::getBoundingBox() const {
   Voxel bounds(INF, -INF);
-  for (int i = 0; i < points.size(); ++i) {
+  for (size_t i = 0; i < points.size(); ++i) {
     bounds.cover(points[i]);
   }
   return bounds;
