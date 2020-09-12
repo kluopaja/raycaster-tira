@@ -15,47 +15,47 @@ std::ostream& operator<<(std::ostream& out, const Vec3& a) {
 Voxel::Voxel(const Vec3& lo, const Vec3& hi) : lo(lo), hi(hi) {}
 // Implements a fast voxel ray intersection with the correct handling of
 // special cases
-
+//
 // ( from here https://dl.acm.org/doi/10.1145/1198555.1198748 )
-
+//
 // ( Note that this algorithm doesn't always have consistent behaviour
 // at the edges of the voxel! )
-
+//
 // A ray r intersect a voxel v iff there is a parameter t > 0
 // s.t. r.origin + t * r.direction is inside the voxel v.
-
+//
 // A point p is inside a voxel v exactly when:
 //      v.lo[0] < p[0] < v.hi[0]
 // and  v.lo[1] < p[1] < v.hi[1]
 // and  v.lo[2] < p[2] < v.hi[2]
-
+//
 // So we want to find a value t such that.
 //      v.lo[0] < r.origin[0] + t * r.direction[0]  < v.hi[0]
 //      v.lo[1] < r.origin[1] + t * r.direction[1]  < v.hi[1]
 //      v.lo[2] < r.origin[2] + t * r.direction[2]  < v.hi[2]
-
+//
 // Any one of these can be solved simply:
-
+//
 // v.lo[i] < r.origin[i] + t * r.direction[i] < v.hi[i]
 // (v.lo[i] - r.origin[i]) / r.direction[i] < t
 //     < (v.hi[i] - r.origin[i]) / r.direction[i]
-
+//
 // (inversing the inequalities if r.direction[i] < 0)
-
+//
 // The algorithm handles these intervals one by one
 // always maintaining the intersection [t_min, t_max] of
 // the so far met intervals. Whenever possible,
 // the algorithm checks whether the interval is empty
-
+//
 // While in principle the process is very simple there
 // are some special cases when r.direction[i] == 0.0
 // or r.direction[i] == -0.0
-
+//
 // While it holds that 0.0 == -0.0, 0.0 and -0.0
 // still behave differently since 1/-0.0 == -inf < inf == 1/0.0.
 // Therefore it is important that we compare divx >= 0 and
 // not r.direction[i] >= 0 !
-
+//
 // If r.direction[i] == +-0.0, the [t_min, t_max]
 // should be updated based on whether
 // lo[i] < r.origin[i] < hi[i] holds
@@ -64,14 +64,14 @@ Voxel::Voxel(const Vec3& lo, const Vec3& hi) : lo(lo), hi(hi) {}
 // or (t_min = -inf; t_max = -inf)
 // both of which define an interval that evaluates
 // to 0 at the end of the algorithm!
-
+//
 // Other special case is r.direction[i] == +-0.0
 // and (lo[i] == r.origin[i] or hi[i] == r.origin[i])
-
+//
 // Now we get for example:
 //     t_min = (lo[0] - r.origin[0]) * divx
 //           = 0.0*inf = NaN
-
+//
 // In these cases, the algorithm doesn't handle the
 // dimensions consistently:
 //     If this occurs for dimension 0, the algorithm returns false
@@ -105,8 +105,6 @@ bool Voxel::intersects(const Ray& r) const {
   }
   // if clauses and not std::min are used here because this way
   // it is easier to see happens with NaNs
-
-  // truncate the interval
   if (ty_min > t_min) {
     t_min = ty_min;
   }

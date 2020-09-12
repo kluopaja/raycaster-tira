@@ -145,11 +145,11 @@ inline Vec3 PlanePolygon::operator[](size_t index) const {
   return points[index];
 }
 // A class representing a clipped version of a triangle
-
+//
 // Clipped triangle is a shape S = t \cap clip_box
 // where t is some triangle
 // and clip_box is formed by the axis aligned splits
-
+//
 // Supports only queries about the bounding box of S
 class ClipTriangle {
  public:
@@ -169,16 +169,16 @@ class ClipTriangle {
  private:
   // Uses polygon representation of the clipped triangle to calculate
   // the bounding box.
-
+  //
   // This is not necessary and is intended to be a temporary solution
-
+  //
   // Notice that updating the bounding box is not trivial.
   // Consider following:
   // |\|->
   // | |
-  // | |\
-    // L-|-\
-    // Here clip parallel to y axis induces changes the
+  // | |\   .
+  // L-|-\  .
+  // Here clip parallel to y axis induces changes the
   // minimal bounding box of the clip triangle both in
   // y and x directions
   PlanePolygon polygon;
@@ -194,7 +194,7 @@ class Ray {
   Vec3 direction;
   // inv_direction[i] = 1 / direction[i]
   // speeds up the triangle intersection calculations
-
+  //
   // what if the user decides to modify direction? when to update this?
   Vec3 inv_direction;
   Ray(Vec3 origin, Vec3 direction);
