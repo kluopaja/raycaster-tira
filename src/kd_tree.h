@@ -7,7 +7,7 @@ class Node {
   Node(Node* left, Node* right, const Voxel& voxel, const AxisPlane& plane);
   Node(const Voxel& voxel, const std::vector<Triangle*>& triangles);
   ~Node();
-  TrianglePoint getClosestRayIntersection(const Ray& r);
+  TrianglePoint getClosestRayIntersection(const Ray& r) const;
 
  private:
   // the side with smaller coordinates
@@ -19,13 +19,15 @@ class Node {
   std::vector<Triangle*> triangles;
   Voxel voxel;
   AxisPlane plane;
-  bool isLeaf();
-  TrianglePoint getClosestRayLeafIntersection(const Ray& r);
+  bool isLeaf() const;
+  TrianglePoint getClosestRayLeafIntersection(const Ray& r) const;
 };
-inline bool Node::isLeaf() { return (left == nullptr && right == nullptr); }
+inline bool Node::isLeaf() const {
+  return (left == nullptr && right == nullptr);
+}
 class Tree {
  public:
-  TrianglePoint getClosestRayIntersection(const Ray& r);
+  TrianglePoint getClosestRayIntersection(const Ray& r) const;
   Tree(Node* root) : root(root) {}
   // move constructor
   Tree(Tree&& a) noexcept;
@@ -34,7 +36,6 @@ class Tree {
  private:
   Node* root;
 };
-
 class Event {
  public:
   int type;  // 0 == +, 1 == |, 2 == -
@@ -53,27 +54,27 @@ struct SplitResult {
 class TreeBuilder {
  public:
   TreeBuilder(double traversal_cost, double intersection_cost);
-  Tree build(const std::vector<Triangle*> triangles);
+  Tree build(const std::vector<Triangle*>& triangles) const;
 
  private:
   double traversal_cost;
   double intersection_cost;
 
-  Voxel boundingBox(const std::vector<Triangle*>& triangles);
+  Voxel boundingBox(const std::vector<Triangle*>& triangles) const;
   std::vector<ClipTriangle> createClipTriangles(
-      const std::vector<Triangle*>& triangles);
+      const std::vector<Triangle*>& triangles) const;
   std::vector<Triangle*> extractTriangles(
-      const std::vector<ClipTriangle>& clip_triangles);
+      const std::vector<ClipTriangle>& clip_triangles) const;
   Node* recursiveBuild(std::vector<ClipTriangle>& clip_triangles,
-                       const Voxel& voxel);
+                       const Voxel& voxel) const;
   SplitPlane findPlane(const std::vector<ClipTriangle>& clip_triangles,
-                       const Voxel& v);
+                       const Voxel& v) const;
 
   std::vector<Event> createEventList(
-      const std::vector<ClipTriangle>& clip_triangles, int dimension);
+      const std::vector<ClipTriangle>& clip_triangles, int dimension) const;
 
   SplitResult splitTriangles(const std::vector<ClipTriangle>& clip_triangles,
-                             const SplitPlane& plane);
+                             const SplitPlane& plane) const;
   // Calculates the surface area heuristic cost
   // for splits [(n_left + n_plane), (n_right)]
   // and [(n_left), (n_right + n_plane)]
@@ -83,11 +84,12 @@ class TreeBuilder {
   // in this split
   std::pair<double, bool> surface_area_heuristic(double l_area, double r_area,
                                                  int n_left, int n_plane,
-                                                 int n_right);
-  std::pair<double, double> relative_subvoxel_areas(const Voxel& voxel,
-                                                    const AxisPlane& plane);
+                                                 int n_right) const;
+  std::pair<double, double> relative_subvoxel_areas(
+      const Voxel& voxel, const AxisPlane& plane) const;
 };
 
-Tree buildKdTree(std::vector<Triangle*> triangles, double k_t, double k_i);
+Tree buildKdTree(const std::vector<Triangle*>& triangles, double k_t,
+                 double k_i);
 
 #endif
