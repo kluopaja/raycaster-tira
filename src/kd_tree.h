@@ -20,7 +20,6 @@ class Node {
   Voxel voxel;
   AxisPlane plane;
   bool isLeaf() const;
-  TrianglePoint getClosestRayLeafIntersection(const Ray& r) const;
 };
 inline bool Node::isLeaf() const {
   return (left == nullptr && right == nullptr);

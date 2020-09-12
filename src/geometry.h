@@ -204,4 +204,6 @@ struct AxisPlane {
   int axis;
   double pos;
 };
+TrianglePoint firstRayTriangleIntersection(
+    const std::vector<Triangle*>& triangles, const Ray& r);
 #endif

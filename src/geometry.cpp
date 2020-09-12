@@ -285,3 +285,16 @@ std::ostream& operator<<(std::ostream& out, const Ray& a) {
   out << "Ray(\n" << a.origin << ",\n" << a.direction << ")";
   return out;
 }
+TrianglePoint firstRayTriangleIntersection(
+    const std::vector<Triangle*>& triangles, const Ray& r) {
+  TrianglePoint closest_point = {nullptr, {}};
+  double closest_distance = INF;
+  for (size_t i = 0; i < triangles.size(); ++i) {
+    RayIntersection intersection = triangles[i]->getRayIntersection(r);
+    if (intersection.distance > 0 && intersection.distance < closest_distance) {
+      closest_distance = intersection.distance;
+      closest_point = {triangles[i], intersection.bary_coords};
+    }
+  }
+  return closest_point;
+}

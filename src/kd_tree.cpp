@@ -35,18 +35,6 @@ TrianglePoint Node::getClosestRayIntersection(const Ray& r) const {
   }
   return left->getClosestRayIntersection(r);
 }
-TrianglePoint Node::getClosestRayLeafIntersection(const Ray& r) const {
-  TrianglePoint closest_point = {nullptr, {}};
-  double closest_distance = INF;
-  for (int i = 0; i < triangles.size(); ++i) {
-    RayIntersection intersection = triangles[i]->getRayIntersection(r);
-    if (intersection.distance > 0 && intersection.distance < closest_distance) {
-      closest_distance = intersection.distance;
-      closest_point = {triangles[i], intersection.bary_coords};
-    }
-  }
-  return closest_point;
-}
 Tree::Tree(Tree&& a) noexcept : root(root) { a.root = nullptr; }
 TrianglePoint Tree::getClosestRayIntersection(const Ray& r) const {
   return root->getClosestRayIntersection(r);
