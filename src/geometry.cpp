@@ -256,20 +256,26 @@ void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
 size_t PlanePolygon::size() const { return points.size(); }
 // Returns whether triangle has positive area overlap
 // with side 0 and 1 of plane
-// 'side' is the side to which plane belongs to
-// (subtrees the triangle should be added to)
+// 'side' is the side which the plane belongs to
+// (side which a triangle lying on 'plane' should be added to)
 std::pair<bool, bool> ClipTriangle::overlapsSides(const AxisPlane& plane,
                                                   bool side) const {
-  if (box.hi[plane.axis] < plane.pos - EPS) {
-    return {1, 0};
-  }
-  if (box.lo[plane.axis] > plane.pos + EPS) {
-    return {0, 1};
-  }
   if (isAxisAligned(plane.axis)) {
+      if (box.hi[plane.axis] < plane.pos - EPS) {
+        return {1, 0};
+      }
+      if (box.lo[plane.axis] > plane.pos + EPS) {
+        return {0, 1};
+      }
     if (side == 0) {
       return {1, 0};
     }
+    return {0, 1};
+  }
+  if (box.hi[plane.axis] < plane.pos + EPS) {
+    return {1, 0};
+  }
+  if (box.lo[plane.axis] > plane.pos - EPS) {
     return {0, 1};
   }
   return {1, 1};

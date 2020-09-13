@@ -401,6 +401,33 @@ TEST(ClipTriangle, OverlapSidesParallel) {
   r = ct.overlapsSides({1, 1.1}, 0);
   EXPECT_EQ(r, std::make_pair(true, false));
 }
+// tests the case where the plane intersects a zero area part of the
+// non axis-aligned triangle
+TEST(ClipTriangle, OverlapSidesZeroArea) {
+  Triangle t(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
+             Vec3(-12.23, -15.2, 2.2));
+  ClipTriangle ct(&t);
+  std::pair<bool, bool> r = ct.overlapsSides({0, -12.23}, 1);
+  EXPECT_EQ(r, std::make_pair(false, true));
+
+  t = Triangle(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
+               Vec3(-12.23, -15.2, 2.2));
+  ct = ClipTriangle(&t);
+  r = ct.overlapsSides({0, -12.23}, 0);
+  EXPECT_EQ(r, std::make_pair(false, true));
+
+  t = Triangle(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
+               Vec3(-12.23, -15.2, 2.2));
+  ct = ClipTriangle(&t);
+  r = ct.overlapsSides({1, 2.2}, 0);
+  EXPECT_EQ(r, std::make_pair(true, false));
+
+  t = Triangle(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
+               Vec3(-12.23, -15.2, 2.2));
+  ct = ClipTriangle(&t);
+  r = ct.overlapsSides({1, 2.2}, 1);
+  EXPECT_EQ(r, std::make_pair(true, false));
+}
 TEST(ClipTriangle, ClipSimple) {
   Triangle t(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0));
   ClipTriangle ct(&t);
