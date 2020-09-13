@@ -206,4 +206,5 @@ struct AxisPlane {
 };
 TrianglePoint firstRayTriangleIntersection(
     const std::vector<Triangle*>& triangles, const Ray& r);
+Voxel boundingBox(const std::vector<Triangle*>& triangles);
 #endif

@@ -48,18 +48,7 @@ Tree TreeBuilder::build(const std::vector<Triangle*>& triangles) const {
   Node* root = recursiveBuild(clip_triangles, voxel);
   return Tree(root);
 }
-Voxel TreeBuilder::boundingBox(const std::vector<Triangle*>& triangles) const {
-  if (triangles.size() == 0) {
-    return {Vec3(0), Vec3(0)};
-  }
-  Voxel box = {Vec3(std::numeric_limits<double>::infinity()),
-               Vec3(-std::numeric_limits<double>::infinity())};
-  for (size_t i = 0; i < triangles.size(); ++i) {
-    box.cover(triangles[i]);
-  }
-  return box;
-}
-std::vector<ClipTriangle> TreeBuilder::createClipTriangles(
+std::vector<ClipTriangle> createClipTriangles(
     const std::vector<Triangle*>& triangles) const {
   std::vector<ClipTriangle> clip_triangles;
   for (size_t i = 0; i < triangles.size(); ++i) {
@@ -67,7 +56,7 @@ std::vector<ClipTriangle> TreeBuilder::createClipTriangles(
   }
   return clip_triangles;
 }
-std::vector<Triangle*> TreeBuilder::extractTriangles(
+std::vector<Triangle*> extractTriangles(
     const std::vector<ClipTriangle>& clip_triangles) const {
   std::vector<Triangle*> triangles;
   for (size_t i = 0; i < clip_triangles.size(); ++i) {
@@ -205,7 +194,7 @@ SplitResult TreeBuilder::splitTriangles(
   return {left_clip_triangles, right_clip_triangles};
 }
 
-std::pair<double, bool> TreeBuilder::surface_area_heuristic(
+std::pair<double, bool> surface_area_heuristic(
     double l_area, double r_area, int n_left, int n_plane, int n_right) const {
   std::pair<double, bool> left;
   // try inserting triangles on plane to the left subtree
@@ -221,7 +210,7 @@ std::pair<double, bool> TreeBuilder::surface_area_heuristic(
   return std::min(left, right);
 }
 // returns SA(V_l)/SA(V) and SA(V_l)/SA(V)
-std::pair<double, double> TreeBuilder::relative_subvoxel_areas(
+std::pair<double, double> relative_subvoxel_areas(
     const Voxel& voxel, const AxisPlane& plane) const {
   // axes for the voxel face parallel to plane
   int base1 = (plane.axis + 1) % 3;

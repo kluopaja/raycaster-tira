@@ -298,3 +298,14 @@ TrianglePoint firstRayTriangleIntersection(
   }
   return closest_point;
 }
+Voxel boundingBox(const std::vector<Triangle*>& triangles) {
+  if (triangles.size() == 0) {
+    return {Vec3(0), Vec3(0)};
+  }
+  Voxel box = {Vec3(std::numeric_limits<double>::infinity()),
+               Vec3(-std::numeric_limits<double>::infinity())};
+  for (size_t i = 0; i < triangles.size(); ++i) {
+    box.cover(triangles[i]);
+  }
+  return box;
+}
