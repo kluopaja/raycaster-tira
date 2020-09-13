@@ -74,9 +74,9 @@ Tree buildKdTree(const std::vector<Triangle*>& triangles, double k_t,
                  double k_i);
 
 std::vector<ClipTriangle> createClipTriangles(
-        const std::vector<Triangle*>& triangles) const;
+        const std::vector<Triangle*>& triangles);
 std::vector<Triangle*> extractTriangles(
-        const std::vector<ClipTriangle>& clip_triangles) const;
+        const std::vector<ClipTriangle>& clip_triangles);
 // Calculates the surface area heuristic cost
 // for splits [(n_left + n_plane), (n_right)]
 // and [(n_left), (n_right + n_plane)]
@@ -85,8 +85,10 @@ std::vector<Triangle*> extractTriangles(
 // the side to which n_plane was assigned
 // in this split
 std::pair<double, bool> surfaceAreaHeuristic(double l_area, double r_area,
-                                                 int n_left, int n_plane,
-                                                 int n_right) const;
+                                             int n_left, int n_plane,
+                                             int n_right,
+                                             double traversal_cost,
+                                             double intersection_cost);
 std::pair<double, double> relativeSubvoxelAreas(
-  const Voxel& voxel, const AxisPlane& plane) const;
+  const Voxel& voxel, const AxisPlane& plane);
 #endif

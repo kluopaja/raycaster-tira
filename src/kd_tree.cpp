@@ -49,7 +49,7 @@ Tree TreeBuilder::build(const std::vector<Triangle*>& triangles) const {
   return Tree(root);
 }
 std::vector<ClipTriangle> createClipTriangles(
-    const std::vector<Triangle*>& triangles) const {
+    const std::vector<Triangle*>& triangles) {
   std::vector<ClipTriangle> clip_triangles;
   for (size_t i = 0; i < triangles.size(); ++i) {
     clip_triangles.emplace_back(triangles[i]);
@@ -57,7 +57,7 @@ std::vector<ClipTriangle> createClipTriangles(
   return clip_triangles;
 }
 std::vector<Triangle*> extractTriangles(
-    const std::vector<ClipTriangle>& clip_triangles) const {
+    const std::vector<ClipTriangle>& clip_triangles) {
   std::vector<Triangle*> triangles;
   for (size_t i = 0; i < clip_triangles.size(); ++i) {
     triangles.push_back(clip_triangles[i].triangle);
@@ -195,7 +195,8 @@ SplitResult TreeBuilder::splitTriangles(
 }
 
 std::pair<double, bool> surfaceAreaHeuristic(
-    double l_area, double r_area, int n_left, int n_plane, int n_right) const {
+    double l_area, double r_area, int n_left, int n_plane, int n_right,
+    double traversal_cost, double intersection_cost) {
   std::pair<double, bool> left;
   // try inserting triangles on plane to the left subtree
   left.first =
@@ -211,7 +212,7 @@ std::pair<double, bool> surfaceAreaHeuristic(
 }
 // returns SA(V_l)/SA(V) and SA(V_l)/SA(V)
 std::pair<double, double> relativeSubvoxelAreas(
-    const Voxel& voxel, const AxisPlane& plane) const {
+    const Voxel& voxel, const AxisPlane& plane) {
   // axes for the voxel face parallel to plane
   int base1 = (plane.axis + 1) % 3;
   int base2 = (plane.axis + 2) % 3;
@@ -220,13 +221,14 @@ std::pair<double, double> relativeSubvoxelAreas(
   double side_length = voxel.hi[plane.axis] - voxel.lo[plane.axis];
 
   double base_area = base1_length * base2_length;
-  double base_perimeter = base1_length + base2_length;
+  double base_perimeter = 2*(base1_length + base2_length);
   double side_area = base_perimeter * side_length;
   double left_length = (plane.pos - voxel.lo[plane.axis]);
 
-  double sa_left = base_perimeter * left_length + base_area;
-  double sa_right = base_perimeter * (side_length - left_length) + base_area;
-  double sa_total = side_area + base_area;
+  double sa_left = base_perimeter * left_length + 2*base_area;
+  double sa_right = base_perimeter * (side_length - left_length) + 2*base_area;
+  double sa_total = side_area + 2*base_area;
+  assert(sa_total > EPS);
   return {sa_left / sa_total, sa_right / sa_total};
 }
 Tree buildKdTree(const std::vector<Triangle*>& triangles, double k_t, double k_i) {
