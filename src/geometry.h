@@ -106,6 +106,7 @@ class Voxel {
   void cover(const Vec3& p);
   // Extends voxel to cover point t
   void cover(Triangle* t);
+  double area() const;
 };
 std::ostream& operator<<(std::ostream& out, const Voxel& a);
 // Defines a point where ray intersects a triangle
@@ -120,6 +121,7 @@ class Triangle {
   Triangle(const Vec3& p0, const Vec3& p1, const Vec3& p2);
   // Returns the point corresponding to barycentric coordinates coords
   Vec3 pointFromBary(const Vec2& coords) const;
+  double area() const;
   // Finds non-parallel intersections between ray r and *this
   // distance == inf if no intersection was found
   // can return distance < 0 if the line r intersects

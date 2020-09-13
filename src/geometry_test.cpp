@@ -194,6 +194,16 @@ TEST(VoxelTest, CoverTriangle) {
   EXPECT_NEAR((v.lo - c.lo).norm(), 0, EPS);
   EXPECT_NEAR((v.hi - c.hi).norm(), 0, EPS);
 }
+TEST(VoxelTest, Area) {
+  Voxel v({0.0, 0.0, 0.0}, {0.0, 0.0, 0.0});
+  EXPECT_NEAR(v.area(), 0, EPS);
+  v = Voxel({0.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
+  EXPECT_NEAR(v.area(), 0, EPS);
+  v = Voxel({0.0, 0.0, 0.0}, {1.0, 1.0, 0.0});
+  EXPECT_NEAR(v.area(), 2.0, EPS);
+  v = Voxel({0.0, 0.0, 0.0}, {1.0, 1.0, 1.0});
+  EXPECT_NEAR(v.area(), 6.0, EPS);
+}
 TEST(TriangleTest, PointFromBarySimple) {
   Triangle t({0.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, {0.0, 1.0, 0.0});
   Vec2 bary_coords(0.0, 0.0);
@@ -218,6 +228,16 @@ TEST(TriangleTest, PointFromBaryRandom) {
     Vec3 dot_normal = (p - t.p0).cross(t.p1 - t.p0).dot(t.p2 - t.p0);
     ASSERT_NEAR(dot_normal.norm(), 0, EPS);
   }
+}
+TEST(TriangleTest, Area) {
+  Triangle t({0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0});
+  EXPECT_NEAR(t.area(), 0.0, EPS);
+  t = Triangle({0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
+  EXPECT_NEAR(t.area(), 0.0, EPS);
+  t = Triangle({0.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, {0.0, 1.0, 0.0});
+  EXPECT_NEAR(t.area(), 0.5, EPS);
+  t = Triangle({1.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 1.0});
+  EXPECT_NEAR(t.area(), std::sqrt(1.0/2.0), EPS);
 }
 TEST(TriangleTest, RayIntersectionSimple) {
   Triangle t({0.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, {0.0, 1.0, 0.0});

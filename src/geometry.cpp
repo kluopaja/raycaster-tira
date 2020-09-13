@@ -155,6 +155,11 @@ void Voxel::cover(Triangle* t) {
   cover(t->p1);
   cover(t->p2);
 };
+double Voxel::area() const {
+    return 2.0 * ((hi[0] - lo[0]) * (hi[1] - lo[1])
+                  + (hi[1] - lo[1]) * (hi[2] - lo[1])
+                  + (hi[2] - lo[2]) * (hi[0] - lo[0]));
+}
 
 std::ostream& operator<<(std::ostream& out, const Voxel& a) {
   out << "Voxel(\n" << a.lo << ",\n" << a.hi << ")";
@@ -165,6 +170,9 @@ Triangle::Triangle(const Vec3& p0, const Vec3& p1, const Vec3& p2)
 Vec3 Triangle::pointFromBary(const Vec2& coords) const {
   assert(coords[0] + coords[1] < 1 + EPS);
   return (1.0 - coords[0] - coords[1]) * p0 + coords[0] * p1 + coords[1] * p2;
+}
+double Triangle::area() const {
+    return (p1-p0).cross(p2-p0).norm()/2.0;
 }
 // For explanation see
 // https://cadxfem.org/inf/Fast%20MinimumStorage%20RayTriangle%20Intersection.pdf
