@@ -204,6 +204,7 @@ struct AxisPlane {
   int axis;
   double pos;
 };
+std::ostream& operator<<(std::ostream& out, const AxisPlane& a);
 TrianglePoint firstRayTriangleIntersection(
     const std::vector<Triangle*>& triangles, const Ray& r);
 Voxel boundingBox(const std::vector<Triangle*>& triangles);

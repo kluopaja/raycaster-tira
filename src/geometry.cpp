@@ -285,6 +285,10 @@ std::ostream& operator<<(std::ostream& out, const Ray& a) {
   out << "Ray(\n" << a.origin << ",\n" << a.direction << ")";
   return out;
 }
+std::ostream& operator<<(std::ostream& out, const AxisPlane& a) {
+  out << "AxisPlane(\n" << a.axis << ",\n" << a.pos << ")";
+  return out;
+}
 TrianglePoint firstRayTriangleIntersection(
     const std::vector<Triangle*>& triangles, const Ray& r) {
   TrianglePoint closest_point = {nullptr, {}};
