@@ -18,7 +18,7 @@ TrianglePoint Node::getClosestRayIntersection(const Ray& r) const {
     return {nullptr, {}};
   }
   if (isLeaf()) {
-    return getClosestRayLeafIntersection(r);
+    return firstRayTriangleIntersection(triangles, r);
   }
   // first the closer leaf
   TrianglePoint result;
@@ -35,7 +35,7 @@ TrianglePoint Node::getClosestRayIntersection(const Ray& r) const {
   }
   return left->getClosestRayIntersection(r);
 }
-Tree::Tree(Tree&& a) noexcept : root(root) { a.root = nullptr; }
+Tree::Tree(Tree&& a) noexcept : root(a.root) { a.root = nullptr; }
 TrianglePoint Tree::getClosestRayIntersection(const Ray& r) const {
   return root->getClosestRayIntersection(r);
 };
@@ -229,7 +229,7 @@ std::pair<double, double> relativeSubvoxelAreas(
   double sa_total = side_area + base_area;
   return {sa_left / sa_total, sa_right / sa_total};
 }
-Tree buildKdTree(std::vector<Triangle*> triangles, double k_t, double k_i) {
+Tree buildKdTree(const std::vector<Triangle*>& triangles, double k_t, double k_i) {
   TreeBuilder builder(k_t, k_i);
   return builder.build(triangles);
 }
