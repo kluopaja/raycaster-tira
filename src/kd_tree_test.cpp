@@ -1,7 +1,11 @@
 #include "kd_tree.h"
+#include "test_utils.h"
+
 #include <tuple>
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
+using ::testing::ContainerEq;
 namespace {
     TEST(RelativeSubvoxelAreas, Simple) {
         Voxel v(Vec3(0.0), Vec3(1.0));
@@ -70,6 +74,14 @@ namespace {
 
         EXPECT_NEAR(cost, std::min(l_correct, r_correct), EPS);
         EXPECT_EQ(side, l_correct <= r_correct ? 0 : 1);
+    }
+    // tests that the extractTriangles reverses createClipTriangles correctly
+    TEST(CreateAndExtractTriangles, Simple) {
+        std::mt19937 mt(1337);
+        std::vector<Triangle*> tv = randomTriangleVector(-10, 10, 100, mt);
+        std::vector<ClipTriangle> ct = createClipTriangles(tv);
+        std::vector<Triangle*> restored = extractTriangles(ct);
+        EXPECT_THAT(restored, ContainerEq(tv));
     }
     /*
  class Scene2D: public ::testing::Test {
