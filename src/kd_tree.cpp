@@ -194,7 +194,7 @@ SplitResult TreeBuilder::splitTriangles(
   return {left_clip_triangles, right_clip_triangles};
 }
 
-std::pair<double, bool> surface_area_heuristic(
+std::pair<double, bool> surfaceAreaHeuristic(
     double l_area, double r_area, int n_left, int n_plane, int n_right) const {
   std::pair<double, bool> left;
   // try inserting triangles on plane to the left subtree
@@ -210,7 +210,7 @@ std::pair<double, bool> surface_area_heuristic(
   return std::min(left, right);
 }
 // returns SA(V_l)/SA(V) and SA(V_l)/SA(V)
-std::pair<double, double> relative_subvoxel_areas(
+std::pair<double, double> relativeSubvoxelAreas(
     const Voxel& voxel, const AxisPlane& plane) const {
   // axes for the voxel face parallel to plane
   int base1 = (plane.axis + 1) % 3;

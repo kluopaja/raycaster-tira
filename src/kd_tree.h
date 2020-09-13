@@ -84,9 +84,9 @@ std::vector<Triangle*> extractTriangles(
 // returns the cost of the better split and
 // the side to which n_plane was assigned
 // in this split
-std::pair<double, bool> surface_area_heuristic(double l_area, double r_area,
+std::pair<double, bool> surfaceAreaHeuristic(double l_area, double r_area,
                                                  int n_left, int n_plane,
                                                  int n_right) const;
-std::pair<double, double> relative_subvoxel_areas(
+std::pair<double, double> relativeSubvoxelAreas(
   const Voxel& voxel, const AxisPlane& plane) const;
 #endif
