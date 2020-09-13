@@ -3,7 +3,7 @@ common_compile_flags := -std=c++17 -Wall -Weffc++ -Wextra -Wsign-conversion
 cov_compile_flags := -O0 --coverage
 cov_link_flags := -lgtest -lgtest_main -lgmock --coverage
 objects := bin/geometry.o
-cov_objects := cov/geometry_test.o cov/geometry.o
+cov_objects := cov/geometry_test.o cov/geometry.o cov/test_utils.o
 
 cov/test : $(cov_objects)
 	@mkdir -p cov
