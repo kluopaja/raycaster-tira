@@ -1,11 +1,14 @@
 #include "kd_tree.h"
 #include "test_utils.h"
 
+#include <gmock/gmock.h>
+#include <gtest/gtest.h>
+
+#include <chrono>
 #include <tuple>
 
-#include <gtest/gtest.h>
-#include <gmock/gmock.h>
 using ::testing::ContainerEq;
+using ::testing::PrintToString;
 namespace {
     TEST(RelativeSubvoxelAreas, Simple) {
         Voxel v(Vec3(0.0), Vec3(1.0));
@@ -74,6 +77,51 @@ namespace {
 
         EXPECT_NEAR(cost, std::min(l_correct, r_correct), EPS);
         EXPECT_EQ(side, l_correct <= r_correct ? 0 : 1);
+// tests both the TreeBuilder and Tree by building a tree and
+// making queries
+TEST(TreeBuilderKdTreeQueries, Random3d) {
+  std::mt19937 mt(1337);
+  int n_rays = 0;
+  int n_same_answer = 0;
+  for (int i = 0; i < 1000; ++i) {
+    double triangle_scale = test::randomLogUniformReal(-4, 7, mt);
+    std::vector<Triangle*> scene =
+        test::randomTriangleVector(0.0, 100.0, triangle_scale, 100, mt);
+    Tree t = buildKdTree(scene, 1.0, 40.0);
+    for (int j = 0; j < 100; ++j) {
+      Ray r(test::randomVec3(0.0, 1.0, mt), test::randomVec3(0.0, 1.0, mt));
+      TrianglePoint tp = t.getClosestRayIntersection(r);
+      TrianglePoint correct = firstRayTriangleIntersection(scene, r);
+      ++n_rays;
+      if (tp.triangle == correct.triangle) ++n_same_answer;
+      EXPECT_THAT(tp.bary_coords, VecEq(correct.bary_coords));
+// tests the TreeBuilder by checking that the resulting kd tree
+// has good enough performance
+// (used as a proxy for a correctly built kd tree)
+TEST(TreeBuilderKdTreeQueries, Random3dPerformance) {
+  std::mt19937 mt(1337);
+  std::chrono::duration<double, std::milli> kd_tree_time(0.0);
+  std::chrono::duration<double, std::milli> naive_time(0.0);
+  int n_rays = 0;
+  int n_same_answer = 0;
+  for (int i = 0; i < 5; ++i) {
+    std::vector<Triangle*> scene =
+        test::randomTriangleVector(0.0, 100.0, 0.05, 100000, mt);
+    Tree t = buildKdTree(scene, 1.0, 40.0);
+    std::cerr << "tree " << i << " done " << std::endl;
+    for (int i = 0; i < 100; ++i) {
+      Ray r(test::randomVec3(0.0, 1.0, mt), test::randomVec3(0.0, 1.0, mt));
+      auto t0 = std::chrono::high_resolution_clock::now();
+      TrianglePoint tp = t.getClosestRayIntersection(r);
+      auto t1 = std::chrono::high_resolution_clock::now();
+      TrianglePoint correct = firstRayTriangleIntersection(scene, r);
+      auto t2 = std::chrono::high_resolution_clock::now();
+      kd_tree_time += t1 - t0;
+      naive_time += t2 - t1;
+      ++n_rays;
+      if (tp.triangle == correct.triangle) ++n_same_answer;
+      ASSERT_EQ(tp.triangle, correct.triangle);
+      EXPECT_THAT(tp.bary_coords, VecEq(correct.bary_coords));
     }
     // tests that the extractTriangles reverses createClipTriangles correctly
     TEST(CreateAndExtractTriangles, Simple) {
@@ -109,3 +157,11 @@ namespace {
     }
     */
 } // namespace
+  }
+  EXPECT_LE(30 * kd_tree_time, naive_time);
+  std::cerr << "kd_tree_time: " << kd_tree_time.count() << std::endl;
+  std::cerr << "naive_time: " << naive_time.count() << std::endl;
+  std::cerr << "total rays: " << n_rays << std::endl;
+}
+
+}  // namespace
