@@ -18,7 +18,18 @@ TrianglePoint Node::getClosestRayIntersection(const Ray& r) const {
     return {nullptr, {}};
   }
   if (isLeaf()) {
-    return firstRayTriangleIntersection(triangles, r);
+    TrianglePoint point = firstRayTriangleIntersection(triangles, r);
+    // Check that the intersection is actually within the voxel.
+    // Some of the triangles extend outside the voxels
+    // but the tree traversal assumes that the intersections are within
+    // the voxel (the closer voxel is checked first for the intersections)
+    if (point.triangle != nullptr) {
+      if (voxel.isInside(point.triangle->pointFromBary(point.bary_coords))) {
+        return point;
+      }
+      return {nullptr, {}};
+    }
+    return point;
   }
   // first the closer leaf
   TrianglePoint result;

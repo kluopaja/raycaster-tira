@@ -160,6 +160,11 @@ double Voxel::area() const {
                   + (hi[1] - lo[1]) * (hi[2] - lo[2])
                   + (hi[2] - lo[2]) * (hi[0] - lo[0]));
 }
+bool Voxel::isInside(const Vec3& p) const {
+    return lo[0] - EPS < p[0] && p[0] < hi[0] + EPS
+        && lo[1] - EPS < p[1] && p[1] < hi[1] + EPS
+        && lo[2] - EPS < p[2] && p[2] < hi[2] + EPS;
+}
 
 std::ostream& operator<<(std::ostream& out, const Voxel& a) {
   out << "Voxel(\n" << a.lo << ",\n" << a.hi << ")";

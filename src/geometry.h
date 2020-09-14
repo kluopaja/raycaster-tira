@@ -107,6 +107,8 @@ class Voxel {
   // Extends voxel to cover point t
   void cover(Triangle* t);
   double area() const;
+  // check that the point p is within the voxel (+EPS)
+  bool isInside(const Vec3& p) const;
 };
 std::ostream& operator<<(std::ostream& out, const Voxel& a);
 // Defines a point where ray intersects a triangle
