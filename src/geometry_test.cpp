@@ -509,7 +509,7 @@ TEST(FirstRayTriangleIntersection, Random) {
     Vec3 ray_origin = p + test::randomVec3(-0.04, 0.04, mt);
     // 0.001 should always still be a lot larger than EPS
     if ((ray_origin - p).norm() < 0.001) continue;
-    if (test::pointOnTrianglePlane(*scene[0], p)) continue;
+    if (test::pointOnTrianglePlane(*scene[0], ray_origin)) continue;
 
     double scale = test::randomLogUniformReal(-4, 10, mt);
     Ray r(ray_origin, scale * (p - ray_origin));
@@ -526,6 +526,7 @@ TEST(FirstRayTriangleIntersection, Random) {
     if (tp.triangle == scene[0]) ++n_same_triangle;
     ++n_tests_run;
   }
+  ASSERT_GE(n_tests_run, 7000) << "Problem in generating the test cases";
   std::cerr << "random tests run: " << n_tests_run << std::endl;
   std::cerr << "of these, " << n_same_triangle
             << " intersected first the triangle used to generate the ray "
