@@ -157,7 +157,7 @@ void Voxel::cover(Triangle* t) {
 };
 double Voxel::area() const {
     return 2.0 * ((hi[0] - lo[0]) * (hi[1] - lo[1])
-                  + (hi[1] - lo[1]) * (hi[2] - lo[1])
+                  + (hi[1] - lo[1]) * (hi[2] - lo[2])
                   + (hi[2] - lo[2]) * (hi[0] - lo[0]));
 }
 
