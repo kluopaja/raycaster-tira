@@ -39,7 +39,7 @@ std::vector<Triangle*> randomTriangleVector(double lo, double hi,
   return v;
 }
 bool pointOnTrianglePlane(const Triangle& t, const Vec3& p) {
-  return (p - t.p0).cross(t.p1 - t.p0).dot(t.p2 - t.p0) < TEST_EPS;
+  return std::abs((p - t.p0).cross(t.p1 - t.p0).dot(t.p2 - t.p0)) < TEST_EPS;
 }
 
 }  // namespace test
