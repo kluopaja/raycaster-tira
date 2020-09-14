@@ -15,47 +15,47 @@ std::ostream& operator<<(std::ostream& out, const Vec3& a) {
 Voxel::Voxel(const Vec3& lo, const Vec3& hi) : lo(lo), hi(hi) {}
 // Implements a fast voxel ray intersection with the correct handling of
 // special cases
-
+//
 // ( from here https://dl.acm.org/doi/10.1145/1198555.1198748 )
-
+//
 // ( Note that this algorithm doesn't always have consistent behaviour
 // at the edges of the voxel! )
-
+//
 // A ray r intersect a voxel v iff there is a parameter t > 0
 // s.t. r.origin + t * r.direction is inside the voxel v.
-
+//
 // A point p is inside a voxel v exactly when:
 //      v.lo[0] < p[0] < v.hi[0]
 // and  v.lo[1] < p[1] < v.hi[1]
 // and  v.lo[2] < p[2] < v.hi[2]
-
+//
 // So we want to find a value t such that.
 //      v.lo[0] < r.origin[0] + t * r.direction[0]  < v.hi[0]
 //      v.lo[1] < r.origin[1] + t * r.direction[1]  < v.hi[1]
 //      v.lo[2] < r.origin[2] + t * r.direction[2]  < v.hi[2]
-
+//
 // Any one of these can be solved simply:
-
+//
 // v.lo[i] < r.origin[i] + t * r.direction[i] < v.hi[i]
 // (v.lo[i] - r.origin[i]) / r.direction[i] < t
 //     < (v.hi[i] - r.origin[i]) / r.direction[i]
-
+//
 // (inversing the inequalities if r.direction[i] < 0)
-
+//
 // The algorithm handles these intervals one by one
 // always maintaining the intersection [t_min, t_max] of
 // the so far met intervals. Whenever possible,
 // the algorithm checks whether the interval is empty
-
+//
 // While in principle the process is very simple there
 // are some special cases when r.direction[i] == 0.0
 // or r.direction[i] == -0.0
-
+//
 // While it holds that 0.0 == -0.0, 0.0 and -0.0
 // still behave differently since 1/-0.0 == -inf < inf == 1/0.0.
 // Therefore it is important that we compare divx >= 0 and
 // not r.direction[i] >= 0 !
-
+//
 // If r.direction[i] == +-0.0, the [t_min, t_max]
 // should be updated based on whether
 // lo[i] < r.origin[i] < hi[i] holds
@@ -64,14 +64,14 @@ Voxel::Voxel(const Vec3& lo, const Vec3& hi) : lo(lo), hi(hi) {}
 // or (t_min = -inf; t_max = -inf)
 // both of which define an interval that evaluates
 // to 0 at the end of the algorithm!
-
+//
 // Other special case is r.direction[i] == +-0.0
 // and (lo[i] == r.origin[i] or hi[i] == r.origin[i])
-
+//
 // Now we get for example:
 //     t_min = (lo[0] - r.origin[0]) * divx
 //           = 0.0*inf = NaN
-
+//
 // In these cases, the algorithm doesn't handle the
 // dimensions consistently:
 //     If this occurs for dimension 0, the algorithm returns false
@@ -82,7 +82,7 @@ Voxel::Voxel(const Vec3& lo, const Vec3& hi) : lo(lo), hi(hi) {}
 //     the intersection with the voxel border will be treated
 //     as intersection with the voxel!
 
-bool Voxel::intersects(const Ray& r) {
+bool Voxel::intersects(const Ray& r) const {
   double t_min, t_max;
   double ty_min, ty_max;
   if (r.inv_direction[0] >= 0) {
@@ -105,8 +105,6 @@ bool Voxel::intersects(const Ray& r) {
   }
   // if clauses and not std::min are used here because this way
   // it is easier to see happens with NaNs
-
-  // truncate the interval
   if (ty_min > t_min) {
     t_min = ty_min;
   }
@@ -157,6 +155,15 @@ void Voxel::cover(Triangle* t) {
   cover(t->p1);
   cover(t->p2);
 };
+double Voxel::area() const {
+  return 2.0 * ((hi[0] - lo[0]) * (hi[1] - lo[1]) +
+                (hi[1] - lo[1]) * (hi[2] - lo[2]) +
+                (hi[2] - lo[2]) * (hi[0] - lo[0]));
+}
+bool Voxel::isInside(const Vec3& p) const {
+  return lo[0] - EPS < p[0] && p[0] < hi[0] + EPS && lo[1] - EPS < p[1] &&
+         p[1] < hi[1] + EPS && lo[2] - EPS < p[2] && p[2] < hi[2] + EPS;
+}
 
 std::ostream& operator<<(std::ostream& out, const Voxel& a) {
   out << "Voxel(\n" << a.lo << ",\n" << a.hi << ")";
@@ -164,13 +171,16 @@ std::ostream& operator<<(std::ostream& out, const Voxel& a) {
 }
 Triangle::Triangle(const Vec3& p0, const Vec3& p1, const Vec3& p2)
     : p0(p0), p1(p1), p2(p2) {}
-Vec3 Triangle::pointFromBary(const Vec2& coords) {
+Vec3 Triangle::pointFromBary(const Vec2& coords) const {
   assert(coords[0] + coords[1] < 1 + EPS);
   return (1.0 - coords[0] - coords[1]) * p0 + coords[0] * p1 + coords[1] * p2;
 }
+double Triangle::area() const { return (p1 - p0).cross(p2 - p0).norm() / 2.0; }
 // For explanation see
 // https://cadxfem.org/inf/Fast%20MinimumStorage%20RayTriangle%20Intersection.pdf
-RayIntersection Triangle::getRayIntersection(const Ray& r) {
+// also detects intersections to the side of the triangle
+// and EPS outside the triangle
+RayIntersection Triangle::getRayIntersection(const Ray& r) const {
   Vec3 edge1 = p1 - p0;
   Vec3 edge2 = p2 - p0;
   Vec3 pvec = r.direction.cross(edge2);
@@ -206,9 +216,9 @@ PlanePolygon::PlanePolygon(const Vec3& a, const Vec3& b, const Vec3& c)
 }
 PlanePolygon::PlanePolygon(const Triangle* t)
     : PlanePolygon(t->p0, t->p1, t->p2) {}
-Voxel PlanePolygon::getBoundingBox() {
+Voxel PlanePolygon::getBoundingBox() const {
   Voxel bounds(INF, -INF);
-  for (int i = 0; i < points.size(); ++i) {
+  for (size_t i = 0; i < points.size(); ++i) {
     bounds.cover(points[i]);
   }
   return bounds;
@@ -230,7 +240,7 @@ void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
       new_points.push_back(points[i]);
     }
     size_t nxt_i = i + 1;
-    if (i == points.size()) i = 0;
+    if (nxt_i == points.size()) nxt_i = 0;
 
     Vec3 a = points[i];
     Vec3 b = points[nxt_i];
@@ -247,29 +257,35 @@ void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
   }
   points = new_points;
 }
-size_t PlanePolygon::size() { return points.size(); }
+size_t PlanePolygon::size() const { return points.size(); }
 // Returns whether triangle has positive area overlap
 // with side 0 and 1 of plane
-// 'side' is the side to which plane belongs to
-// (subtrees the triangle should be added to)
+// 'side' is the side which the plane belongs to
+// (side which a triangle lying on 'plane' should be added to)
 std::pair<bool, bool> ClipTriangle::overlapsSides(const AxisPlane& plane,
-                                                  bool side) {
-  if (box.hi[plane.axis] < plane.pos - EPS) {
-    return {1, 0};
-  }
-  if (box.lo[plane.axis] > plane.pos + EPS) {
-    return {0, 1};
-  }
+                                                  bool side) const {
   if (isAxisAligned(plane.axis)) {
+    if (box.hi[plane.axis] < plane.pos - EPS) {
+      return {1, 0};
+    }
+    if (box.lo[plane.axis] > plane.pos + EPS) {
+      return {0, 1};
+    }
     if (side == 0) {
       return {1, 0};
     }
     return {0, 1};
   }
+  if (box.hi[plane.axis] < plane.pos + EPS) {
+    return {1, 0};
+  }
+  if (box.lo[plane.axis] > plane.pos - EPS) {
+    return {0, 1};
+  }
   return {1, 1};
 }
-double ClipTriangle::max(int axis) { return box.hi[axis]; }
-double ClipTriangle::min(int axis) { return box.lo[axis]; }
+double ClipTriangle::max(int axis) const { return box.hi[axis]; }
+double ClipTriangle::min(int axis) const { return box.lo[axis]; }
 void ClipTriangle::clip(const AxisPlane& plane, bool side) {
   assert(side != 0 || (plane.pos > min(plane.axis) - EPS));
   assert(side != 1 || (plane.pos < max(plane.axis) + EPS));
@@ -286,4 +302,32 @@ Ray::Ray(Vec3 origin, Vec3 direction) : origin(origin), direction(direction) {
 std::ostream& operator<<(std::ostream& out, const Ray& a) {
   out << "Ray(\n" << a.origin << ",\n" << a.direction << ")";
   return out;
+}
+std::ostream& operator<<(std::ostream& out, const AxisPlane& a) {
+  out << "AxisPlane(\n" << a.axis << ",\n" << a.pos << ")";
+  return out;
+}
+TrianglePoint firstRayTriangleIntersection(
+    const std::vector<Triangle*>& triangles, const Ray& r) {
+  TrianglePoint closest_point = {nullptr, {}};
+  double closest_distance = INF;
+  for (size_t i = 0; i < triangles.size(); ++i) {
+    RayIntersection intersection = triangles[i]->getRayIntersection(r);
+    if (intersection.distance > 0 && intersection.distance < closest_distance) {
+      closest_distance = intersection.distance;
+      closest_point = {triangles[i], intersection.bary_coords};
+    }
+  }
+  return closest_point;
+}
+Voxel boundingBox(const std::vector<Triangle*>& triangles) {
+  if (triangles.size() == 0) {
+    return {Vec3(0), Vec3(0)};
+  }
+  Voxel box = {Vec3(std::numeric_limits<double>::infinity()),
+               Vec3(-std::numeric_limits<double>::infinity())};
+  for (size_t i = 0; i < triangles.size(); ++i) {
+    box.cover(triangles[i]);
+  }
+  return box;
 }

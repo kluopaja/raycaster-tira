@@ -1,12 +1,19 @@
 #include "geometry.h"
 
 #include <gmock/gmock-more-matchers.h>
+#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 #include <random>
-using ::testing::UnorderedElementsAre;
-namespace {
 
+#include "test_utils.h"
+
+using ::testing::PrintToString;
+
+namespace {
+MATCHER_P(VecEq, v, "should equal " + PrintToString(v)) {
+  return (v - arg).norm() < EPS;
+}
 TEST(Vec2Test, ConstructorAllValues) {
   Vec2 v(0.1, -1.1);
   EXPECT_EQ(v[0], 0.1);
@@ -105,23 +112,12 @@ TEST(VoxelTest, IntersectsSimple) {
   r = Ray({2.0, 2.0, 2.0}, {-1.0, -1.0, -1.0});
   EXPECT_TRUE(v.intersects(r));
 }
-Vec3 randomVec3(double lo, double hi, std::mt19937& random_engine) {
-  assert(lo < hi);
-  std::uniform_real_distribution dist(lo, hi);
-  return Vec3(dist(random_engine), dist(random_engine), dist(random_engine));
-}
-double randomLogUniformReal(double lo_log, double hi_log,
-                            std::mt19937& random_engine) {
-  assert(lo_log < hi_log);
-  std::uniform_real_distribution dist(lo_log, hi_log);
-  return std::pow(2.0, dist(random_engine));
-}
 // Random test for rays intersecting inner points of the voxel
 TEST(VoxelTest, IntersectsRandom) {
   std::mt19937 mt(1337);
   for (int i = 0; i < 100'000; ++i) {
     std::uniform_real_distribution<double> dist(-1, 1);
-    Voxel v(randomVec3(-1, 1, mt), randomVec3(-1, 1, mt));
+    Voxel v(test::randomVec3(-1, 1, mt), test::randomVec3(-1, 1, mt));
 
     Vec3 inner_point;
     for (int j = 0; j < 3; ++j) {
@@ -137,8 +133,8 @@ TEST(VoxelTest, IntersectsRandom) {
       }
     }
     if (ok) {
-      Vec3 other_point = randomVec3(-1, 1, mt);
-      double scale = randomLogUniformReal(-10, 10, mt);
+      Vec3 other_point = test::randomVec3(-1, 1, mt);
+      double scale = test::randomLogUniformReal(-10, 10, mt);
       Vec3 direction = scale * (inner_point - other_point);
       Ray r(other_point, direction);
       ASSERT_TRUE(v.intersects(r)) << "v = " << v << "\nr = " << r;
@@ -199,6 +195,16 @@ TEST(VoxelTest, CoverTriangle) {
   EXPECT_NEAR((v.lo - c.lo).norm(), 0, EPS);
   EXPECT_NEAR((v.hi - c.hi).norm(), 0, EPS);
 }
+TEST(VoxelTest, Area) {
+  Voxel v({0.0, 0.0, 0.0}, {0.0, 0.0, 0.0});
+  EXPECT_NEAR(v.area(), 0, EPS);
+  v = Voxel({0.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
+  EXPECT_NEAR(v.area(), 0, EPS);
+  v = Voxel({0.0, 0.0, 0.0}, {1.0, 1.0, 0.0});
+  EXPECT_NEAR(v.area(), 2.0, EPS);
+  v = Voxel({0.0, 0.0, 0.0}, {1.0, 1.0, 1.0});
+  EXPECT_NEAR(v.area(), 6.0, EPS);
+}
 TEST(TriangleTest, PointFromBarySimple) {
   Triangle t({0.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, {0.0, 1.0, 0.0});
   Vec2 bary_coords(0.0, 0.0);
@@ -212,24 +218,27 @@ TEST(TriangleTest, PointFromBarySimple) {
   c = Vec3(0.2, 0.43, 0.0);
   EXPECT_NEAR((r - c).norm(), 0, EPS);
 }
-Vec2 randomBaryCoords(std::mt19937& random_engine) {
-  std::uniform_real_distribution<double> dist(0, 1);
-  Vec2 v(dist(random_engine), dist(random_engine));
-  // limit sum to 1
-  v[1] = std::min(1 - v[0], v[1]);
-  return v;
-}
 // tests that random barycentric coordinates will be on the triangle plane
 TEST(TriangleTest, PointFromBaryRandom) {
   std::mt19937 mt(1337);
   for (int i = 0; i < 100'000; ++i) {
-    Triangle t(randomVec3(-1.0, 1.0, mt), randomVec3(-1.0, 1.0, mt),
-               randomVec3(-1.0, 1.0, mt));
-    Vec2 bary_coords(randomBaryCoords(mt));
+    Triangle t(test::randomVec3(-1.0, 1.0, mt), test::randomVec3(-1.0, 1.0, mt),
+               test::randomVec3(-1.0, 1.0, mt));
+    Vec2 bary_coords(test::randomBaryCoords(mt));
     Vec3 p(t.pointFromBary(bary_coords));
     Vec3 dot_normal = (p - t.p0).cross(t.p1 - t.p0).dot(t.p2 - t.p0);
     ASSERT_NEAR(dot_normal.norm(), 0, EPS);
   }
+}
+TEST(TriangleTest, Area) {
+  Triangle t({0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0});
+  EXPECT_NEAR(t.area(), 0.0, EPS);
+  t = Triangle({0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
+  EXPECT_NEAR(t.area(), 0.0, EPS);
+  t = Triangle({0.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, {0.0, 1.0, 0.0});
+  EXPECT_NEAR(t.area(), 0.5, EPS);
+  t = Triangle({1.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 1.0});
+  EXPECT_NEAR(t.area(), std::sqrt(1.0 / 2.0), EPS);
 }
 TEST(TriangleTest, RayIntersectionSimple) {
   Triangle t({0.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, {0.0, 1.0, 0.0});
@@ -251,24 +260,25 @@ TEST(TriangleTest, RayIntersectionParallel) {
 TEST(TriangleTest, RayIntersectionRandom) {
   std::mt19937 mt(1337);
   for (int i = 0; i < 100'000; ++i) {
-    Triangle random_t(randomVec3(-1.0, 1.0, mt), randomVec3(-1.0, 1.0, mt),
-                      randomVec3(-1.0, 1.0, mt));
+    Triangle random_t(test::randomVec3(-1.0, 1.0, mt),
+                      test::randomVec3(-1.0, 1.0, mt),
+                      test::randomVec3(-1.0, 1.0, mt));
 
-    Vec2 bary_coords = randomBaryCoords(mt);
+    Vec2 bary_coords = test::randomBaryCoords(mt);
     // skip coordinates that are too close to border
     if (bary_coords[0] < EPS || bary_coords[1] < EPS ||
         bary_coords[0] + bary_coords[1] > 1 - EPS) {
       continue;
     }
     Vec3 inner_point(random_t.pointFromBary(bary_coords));
-    Vec3 ray_origin(randomVec3(-1.0, 1.0, mt));
+    Vec3 ray_origin(test::randomVec3(-1.0, 1.0, mt));
     // ray origin should not be on the plane
     // TODO implement this to geometry.cpp?
     Vec3 tmp = (ray_origin - random_t.p0).cross(random_t.p1 - random_t.p0);
     if (std::abs(tmp.dot(random_t.p2 - random_t.p0)) < EPS) {
       continue;
     }
-    double scale = randomLogUniformReal(-1.0, 1.0, mt);
+    double scale = test::randomLogUniformReal(-1.0, 1.0, mt);
     // also test negative scale (ray going away from the triangle)
     if (i % 2 == 1) {
       scale *= -1;
@@ -393,6 +403,33 @@ TEST(ClipTriangle, OverlapSidesParallel) {
   r = ct.overlapsSides({1, 1.1}, 0);
   EXPECT_EQ(r, std::make_pair(true, false));
 }
+// tests the case where the plane intersects a zero area part of the
+// non axis-aligned triangle
+TEST(ClipTriangle, OverlapSidesZeroArea) {
+  Triangle t(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
+             Vec3(-12.23, -15.2, 2.2));
+  ClipTriangle ct(&t);
+  std::pair<bool, bool> r = ct.overlapsSides({0, -12.23}, 1);
+  EXPECT_EQ(r, std::make_pair(false, true));
+
+  t = Triangle(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
+               Vec3(-12.23, -15.2, 2.2));
+  ct = ClipTriangle(&t);
+  r = ct.overlapsSides({0, -12.23}, 0);
+  EXPECT_EQ(r, std::make_pair(false, true));
+
+  t = Triangle(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
+               Vec3(-12.23, -15.2, 2.2));
+  ct = ClipTriangle(&t);
+  r = ct.overlapsSides({1, 2.2}, 0);
+  EXPECT_EQ(r, std::make_pair(true, false));
+
+  t = Triangle(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
+               Vec3(-12.23, -15.2, 2.2));
+  ct = ClipTriangle(&t);
+  r = ct.overlapsSides({1, 2.2}, 1);
+  EXPECT_EQ(r, std::make_pair(true, false));
+}
 TEST(ClipTriangle, ClipSimple) {
   Triangle t(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0));
   ClipTriangle ct(&t);
@@ -416,4 +453,84 @@ TEST(ClipTriangle, ClipParallel) {
   EXPECT_NEAR(ct.min(0), 0.0, EPS);
   EXPECT_NEAR(ct.max(0), 1.0, EPS);
 }
+TEST(FirstRayTriangleIntersection, Simple) {
+  std::vector<Triangle*> scene;
+  scene.push_back(new Triangle(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0),
+                               Vec3(0.0, 1.0, 0.0)));
+  scene.push_back(new Triangle(Vec3(2.0, 2.0, 0.0), Vec3(2.5, 2.0, 0.0),
+                               Vec3(2.0, 2.5, 0.0)));
+  scene.push_back(new Triangle(Vec3(2.2, 1.0, 0.0), Vec3(1.3, 2.2, 0.0),
+                               Vec3(1.1, 2.1, 0.0)));
+  Ray r = Ray(Vec3(0.0, 0.0, 1.0), Vec3(2.1, 2.1, 1.0));
+  TrianglePoint p = firstRayTriangleIntersection(scene, r);
+  EXPECT_EQ(p.triangle, nullptr);
+
+  r = Ray(Vec3(0.0, 0.0, 1.0), Vec3(2.1, 2.1, -1.0));
+  p = firstRayTriangleIntersection(scene, r);
+  EXPECT_EQ(p.triangle, scene[1]);
+  EXPECT_EQ(p.triangle, scene[1]);
+
+  scene.clear();
+  scene.push_back(new Triangle(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0),
+                               Vec3(0.0, 1.0, 0.0)));
+  scene.push_back(new Triangle(Vec3(0.0, 0.0, 1.0), Vec3(1.0, 0.0, 1.0),
+                               Vec3(0.0, 1.0, 1.0)));
+  scene.push_back(new Triangle(Vec3(0.0, 0.0, 2.0), Vec3(1.0, 0.0, 2.0),
+                               Vec3(0.0, 1.0, 2.0)));
+
+  r = Ray(Vec3(0.3, 0.3, -10.0), Vec3(0.0, 0.0, 1.0));
+  p = firstRayTriangleIntersection(scene, r);
+  EXPECT_EQ(p.triangle, scene[0]);
+  EXPECT_THAT(p.bary_coords, VecEq(Vec2(0.3, 0.3)));
+
+  r = Ray(Vec3(0.2, 0.2, 0.5), Vec3(0.2, 0.2, 1.0));
+  p = firstRayTriangleIntersection(scene, r);
+  EXPECT_EQ(p.triangle, scene[1]);
+  EXPECT_THAT(p.bary_coords, VecEq(Vec2(0.3, 0.3)));
+
+  r = Ray(Vec3(0.2, 0.2, 2 - 0.01), Vec3(0.0, 0.0, 1.0));
+  p = firstRayTriangleIntersection(scene, r);
+  EXPECT_EQ(p.triangle, scene[2]);
+  EXPECT_THAT(p.bary_coords, VecEq(Vec2(0.2, 0.2)));
+}
+// Tests that the function always finds an intersection that
+// is at least as close as the correct intersection
+// Also tests that the intersections are really on the ray
+TEST(FirstRayTriangleIntersection, Random) {
+  std::mt19937 mt(1337);
+  int n_tests_run = 0;
+  int n_same_triangle = 0;
+  for (int i = 0; i < 10'000; ++i) {
+    double max_triangle_size = test::randomLogUniformReal(-10, 0, mt);
+    std::vector<Triangle*> scene =
+        test::randomTriangleVector(-1, 1, max_triangle_size, 100, mt);
+    Vec2 bary_coords = test::randomBaryCoords(mt);
+    Vec3 p = scene[0]->pointFromBary(bary_coords);
+    Vec3 ray_origin = p + test::randomVec3(-0.04, 0.04, mt);
+    // 0.001 should always still be a lot larger than EPS
+    if ((ray_origin - p).norm() < 0.001) continue;
+    if (test::pointOnTrianglePlane(*scene[0], ray_origin)) continue;
+
+    double scale = test::randomLogUniformReal(-4, 10, mt);
+    Ray r(ray_origin, scale * (p - ray_origin));
+    TrianglePoint tp = firstRayTriangleIntersection(scene, r);
+    ASSERT_NE(tp.triangle, nullptr);
+    Vec3 intersection = tp.triangle->pointFromBary(tp.bary_coords);
+    // check that the intersection found is not
+    // further away than it should be
+    ASSERT_LE((intersection - ray_origin).norm(),
+              (p - ray_origin).norm() + EPS);
+    // check that the intersection is on the ray
+    ASSERT_NEAR((intersection - ray_origin).cross(p - ray_origin).norm(), 0,
+                EPS);
+    if (tp.triangle == scene[0]) ++n_same_triangle;
+    ++n_tests_run;
+  }
+  ASSERT_GE(n_tests_run, 7000) << "Problem in generating the test cases";
+  std::cerr << "random tests run: " << n_tests_run << std::endl;
+  std::cerr << "of these, " << n_same_triangle
+            << " intersected first the triangle used to generate the ray "
+            << std::endl;
+}
+
 }  // namespace
