@@ -78,6 +78,12 @@ std::vector<Triangle*> extractTriangles(
 // implements the O(n log^2 n) algorithm
 Node* TreeBuilder::recursiveBuild(std::vector<ClipTriangle>& clip_triangles,
                                   const Voxel& voxel) const {
+  // the surface area heuristic is not well defined if the voxel has
+  // zero area so we will just terminate
+  if (voxel.area() < EPS) {
+    // make a leaf
+    return new Node(voxel, extractTriangles(clip_triangles));
+  }
   SplitPlane split_plane = findPlane(clip_triangles, voxel);
   // termination criterion
   if (split_plane.cost > intersection_cost * (double)clip_triangles.size()) {
@@ -132,35 +138,39 @@ SplitPlane TreeBuilder::findPlane(
       //     Added to the plane
       // After:
       //     Added to left side
-      int n_on_plane = 0;
+      int n_new_on_plane = 0;
       while (j < event_list.size() &&
              event_list[j].pos <= current_plane.pos + EPS) {
         if (event_list[j].type == 0) {
-          ++n_end_plane_intersection;
+          ++n_start_plane_intersection;
         }
         if (event_list[j].type == 1) {
-          ++n_on_plane;
+          ++n_new_on_plane;
         }
         if (event_list[j].type == 2) {
-          ++n_start_plane_intersection;
+          ++n_end_plane_intersection;
         }
         ++j;
       }
+      // updating intersection counts
       n_right -= n_end_plane_intersection;
-      n_right -= n_on_plane;
+      n_right -= n_new_on_plane;
+      n_plane += n_new_on_plane;
       // Plane check
       double l_area, r_area;
-      std::tie(l_area, r_area) = relative_subvoxel_areas(voxel, current_plane);
+      std::tie(l_area, r_area) = relativeSubvoxelAreas(voxel, current_plane);
       double cost;
       bool side;
       std::tie(cost, side) =
-          surface_area_heuristic(l_area, r_area, n_left, n_plane, n_right);
+          surfaceAreaHeuristic(l_area, r_area, n_left, n_plane, n_right,
+                               traversal_cost, intersection_cost);
       if (cost < best_split.cost) {
         best_split = {current_plane, side, cost};
       }
       // After
       n_left += n_start_plane_intersection;
-      n_left += n_on_plane;
+      n_plane -= n_new_on_plane;
+      n_left += n_new_on_plane;
     }
   }
   return best_split;
