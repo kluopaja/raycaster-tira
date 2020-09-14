@@ -156,14 +156,13 @@ void Voxel::cover(Triangle* t) {
   cover(t->p2);
 };
 double Voxel::area() const {
-    return 2.0 * ((hi[0] - lo[0]) * (hi[1] - lo[1])
-                  + (hi[1] - lo[1]) * (hi[2] - lo[2])
-                  + (hi[2] - lo[2]) * (hi[0] - lo[0]));
+  return 2.0 * ((hi[0] - lo[0]) * (hi[1] - lo[1]) +
+                (hi[1] - lo[1]) * (hi[2] - lo[2]) +
+                (hi[2] - lo[2]) * (hi[0] - lo[0]));
 }
 bool Voxel::isInside(const Vec3& p) const {
-    return lo[0] - EPS < p[0] && p[0] < hi[0] + EPS
-        && lo[1] - EPS < p[1] && p[1] < hi[1] + EPS
-        && lo[2] - EPS < p[2] && p[2] < hi[2] + EPS;
+  return lo[0] - EPS < p[0] && p[0] < hi[0] + EPS && lo[1] - EPS < p[1] &&
+         p[1] < hi[1] + EPS && lo[2] - EPS < p[2] && p[2] < hi[2] + EPS;
 }
 
 std::ostream& operator<<(std::ostream& out, const Voxel& a) {
@@ -176,9 +175,7 @@ Vec3 Triangle::pointFromBary(const Vec2& coords) const {
   assert(coords[0] + coords[1] < 1 + EPS);
   return (1.0 - coords[0] - coords[1]) * p0 + coords[0] * p1 + coords[1] * p2;
 }
-double Triangle::area() const {
-    return (p1-p0).cross(p2-p0).norm()/2.0;
-}
+double Triangle::area() const { return (p1 - p0).cross(p2 - p0).norm() / 2.0; }
 // For explanation see
 // https://cadxfem.org/inf/Fast%20MinimumStorage%20RayTriangle%20Intersection.pdf
 // also detects intersections to the side of the triangle
@@ -268,12 +265,12 @@ size_t PlanePolygon::size() const { return points.size(); }
 std::pair<bool, bool> ClipTriangle::overlapsSides(const AxisPlane& plane,
                                                   bool side) const {
   if (isAxisAligned(plane.axis)) {
-      if (box.hi[plane.axis] < plane.pos - EPS) {
-        return {1, 0};
-      }
-      if (box.lo[plane.axis] > plane.pos + EPS) {
-        return {0, 1};
-      }
+    if (box.hi[plane.axis] < plane.pos - EPS) {
+      return {1, 0};
+    }
+    if (box.lo[plane.axis] > plane.pos + EPS) {
+      return {0, 1};
+    }
     if (side == 0) {
       return {1, 0};
     }

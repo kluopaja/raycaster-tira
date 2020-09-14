@@ -32,7 +32,9 @@ class Vec2 {
  private:
   double v[2];
 };
-inline double Vec2::dot(const Vec2& b) const { return v[0] * b.v[0] + v[1] * b.v[1]; }
+inline double Vec2::dot(const Vec2& b) const {
+  return v[0] * b.v[0] + v[1] * b.v[1];
+}
 inline Vec2 operator+(const Vec2& a, const Vec2& b) {
   return Vec2(a.v[0] + b.v[0], a.v[1] + b.v[1]);
 }
@@ -63,6 +65,7 @@ class Vec3 {
   double operator[](int index) const;
   double norm() const;
   friend std::ostream& operator<<(std::ostream& out, const Vec3& a);
+
  private:
   double v[3];
 };

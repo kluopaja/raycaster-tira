@@ -1,5 +1,6 @@
-#include "geometry.h"
 #include <random>
+
+#include "geometry.h"
 
 const double TEST_EPS = 1e-7;
 
@@ -10,9 +11,8 @@ double randomLogUniformReal(double lo_log, double hi_log,
                             std::mt19937& random_engine);
 Vec2 randomBaryCoords(std::mt19937& random_engine);
 std::vector<Triangle*> randomTriangleVector(double lo, double hi,
-                                            double max_triangle_size,
-                                            int n,
+                                            double max_triangle_size, int n,
                                             std::mt19937 random_engine);
 bool pointOnTrianglePlane(const Triangle& t, const Vec3& p);
 
-} // namespace
+}  // namespace test

@@ -54,6 +54,7 @@ class TreeBuilder {
  public:
   TreeBuilder(double traversal_cost, double intersection_cost);
   Tree build(const std::vector<Triangle*>& triangles) const;
+
  private:
   double traversal_cost;
   double intersection_cost;
@@ -74,9 +75,9 @@ Tree buildKdTree(const std::vector<Triangle*>& triangles, double k_t,
                  double k_i);
 
 std::vector<ClipTriangle> createClipTriangles(
-        const std::vector<Triangle*>& triangles);
+    const std::vector<Triangle*>& triangles);
 std::vector<Triangle*> extractTriangles(
-        const std::vector<ClipTriangle>& clip_triangles);
+    const std::vector<ClipTriangle>& clip_triangles);
 // Calculates the surface area heuristic cost
 // for splits [(n_left + n_plane), (n_right)]
 // and [(n_left), (n_right + n_plane)]
@@ -86,9 +87,8 @@ std::vector<Triangle*> extractTriangles(
 // in this split
 std::pair<double, bool> surfaceAreaHeuristic(double l_area, double r_area,
                                              int n_left, int n_plane,
-                                             int n_right,
-                                             double traversal_cost,
+                                             int n_right, double traversal_cost,
                                              double intersection_cost);
-std::pair<double, double> relativeSubvoxelAreas(
-  const Voxel& voxel, const AxisPlane& plane);
+std::pair<double, double> relativeSubvoxelAreas(const Voxel& voxel,
+                                                const AxisPlane& plane);
 #endif
