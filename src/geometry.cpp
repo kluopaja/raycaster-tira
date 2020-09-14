@@ -181,6 +181,8 @@ double Triangle::area() const {
 }
 // For explanation see
 // https://cadxfem.org/inf/Fast%20MinimumStorage%20RayTriangle%20Intersection.pdf
+// also detects intersections to the side of the triangle
+// and EPS outside the triangle
 RayIntersection Triangle::getRayIntersection(const Ray& r) const {
   Vec3 edge1 = p1 - p0;
   Vec3 edge2 = p2 - p0;
