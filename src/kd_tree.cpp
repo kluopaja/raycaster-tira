@@ -8,7 +8,7 @@
 Node::Node(Node* left, Node* right, const Voxel& voxel, const AxisPlane& plane)
     : left(left), right(right), voxel(voxel), plane(plane) {}
 Node::Node(const Voxel& voxel, const std::vector<Triangle*>& triangles)
-    : voxel(voxel), triangles(triangles) {}
+    : voxel(voxel), triangles(triangles), left(nullptr), right(nullptr) {}
 Node::~Node() {
   delete left;
   delete right;
