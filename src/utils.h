@@ -75,7 +75,7 @@ std::pair<size_t, size_t> countRelativeValues(RandomAccessIterator begin,
   }
   return std::make_pair(n_less, n_same);
 }
-// begin median of maximum 5 elements
+// finds median of maximum 5 elements
 // uses at most 6 comparisons
 template <typename RandomAccessIterator>
 RandomAccessIterator medianMax5(RandomAccessIterator begin,
