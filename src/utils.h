@@ -5,6 +5,9 @@
 
 namespace {
 
+template <typename RandomAccessIterator>
+RandomAccessIterator selectK(RandomAccessIterator begin,
+                             RandomAccessIterator end, size_t k);
 // used to sort small arrays
 // has better performance for small arrays than quickSort
 template <typename RandomAccessIterator>
@@ -18,10 +21,6 @@ void insertionSort(RandomAccessIterator begin, RandomAccessIterator end) {
     }
   }
 }
-
-template <typename RandomAccessIterator>
-RandomAccessIterator selectK(RandomAccessIterator begin,
-                             RandomAccessIterator end, size_t k);
 template <typename RandomAccessIterator>
 void partition(RandomAccessIterator begin, RandomAccessIterator end,
                size_t n_less, size_t n_same, RandomAccessIterator pivot) {
