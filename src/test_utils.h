@@ -15,4 +15,7 @@ std::vector<Triangle*> randomTriangleVector(double lo, double hi,
                                             std::mt19937 random_engine);
 bool pointOnTrianglePlane(const Triangle& t, const Vec3& p);
 
+std::vector<int> randomIntVector(int lo, int hi, int n,
+                                 std::mt19937& random_engine);
+
 }  // namespace test
