@@ -83,11 +83,11 @@ RandomAccessIterator medianMax5(RandomAccessIterator begin,
   assert(end - begin <= 5);
   if (end - begin == 5) {
     // here in comments we treat the numbers as
-    if (begin[0] > begin[1]) std::swap(begin[0], begin[1]);
-    if (begin[2] > begin[3]) std::swap(begin[2], begin[3]);
+    if (begin[1] < begin[0]) std::swap(begin[0], begin[1]);
+    if (begin[3] < begin[2]) std::swap(begin[2], begin[3]);
     // 0 <= 1
     // 2 <= 3
-    if (begin[0] > begin[2]) {
+    if (begin[2] < begin[0]) {
       std::swap(begin[0], begin[2]);
       std::swap(begin[1], begin[3]);
     }
@@ -102,7 +102,7 @@ RandomAccessIterator medianMax5(RandomAccessIterator begin,
     // the median will be the third largest of 1 2 3 4
     // note that this is similar to the end - begin == 4!
     if (begin[4] < begin[1]) std::swap(begin[1], begin[4]);
-    if (begin[1] > begin[2]) {
+    if (begin[2] < begin[1]) {
       std::swap(begin[1], begin[2]);
       std::swap(begin[3], begin[4]);
     }
@@ -115,11 +115,11 @@ RandomAccessIterator medianMax5(RandomAccessIterator begin,
     return begin + 4;
   }
   if (end - begin == 4) {
-    if (begin[0] > begin[1]) std::swap(begin[0], begin[1]);
-    if (begin[2] > begin[3]) std::swap(begin[2], begin[3]);
+    if (begin[1] < begin[0]) std::swap(begin[0], begin[1]);
+    if (begin[3] < begin[2]) std::swap(begin[2], begin[3]);
     // 0 <= 1
     // 2 <= 3
-    if (begin[0] > begin[2]) {
+    if (begin[2] < begin[0]) {
       std::swap(begin[0], begin[2]);
       std::swap(begin[1], begin[3]);
     }
@@ -131,16 +131,16 @@ RandomAccessIterator medianMax5(RandomAccessIterator begin,
     return begin + 2;
   }
   if (end - begin == 3) {
-    if (begin[0] > begin[1]) std::swap(begin[0], begin[1]);
+    if (begin[1] < begin[0]) std::swap(begin[0], begin[1]);
     // 0 < 1 2
-    if (begin[1] > begin[2]) std::swap(begin[1], begin[2]);
+    if (begin[2] < begin[1]) std::swap(begin[1], begin[2]);
     // 0 < 2
     // 1 < 2
-    if (begin[0] > begin[1]) return begin;
+    if (begin[1] < begin[0]) return begin;
     return begin + 1;
   }
   if (end - begin == 2) {
-    if (begin[0] < begin[1]) return begin;
+    if (begin[1] < begin[0]) return begin;
     return begin + 1;
   }
   // end - begin == 1
