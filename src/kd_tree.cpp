@@ -1,6 +1,7 @@
 #include "kd_tree.h"
 
 #include <limits>
+#include <memory>
 #include <tuple>
 #include <vector>
 
@@ -31,8 +32,8 @@ class TreeBuilder {
   double traversal_cost;
   double intersection_cost;
 
-  Node* recursiveBuild(std::vector<ClipTriangle>& clip_triangles,
-                       const Voxel& voxel) const;
+  std::unique_ptr<Node> recursiveBuild(
+      std::vector<ClipTriangle>& clip_triangles, const Voxel& voxel) const;
   SplitPlane findPlane(const std::vector<ClipTriangle>& clip_triangles,
                        const Voxel& v) const;
 
@@ -47,23 +48,23 @@ TreeBuilder::TreeBuilder(double traversal_cost, double intersection_cost)
 Tree TreeBuilder::build(const std::vector<Triangle*>& triangles) const {
   Voxel voxel = boundingBox(triangles);
   std::vector<ClipTriangle> clip_triangles = createClipTriangles(triangles);
-  Node* root = recursiveBuild(clip_triangles, voxel);
-  return Tree(root);
+  std::unique_ptr<Node> root = recursiveBuild(clip_triangles, voxel);
+  return Tree(std::move(root));
 }
 // implements the O(n log^2 n) algorithm
-Node* TreeBuilder::recursiveBuild(std::vector<ClipTriangle>& clip_triangles,
-                                  const Voxel& voxel) const {
+std::unique_ptr<Node> TreeBuilder::recursiveBuild(
+    std::vector<ClipTriangle>& clip_triangles, const Voxel& voxel) const {
   // the surface area heuristic is not well defined if the voxel has
   // zero area so we will just terminate
   if (voxel.area() < EPS) {
     // make a leaf
-    return new Node(voxel, extractTriangles(clip_triangles));
+    return std::make_unique<Node>(voxel, extractTriangles(clip_triangles));
   }
   SplitPlane split_plane = findPlane(clip_triangles, voxel);
   // termination criterion
   if (split_plane.cost > intersection_cost * (double)clip_triangles.size()) {
     // make a leaf
-    return new Node(voxel, extractTriangles(clip_triangles));
+    return std::make_unique<Node>(voxel, extractTriangles(clip_triangles));
   }
   SplitResult split = splitTriangles(clip_triangles, split_plane);
   clip_triangles.clear();
@@ -71,10 +72,10 @@ Node* TreeBuilder::recursiveBuild(std::vector<ClipTriangle>& clip_triangles,
   Voxel right_voxel(voxel);
   left_voxel.clip(split_plane.plane, 0);
   right_voxel.clip(split_plane.plane, 1);
-  Node* left = recursiveBuild(split.left, left_voxel);
-  Node* right = recursiveBuild(split.right, right_voxel);
-  Node* node = new Node(left, right, voxel, split_plane.plane);
-  return node;
+  std::unique_ptr<Node> left = recursiveBuild(split.left, left_voxel);
+  std::unique_ptr<Node> right = recursiveBuild(split.right, right_voxel);
+  return std::make_unique<Node>(std::move(left), std::move(right), voxel,
+                                split_plane.plane);
 }
 SplitPlane TreeBuilder::findPlane(
     const std::vector<ClipTriangle>& clip_triangles, const Voxel& voxel) const {
@@ -192,10 +193,18 @@ SplitResult TreeBuilder::splitTriangles(
 
 }  // namespace
 
-Node::Node(Node* left, Node* right, const Voxel& voxel, const AxisPlane& plane)
-    : left(left), right(right), voxel(voxel), plane(plane) {}
+Node::Node(std::unique_ptr<Node> left, std::unique_ptr<Node> right,
+           const Voxel& voxel, const AxisPlane& plane)
+    : left(std::move(left)),
+      right(std::move(right)),
+      voxel(voxel),
+      plane(plane) {}
 Node::Node(const Voxel& voxel, const std::vector<Triangle*>& triangles)
-    : voxel(voxel), triangles(triangles), left(nullptr), right(nullptr) {}
+    : voxel(voxel), left(), right() {
+  for (size_t i = 0; i < triangles.size(); ++i) {
+    this->triangles.emplace_back(triangles[i]);
+  }
+}
 TrianglePoint Node::getClosestRayIntersection(const Ray& r) const {
   if (!voxel.intersects(r)) {
     return {nullptr, {}};
@@ -229,7 +238,7 @@ TrianglePoint Node::getClosestRayIntersection(const Ray& r) const {
   }
   return left->getClosestRayIntersection(r);
 }
-Tree::Tree(Tree&& a) noexcept : root(a.root) { a.root = nullptr; }
+Tree::Tree(Tree&& a) noexcept : root(std::move(a.root)) {}
 TrianglePoint Tree::getClosestRayIntersection(const Ray& r) const {
   return root->getClosestRayIntersection(r);
 };

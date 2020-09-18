@@ -5,7 +5,8 @@
 #include "geometry.h"
 class Node {
  public:
-  Node(Node* left, Node* right, const Voxel& voxel, const AxisPlane& plane);
+  Node(std::unique_ptr<Node> left, std::unique_ptr<Node> right,
+       const Voxel& voxel, const AxisPlane& plane);
   Node(const Voxel& voxel, const std::vector<Triangle*>& triangles);
   TrianglePoint getClosestRayIntersection(const Ray& r) const;
 
@@ -21,19 +22,18 @@ class Node {
   AxisPlane plane;
   bool isLeaf() const;
 };
-inline bool Node::isLeaf() const {
-  return (left == nullptr && right == nullptr);
-}
+inline bool Node::isLeaf() const { return (!left && !right); }
 class Tree {
  public:
   TrianglePoint getClosestRayIntersection(const Ray& r) const;
-  Tree(Node* root) : root(root) {}
+  Tree(std::unique_ptr<Node> root) : root(std::move(root)) {}
   // move constructor
   Tree(Tree&& a) noexcept;
-  ~Tree() { delete root; }
+  Tree(const Tree&) = delete;
+  Tree& operator=(const Tree&) = delete;
 
  private:
-  Node* root;
+  std::unique_ptr<Node> root;
 };
 
 Tree buildKdTree(const std::vector<Triangle*>& triangles, double k_t,
