@@ -1,12 +1,12 @@
-#include "geometry.h"
 #ifndef RAYCASTER_KD_TREE_H
 #define RAYCASTER_KD_TREE_H
+#include <memory>
 
+#include "geometry.h"
 class Node {
  public:
   Node(Node* left, Node* right, const Voxel& voxel, const AxisPlane& plane);
   Node(const Voxel& voxel, const std::vector<Triangle*>& triangles);
-  ~Node();
   TrianglePoint getClosestRayIntersection(const Ray& r) const;
 
  private:
@@ -14,8 +14,8 @@ class Node {
   // for example if the plane axis = 0,
   // then maximum x coordinate of left.voxel is at most the
   // minimum x coordinate of right.voxel
-  Node* left;
-  Node* right;
+  std::unique_ptr<Node> left;
+  std::unique_ptr<Node> right;
   std::vector<Triangle*> triangles;
   Voxel voxel;
   AxisPlane plane;
