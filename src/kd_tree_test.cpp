@@ -114,7 +114,33 @@ TEST(TreeBuilderKdTreeQueries, Random3d) {
         test::randomTriangleVector(0.0, 100.0, triangle_scale, 100, mt);
     Tree t = buildKdTree(scene, 1.0, 40.0);
     for (int j = 0; j < 100; ++j) {
-      Ray r(test::randomVec3(0.0, 1.0, mt), test::randomVec3(0.0, 1.0, mt));
+      Ray r(test::randomVec3(0.0, 100.0, mt), test::randomVec3(-1.0, 1.0, mt));
+      TrianglePoint tp = t.getClosestRayIntersection(r);
+      TrianglePoint correct = firstRayTriangleIntersection(scene, r);
+      ++n_rays;
+      EXPECT_THAT(tp.bary_coords, VecEq(correct.bary_coords));
+    }
+  }
+}
+TEST(TreeBuilderKdTreeQueries, Random3dAxisParallel) {
+  std::mt19937 mt(1337);
+  int n_rays = 0;
+  int n_same_answer = 0;
+  for (int i = 0; i < 1000; ++i) {
+    double triangle_scale = test::randomLogUniformReal(-4, 7, mt);
+    std::vector<Triangle> scene =
+        test::randomTriangleVector(0.0, 100.0, triangle_scale, 100, mt);
+
+    // make triangles parallel to some axis
+    std::uniform_int_distribution axis_dist(0, 2);
+    for(int j = 0; j < scene.size(); ++j) {
+      int ax = axis_dist(mt);
+      scene[j].p1[ax] = scene[j].p0[ax];
+      scene[j].p2[ax] = scene[j].p0[ax];
+    }
+    Tree t = buildKdTree(scene, 1.0, 40.0);
+    for (int j = 0; j < 100; ++j) {
+      Ray r(test::randomVec3(0.0, 100.0, mt), test::randomVec3(-1.0, 1.0, mt));
       TrianglePoint tp = t.getClosestRayIntersection(r);
       TrianglePoint correct = firstRayTriangleIntersection(scene, r);
       ++n_rays;
