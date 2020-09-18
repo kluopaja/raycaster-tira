@@ -1,9 +1,10 @@
 #include "kd_tree.h"
 
-#include <algorithm>
 #include <limits>
 #include <tuple>
 #include <vector>
+
+#include "utils.h"
 namespace {
 
 class Event {
@@ -160,7 +161,7 @@ std::vector<Event> TreeBuilder::createEventList(
       event_list.push_back({2, clip_triangles[i].max(dimension)});
     }
   }
-  std::sort(event_list.begin(), event_list.end());
+  quickSort(event_list.begin(), event_list.end());
   return event_list;
 }
 SplitResult TreeBuilder::splitTriangles(
@@ -189,7 +190,7 @@ SplitResult TreeBuilder::splitTriangles(
   return {left_clip_triangles, right_clip_triangles};
 }
 
-} // namespace
+}  // namespace
 
 Node::Node(Node* left, Node* right, const Voxel& voxel, const AxisPlane& plane)
     : left(left), right(right), voxel(voxel), plane(plane) {}
