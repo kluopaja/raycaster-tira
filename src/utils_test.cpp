@@ -194,7 +194,7 @@ TEST(QuickSort, LargePerformance) {
     quick_sort_time += t2 - t1;
     ASSERT_THAT(v, ContainerEq(v_copy));
   }
-  EXPECT_LE(quick_sort_time.count(), 2 * std_sort_time.count())
+  EXPECT_LE(quick_sort_time.count(), 3 * std_sort_time.count())
       << "Did not reach the performance requirements";
   std::cerr << "std_sort_time: " << std_sort_time.count() << std::endl;
   std::cerr << "quick_sort_time: " << quick_sort_time.count() << std::endl;

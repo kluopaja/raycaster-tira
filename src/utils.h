@@ -199,14 +199,21 @@ void quickSort(RandomAccessIterator begin, RandomAccessIterator end) {
     return;
   }
 
-  RandomAccessIterator median = selectK(begin, end, (end - begin - 1) / 2);
-  // Faster would be just...
-  // RandomAccessIterator median = begin + (end-begin)/2;
+  // too slow
+  // RandomAccessIterator pivot = selectK(begin, end, (end - begin - 1) / 2);
+  // instead use the median of three rule
+  RandomAccessIterator mid = begin + (end - begin - 1) / 2;
+  RandomAccessIterator pivot;
+  if(*mid < *begin) std::swap(*begin, *mid);
+  if(*(end-1) < *mid) std::swap(*mid, *(end - 1));
+  if(*mid < *begin) pivot = begin;
+  else pivot = mid;
+
   size_t n_less, n_same;
-  std::tie(n_less, n_same) = countRelativeValues(begin, end, median);
-  partition(begin, end, n_less, n_same, median);
-  sort(begin, begin + n_less);
-  sort(begin + n_less + n_same, end);
+  std::tie(n_less, n_same) = countRelativeValues(begin, end, pivot);
+  partition(begin, end, n_less, n_same, pivot);
+  quickSort(begin, begin + n_less);
+  quickSort(begin + n_less + n_same, end);
 }
 
 }  // namespace
