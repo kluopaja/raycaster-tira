@@ -35,41 +35,6 @@ class Tree {
  private:
   Node* root;
 };
-class Event {
- public:
-  int type;  // 0 == +, 1 == |, 2 == -
-  double pos;
-};
-bool operator<(const Event& a, const Event& b);
-struct SplitPlane {
-  AxisPlane plane;
-  bool side;
-  double cost;
-};
-struct SplitResult {
-  std::vector<ClipTriangle> left;
-  std::vector<ClipTriangle> right;
-};
-class TreeBuilder {
- public:
-  TreeBuilder(double traversal_cost, double intersection_cost);
-  Tree build(const std::vector<Triangle*>& triangles) const;
-
- private:
-  double traversal_cost;
-  double intersection_cost;
-
-  Node* recursiveBuild(std::vector<ClipTriangle>& clip_triangles,
-                       const Voxel& voxel) const;
-  SplitPlane findPlane(const std::vector<ClipTriangle>& clip_triangles,
-                       const Voxel& v) const;
-
-  std::vector<Event> createEventList(
-      const std::vector<ClipTriangle>& clip_triangles, int dimension) const;
-
-  SplitResult splitTriangles(const std::vector<ClipTriangle>& clip_triangles,
-                             const SplitPlane& plane) const;
-};
 
 Tree buildKdTree(const std::vector<Triangle*>& triangles, double k_t,
                  double k_i);
