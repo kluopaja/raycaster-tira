@@ -1,3 +1,6 @@
+#ifndef RAYCASTER_UTILS_H
+#define RAYCASTER_UTILS_H
+
 #include <cassert>
 #include <iostream>
 #include <iterator>
@@ -204,10 +207,12 @@ void quickSort(RandomAccessIterator begin, RandomAccessIterator end) {
   // instead use the median of three rule
   RandomAccessIterator mid = begin + (end - begin - 1) / 2;
   RandomAccessIterator pivot;
-  if(*mid < *begin) std::swap(*begin, *mid);
-  if(*(end-1) < *mid) std::swap(*mid, *(end - 1));
-  if(*mid < *begin) pivot = begin;
-  else pivot = mid;
+  if (*mid < *begin) std::swap(*begin, *mid);
+  if (*(end - 1) < *mid) std::swap(*mid, *(end - 1));
+  if (*mid < *begin)
+    pivot = begin;
+  else
+    pivot = mid;
 
   size_t n_less, n_same;
   std::tie(n_less, n_same) = countRelativeValues(begin, end, pivot);
@@ -217,3 +222,5 @@ void quickSort(RandomAccessIterator begin, RandomAccessIterator end) {
 }
 
 }  // namespace
+
+#endif
