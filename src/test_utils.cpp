@@ -42,4 +42,16 @@ bool pointOnTrianglePlane(const Triangle& t, const Vec3& p) {
   return std::abs((p - t.p0).cross(t.p1 - t.p0).dot(t.p2 - t.p0)) < TEST_EPS;
 }
 
+std::vector<int> randomIntVector(int lo, int hi, int n,
+                                 std::mt19937& random_engine) {
+  assert(lo <= hi);
+  assert(n >= 0);
+  std::uniform_int_distribution dist(lo, hi);
+  std::vector<int> out;
+  for (int i = 0; i < n; ++i) {
+    out.push_back(dist(random_engine));
+  }
+  return out;
+}
+
 }  // namespace test
