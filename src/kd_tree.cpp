@@ -26,7 +26,7 @@ struct SplitResult {
 class TreeBuilder {
  public:
   TreeBuilder(double traversal_cost, double intersection_cost);
-  Tree build(const std::vector<Triangle*>& triangles) const;
+  Tree build(const std::vector<Triangle>& triangles) const;
 
  private:
   double traversal_cost;
@@ -45,7 +45,7 @@ class TreeBuilder {
 };
 TreeBuilder::TreeBuilder(double traversal_cost, double intersection_cost)
     : traversal_cost(traversal_cost), intersection_cost(intersection_cost) {}
-Tree TreeBuilder::build(const std::vector<Triangle*>& triangles) const {
+Tree TreeBuilder::build(const std::vector<Triangle>& triangles) const {
   Voxel voxel = boundingBox(triangles);
   std::vector<ClipTriangle> clip_triangles = createClipTriangles(triangles);
   std::unique_ptr<Node> root = recursiveBuild(clip_triangles, voxel);
@@ -199,12 +199,8 @@ Node::Node(std::unique_ptr<Node> left, std::unique_ptr<Node> right,
       right(std::move(right)),
       voxel(voxel),
       plane(plane) {}
-Node::Node(const Voxel& voxel, const std::vector<Triangle*>& triangles)
-    : voxel(voxel), left(), right() {
-  for (size_t i = 0; i < triangles.size(); ++i) {
-    this->triangles.emplace_back(triangles[i]);
-  }
-}
+Node::Node(const Voxel& voxel, const std::vector<Triangle>& triangles)
+    : triangles(triangles), voxel(voxel), left(), right() {}
 TrianglePoint Node::getClosestRayIntersection(const Ray& r) const {
   if (!voxel.intersects(r)) {
     return {nullptr, {}};
@@ -244,18 +240,18 @@ TrianglePoint Tree::getClosestRayIntersection(const Ray& r) const {
 };
 
 std::vector<ClipTriangle> createClipTriangles(
-    const std::vector<Triangle*>& triangles) {
+    const std::vector<Triangle>& triangles) {
   std::vector<ClipTriangle> clip_triangles;
   for (size_t i = 0; i < triangles.size(); ++i) {
-    clip_triangles.emplace_back(triangles[i]);
+    clip_triangles.push_back(ClipTriangle(&triangles[i]));
   }
   return clip_triangles;
 }
-std::vector<Triangle*> extractTriangles(
+std::vector<Triangle> extractTriangles(
     const std::vector<ClipTriangle>& clip_triangles) {
-  std::vector<Triangle*> triangles;
+  std::vector<Triangle> triangles;
   for (size_t i = 0; i < clip_triangles.size(); ++i) {
-    triangles.push_back(clip_triangles[i].triangle);
+    triangles.emplace_back(*clip_triangles[i].triangle);
   }
   return triangles;
 }
@@ -299,7 +295,7 @@ std::pair<double, double> relativeSubvoxelAreas(const Voxel& voxel,
   assert(sa_total > EPS);
   return {sa_left / sa_total, sa_right / sa_total};
 }
-Tree buildKdTree(const std::vector<Triangle*>& triangles, double k_t,
+Tree buildKdTree(const std::vector<Triangle>& triangles, double k_t,
                  double k_i) {
   TreeBuilder builder(k_t, k_i);
   return builder.build(triangles);

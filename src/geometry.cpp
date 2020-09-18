@@ -149,11 +149,10 @@ void Voxel::cover(const Vec3& p) {
   }
 }
 // extends Voxel to cover triangle t
-void Voxel::cover(Triangle* t) {
-  assert(t != nullptr);
-  cover(t->p0);
-  cover(t->p1);
-  cover(t->p2);
+void Voxel::cover(const Triangle& t) {
+  cover(t.p0);
+  cover(t.p1);
+  cover(t.p2);
 };
 double Voxel::area() const {
   return 2.0 * ((hi[0] - lo[0]) * (hi[1] - lo[1]) +
@@ -214,8 +213,8 @@ PlanePolygon::PlanePolygon(const Vec3& a, const Vec3& b, const Vec3& c)
     : points{a, b, c} {
   assert((c - a).cross(b - a).norm() > EPS && "Degenerate triangle");
 }
-PlanePolygon::PlanePolygon(const Triangle* t)
-    : PlanePolygon(t->p0, t->p1, t->p2) {}
+PlanePolygon::PlanePolygon(const Triangle& t)
+    : PlanePolygon(t.p0, t.p1, t.p2) {}
 Voxel PlanePolygon::getBoundingBox() const {
   Voxel bounds(INF, -INF);
   for (size_t i = 0; i < points.size(); ++i) {
@@ -308,19 +307,19 @@ std::ostream& operator<<(std::ostream& out, const AxisPlane& a) {
   return out;
 }
 TrianglePoint firstRayTriangleIntersection(
-    const std::vector<Triangle*>& triangles, const Ray& r) {
+    const std::vector<Triangle>& triangles, const Ray& r) {
   TrianglePoint closest_point = {nullptr, {}};
   double closest_distance = INF;
   for (size_t i = 0; i < triangles.size(); ++i) {
-    RayIntersection intersection = triangles[i]->getRayIntersection(r);
+    RayIntersection intersection = triangles[i].getRayIntersection(r);
     if (intersection.distance > 0 && intersection.distance < closest_distance) {
       closest_distance = intersection.distance;
-      closest_point = {triangles[i], intersection.bary_coords};
+      closest_point = {&triangles[i], intersection.bary_coords};
     }
   }
   return closest_point;
 }
-Voxel boundingBox(const std::vector<Triangle*>& triangles) {
+Voxel boundingBox(const std::vector<Triangle>& triangles) {
   if (triangles.size() == 0) {
     return {Vec3(0), Vec3(0)};
   }

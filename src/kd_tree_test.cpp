@@ -14,6 +14,15 @@ namespace {
 MATCHER_P(VecEq, v, "should equal " + PrintToString(v)) {
   return (v - arg).norm() < EPS;
 }
+MATCHER_P(TriangleVecEq, v, "should equal " + PrintToString(v)) {
+  if (v.size() != arg.size()) return 0;
+  for (size_t i = 0; i < v.size(); ++i) {
+    if ((v[i].p0 - arg[i].p0).norm() > EPS) return 0;
+    if ((v[i].p1 - arg[i].p1).norm() > EPS) return 0;
+    if ((v[i].p2 - arg[i].p2).norm() > EPS) return 0;
+  }
+  return 1;
+}
 TEST(RelativeSubvoxelAreas, Simple) {
   Voxel v(Vec3(0.0), Vec3(1.0));
   AxisPlane ap = {0, 0.5};
@@ -82,10 +91,10 @@ TEST(SurfaceAreaHeuristic, TrianglesOnPlane) {
 // tests that the extractTriangles reverses createClipTriangles correctly
 TEST(CreateAndExtractTriangles, Simple) {
   std::mt19937 mt(1337);
-  std::vector<Triangle*> tv = test::randomTriangleVector(-10, 10, 10, 100, mt);
+  std::vector<Triangle> tv = test::randomTriangleVector(-10, 10, 10, 100, mt);
   std::vector<ClipTriangle> ct = createClipTriangles(tv);
-  std::vector<Triangle*> restored = extractTriangles(ct);
-  EXPECT_THAT(restored, ContainerEq(tv));
+  std::vector<Triangle> restored = extractTriangles(ct);
+  EXPECT_THAT(restored, TriangleVecEq(tv));
 }
 // tests both the TreeBuilder and Tree by building a tree and
 // making queries
@@ -95,7 +104,7 @@ TEST(TreeBuilderKdTreeQueries, Random3d) {
   int n_same_answer = 0;
   for (int i = 0; i < 1000; ++i) {
     double triangle_scale = test::randomLogUniformReal(-4, 7, mt);
-    std::vector<Triangle*> scene =
+    std::vector<Triangle> scene =
         test::randomTriangleVector(0.0, 100.0, triangle_scale, 100, mt);
     Tree t = buildKdTree(scene, 1.0, 40.0);
     for (int j = 0; j < 100; ++j) {
@@ -118,7 +127,7 @@ TEST(TreeBuilderKdTreeQueries, Random3dPerformance) {
   int n_rays = 0;
   int n_same_answer = 0;
   for (int i = 0; i < 5; ++i) {
-    std::vector<Triangle*> scene =
+    std::vector<Triangle> scene =
         test::randomTriangleVector(0.0, 100.0, 0.05, 100000, mt);
     Tree t = buildKdTree(scene, 1.0, 40.0);
     std::cerr << "tree " << i << " done " << std::endl;

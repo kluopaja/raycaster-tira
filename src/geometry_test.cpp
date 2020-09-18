@@ -190,7 +190,7 @@ TEST(VoxelTest, CoverPoint) {
 TEST(VoxelTest, CoverTriangle) {
   Voxel v({0.0, 0.0, 0.0}, {0.0, 0.0, 0.0});
   Triangle t{{0.0, -1.0, 0.0}, {-2.2, 0.0, 1.0}, {5.2, 0.0, -1.2}};
-  v.cover(&t);
+  v.cover(t);
   Voxel c({-2.2, -1.0, -1.2}, {5.2, 0.0, 1.0});
   EXPECT_NEAR((v.lo - c.lo).norm(), 0, EPS);
   EXPECT_NEAR((v.hi - c.hi).norm(), 0, EPS);
@@ -299,7 +299,7 @@ TEST(PlanePolygon, ConstructorPoints) {
 }
 TEST(PlanePolygon, ConstructorTriangle) {
   Triangle t(Vec3(1.0, 0.0, 0.0), Vec3(1.1), Vec3(2.2));
-  PlanePolygon p(&t);
+  PlanePolygon p(t);
   std::vector<Vec3> r = {p[0], p[1], p[2]};
   EXPECT_NEAR((p[0] - Vec3(1.0, 0.0, 0.0)).norm(), 0, EPS);
   EXPECT_NEAR((p[1] - Vec3(1.1)).norm(), 0, EPS);
@@ -307,7 +307,7 @@ TEST(PlanePolygon, ConstructorTriangle) {
 }
 TEST(PlanePolygon, BoundingBoxSimple) {
   Triangle t(Vec3(1.0, 0.0, 0.0), Vec3(1.1), Vec3(2.2));
-  PlanePolygon p(&t);
+  PlanePolygon p(t);
   Voxel r(p.getBoundingBox());
   Voxel c(Vec3(1.0, 0.0, 0.0), Vec3(2.2));
   EXPECT_NEAR((r.lo - c.lo).norm(), 0, EPS);
@@ -315,7 +315,7 @@ TEST(PlanePolygon, BoundingBoxSimple) {
 
   t = Triangle(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
                Vec3(-12.23, -15.2, 2.2));
-  p = PlanePolygon(&t);
+  p = PlanePolygon(t);
   r = Voxel(p.getBoundingBox());
   c = Voxel(Vec3(-12.23, -15.2, 2.2), Vec3(1.1, 2.2, 3.9999));
   EXPECT_NEAR((r.lo - c.lo).norm(), 0, EPS);
@@ -323,7 +323,7 @@ TEST(PlanePolygon, BoundingBoxSimple) {
 }
 TEST(PlanePolygon, IntersectSimple) {
   Triangle t(Vec3(0.0), Vec3(1.0, 0.0, 0.0), Vec3(0.0, 1.0, 1.0));
-  PlanePolygon p(&t);
+  PlanePolygon p(t);
   p.intersect({2, 0.5}, 0);
   Voxel r = p.getBoundingBox();
   Voxel c = Voxel(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.5, 0.5));
@@ -333,7 +333,7 @@ TEST(PlanePolygon, IntersectSimple) {
 // TODO add more intersection tests
 TEST(PlanePolygon, Size) {
   Triangle t(Vec3(1.0, 0.0, 0.0), Vec3(1.1), Vec3(2.2));
-  PlanePolygon p(&t);
+  PlanePolygon p(t);
   EXPECT_EQ(p.size(), 3);
 }
 TEST(ClipTriangle, MinMin) {
@@ -454,43 +454,43 @@ TEST(ClipTriangle, ClipParallel) {
   EXPECT_NEAR(ct.max(0), 1.0, EPS);
 }
 TEST(FirstRayTriangleIntersection, Simple) {
-  std::vector<Triangle*> scene;
-  scene.push_back(new Triangle(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0),
-                               Vec3(0.0, 1.0, 0.0)));
-  scene.push_back(new Triangle(Vec3(2.0, 2.0, 0.0), Vec3(2.5, 2.0, 0.0),
-                               Vec3(2.0, 2.5, 0.0)));
-  scene.push_back(new Triangle(Vec3(2.2, 1.0, 0.0), Vec3(1.3, 2.2, 0.0),
-                               Vec3(1.1, 2.1, 0.0)));
+  std::vector<Triangle> scene;
+  scene.push_back(
+      Triangle(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0)));
+  scene.push_back(
+      Triangle(Vec3(2.0, 2.0, 0.0), Vec3(2.5, 2.0, 0.0), Vec3(2.0, 2.5, 0.0)));
+  scene.push_back(
+      Triangle(Vec3(2.2, 1.0, 0.0), Vec3(1.3, 2.2, 0.0), Vec3(1.1, 2.1, 0.0)));
   Ray r = Ray(Vec3(0.0, 0.0, 1.0), Vec3(2.1, 2.1, 1.0));
   TrianglePoint p = firstRayTriangleIntersection(scene, r);
   EXPECT_EQ(p.triangle, nullptr);
 
   r = Ray(Vec3(0.0, 0.0, 1.0), Vec3(2.1, 2.1, -1.0));
   p = firstRayTriangleIntersection(scene, r);
-  EXPECT_EQ(p.triangle, scene[1]);
-  EXPECT_EQ(p.triangle, scene[1]);
+  EXPECT_EQ(p.triangle, &scene[1]);
+  EXPECT_EQ(p.triangle, &scene[1]);
 
   scene.clear();
-  scene.push_back(new Triangle(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0),
-                               Vec3(0.0, 1.0, 0.0)));
-  scene.push_back(new Triangle(Vec3(0.0, 0.0, 1.0), Vec3(1.0, 0.0, 1.0),
-                               Vec3(0.0, 1.0, 1.0)));
-  scene.push_back(new Triangle(Vec3(0.0, 0.0, 2.0), Vec3(1.0, 0.0, 2.0),
-                               Vec3(0.0, 1.0, 2.0)));
+  scene.push_back(
+      Triangle(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0)));
+  scene.push_back(
+      Triangle(Vec3(0.0, 0.0, 1.0), Vec3(1.0, 0.0, 1.0), Vec3(0.0, 1.0, 1.0)));
+  scene.push_back(
+      Triangle(Vec3(0.0, 0.0, 2.0), Vec3(1.0, 0.0, 2.0), Vec3(0.0, 1.0, 2.0)));
 
   r = Ray(Vec3(0.3, 0.3, -10.0), Vec3(0.0, 0.0, 1.0));
   p = firstRayTriangleIntersection(scene, r);
-  EXPECT_EQ(p.triangle, scene[0]);
+  EXPECT_EQ(p.triangle, &scene[0]);
   EXPECT_THAT(p.bary_coords, VecEq(Vec2(0.3, 0.3)));
 
   r = Ray(Vec3(0.2, 0.2, 0.5), Vec3(0.2, 0.2, 1.0));
   p = firstRayTriangleIntersection(scene, r);
-  EXPECT_EQ(p.triangle, scene[1]);
+  EXPECT_EQ(p.triangle, &scene[1]);
   EXPECT_THAT(p.bary_coords, VecEq(Vec2(0.3, 0.3)));
 
   r = Ray(Vec3(0.2, 0.2, 2 - 0.01), Vec3(0.0, 0.0, 1.0));
   p = firstRayTriangleIntersection(scene, r);
-  EXPECT_EQ(p.triangle, scene[2]);
+  EXPECT_EQ(p.triangle, &scene[2]);
   EXPECT_THAT(p.bary_coords, VecEq(Vec2(0.2, 0.2)));
 }
 // Tests that the function always finds an intersection that
@@ -502,14 +502,14 @@ TEST(FirstRayTriangleIntersection, Random) {
   int n_same_triangle = 0;
   for (int i = 0; i < 10'000; ++i) {
     double max_triangle_size = test::randomLogUniformReal(-10, 0, mt);
-    std::vector<Triangle*> scene =
+    std::vector<Triangle> scene =
         test::randomTriangleVector(-1, 1, max_triangle_size, 100, mt);
     Vec2 bary_coords = test::randomBaryCoords(mt);
-    Vec3 p = scene[0]->pointFromBary(bary_coords);
+    Vec3 p = scene[0].pointFromBary(bary_coords);
     Vec3 ray_origin = p + test::randomVec3(-0.04, 0.04, mt);
     // 0.001 should always still be a lot larger than EPS
     if ((ray_origin - p).norm() < 0.001) continue;
-    if (test::pointOnTrianglePlane(*scene[0], ray_origin)) continue;
+    if (test::pointOnTrianglePlane(scene[0], ray_origin)) continue;
 
     double scale = test::randomLogUniformReal(-4, 10, mt);
     Ray r(ray_origin, scale * (p - ray_origin));
@@ -523,7 +523,7 @@ TEST(FirstRayTriangleIntersection, Random) {
     // check that the intersection is on the ray
     ASSERT_NEAR((intersection - ray_origin).cross(p - ray_origin).norm(), 0,
                 EPS);
-    if (tp.triangle == scene[0]) ++n_same_triangle;
+    if (tp.triangle == &scene[0]) ++n_same_triangle;
     ++n_tests_run;
   }
   ASSERT_GE(n_tests_run, 7000) << "Problem in generating the test cases";

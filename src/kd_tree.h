@@ -7,7 +7,7 @@ class Node {
  public:
   Node(std::unique_ptr<Node> left, std::unique_ptr<Node> right,
        const Voxel& voxel, const AxisPlane& plane);
-  Node(const Voxel& voxel, const std::vector<Triangle*>& triangles);
+  Node(const Voxel& voxel, const std::vector<Triangle>& triangles);
   TrianglePoint getClosestRayIntersection(const Ray& r) const;
 
  private:
@@ -17,7 +17,7 @@ class Node {
   // minimum x coordinate of right.voxel
   std::unique_ptr<Node> left;
   std::unique_ptr<Node> right;
-  std::vector<Triangle*> triangles;
+  std::vector<Triangle> triangles;
   Voxel voxel;
   AxisPlane plane;
   bool isLeaf() const;
@@ -36,12 +36,12 @@ class Tree {
   std::unique_ptr<Node> root;
 };
 
-Tree buildKdTree(const std::vector<Triangle*>& triangles, double k_t,
+Tree buildKdTree(const std::vector<Triangle>& triangles, double k_t,
                  double k_i);
 
 std::vector<ClipTriangle> createClipTriangles(
-    const std::vector<Triangle*>& triangles);
-std::vector<Triangle*> extractTriangles(
+    const std::vector<Triangle>& triangles);
+std::vector<Triangle> extractTriangles(
     const std::vector<ClipTriangle>& clip_triangles);
 // Calculates the surface area heuristic cost
 // for splits [(n_left + n_plane), (n_right)]

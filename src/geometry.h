@@ -93,7 +93,7 @@ inline double Vec3::operator[](int index) const { return v[index]; }
 inline double Vec3::norm() const { return std::sqrt(this->dot(*this)); }
 // A point on a triangle
 struct TrianglePoint {
-  Triangle* triangle;
+  const Triangle* triangle;
   Vec2 bary_coords;
 };
 class Voxel {
@@ -107,8 +107,8 @@ class Voxel {
   void clip(const AxisPlane& plane, bool side);
   // Extends voxel to cover point p
   void cover(const Vec3& p);
-  // Extends voxel to cover point t
-  void cover(Triangle* t);
+  // Extends voxel to cover triangle t
+  void cover(const Triangle& t);
   double area() const;
   // check that the point p is within the voxel (+EPS)
   bool isInside(const Vec3& p) const;
@@ -137,7 +137,7 @@ std::ostream& operator<<(std::ostream& out, const Triangle& t);
 class PlanePolygon {
  public:
   PlanePolygon(const Vec3& a, const Vec3& b, const Vec3& c);
-  PlanePolygon(const Triangle* t);
+  PlanePolygon(const Triangle& t);
   Voxel getBoundingBox() const;
   void intersect(const AxisPlane& plane, bool side);
   size_t size() const;
@@ -160,8 +160,9 @@ inline Vec3 PlanePolygon::operator[](size_t index) const {
 // Supports only queries about the bounding box of S
 class ClipTriangle {
  public:
-  Triangle* triangle;
-  ClipTriangle(Triangle* triangle) : triangle(triangle), polygon(triangle) {
+  const Triangle* triangle;
+  ClipTriangle(const Triangle* triangle)
+      : triangle(triangle), polygon(*triangle) {
     box = polygon.getBoundingBox();
   }
   bool isAxisAligned(int axis) const;
@@ -213,6 +214,6 @@ struct AxisPlane {
 };
 std::ostream& operator<<(std::ostream& out, const AxisPlane& a);
 TrianglePoint firstRayTriangleIntersection(
-    const std::vector<Triangle*>& triangles, const Ray& r);
-Voxel boundingBox(const std::vector<Triangle*>& triangles);
+    const std::vector<Triangle>& triangles, const Ray& r);
+Voxel boundingBox(const std::vector<Triangle>& triangles);
 #endif
