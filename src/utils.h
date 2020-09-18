@@ -140,7 +140,7 @@ RandomAccessIterator medianMax5(RandomAccessIterator begin,
     return begin + 1;
   }
   if (end - begin == 2) {
-    if (begin[1] < begin[0]) return begin;
+    if (begin[0] < begin[1]) return begin;
     return begin + 1;
   }
   // end - begin == 1
