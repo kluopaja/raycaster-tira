@@ -13,6 +13,11 @@ class Event {
   int type;  // 0 == +, 1 == |, 2 == -
   double pos;
 };
+// class for storing the triangle during the build process
+struct BuildTriangle {
+  ClipTriangle clip_triangle;
+  SceneTriangle* scene_triangle;
+}
 bool operator<(const Event& a, const Event& b) { return a.pos < b.pos; }
 struct SplitPlane {
   AxisPlane plane;
@@ -20,8 +25,8 @@ struct SplitPlane {
   double cost;
 };
 struct SplitResult {
-  std::vector<ClipTriangle> left;
-  std::vector<ClipTriangle> right;
+  std::vector<BuildTriangle> left;
+  std::vector<BuildTriangle> right;
 };
 class TreeBuilder {
  public:
@@ -33,41 +38,41 @@ class TreeBuilder {
   double intersection_cost;
 
   std::unique_ptr<Node> recursiveBuild(
-      std::vector<ClipTriangle>& clip_triangles, const Voxel& voxel) const;
-  SplitPlane findPlane(const std::vector<ClipTriangle>& clip_triangles,
+      std::vector<BuildTriangle>& build_triangles, const Voxel& voxel) const;
+  SplitPlane findPlane(const std::vector<BuildTriangle>& clip_triangles,
                        const Voxel& v) const;
 
   std::vector<Event> createEventList(
-      const std::vector<ClipTriangle>& clip_triangles, int dimension) const;
+      const std::vector<BuildTriangle>& build_triangles, int dimension) const;
 
-  SplitResult splitTriangles(const std::vector<ClipTriangle>& clip_triangles,
+  SplitResult splitTriangles(const std::vector<BuildTriangle>& build_triangles,
                              const SplitPlane& plane) const;
 };
 TreeBuilder::TreeBuilder(double traversal_cost, double intersection_cost)
     : traversal_cost(traversal_cost), intersection_cost(intersection_cost) {}
 Tree TreeBuilder::build(const std::vector<Triangle>& triangles) const {
   Voxel voxel = boundingBox(triangles);
-  std::vector<ClipTriangle> clip_triangles = createClipTriangles(triangles);
-  std::unique_ptr<Node> root = recursiveBuild(clip_triangles, voxel);
+  std::vector<BuildTriangle> build_triangles = createBuildTriangles(triangles);
+  std::unique_ptr<Node> root = recursiveBuild(build_triangles, voxel);
   return Tree(std::move(root));
 }
 // implements the O(n log^2 n) algorithm
 std::unique_ptr<Node> TreeBuilder::recursiveBuild(
-    std::vector<ClipTriangle>& clip_triangles, const Voxel& voxel) const {
+    std::vector<BuildTriangle>& build_triangles, const Voxel& voxel) const {
   // the surface area heuristic is not well defined if the voxel has
   // zero area so we will just terminate
   if (voxel.area() < EPS) {
     // make a leaf
-    return std::make_unique<Node>(voxel, extractTriangles(clip_triangles));
+    return std::make_unique<Node>(voxel, toTreeTriangles(build_triangles));
   }
-  SplitPlane split_plane = findPlane(clip_triangles, voxel);
+  SplitPlane split_plane = findPlane(build_triangles, voxel);
   // termination criterion
-  if (split_plane.cost > intersection_cost * (double)clip_triangles.size()) {
+  if (split_plane.cost > intersection_cost * (double)build_triangles.size()) {
     // make a leaf
-    return std::make_unique<Node>(voxel, extractTriangles(clip_triangles));
+    return std::make_unique<Node>(voxel, extractTriangles(build_triangles));
   }
-  SplitResult split = splitTriangles(clip_triangles, split_plane);
-  clip_triangles.clear();
+  SplitResult split = splitTriangles(build_triangles, split_plane);
+  build_triangles.clear();
   Voxel left_voxel(voxel);
   Voxel right_voxel(voxel);
   left_voxel.clip(split_plane.plane, 0);
@@ -78,17 +83,17 @@ std::unique_ptr<Node> TreeBuilder::recursiveBuild(
                                 split_plane.plane);
 }
 SplitPlane TreeBuilder::findPlane(
-    const std::vector<ClipTriangle>& clip_triangles, const Voxel& voxel) const {
+    const std::vector<BuildTriangle>& build_triangles, const Voxel& voxel) const {
   SplitPlane best_split = {{}, 0, std::numeric_limits<double>::infinity()};
   for (int i = 0; i < 3; ++i) {
-    std::vector<Event> event_list = createEventList(clip_triangles, i);
+    std::vector<Event> event_list = createEventList(build_triangles, i);
     // number of triagles having an overlap with non-zero area
     // with V_l \ p and V_r \p
     int n_left = 0;
     // ... with p
     int n_plane = 0;
     // ... with V_r \ p
-    int n_right = clip_triangles.size();
+    int n_right = build_triangles.size();
     AxisPlane current_plane = {i, 0.0};
     for (size_t j = 0; j < event_list.size();) {
       current_plane.pos = event_list[j].pos;
@@ -152,43 +157,43 @@ SplitPlane TreeBuilder::findPlane(
   return best_split;
 }
 std::vector<Event> TreeBuilder::createEventList(
-    const std::vector<ClipTriangle>& clip_triangles, int dimension) const {
+    const std::vector<BuildTriangle>& build_triangles, int dimension) const {
   std::vector<Event> event_list;
-  for (size_t i = 0; i < clip_triangles.size(); ++i) {
-    if (clip_triangles[i].isAxisAligned(dimension)) {
-      event_list.push_back({1, clip_triangles[i].min(dimension)});
+  for (size_t i = 0; i < build_triangles.size(); ++i) {
+    if (build_triangles[i].clip_triangle.isAxisAligned(dimension)) {
+      event_list.push_back({1, build_triangles[i].clip_triangle.min(dimension)});
     } else {
-      event_list.push_back({0, clip_triangles[i].min(dimension)});
-      event_list.push_back({2, clip_triangles[i].max(dimension)});
+      event_list.push_back({0, build_triangles[i].clip_triangle.min(dimension)});
+      event_list.push_back({2, build_triangles[i].clip_triangle.max(dimension)});
     }
   }
   quickSort(event_list.begin(), event_list.end());
   return event_list;
 }
 SplitResult TreeBuilder::splitTriangles(
-    const std::vector<ClipTriangle>& clip_triangles,
+    const std::vector<BuildTriangle>& build_triangles,
     const SplitPlane& plane) const {
-  // Split clip_triangles according to the plane
-  std::vector<ClipTriangle> left_clip_triangles;
-  std::vector<ClipTriangle> right_clip_triangles;
-  for (int i = 0; i < clip_triangles.size(); ++i) {
+  // Split build_triangles according to the plane
+  std::vector<BuildTriangle> left_build_triangles;
+  std::vector<BuildTriangle> right_build_triangles;
+  for (int i = 0; i < build_triangles.size(); ++i) {
     bool to_left, to_right;
     std::tie(to_left, to_right) =
-        clip_triangles[i].overlapsSides(plane.plane, plane.side);
+        build_triangles[i].clip_triangle.overlapsSides(plane.plane, plane.side);
     if (!to_left) {
-      right_clip_triangles.push_back(clip_triangles[i]);
+      right_build_triangles.push_back(build_triangles[i]);
     } else if (!to_right) {
-      left_clip_triangles.push_back(clip_triangles[i]);
+      left_build_triangles.push_back(build_triangles[i]);
     } else {
-      ClipTriangle left = clip_triangles[i];
-      ClipTriangle right = clip_triangles[i];
-      left.clip(plane.plane, 0);
-      right.clip(plane.plane, 1);
-      left_clip_triangles.push_back(left);
-      right_clip_triangles.push_back(right);
+      BuildTriangle left = build_triangles[i];
+      BuildTriangle right = build_triangles[i];
+      left.clip_triangle.clip(plane.plane, 0);
+      right.clip_triangle.clip(plane.plane, 1);
+      left_build_triangles.push_back(left);
+      right_build_triangles.push_back(right);
     }
   }
-  return {left_clip_triangles, right_clip_triangles};
+  return {left_build_triangles, right_build_triangles};
 }
 
 }  // namespace
@@ -239,13 +244,13 @@ TrianglePoint Tree::getClosestRayIntersection(const Ray& r) const {
   return root->getClosestRayIntersection(r);
 };
 
-std::vector<ClipTriangle> createClipTriangles(
+std::vector<ClipTriangle> createBuildTriangles(
     const std::vector<Triangle>& triangles) {
-  std::vector<ClipTriangle> clip_triangles;
+  std::vector<BuildTriangle> build_triangles;
   for (size_t i = 0; i < triangles.size(); ++i) {
-    clip_triangles.push_back(ClipTriangle(&triangles[i]));
+    build_triangles.push_back({ClipTriangle(&triangles[i]), });
   }
-  return clip_triangles;
+  return build_triangles;
 }
 std::vector<Triangle> extractTriangles(
     const std::vector<ClipTriangle>& clip_triangles) {

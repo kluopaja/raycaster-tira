@@ -3,6 +3,11 @@
 #include <memory>
 
 #include "geometry.h"
+// for storing the triangle after the tree has been built
+struct TreeTriangle {
+  Triangle triangle;
+  SceneTriangle* scene_triangle;
+}
 class Node {
  public:
   Node(std::unique_ptr<Node> left, std::unique_ptr<Node> right,
