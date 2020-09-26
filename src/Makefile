@@ -7,7 +7,7 @@ common_test_link_flags = -lgtest -lgtest_main -lgmock
 test_link_flags := -O2 $(common_test_link_flags)
 cov_link_flags := -O0 --coverage $(common_test_link_flags)
 
-objects := geometry.o kd_tree.o utils.o
+objects := geometry.o kd_tree.o
 test_objects := geometry_test.o kd_tree_test.o utils_test.o test_utils.o
 
 test_depends := $(patsubst %.o, test/%.d, $(test_objects) $(objects))
