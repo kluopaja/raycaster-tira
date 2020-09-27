@@ -1,5 +1,5 @@
 CC := g++
-common_compile_flags := -std=c++17 -Wall -Weffc++ -Wextra -Wsign-conversion
+common_compile_flags := -std=c++17 -Wall -Wextra -Wsign-conversion
 test_compile_flags := -O2
 cov_compile_flags := -O0 --coverage
 
