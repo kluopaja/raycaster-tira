@@ -3,17 +3,18 @@
 #include <memory>
 
 #include "geometry.h"
-// for storing the triangle after the tree has been built
-struct TreeTriangle {
-  Triangle triangle;
+#include "raycaster.h"
+struct ScenePoint {
   SceneTriangle* scene_triangle;
-}
+  Vec2 bary_coords;
+};
 class Node {
  public:
   Node(std::unique_ptr<Node> left, std::unique_ptr<Node> right,
        const Voxel& voxel, const AxisPlane& plane);
-  Node(const Voxel& voxel, const std::vector<Triangle>& triangles);
-  TrianglePoint getClosestRayIntersection(const Ray& r) const;
+  Node(const std::vector<Triangle>& triangles,
+       const std::vector<SceneTriangle*> scene_triangles, const Voxel& voxel);
+  ScenePoint getClosestRayIntersection(const Ray& r) const;
 
  private:
   // the side with smaller coordinates
@@ -23,6 +24,7 @@ class Node {
   std::unique_ptr<Node> left;
   std::unique_ptr<Node> right;
   std::vector<Triangle> triangles;
+  std::vector<SceneTriangle*> scene_triangles;
   Voxel voxel;
   AxisPlane plane;
   bool isLeaf() const;
@@ -30,7 +32,7 @@ class Node {
 inline bool Node::isLeaf() const { return (!left && !right); }
 class Tree {
  public:
-  TrianglePoint getClosestRayIntersection(const Ray& r) const;
+  ScenePoint getClosestRayIntersection(const Ray& r) const;
   Tree(std::unique_ptr<Node> root) : root(std::move(root)) {}
   // move constructor
   Tree(Tree&& a) noexcept;
@@ -41,13 +43,11 @@ class Tree {
   std::unique_ptr<Node> root;
 };
 
-Tree buildKdTree(const std::vector<Triangle>& triangles, double k_t,
+Tree buildKdTree(const std::vector<SceneTriangle*>& scene_triangles, double k_t,
                  double k_i);
-
-std::vector<ClipTriangle> createClipTriangles(
-    const std::vector<Triangle>& triangles);
 std::vector<Triangle> extractTriangles(
-    const std::vector<ClipTriangle>& clip_triangles);
+    const std::vector<SceneTriangle*>& scene_triangles);
+
 // Calculates the surface area heuristic cost
 // for splits [(n_left + n_plane), (n_right)]
 // and [(n_left), (n_right + n_plane)]

@@ -1,4 +1,7 @@
 #include "test_utils.h"
+
+#include "raycaster.h"
+
 namespace test {
 Vec3 randomVec3(double lo, double hi, std::mt19937& random_engine) {
   assert(lo < hi);
@@ -35,6 +38,22 @@ std::vector<Triangle> randomTriangleVector(double lo, double hi,
     if ((t.p1 - t.p0).cross(t.p2 - t.p0).norm() > EPS) {
       v.push_back(t);
     }
+  }
+  return v;
+}
+// generates scene triangles into area [lo-max_triangle_size,
+// hi+max_triangle_size]
+std::vector<SceneTriangle> randomSceneTriangleVector(
+    double lo, double hi, double max_triangle_size, int n,
+    std::mt19937 random_engine) {
+  assert(lo < hi);
+  std::vector<Triangle> t =
+      randomTriangleVector(lo, hi, max_triangle_size, n, random_engine);
+  std::vector<SceneTriangle> v;
+  for (size_t i = 0; i < t.size(); ++i) {
+    SceneTriangle scene_triangle;
+    scene_triangle.triangle = t[i];
+    v.push_back(scene_triangle);
   }
   return v;
 }

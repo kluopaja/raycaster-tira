@@ -6,6 +6,7 @@
 
 #include <random>
 
+#include "kd_tree.h"
 #include "test_utils.h"
 
 using ::testing::PrintToString;
@@ -339,7 +340,7 @@ TEST(PlanePolygon, Size) {
 TEST(ClipTriangle, MinMin) {
   Triangle t(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
              Vec3(-12.23, -15.2, 2.2));
-  ClipTriangle ct(&t);
+  ClipTriangle ct(t);
   EXPECT_NEAR(ct.min(0), -12.23, EPS);
   EXPECT_NEAR(ct.min(1), -15.2, EPS);
   EXPECT_NEAR(ct.min(2), 2.2, EPS);
@@ -350,23 +351,23 @@ TEST(ClipTriangle, MinMin) {
 TEST(ClipTriangle, IsAxisAligned) {
   Triangle t(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
              Vec3(-12.23, -15.2, 2.2));
-  ClipTriangle ct(&t);
+  ClipTriangle ct(t);
   EXPECT_FALSE(ct.isAxisAligned(0));
   t = Triangle(Vec3(1.0, 0.0, 2.5), Vec3(1.0, 2.2, 3.9999),
                Vec3(1.0, -15.2, 2.2));
-  ct = ClipTriangle(&t);
+  ct = ClipTriangle(t);
   EXPECT_TRUE(ct.isAxisAligned(0));
   EXPECT_FALSE(ct.isAxisAligned(1));
   EXPECT_FALSE(ct.isAxisAligned(2));
 
   t = Triangle(Vec3(1.0, 2.0, 12), Vec3(2.0, 2.0, 3.9999), Vec3(3.0, 2.0, 2.2));
-  ct = ClipTriangle(&t);
+  ct = ClipTriangle(t);
   EXPECT_FALSE(ct.isAxisAligned(0));
   EXPECT_TRUE(ct.isAxisAligned(1));
   EXPECT_FALSE(ct.isAxisAligned(2));
 
   t = Triangle(Vec3(1.0, 12, 3.3), Vec3(2.0, 2.0, 3.3), Vec3(3.0, 3.0, 3.3));
-  ct = ClipTriangle(&t);
+  ct = ClipTriangle(t);
   EXPECT_FALSE(ct.isAxisAligned(0));
   EXPECT_FALSE(ct.isAxisAligned(1));
   EXPECT_TRUE(ct.isAxisAligned(2));
@@ -374,32 +375,32 @@ TEST(ClipTriangle, IsAxisAligned) {
 TEST(ClipTriangle, OverlapSidesSimple) {
   Triangle t(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
              Vec3(-12.23, -15.2, 2.2));
-  ClipTriangle ct(&t);
+  ClipTriangle ct(t);
   std::pair<bool, bool> r = ct.overlapsSides({1, 1.0}, 1);
   EXPECT_EQ(r, std::make_pair(true, true));
 
   t = Triangle(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
                Vec3(-12.23, -15.2, 2.2));
-  ct = ClipTriangle(&t);
+  ct = ClipTriangle(t);
   r = ct.overlapsSides({0, -100.0}, 1);
   EXPECT_EQ(r, std::make_pair(false, true));
 
   t = Triangle(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
                Vec3(-12.23, -15.2, 2.2));
-  ct = ClipTriangle(&t);
+  ct = ClipTriangle(t);
   r = ct.overlapsSides({2, 100.0}, 0);
   EXPECT_EQ(r, std::make_pair(true, false));
 }
 TEST(ClipTriangle, OverlapSidesParallel) {
   Triangle t(Vec3(0.0, 0.0, 2.5), Vec3(0.0, 2.2, 3.9999),
              Vec3(0.0, -15.2, 2.2));
-  ClipTriangle ct(&t);
+  ClipTriangle ct(t);
   std::pair<bool, bool> r = ct.overlapsSides({0, 0.0}, 1);
   EXPECT_EQ(r, std::make_pair(false, true));
 
   t = Triangle(Vec3(1.0, 1.1, 2.5), Vec3(1.2, 1.1, 3.9999),
                Vec3(1.1, 1.1, 2.2));
-  ct = ClipTriangle(&t);
+  ct = ClipTriangle(t);
   r = ct.overlapsSides({1, 1.1}, 0);
   EXPECT_EQ(r, std::make_pair(true, false));
 }
@@ -408,45 +409,45 @@ TEST(ClipTriangle, OverlapSidesParallel) {
 TEST(ClipTriangle, OverlapSidesZeroArea) {
   Triangle t(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
              Vec3(-12.23, -15.2, 2.2));
-  ClipTriangle ct(&t);
+  ClipTriangle ct(t);
   std::pair<bool, bool> r = ct.overlapsSides({0, -12.23}, 1);
   EXPECT_EQ(r, std::make_pair(false, true));
 
   t = Triangle(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
                Vec3(-12.23, -15.2, 2.2));
-  ct = ClipTriangle(&t);
+  ct = ClipTriangle(t);
   r = ct.overlapsSides({0, -12.23}, 0);
   EXPECT_EQ(r, std::make_pair(false, true));
 
   t = Triangle(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
                Vec3(-12.23, -15.2, 2.2));
-  ct = ClipTriangle(&t);
+  ct = ClipTriangle(t);
   r = ct.overlapsSides({1, 2.2}, 0);
   EXPECT_EQ(r, std::make_pair(true, false));
 
   t = Triangle(Vec3(-0.1, 0.0, 2.5), Vec3(1.1, 2.2, 3.9999),
                Vec3(-12.23, -15.2, 2.2));
-  ct = ClipTriangle(&t);
+  ct = ClipTriangle(t);
   r = ct.overlapsSides({1, 2.2}, 1);
   EXPECT_EQ(r, std::make_pair(true, false));
 }
 TEST(ClipTriangle, ClipSimple) {
   Triangle t(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0));
-  ClipTriangle ct(&t);
+  ClipTriangle ct(t);
   ct.clip({0, 0.5}, 0);
   EXPECT_NEAR(ct.max(0), 0.5, EPS);
   EXPECT_NEAR(ct.max(1), 1.0, EPS);
   EXPECT_NEAR(ct.min(0), 0.0, EPS);
 
   t = Triangle(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0));
-  ct = ClipTriangle(&t);
+  ct = ClipTriangle(t);
   ct.clip({0, 0.5}, 1);
   EXPECT_NEAR(ct.min(0), 0.5, EPS);
   EXPECT_NEAR(ct.max(1), 0.5, EPS);
 }
 TEST(ClipTriangle, ClipParallel) {
   Triangle t(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0));
-  ClipTriangle ct(&t);
+  ClipTriangle ct(t);
   ct.clip({2, 0.0}, 0);
   EXPECT_NEAR(ct.min(2), 0.0, EPS);
   EXPECT_NEAR(ct.max(2), 0.0, EPS);
@@ -462,13 +463,12 @@ TEST(FirstRayTriangleIntersection, Simple) {
   scene.push_back(
       Triangle(Vec3(2.2, 1.0, 0.0), Vec3(1.3, 2.2, 0.0), Vec3(1.1, 2.1, 0.0)));
   Ray r = Ray(Vec3(0.0, 0.0, 1.0), Vec3(2.1, 2.1, 1.0));
-  TrianglePoint p = firstRayTriangleIntersection(scene, r);
-  EXPECT_EQ(p.triangle, nullptr);
+  RayTriangleIntersection rti = firstRayTriangleIntersection(scene, r);
+  EXPECT_EQ(rti.index, 3);
 
   r = Ray(Vec3(0.0, 0.0, 1.0), Vec3(2.1, 2.1, -1.0));
-  p = firstRayTriangleIntersection(scene, r);
-  EXPECT_EQ(p.triangle, &scene[1]);
-  EXPECT_EQ(p.triangle, &scene[1]);
+  rti = firstRayTriangleIntersection(scene, r);
+  EXPECT_EQ(rti.index, 1);
 
   scene.clear();
   scene.push_back(
@@ -479,19 +479,19 @@ TEST(FirstRayTriangleIntersection, Simple) {
       Triangle(Vec3(0.0, 0.0, 2.0), Vec3(1.0, 0.0, 2.0), Vec3(0.0, 1.0, 2.0)));
 
   r = Ray(Vec3(0.3, 0.3, -10.0), Vec3(0.0, 0.0, 1.0));
-  p = firstRayTriangleIntersection(scene, r);
-  EXPECT_EQ(p.triangle, &scene[0]);
-  EXPECT_THAT(p.bary_coords, VecEq(Vec2(0.3, 0.3)));
+  rti = firstRayTriangleIntersection(scene, r);
+  EXPECT_EQ(rti.index, 0);
+  EXPECT_THAT(rti.bary_coords, VecEq(Vec2(0.3, 0.3)));
 
   r = Ray(Vec3(0.2, 0.2, 0.5), Vec3(0.2, 0.2, 1.0));
-  p = firstRayTriangleIntersection(scene, r);
-  EXPECT_EQ(p.triangle, &scene[1]);
-  EXPECT_THAT(p.bary_coords, VecEq(Vec2(0.3, 0.3)));
+  rti = firstRayTriangleIntersection(scene, r);
+  EXPECT_EQ(rti.index, 1);
+  EXPECT_THAT(rti.bary_coords, VecEq(Vec2(0.3, 0.3)));
 
   r = Ray(Vec3(0.2, 0.2, 2 - 0.01), Vec3(0.0, 0.0, 1.0));
-  p = firstRayTriangleIntersection(scene, r);
-  EXPECT_EQ(p.triangle, &scene[2]);
-  EXPECT_THAT(p.bary_coords, VecEq(Vec2(0.2, 0.2)));
+  rti = firstRayTriangleIntersection(scene, r);
+  EXPECT_EQ(rti.index, 2);
+  EXPECT_THAT(rti.bary_coords, VecEq(Vec2(0.2, 0.2)));
 }
 // Tests that the function always finds an intersection that
 // is at least as close as the correct intersection
@@ -513,9 +513,9 @@ TEST(FirstRayTriangleIntersection, Random) {
 
     double scale = test::randomLogUniformReal(-4, 10, mt);
     Ray r(ray_origin, scale * (p - ray_origin));
-    TrianglePoint tp = firstRayTriangleIntersection(scene, r);
-    ASSERT_NE(tp.triangle, nullptr);
-    Vec3 intersection = tp.triangle->pointFromBary(tp.bary_coords);
+    RayTriangleIntersection rti = firstRayTriangleIntersection(scene, r);
+    ASSERT_NE(rti.index, scene.size());
+    Vec3 intersection = scene[rti.index].pointFromBary(rti.bary_coords);
     // check that the intersection found is not
     // further away than it should be
     ASSERT_LE((intersection - ray_origin).norm(),
@@ -523,7 +523,7 @@ TEST(FirstRayTriangleIntersection, Random) {
     // check that the intersection is on the ray
     ASSERT_NEAR((intersection - ray_origin).cross(p - ray_origin).norm(), 0,
                 EPS);
-    if (tp.triangle == &scene[0]) ++n_same_triangle;
+    if (rti.index == 0) ++n_same_triangle;
     ++n_tests_run;
   }
   ASSERT_GE(n_tests_run, 7000) << "Problem in generating the test cases";

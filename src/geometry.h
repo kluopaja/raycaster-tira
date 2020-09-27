@@ -160,9 +160,7 @@ inline Vec3 PlanePolygon::operator[](size_t index) const {
 // Supports only queries about the bounding box of S
 class ClipTriangle {
  public:
-  const Triangle* triangle;
-  ClipTriangle(const Triangle* triangle)
-      : triangle(triangle), polygon(*triangle) {
+  ClipTriangle(const Triangle& triangle) : polygon(triangle) {
     box = polygon.getBoundingBox();
   }
   bool isAxisAligned(int axis) const;
@@ -213,7 +211,13 @@ struct AxisPlane {
   double pos;
 };
 std::ostream& operator<<(std::ostream& out, const AxisPlane& a);
-TrianglePoint firstRayTriangleIntersection(
+struct RayTriangleIntersection {
+  size_t index;
+  Vec2 bary_coords;
+};
+// index of the intersected triangle and barycentric coordinates
+// returns {triangles.size(), Vec2(0)} if no intersection was found
+RayTriangleIntersection firstRayTriangleIntersection(
     const std::vector<Triangle>& triangles, const Ray& r);
 Voxel boundingBox(const std::vector<Triangle>& triangles);
 #endif
