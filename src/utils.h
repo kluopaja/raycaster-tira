@@ -10,7 +10,7 @@ namespace {
 
 template <typename RandomAccessIterator>
 RandomAccessIterator selectK(RandomAccessIterator begin,
-                             RandomAccessIterator end, size_t k);
+                             RandomAccessIterator end, std::ptrdiff_t k);
 // used to sort small arrays
 // has better performance for small arrays than quickSort
 template <typename RandomAccessIterator>
@@ -26,7 +26,7 @@ void insertionSort(RandomAccessIterator begin, RandomAccessIterator end) {
 }
 template <typename RandomAccessIterator>
 void partition(RandomAccessIterator begin, RandomAccessIterator end,
-               size_t n_less, size_t n_same, RandomAccessIterator pivot) {
+               std::ptrdiff_t n_less, std::ptrdiff_t n_same, RandomAccessIterator pivot) {
   RandomAccessIterator less_pos = begin;
   RandomAccessIterator same_pos = begin + n_less;
   RandomAccessIterator more_pos = begin + n_less + n_same;
@@ -63,11 +63,11 @@ void partition(RandomAccessIterator begin, RandomAccessIterator end,
 // where n_less is the number of values less than pivot
 // n_same and n_more similarly
 template <typename RandomAccessIterator>
-std::pair<size_t, size_t> countRelativeValues(RandomAccessIterator begin,
+std::pair<std::ptrdiff_t, std::ptrdiff_t> countRelativeValues(RandomAccessIterator begin,
                                               RandomAccessIterator end,
                                               RandomAccessIterator pivot) {
-  size_t n_less = 0;
-  size_t n_same = 0;
+  std::ptrdiff_t n_less = 0;
+  std::ptrdiff_t n_same = 0;
   for (RandomAccessIterator it = begin; it != end; ++it) {
     if (*it < *pivot) {
       ++n_less;
@@ -159,29 +159,29 @@ RandomAccessIterator medianOfMedians(RandomAccessIterator begin,
   }
   // divide the interval into chunks of max 5
   // store the medians of these at the beginning of the container
-  size_t n = end - begin;
-  for (size_t i = 0; 5 * i < n; ++i) {
+  std::ptrdiff_t n = end - begin;
+  for (std::ptrdiff_t i = 0; 5 * i < n; ++i) {
     RandomAccessIterator chunk_end = begin + n;
     if ((i + 1) * 5 < n) chunk_end = begin + (i + 1) * 5;
     RandomAccessIterator med = medianMax5(begin + i * 5, chunk_end);
     std::swap(begin[i], *med);
   }
-  size_t new_length = (n + 4) / 5;
+  std::ptrdiff_t new_length = (n + 4) / 5;
   return selectK(begin, begin + new_length, (new_length - 1) / 2);
 }
 
 template <typename RandomAccessIterator>
 RandomAccessIterator selectK(RandomAccessIterator begin,
-                             RandomAccessIterator end, size_t k) {
+                             RandomAccessIterator end, std::ptrdiff_t k) {
   assert(begin < end);
-  size_t n = end - begin;
+  std::ptrdiff_t n = end - begin;
   assert(k < n);
   if (n == 1) {
     return begin;
   }
   // calculate approximate median
   RandomAccessIterator median_of_medians = medianOfMedians(begin, end);
-  size_t n_less, n_same;
+  std::ptrdiff_t n_less, n_same;
   std::tie(n_less, n_same) = countRelativeValues(begin, end, median_of_medians);
   if (k >= n_less && k < n_less + n_same) {
     return median_of_medians;
@@ -214,7 +214,7 @@ void quickSort(RandomAccessIterator begin, RandomAccessIterator end) {
   else
     pivot = mid;
 
-  size_t n_less, n_same;
+  std::ptrdiff_t n_less, n_same;
   std::tie(n_less, n_same) = countRelativeValues(begin, end, pivot);
   partition(begin, end, n_less, n_same, pivot);
   quickSort(begin, begin + n_less);
