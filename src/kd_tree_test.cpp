@@ -140,7 +140,7 @@ TEST(TreeBuilderKdTreeQueries, Random3dAxisParallel) {
         test::randomSceneTriangleVector(0.0, 100.0, triangle_scale, 100, mt);
     // make triangles parallel to some axis
     std::uniform_int_distribution axis_dist(0, 2);
-    for (int j = 0; j < scene.size(); ++j) {
+    for (size_t j = 0; j < scene.size(); ++j) {
       int ax = axis_dist(mt);
       scene[j].triangle.p1[ax] = scene[j].triangle.p0[ax];
       scene[j].triangle.p2[ax] = scene[j].triangle.p0[ax];

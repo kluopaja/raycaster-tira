@@ -133,8 +133,8 @@ SplitPlane TreeBuilder::findPlane(
       //     Added to left side
       int n_start_plane_intersection = 0;
       // \:
-      // _\
-            //  :
+      // _\ .
+      //  :
       // Before plane check:
       //     Removed from the right side
       int n_end_plane_intersection = 0;
@@ -206,7 +206,7 @@ SplitResult TreeBuilder::splitTriangles(
   // Split build_triangles according to the plane
   std::vector<BuildTriangle> left_build_triangles;
   std::vector<BuildTriangle> right_build_triangles;
-  for (int i = 0; i < build_triangles.size(); ++i) {
+  for (size_t i = 0; i < build_triangles.size(); ++i) {
     bool to_left, to_right;
     std::tie(to_left, to_right) =
         build_triangles[i].clip_triangle.overlapsSides(plane.plane, plane.side);

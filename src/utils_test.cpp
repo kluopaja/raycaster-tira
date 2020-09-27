@@ -45,7 +45,7 @@ TEST(MedianMax5, Random) {
     std::vector<int> v = test::randomIntVector(0, max_value, n_values, mt);
     int median = *medianMax5(v.begin(), v.end());
     std::sort(v.begin(), v.end());
-    ASSERT_EQ(median, v[(n_values - 1) / 2])
+    ASSERT_EQ(median, v[(size_t)(n_values - 1) / 2])
         << " of values " + PrintToString(v) << std::endl;
   }
   std::cerr << n_tests << " random test cases run" << std::endl;
@@ -53,7 +53,7 @@ TEST(MedianMax5, Random) {
 TEST(MedianOfMedians, Random) {}
 TEST(CountRelativeValues, Simple) {
   std::vector<int> v = {0, 1, 2, 3, 3, 4, 5};
-  size_t n_less, n_same;
+  int n_less, n_same;
   std::tie(n_less, n_same) =
       countRelativeValues(v.begin(), v.end(), v.begin() + 3);
   EXPECT_THAT(n_less, 3);
@@ -129,7 +129,7 @@ TEST(SelectK, Random) {
     int k = k_dist(mt);
     int kth_value = *selectK(v.begin(), v.end(), k);
     std::sort(v.begin(), v.end());
-    ASSERT_EQ(kth_value, v[k])
+    ASSERT_EQ(kth_value, v[(size_t)k])
         << " of values " + PrintToString(v) << std::endl
         << "after passing " << i << " random tests" << std::endl;
   }
