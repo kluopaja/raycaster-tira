@@ -3,7 +3,6 @@
 #include "geometry.h"
 struct Material {
   Vec3 diffuse;
-  Vec3 specular;
   Vec3 emitted;
 };
 struct SceneTriangle {
@@ -11,4 +10,17 @@ struct SceneTriangle {
   Vec3 normals[3];
   Material* material;
 };
+class Model {
+ public:
+  Model() = default;
+  Model(Model&& a) noexcept;
+  Model& operator=(Model&& a) noexcept;
+  ~Model();
+  std::vector<SceneTriangle*> scene_triangles;
+  // necessary for freeing the memory
+  std::vector<Material*> materials;
+};
+// struct Scene {
+//   Model model;
+// };
 #endif

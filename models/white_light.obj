@@ -1,0 +1,6 @@
+mtllib materials.mtl
+usemtl WhiteLight
+v 0 2 0
+v 1 2 0
+v 0 2 1
+f 1 2 3

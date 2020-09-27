@@ -1,0 +1,7 @@
+newmtl Green
+Ka 0.0 0.0 0.0
+Kd 0.0 1.0 0.0
+
+newmtl WhiteLight
+Ka 1.0 1.0 1.0
+Kd 0.0 0.0 0.0
