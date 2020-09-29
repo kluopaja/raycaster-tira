@@ -49,6 +49,12 @@ TEST(Vec2Test, Multipy) {
   EXPECT_NEAR(v2[0], 1.1, EPS);
   EXPECT_NEAR(v2[1], 2.2 * 1.1, EPS);
 }
+TEST(Vec2Test, Divide) {
+  Vec2 v1(1.0, 2.2);
+  Vec2 v2 = v1 / 1.1;
+  EXPECT_NEAR(v2[0], 1.0 / 1.1, EPS);
+  EXPECT_NEAR(v2[1], 2.2 / 1.1, EPS);
+}
 TEST(Vec2Test, Norm) {
   Vec2 v(0.0);
   EXPECT_NEAR(v.norm(), 0.0, EPS);
@@ -93,6 +99,13 @@ TEST(Vec3Test, Multipy) {
   EXPECT_NEAR(v2[0], 1.1, EPS);
   EXPECT_NEAR(v2[1], 2.2 * 1.1, EPS);
   EXPECT_NEAR(v2[2], 3.3 * 1.1, EPS);
+}
+TEST(Vec3Test, Divide) {
+  Vec3 v1(1.0, 2.2, 3.3);
+  Vec3 v2 = v1 / 1.1;
+  EXPECT_NEAR(v2[0], 1.0 / 1.1, EPS);
+  EXPECT_NEAR(v2[1], 2.2 / 1.1, EPS);
+  EXPECT_NEAR(v2[2], 3.3 / 1.1, EPS);
 }
 TEST(Vec3Test, Norm) {
   Vec3 v(0.0);
@@ -240,6 +253,13 @@ TEST(TriangleTest, Area) {
   EXPECT_NEAR(t.area(), 0.5, EPS);
   t = Triangle({1.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 1.0});
   EXPECT_NEAR(t.area(), std::sqrt(1.0 / 2.0), EPS);
+}
+TEST(TriangleTest, Translate) {
+  Triangle t(Vec3(0.0), Vec3(1.0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0));
+  t.translate(Vec3(1.0, 2.0, 3.0));
+  EXPECT_THAT(t.p0, VecEq(Vec3(1.0, 2.0, 3.0)));
+  EXPECT_THAT(t.p1, VecEq(Vec3(2.0, 2.0, 3.0)));
+  EXPECT_THAT(t.p2, VecEq(Vec3(1.0, 3.0, 3.0)));
 }
 TEST(TriangleTest, RayIntersectionSimple) {
   Triangle t({0.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, {0.0, 1.0, 0.0});
@@ -532,5 +552,15 @@ TEST(FirstRayTriangleIntersection, Random) {
             << " intersected first the triangle used to generate the ray "
             << std::endl;
 }
-
+TEST(PointOnSegment, Simple) {
+  Vec3 a(0.0);
+  Vec3 b(1.0);
+  Vec3 c(2.0);
+  EXPECT_TRUE(pointOnSegment(b, a, c));
+  EXPECT_FALSE(pointOnSegment(a, b, c));
+  a = Vec3(0.0);
+  b = Vec3(0.0, 1.0, 1.0);
+  c = Vec3(0.0, 0.0, 2.0);
+  EXPECT_FALSE(pointOnSegment(b, a, c));
+}
 }  // namespace

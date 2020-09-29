@@ -175,6 +175,11 @@ Vec3 Triangle::pointFromBary(const Vec2& coords) const {
   return (1.0 - coords[0] - coords[1]) * p0 + coords[0] * p1 + coords[1] * p2;
 }
 double Triangle::area() const { return (p1 - p0).cross(p2 - p0).norm() / 2.0; }
+void Triangle::translate(const Vec3& v) {
+  p0 = p0 + v;
+  p1 = p1 + v;
+  p2 = p2 + v;
+}
 // For explanation see
 // https://cadxfem.org/inf/Fast%20MinimumStorage%20RayTriangle%20Intersection.pdf
 // also detects intersections to the side of the triangle

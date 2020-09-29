@@ -24,6 +24,7 @@ class Vec2 {
   friend Vec2 operator-(const Vec2& a, const Vec2& b);
   friend Vec2 operator*(const Vec2& a, const double b);
   friend Vec2 operator*(const double b, const Vec2& a);
+  friend Vec2 operator/(const Vec2& a, const double b);
   double& operator[](int index);
   double operator[](int index) const;
   double norm() const;
@@ -47,6 +48,9 @@ inline Vec2 operator*(const Vec2& a, const double b) {
 inline Vec2 operator*(const double b, const Vec2& a) {
   return Vec2(b * a.v[0], b * a.v[1]);
 }
+inline Vec2 operator/(const Vec2& a, const double b) {
+  return Vec2(a.v[0] / b, a.v[1] / b);
+}
 inline double& Vec2::operator[](int index) { return v[index]; }
 inline double Vec2::operator[](int index) const { return v[index]; }
 inline double Vec2::norm() const { return std::sqrt(this->dot(*this)); }
@@ -61,6 +65,7 @@ class Vec3 {
   friend Vec3 operator-(const Vec3& a, const Vec3& b);
   friend Vec3 operator*(const Vec3& a, const double b);
   friend Vec3 operator*(const double b, const Vec3& a);
+  friend Vec3 operator/(const Vec3& a, const double b);
   double& operator[](int index);
   double operator[](int index) const;
   double norm() const;
@@ -87,6 +92,9 @@ inline Vec3 operator*(const Vec3& a, const double b) {
 }
 inline Vec3 operator*(const double b, const Vec3& a) {
   return Vec3(b * a.v[0], b * a.v[1], b * a.v[2]);
+}
+inline Vec3 operator/(const Vec3& a, const double b) {
+  return Vec3(a.v[0]  / b, a.v[1] / b, a.v[2] / b);
 }
 inline double& Vec3::operator[](int index) { return v[index]; }
 inline double Vec3::operator[](int index) const { return v[index]; }
@@ -127,6 +135,7 @@ class Triangle {
   // Returns the point corresponding to barycentric coordinates coords
   Vec3 pointFromBary(const Vec2& coords) const;
   double area() const;
+  void translate(const Vec3& v);
   // Finds non-parallel intersections between ray r and *this
   // distance == inf if no intersection was found
   // can return distance < 0 if the line r intersects
@@ -201,6 +210,7 @@ class Ray {
   // inv_direction[i] = 1 / direction[i]
   // speeds up the triangle intersection calculations
   //
+  // TODO
   // what if the user decides to modify direction? when to update this?
   Vec3 inv_direction;
   Ray(Vec3 origin, Vec3 direction);
@@ -220,4 +230,7 @@ struct RayTriangleIntersection {
 RayTriangleIntersection firstRayTriangleIntersection(
     const std::vector<Triangle>& triangles, const Ray& r);
 Voxel boundingBox(const std::vector<Triangle>& triangles);
+inline bool pointOnSegment(const Vec3& p, const Vec3& a, const Vec3& b) {
+  return std::abs((a - p).norm() + (p - b).norm() - (a - b).norm()) < EPS;
+}
 #endif
