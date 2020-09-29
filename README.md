@@ -8,4 +8,6 @@
 
 [Week report 3](https://github.com/kluopaja/raycaster-tira/blob/master/doc/week_reports/week3.md)
 
+[Week report 4](https://github.com/kluopaja/raycaster-tira/blob/master/doc/week_reports/week4.md)
+
 [Code coverage report](https://kluopaja.github.io/raycaster-tira/doc/coverage/coverage.html)

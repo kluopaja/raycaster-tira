@@ -24,6 +24,9 @@ construction but didn't have time to implement it yet.
 Also it should be noted that the "O(N log N)" algorithm is
 not always O(N log N).
 
+I used clang-format to format the code according to the google c++ style 
+guide.
+
 Time: 20 h ?
 
 ## Future
