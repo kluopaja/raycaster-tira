@@ -5,8 +5,8 @@
 #include <tuple>
 #include <vector>
 
-#include "utils.h"
 #include "raycaster.h"
+#include "utils.h"
 namespace {
 
 class Event {
@@ -283,14 +283,15 @@ ScenePoint Tree::getClosestRayIntersection(const Ray& r) const {
 // could possibly be sped up implementing a seconds recursive
 // intersection test separately for this
 bool Tree::trianglesIntersectSegment(const Vec3& a, const Vec3& b) const {
-  Ray r(a, b-a);
+  Ray r(a, b - a);
   ScenePoint sp = root->getClosestRayIntersection(r);
   // no intersection
-  if(sp.scene_triangle == nullptr) {
+  if (sp.scene_triangle == nullptr) {
     return false;
   }
-  Vec3 intersection_point = sp.scene_triangle->triangle.pointFromBary(sp.bary_coords);
-  if(pointOnSegment(intersection_point, a, b)) {
+  Vec3 intersection_point =
+      sp.scene_triangle->triangle.pointFromBary(sp.bary_coords);
+  if (pointOnSegment(intersection_point, a, b)) {
     return true;
   }
   return false;

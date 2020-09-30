@@ -1,4 +1,5 @@
 #include "kd_tree.h"
+
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 

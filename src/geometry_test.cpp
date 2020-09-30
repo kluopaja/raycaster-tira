@@ -324,16 +324,16 @@ TEST(TriangleTest, RayIntersectionRandomDoesNotIntersect) {
     std::uniform_real_distribution bary_distribution(-100.0, 100.0);
     Vec2 bary_coords(bary_distribution(mt), bary_distribution(mt));
     // skip coordinates thaat are inside the triangle
-    if (bary_coords[0] > -TEST_EPS && bary_coords[0] < 1 + TEST_EPS
-        && bary_coords[1] > -TEST_EPS && bary_coords[1] < 1 + TEST_EPS
-        && bary_coords[0] + bary_coords[1] > -TEST_EPS
-        && bary_coords[0] + bary_coords[1] < 1 + TEST_EPS) {
+    if (bary_coords[0] > -TEST_EPS && bary_coords[0] < 1 + TEST_EPS &&
+        bary_coords[1] > -TEST_EPS && bary_coords[1] < 1 + TEST_EPS &&
+        bary_coords[0] + bary_coords[1] > -TEST_EPS &&
+        bary_coords[0] + bary_coords[1] < 1 + TEST_EPS) {
       continue;
     }
     // pointFromBary only supports points on the triangle
-    Vec3 out_point = random_t.p0 * (1 - bary_coords[0] - bary_coords[1])
-                     + random_t.p1 * bary_coords[0]
-                     + random_t.p2 * bary_coords[1];
+    Vec3 out_point = random_t.p0 * (1 - bary_coords[0] - bary_coords[1]) +
+                     random_t.p1 * bary_coords[0] +
+                     random_t.p2 * bary_coords[1];
     Vec3 ray_origin(test::randomVec3(-1.0, 1.0, mt));
     // ray origin should not be on the plane
     Vec3 tmp = (ray_origin - random_t.p0).cross(random_t.p1 - random_t.p0);
@@ -347,9 +347,8 @@ TEST(TriangleTest, RayIntersectionRandomDoesNotIntersect) {
     }
     Ray r(ray_origin, scale * (out_point - ray_origin));
     RayIntersection ri = random_t.getRayIntersection(r);
-    ASSERT_EQ(ri.distance, INF)
-        << "r = " << r << "\nt = " << random_t << "\nbary = " << bary_coords
-        << std::endl;
+    ASSERT_EQ(ri.distance, INF) << "r = " << r << "\nt = " << random_t
+                                << "\nbary = " << bary_coords << std::endl;
   }
 }
 TEST(PlanePolygon, ConstructorPoints) {

@@ -94,7 +94,7 @@ inline Vec3 operator*(const double b, const Vec3& a) {
   return Vec3(b * a.v[0], b * a.v[1], b * a.v[2]);
 }
 inline Vec3 operator/(const Vec3& a, const double b) {
-  return Vec3(a.v[0]  / b, a.v[1] / b, a.v[2] / b);
+  return Vec3(a.v[0] / b, a.v[1] / b, a.v[2] / b);
 }
 inline double& Vec3::operator[](int index) { return v[index]; }
 inline double Vec3::operator[](int index) const { return v[index]; }

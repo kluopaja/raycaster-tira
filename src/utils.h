@@ -26,7 +26,8 @@ void insertionSort(RandomAccessIterator begin, RandomAccessIterator end) {
 }
 template <typename RandomAccessIterator>
 void partition(RandomAccessIterator begin, RandomAccessIterator end,
-               std::ptrdiff_t n_less, std::ptrdiff_t n_same, RandomAccessIterator pivot) {
+               std::ptrdiff_t n_less, std::ptrdiff_t n_same,
+               RandomAccessIterator pivot) {
   RandomAccessIterator less_pos = begin;
   RandomAccessIterator same_pos = begin + n_less;
   RandomAccessIterator more_pos = begin + n_less + n_same;
@@ -63,9 +64,9 @@ void partition(RandomAccessIterator begin, RandomAccessIterator end,
 // where n_less is the number of values less than pivot
 // n_same and n_more similarly
 template <typename RandomAccessIterator>
-std::pair<std::ptrdiff_t, std::ptrdiff_t> countRelativeValues(RandomAccessIterator begin,
-                                              RandomAccessIterator end,
-                                              RandomAccessIterator pivot) {
+std::pair<std::ptrdiff_t, std::ptrdiff_t> countRelativeValues(
+    RandomAccessIterator begin, RandomAccessIterator end,
+    RandomAccessIterator pivot) {
   std::ptrdiff_t n_less = 0;
   std::ptrdiff_t n_same = 0;
   for (RandomAccessIterator it = begin; it != end; ++it) {

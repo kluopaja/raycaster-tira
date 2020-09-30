@@ -1,14 +1,15 @@
 #include "model_loader.h"
-#include "raycaster.h"
-#include "geometry.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 #include <iostream>
 
-using ::testing::PrintToString;
+#include "geometry.h"
+#include "raycaster.h"
+
 using ::testing::ElementsAreArray;
+using ::testing::PrintToString;
 
 namespace {
 MATCHER_P(VecEq, v, "should equal " + PrintToString(v)) {
@@ -23,9 +24,7 @@ MATCHER_P(TriangleEq, v, "should equal " + PrintToString(v)) {
 TEST(TestLoadModel, SimpleTriangle) {
   Model model;
   loadModel("../models/green_triangle.obj", model, kRough);
-  Triangle c(Vec3(0.0, 0.0, 0.0),
-             Vec3(0.0, 0.0, 1.0),
-             Vec3(0.0, 1.0, 0.0));
+  Triangle c(Vec3(0.0, 0.0, 0.0), Vec3(0.0, 0.0, 1.0), Vec3(0.0, 1.0, 0.0));
   ASSERT_EQ(model.scene_triangles.size(), 1);
   EXPECT_THAT(model.scene_triangles[0]->triangle, TriangleEq(c));
 
@@ -53,8 +52,11 @@ TEST(TestLoadModel, Normals) {
   Model model;
   loadModel("../models/green_triangle.obj", model, kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
-  EXPECT_THAT(model.scene_triangles[0]->normals[0], VecEq(Vec3(-1.0, 0.0, 0.0)));
-  EXPECT_THAT(model.scene_triangles[0]->normals[1], VecEq(Vec3(-1.0, 0.0, 0.0)));
-  EXPECT_THAT(model.scene_triangles[0]->normals[2], VecEq(Vec3(-1.0, 0.0, 0.0)));
+  EXPECT_THAT(model.scene_triangles[0]->normals[0],
+              VecEq(Vec3(-1.0, 0.0, 0.0)));
+  EXPECT_THAT(model.scene_triangles[0]->normals[1],
+              VecEq(Vec3(-1.0, 0.0, 0.0)));
+  EXPECT_THAT(model.scene_triangles[0]->normals[2],
+              VecEq(Vec3(-1.0, 0.0, 0.0)));
 }
-} // namespace
+}  // namespace
