@@ -278,7 +278,8 @@ TEST(TriangleTest, RayIntersectionParallel) {
   RayIntersection ri = t.getRayIntersection(r);
   EXPECT_EQ(ri.distance, INF);
 }
-TEST(TriangleTest, RayIntersectionRandom) {
+// test that getRayIntersection identifies all intersections correctly
+TEST(TriangleTest, RayIntersectionRandomIntersects) {
   std::mt19937 mt(1337);
   for (int i = 0; i < 100'000; ++i) {
     Triangle random_t(test::randomVec3(-1.0, 1.0, mt),
@@ -307,6 +308,46 @@ TEST(TriangleTest, RayIntersectionRandom) {
     Ray r(ray_origin, scale * (inner_point - ray_origin));
     RayIntersection ri = random_t.getRayIntersection(r);
     ASSERT_NEAR(ri.distance, 1 / scale, EPS)
+        << "r = " << r << "\nt = " << random_t << "\nbary = " << bary_coords
+        << std::endl;
+  }
+}
+// test that getRayIntersection identifies all non-intersections correctly
+TEST(TriangleTest, RayIntersectionRandomDoesNotIntersect) {
+  std::mt19937 mt(1337);
+  for (int i = 0; i < 100'000; ++i) {
+    Triangle random_t(test::randomVec3(-1.0, 1.0, mt),
+                      test::randomVec3(-1.0, 1.0, mt),
+                      test::randomVec3(-1.0, 1.0, mt));
+
+    // generate barycentric coordinates that can be outside the triangle
+    std::uniform_real_distribution bary_distribution(-100.0, 100.0);
+    Vec2 bary_coords(bary_distribution(mt), bary_distribution(mt));
+    // skip coordinates thaat are inside the triangle
+    if (bary_coords[0] > -TEST_EPS && bary_coords[0] < 1 + TEST_EPS
+        && bary_coords[1] > -TEST_EPS && bary_coords[1] < 1 + TEST_EPS
+        && bary_coords[0] + bary_coords[1] > -TEST_EPS
+        && bary_coords[0] + bary_coords[1] < 1 + TEST_EPS) {
+      continue;
+    }
+    // pointFromBary only supports points on the triangle
+    Vec3 out_point = random_t.p0 * (1 - bary_coords[0] - bary_coords[1])
+                     + random_t.p1 * bary_coords[0]
+                     + random_t.p2 * bary_coords[1];
+    Vec3 ray_origin(test::randomVec3(-1.0, 1.0, mt));
+    // ray origin should not be on the plane
+    Vec3 tmp = (ray_origin - random_t.p0).cross(random_t.p1 - random_t.p0);
+    if (std::abs(tmp.dot(random_t.p2 - random_t.p0)) < EPS) {
+      continue;
+    }
+    double scale = test::randomLogUniformReal(-1.0, 1.0, mt);
+    // also test negative scale (ray going away from the triangle)
+    if (i % 2 == 1) {
+      scale *= -1;
+    }
+    Ray r(ray_origin, scale * (out_point - ray_origin));
+    RayIntersection ri = random_t.getRayIntersection(r);
+    ASSERT_EQ(ri.distance, INF)
         << "r = " << r << "\nt = " << random_t << "\nbary = " << bary_coords
         << std::endl;
   }
