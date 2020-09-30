@@ -22,7 +22,7 @@ MATCHER_P(TriangleEq, v, "should equal " + PrintToString(v)) {
 }
 TEST(TestLoadModel, SimpleTriangle) {
   Model model;
-  loadModel("../models/green_triangle.obj", model);
+  loadModel("../models/green_triangle.obj", model, kRough);
   Triangle c(Vec3(0.0, 0.0, 0.0),
              Vec3(0.0, 0.0, 1.0),
              Vec3(0.0, 1.0, 0.0));
@@ -33,7 +33,7 @@ TEST(TestLoadModel, SimpleTriangle) {
 }
 TEST(TestLoadModel, MaterialDiffuse) {
   Model model;
-  loadModel("../models/green_triangle.obj", model);
+  loadModel("../models/green_triangle.obj", model, kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
   Material* material = model.scene_triangles[0]->material;
   ASSERT_NE(material, nullptr);
@@ -42,7 +42,7 @@ TEST(TestLoadModel, MaterialDiffuse) {
 }
 TEST(TestLoadModel, MaterialEmitted) {
   Model model;
-  loadModel("../models/white_light.obj", model);
+  loadModel("../models/white_light.obj", model, kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
   Material* material = model.scene_triangles[0]->material;
   ASSERT_NE(material, nullptr);
@@ -51,7 +51,7 @@ TEST(TestLoadModel, MaterialEmitted) {
 }
 TEST(TestLoadModel, Normals) {
   Model model;
-  loadModel("../models/green_triangle.obj", model);
+  loadModel("../models/green_triangle.obj", model, kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
   EXPECT_THAT(model.scene_triangles[0]->normals[0], VecEq(Vec3(-1.0, 0.0, 0.0)));
   EXPECT_THAT(model.scene_triangles[0]->normals[1], VecEq(Vec3(-1.0, 0.0, 0.0)));

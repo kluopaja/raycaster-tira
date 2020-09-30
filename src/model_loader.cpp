@@ -8,7 +8,7 @@ namespace {
 
 class ModelLoader {
  public:
-  bool load(const std::string& file);
+  bool load(const std::string& file, NormalType normal_type);
   Model model;
  private:
   void loadMaterials(const aiScene* ai_scene);
@@ -17,12 +17,16 @@ class ModelLoader {
   void loadMesh(const aiMesh* mesh);
 };
 
-bool ModelLoader::load(const std::string& file) {
+bool ModelLoader::load(const std::string& file, NormalType normal_type) {
   Assimp::Importer importer;
+  unsigned int normal_flag = aiProcess_GenNormals;
+  if(normal_type == kSmooth) {
+    normal_flag = aiProcess_GenSmoothNormals;
+  }
   const aiScene* ai_scene = 
       importer.ReadFile(file,
                         aiProcess_Triangulate | // every face will have <= 3 vertices
-                        aiProcess_GenSmoothNormals);
+                        normal_flag);
   if(!ai_scene) {
     std::cerr << "ERROR while loading the model: " << importer.GetErrorString()
               << std::endl;
@@ -88,9 +92,9 @@ void ModelLoader::loadMesh(const aiMesh* mesh) {
 
 } // namespace
 
-bool loadModel(const std::string& file, Model& out_model) {
+bool loadModel(const std::string& file, Model& out_model, NormalType normal_type) {
   ModelLoader loader;
-  if(!loader.load(file)) {
+  if(!loader.load(file, normal_type)) {
     return false;
   }
   out_model = std::move(loader.model);

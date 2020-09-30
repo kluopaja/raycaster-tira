@@ -1,6 +1,10 @@
 #ifndef RAYCASTER_RAYCASTER_H
 #define RAYCASTER_RAYCASTER_H
 #include "geometry.h"
+enum NormalType {
+  kSmooth,
+  kRough,
+};
 struct Material {
   Vec3 diffuse;
   Vec3 emitted;
