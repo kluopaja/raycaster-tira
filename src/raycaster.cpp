@@ -210,7 +210,7 @@ void Image::scaleMaxTo(double new_max) {
   double scale_factor = new_max / old_max;
   for (int y = 0; y < y_resolution; ++y) {
     for (int x = 0; x < x_resolution; ++x) {
-      size_t pos = bufferPos(x, y);
+      size_t pos = (size_t)bufferPos(x, y);
       buffer[pos] = buffer[pos] * scale_factor;
     }
   }
