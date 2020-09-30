@@ -3,7 +3,8 @@
 #include <memory>
 
 #include "geometry.h"
-#include "raycaster.h"
+// forward declare SceneTriangle to solve circular include issue
+struct SceneTriangle;
 struct ScenePoint {
   SceneTriangle* scene_triangle;
   Vec2 bary_coords;
@@ -33,9 +34,12 @@ inline bool Node::isLeaf() const { return (!left && !right); }
 class Tree {
  public:
   ScenePoint getClosestRayIntersection(const Ray& r) const;
+  bool trianglesIntersectSegment(const Vec3& a, const Vec3& b) const;
   Tree(std::unique_ptr<Node> root) : root(std::move(root)) {}
+  Tree() = default;
   // move constructor
   Tree(Tree&& a) noexcept;
+  Tree& operator=(Tree&& a) noexcept;
   Tree(const Tree&) = delete;
   Tree& operator=(const Tree&) = delete;
 

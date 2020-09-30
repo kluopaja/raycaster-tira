@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "utils.h"
+#include "raycaster.h"
 namespace {
 
 class Event {
@@ -271,10 +272,29 @@ ScenePoint Node::getClosestRayIntersection(const Ray& r) const {
   return left->getClosestRayIntersection(r);
 }
 Tree::Tree(Tree&& a) noexcept : root(std::move(a.root)) {}
+Tree& Tree::operator=(Tree&& a) noexcept {
+  root = std::move(a.root);
+  return *this;
+}
 ScenePoint Tree::getClosestRayIntersection(const Ray& r) const {
   return root->getClosestRayIntersection(r);
 };
-
+// for now simply uses the getClosestRayIntersection
+// could possibly be sped up implementing a seconds recursive
+// intersection test separately for this
+bool Tree::trianglesIntersectSegment(const Vec3& a, const Vec3& b) const {
+  Ray r(a, b-a);
+  ScenePoint sp = root->getClosestRayIntersection(r);
+  // no intersection
+  if(sp.scene_triangle == nullptr) {
+    return false;
+  }
+  Vec3 intersection_point = sp.scene_triangle->triangle.pointFromBary(sp.bary_coords);
+  if(pointOnSegment(intersection_point, a, b)) {
+    return true;
+  }
+  return false;
+}
 std::vector<Triangle> extractTriangles(
     const std::vector<SceneTriangle*>& scene_triangles) {
   std::vector<Triangle> triangles;

@@ -244,5 +244,20 @@ TEST(TreeBuilderKdTreeQueries, Random3dLargeTrianglePerformance) {
   std::cerr << "total rays: " << n_rays << std::endl;
   std::cerr << "intersections: " << n_intersections << std::endl;
 }
+TEST(TreeBuilderKdTreeQueries, TestTrianglesIntersectSegmentSimple) {
+  Triangle triangle(Vec3(0.0), Vec3(0.0, 1.0, 0.0), Vec3(0.0, 0.0, 1.0));
+  std::vector<SceneTriangle> scene = {{triangle, {}, nullptr}};
+  std::vector<SceneTriangle*> scene_p = {&scene[0]};
+  Tree tree = buildKdTree(scene_p, 1.0, 5.0);
+  Vec3 a(-0.5, 0.2, 0.2);
+  Vec3 b(0.5, 0.2, 0.2);
+  EXPECT_TRUE(tree.trianglesIntersectSegment(a, b));
+  a = Vec3(0.1, 0.2, 0.2);
+  b = Vec3(0.5, 0.2, 0.2);
+  EXPECT_FALSE(tree.trianglesIntersectSegment(a, b));
+  a = Vec3(0.1, 1.2, 1.2);
+  b = Vec3(0.5, 1.2, 1.2);
+  EXPECT_FALSE(tree.trianglesIntersectSegment(a, b));
+}
 
 }  // namespace
