@@ -14,7 +14,7 @@ class ModelLoader {
   void loadMaterials(const aiScene* ai_scene);
   void loadMaterial(const aiMaterial* ai_material);
   void loadNode(const aiNode* node, const aiScene* ai_scene);
-  void loadMesh(const aiMesh* mesh, const aiScene* ai_scene);
+  void loadMesh(const aiMesh* mesh);
 };
 
 bool ModelLoader::load(const std::string& file) {
@@ -50,14 +50,14 @@ void ModelLoader::loadMaterial(const aiMaterial* ai_material) {
 void ModelLoader::loadNode(const aiNode* node, const aiScene* ai_scene) {
     for(size_t i = 0; i < node->mNumMeshes; ++i) {
         aiMesh* mesh = ai_scene->mMeshes[node->mMeshes[i]];
-        loadMesh(mesh, ai_scene);
+        loadMesh(mesh);
     }
-    for(int i = 0; i < node->mNumChildren; ++i) {
+    for(size_t i = 0; i < node->mNumChildren; ++i) {
         loadNode(node->mChildren[i], ai_scene);
     }
 }
-void ModelLoader::loadMesh(const aiMesh* mesh, const aiScene* ai_scene) {
-    for(int i = 0; i < mesh->mNumFaces; ++i) {
+void ModelLoader::loadMesh(const aiMesh* mesh) {
+    for(size_t i = 0; i < mesh->mNumFaces; ++i) {
         SceneTriangle* scene_triangle = new SceneTriangle();
         aiFace face = mesh->mFaces[i];
         // ignore lines and points

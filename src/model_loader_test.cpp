@@ -49,4 +49,12 @@ TEST(TestLoadModel, MaterialEmitted) {
   EXPECT_THAT(material->diffuse, VecEq(Vec3(0.0, 0.0, 0.0)));
   EXPECT_THAT(material->emitted, VecEq(Vec3(1.0, 1.0, 1.0)));
 }
+TEST(TestLoadModel, Normals) {
+  Model model;
+  loadModel("../models/green_triangle.obj", model);
+  ASSERT_EQ(model.scene_triangles.size(), 1);
+  EXPECT_THAT(model.scene_triangles[0]->normals[0], VecEq(Vec3(-1.0, 0.0, 0.0)));
+  EXPECT_THAT(model.scene_triangles[0]->normals[1], VecEq(Vec3(-1.0, 0.0, 0.0)));
+  EXPECT_THAT(model.scene_triangles[0]->normals[2], VecEq(Vec3(-1.0, 0.0, 0.0)));
+}
 } // namespace
