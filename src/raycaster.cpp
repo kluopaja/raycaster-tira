@@ -109,15 +109,6 @@ Image Scene::render(int x_resolution, int y_resolution, int n_rays_per_pixel) {
     for (int y_pixel = 0; y_pixel < y_resolution; ++y_pixel) {
       Vec3 pixel_color = renderPixel(x_pixel, y_pixel, x_resolution,
                                      y_resolution, n_rays_per_pixel);
-      for (int i = 0; i < n_rays_per_pixel; ++i) {
-        // double x = (x_pixel + subpixel_ray_distribution(mt)) / x_resolution;
-        // double y = (y_pixel + subpixel_ray_distribution(mt)) / y_resolution;
-        double x = (x_pixel + 0.5) / x_resolution;
-        double y = (y_pixel + 0.5) / y_resolution;
-        Ray r = camera.rayFromImagePlane(x, y);
-        pixel_color = pixel_color + castRay(r);
-      }
-      pixel_color = pixel_color / n_rays_per_pixel;
       image.setColor(x_pixel, y_pixel, pixel_color);
     }
   }
