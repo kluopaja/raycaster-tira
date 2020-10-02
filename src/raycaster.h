@@ -1,6 +1,7 @@
 #ifndef RAYCASTER_RAYCASTER_H
 #define RAYCASTER_RAYCASTER_H
 #include <random>
+#include <vector>
 
 #include "geometry.h"
 #include "kd_tree.h"
@@ -19,20 +20,18 @@ struct SceneTriangle {
   // TODO think if this should be Triangle
   // change after we see where exactly this will be used
   Vec3 normals[3];
-  Material* material;
+  Material material;
 };
 class Model {
  public:
   Model() = default;
-  Model(Model&& a) noexcept;
-  Model& operator=(Model&& a) noexcept;
-  void concatenate(Model&& a);
+  Model(Model&& a) = default;
+  Model& operator=(Model&& a) = default;
+  void concatenate(const Model& a);
   void translate(const Vec3& v);
-  ~Model();
-  // TODO shouldn't be public?
-  std::vector<SceneTriangle*> scene_triangles;
-  // necessary for freeing the memory
-  std::vector<Material*> materials;
+  Tree buildKdTree(double k_t, double k_i);
+  std::vector<SceneTriangle> scene_triangles;
+  std::vector<Material> materials;
 };
 class PointLight {
  public:

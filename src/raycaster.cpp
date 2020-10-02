@@ -11,52 +11,22 @@
 #include "kd_tree.h"
 #include "model_loader.h"
 
-Model::Model(Model&& a) noexcept
-    : scene_triangles(std::move(a.scene_triangles)),
-      materials(std::move(a.materials)) {
-  std::cout << "move constructing Model..." << std::endl;
-}
-Model& Model::operator=(Model&& a) noexcept {
-  // detect self-assignment
-  if (&a == this) {
-    return *this;
-  }
-  for (auto x : scene_triangles) {
-    delete x;
-  }
-  for (auto x : materials) {
-    delete x;
-  }
-  scene_triangles = std::move(a.scene_triangles);
-  materials = std::move(a.materials);
-  return *this;
-}
 void Model::translate(const Vec3& v) {
   for (size_t i = 0; i < scene_triangles.size(); ++i) {
-    scene_triangles[i]->triangle.translate(v);
+    scene_triangles[i].triangle.translate(v);
   }
 }
-Model::~Model() {
-  for (auto x : scene_triangles) {
-    delete x;
-  }
-  for (auto x : materials) {
-    delete x;
-  }
-}
-void Model::concatenate(Model&& a) {
-  // detect self-concatenation
-  if (&a == this) {
-    return;
-  }
+void Model::concatenate(const Model& a) {
   scene_triangles.insert(scene_triangles.end(), a.scene_triangles.begin(),
                          a.scene_triangles.end());
   materials.insert(materials.end(), a.materials.begin(), a.materials.end());
-
-  // this will prevent deleting SceneTriangles or Materials
-  // when destructor of 'a' is called
-  a.scene_triangles.clear();
-  a.materials.clear();
+}
+Tree Model::buildKdTree(double k_t, double k_i) {
+  std::vector<SceneTriangle*> scene_triangle_pointers;
+  for (size_t i = 0; i < scene_triangles.size(); ++i) {
+    scene_triangle_pointers.push_back(&scene_triangles[i]);
+  }
+  return ::buildKdTree(scene_triangle_pointers, k_t, k_i);
 }
 PointLight::PointLight(const Vec3& position, const Vec3& color)
     : position(position), color(color) {
@@ -100,7 +70,7 @@ void Scene::addPointLight(const Vec3& position, const Vec3& color) {
   point_lights.emplace_back(position, color);
 }
 Image Scene::render(int x_resolution, int y_resolution, int n_rays_per_pixel) {
-  kd_tree = buildKdTree(model.scene_triangles, 1.0, 5.0);
+  kd_tree = model.buildKdTree(1.0, 5.0);
   std::cerr << "start rendering... " << std::endl;
   mt = std::mt19937(1337);
   subpixel_sample_distribution = std::uniform_real_distribution(0.0, 1.0);
@@ -153,7 +123,6 @@ Vec3 Scene::castRay(const Ray& r) {
           .pointFromBary(sp.bary_coords);
   normal = normal / normal.norm();
 
-  // std::cerr << normal.norm() << std::endl;
   assert(std::abs(normal.norm() - 1.0) < EPS);
   Vec3 light_color(0.0);
   // std::cerr << "found triangle! " << std::endl;
@@ -182,7 +151,7 @@ Vec3 Scene::castRay(const Ray& r) {
     // is anyway just some random constant
     light_color = light_color + std::max(0.0, normal.dot(light_vector)) /
                                     light_distance *
-                                    sp.scene_triangle->material->diffuse;
+                                    sp.scene_triangle->material.diffuse;
   }
   return light_color;
 }

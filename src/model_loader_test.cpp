@@ -26,37 +26,32 @@ TEST(TestLoadModel, SimpleTriangle) {
   loadModel("../models/green_triangle.obj", model, kRough);
   Triangle c(Vec3(0.0, 0.0, 0.0), Vec3(0.0, 0.0, 1.0), Vec3(0.0, 1.0, 0.0));
   ASSERT_EQ(model.scene_triangles.size(), 1);
-  EXPECT_THAT(model.scene_triangles[0]->triangle, TriangleEq(c));
+  EXPECT_THAT(model.scene_triangles[0].triangle, TriangleEq(c));
 
-  EXPECT_THAT(model.scene_triangles[0]->triangle, TriangleEq(c));
+  EXPECT_THAT(model.scene_triangles[0].triangle, TriangleEq(c));
 }
 TEST(TestLoadModel, MaterialDiffuse) {
   Model model;
   loadModel("../models/green_triangle.obj", model, kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
-  Material* material = model.scene_triangles[0]->material;
-  ASSERT_NE(material, nullptr);
-  EXPECT_THAT(material->diffuse, VecEq(Vec3(0.0, 1.0, 0.0)));
-  EXPECT_THAT(material->emitted, VecEq(Vec3(0.0, 0.0, 0.0)));
+  Material material = model.scene_triangles[0].material;
+  EXPECT_THAT(material.diffuse, VecEq(Vec3(0.0, 1.0, 0.0)));
+  EXPECT_THAT(material.emitted, VecEq(Vec3(0.0, 0.0, 0.0)));
 }
 TEST(TestLoadModel, MaterialEmitted) {
   Model model;
   loadModel("../models/white_light.obj", model, kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
-  Material* material = model.scene_triangles[0]->material;
-  ASSERT_NE(material, nullptr);
-  EXPECT_THAT(material->diffuse, VecEq(Vec3(0.0, 0.0, 0.0)));
-  EXPECT_THAT(material->emitted, VecEq(Vec3(1.0, 1.0, 1.0)));
+  Material material = model.scene_triangles[0].material;
+  EXPECT_THAT(material.diffuse, VecEq(Vec3(0.0, 0.0, 0.0)));
+  EXPECT_THAT(material.emitted, VecEq(Vec3(1.0, 1.0, 1.0)));
 }
 TEST(TestLoadModel, Normals) {
   Model model;
   loadModel("../models/green_triangle.obj", model, kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
-  EXPECT_THAT(model.scene_triangles[0]->normals[0],
-              VecEq(Vec3(-1.0, 0.0, 0.0)));
-  EXPECT_THAT(model.scene_triangles[0]->normals[1],
-              VecEq(Vec3(-1.0, 0.0, 0.0)));
-  EXPECT_THAT(model.scene_triangles[0]->normals[2],
-              VecEq(Vec3(-1.0, 0.0, 0.0)));
+  EXPECT_THAT(model.scene_triangles[0].normals[0], VecEq(Vec3(-1.0, 0.0, 0.0)));
+  EXPECT_THAT(model.scene_triangles[0].normals[1], VecEq(Vec3(-1.0, 0.0, 0.0)));
+  EXPECT_THAT(model.scene_triangles[0].normals[2], VecEq(Vec3(-1.0, 0.0, 0.0)));
 }
 }  // namespace

@@ -45,13 +45,13 @@ void ModelLoader::loadMaterials(const aiScene* ai_scene) {
   }
 }
 void ModelLoader::loadMaterial(const aiMaterial* ai_material) {
-  Material* new_material = new Material();
+  Material new_material;
   aiColor3D diffuse(0.0, 0.0, 0.0);
   aiColor3D emitted(0.0, 0.0, 0.0);
   ai_material->Get(AI_MATKEY_COLOR_DIFFUSE, diffuse);
   ai_material->Get(AI_MATKEY_COLOR_AMBIENT, emitted);
-  new_material->diffuse = Vec3(diffuse.r, diffuse.g, diffuse.b);
-  new_material->emitted = Vec3(emitted.r, emitted.g, emitted.b);
+  new_material.diffuse = Vec3(diffuse.r, diffuse.g, diffuse.b);
+  new_material.emitted = Vec3(emitted.r, emitted.g, emitted.b);
   model.materials.push_back(new_material);
 }
 void ModelLoader::loadNode(const aiNode* node, const aiScene* ai_scene) {
@@ -65,7 +65,7 @@ void ModelLoader::loadNode(const aiNode* node, const aiScene* ai_scene) {
 }
 void ModelLoader::loadMesh(const aiMesh* mesh) {
   for (size_t i = 0; i < mesh->mNumFaces; ++i) {
-    SceneTriangle* scene_triangle = new SceneTriangle();
+    SceneTriangle scene_triangle;
     aiFace face = mesh->mFaces[i];
     // ignore lines and points
     if (face.mNumIndices < 3) {
@@ -78,16 +78,16 @@ void ModelLoader::loadMesh(const aiMesh* mesh) {
       vertices[j][1] = mesh->mVertices[face.mIndices[j]].y;
       vertices[j][2] = mesh->mVertices[face.mIndices[j]].z;
     }
-    scene_triangle->triangle = Triangle(vertices[0], vertices[1], vertices[2]);
+    scene_triangle.triangle = Triangle(vertices[0], vertices[1], vertices[2]);
     // TODO remove
     Vec3 normals[3];
     for (int j = 0; j < 3; ++j) {
       normals[j][0] = mesh->mNormals[face.mIndices[j]].x;
       normals[j][1] = mesh->mNormals[face.mIndices[j]].y;
       normals[j][2] = mesh->mNormals[face.mIndices[j]].z;
-      scene_triangle->normals[j] = normals[j];
+      scene_triangle.normals[j] = normals[j];
     }
-    scene_triangle->material = model.materials[mesh->mMaterialIndex];
+    scene_triangle.material = model.materials[mesh->mMaterialIndex];
     model.scene_triangles.push_back(scene_triangle);
   }
 }

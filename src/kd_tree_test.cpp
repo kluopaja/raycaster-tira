@@ -247,7 +247,7 @@ TEST(TreeBuilderKdTreeQueries, Random3dLargeTrianglePerformance) {
 }
 TEST(TreeBuilderKdTreeQueries, TestTrianglesIntersectSegmentSimple) {
   Triangle triangle(Vec3(0.0), Vec3(0.0, 1.0, 0.0), Vec3(0.0, 0.0, 1.0));
-  std::vector<SceneTriangle> scene = {{triangle, {}, nullptr}};
+  std::vector<SceneTriangle> scene = {{triangle, {}, {}}};
   std::vector<SceneTriangle*> scene_p = {&scene[0]};
   Tree tree = buildKdTree(scene_p, 1.0, 5.0);
   Vec3 a(-0.5, 0.2, 0.2);
