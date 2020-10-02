@@ -269,18 +269,18 @@
             <td class="headerValue">geometry.h</td>
             <td></td>
             <td class="headerName">Lines:</td>
-            <td class="headerTableEntry">31</td>
-            <td class="headerTableEntry">31</td>
+            <td class="headerTableEntry">39</td>
+            <td class="headerTableEntry">39</td>
             <td class="headerTableEntry" style="background-color:LightGreen">100.0 %</td>
           </tr>
           <tr>
             <td class="headerName">Date:</td>
-            <td class="headerValue">2020-09-19 02:28:37</td>
+            <td class="headerValue">2020-10-03 02:53:58</td>
             <td></td>
             <td class="headerName">Branches:</td>
-            <td class="headerTableEntry">63</td>
-            <td class="headerTableEntry">88</td>
-            <td class="headerTableEntry" style="background-color:LightPink">71.6 %</td>
+            <td class="headerTableEntry">3</td>
+            <td class="headerTableEntry">6</td>
+            <td class="headerTableEntry" style="background-color:LightPink">50.0 %</td>
           </tr>
         </table>
       </td>
@@ -485,1348 +485,1467 @@
     <td align="right" class="lineno"><pre>27</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double&amp; operator[](int index);</pre></td>
+    <td align="left" class="src "><pre>  friend Vec2 operator/(const Vec2&amp; a, const double b);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>28</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double operator[](int index) const;</pre></td>
+    <td align="left" class="src "><pre>  double&amp; operator[](int index);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>29</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double norm() const;</pre></td>
+    <td align="left" class="src "><pre>  double operator[](int index) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>30</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const Vec2&amp; a);</pre></td>
+    <td align="left" class="src "><pre>  double norm() const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>31</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
+    <td align="left" class="src "><pre>  friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const Vec2&amp; a);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>32</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre> private:</pre></td>
+    <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>33</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double v[2];</pre></td>
+    <td align="left" class="src "><pre> private:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>34</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>};</pre></td>
+    <td align="left" class="src "><pre>  double v[2];</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>35</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>inline double Vec2::dot(const Vec2&amp; b) const {</pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>36</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>200494</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return v[0] * b.v[0] + v[1] * b.v[1];</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>201009</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline double Vec2::dot(const Vec2&amp; b) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>37</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>201009</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return v[0] * b.v[0] + v[1] * b.v[1];</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>38</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>inline Vec2 operator+(const Vec2&amp; a, const Vec2&amp; b) {</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>39</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  return Vec2(a.v[0] + b.v[0], a.v[1] + b.v[1]);</pre></td>
+    <td align="left" class="src "><pre>inline Vec2 operator+(const Vec2&amp; a, const Vec2&amp; b) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>40</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="left" class="src "><pre>  return Vec2(a.v[0] + b.v[0], a.v[1] + b.v[1]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>41</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>200496</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline Vec2 operator-(const Vec2&amp; a, const Vec2&amp; b) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>42</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>200496</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return Vec2(a.v[0] - b.v[0], a.v[1] - b.v[1]);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>43</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
+    <td align="right" class="lineno"><pre>42</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>201004</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline Vec2 operator-(const Vec2&amp; a, const Vec2&amp; b) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>43</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>201004</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return Vec2(a.v[0] - b.v[0], a.v[1] - b.v[1]);</pre></td>
+    </tr>
+
+    <tr>
     <td align="right" class="lineno"><pre>44</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline Vec2 operator*(const Vec2&amp; a, const double b) {</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>45</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount coveredLine"><pre>1</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return Vec2(b * a.v[0], b * a.v[1]);</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline Vec2 operator*(const Vec2&amp; a, const double b) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>46</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return Vec2(b * a.v[0], b * a.v[1]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>47</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline Vec2 operator*(const double b, const Vec2&amp; a) {</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>48</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount coveredLine"><pre>1</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return Vec2(b * a.v[0], b * a.v[1]);</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline Vec2 operator*(const double b, const Vec2&amp; a) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>49</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return Vec2(b * a.v[0], b * a.v[1]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>50</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>inline double&amp; Vec2::operator[](int index) { return v[index]; }</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>51</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 206943 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>206943</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline double Vec2::operator[](int index) const { return v[index]; }</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline Vec2 operator/(const Vec2&amp; a, const double b) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>52</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>200499</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline double Vec2::norm() const { return std::sqrt(this->dot(*this)); }</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return Vec2(a.v[0] / b, a.v[1] / b);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>53</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>class Vec3 {</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>54</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre> public:</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>209151948</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline double&amp; Vec2::operator[](int index) { return v[index]; }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>55</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3() = default;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1241670</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline double Vec2::operator[](int index) const { return v[index]; }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>56</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3(double x);</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>201007</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline double Vec2::norm() const { return std::sqrt(this->dot(*this)); }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>57</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3(double x, double y, double z);</pre></td>
+    <td align="left" class="src "><pre>class Vec3 {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>58</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double dot(const Vec3&amp; b) const;</pre></td>
+    <td align="left" class="src "><pre> public:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>59</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3 cross(const Vec3&amp; b) const;</pre></td>
+    <td align="left" class="src "><pre>  Vec3() = default;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>60</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  friend Vec3 operator+(const Vec3&amp; a, const Vec3&amp; b);</pre></td>
+    <td align="left" class="src "><pre>  Vec3(double x);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>61</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  friend Vec3 operator-(const Vec3&amp; a, const Vec3&amp; b);</pre></td>
+    <td align="left" class="src "><pre>  Vec3(double x, double y, double z);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>62</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  friend Vec3 operator*(const Vec3&amp; a, const double b);</pre></td>
+    <td align="left" class="src "><pre>  double dot(const Vec3&amp; b) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>63</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  friend Vec3 operator*(const double b, const Vec3&amp; a);</pre></td>
+    <td align="left" class="src "><pre>  Vec3 cross(const Vec3&amp; b) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>64</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double&amp; operator[](int index);</pre></td>
+    <td align="left" class="src "><pre>  friend Vec3 operator+(const Vec3&amp; a, const Vec3&amp; b);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>65</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double operator[](int index) const;</pre></td>
+    <td align="left" class="src "><pre>  friend Vec3 operator-(const Vec3&amp; a, const Vec3&amp; b);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>66</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double norm() const;</pre></td>
+    <td align="left" class="src "><pre>  friend Vec3 operator*(const Vec3&amp; a, const double b);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>67</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const Vec3&amp; a);</pre></td>
+    <td align="left" class="src "><pre>  friend Vec3 operator*(const double b, const Vec3&amp; a);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>68</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
+    <td align="left" class="src "><pre>  friend Vec3 operator/(const Vec3&amp; a, const double b);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>69</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre> private:</pre></td>
+    <td align="left" class="src "><pre>  double&amp; operator[](int index);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>70</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double v[3];</pre></td>
+    <td align="left" class="src "><pre>  double operator[](int index) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>71</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>};</pre></td>
+    <td align="left" class="src "><pre>  double norm() const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>72</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>inline double Vec3::dot(const Vec3&amp; b) const {</pre></td>
+    <td align="left" class="src "><pre>  friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const Vec3&amp; a);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>73</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 40648497 times">&check;</span><span class="takenBranch" title="Branch 1 taken 40525500 times">&check;</span><span class="takenBranch" title="Branch 2 taken 40587891 times">&check;</span><span class="takenBranch" title="Branch 3 taken 40567982 times">&check;</span><br/><span class="takenBranch" title="Branch 4 taken 826263 times">&check;</span><span class="takenBranch" title="Branch 5 taken 657285 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>125504450</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return v[0] * b.v[0] + v[1] * b.v[1] + v[2] * b.v[2];</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>74</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="left" class="src "><pre> private:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>75</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>85375987</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline Vec3 Vec3::cross(const Vec3&amp; b) const {</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  double v[3];</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>76</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>85375987</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return {v[1] * b.v[2] - v[2] * b.v[1], v[2] * b.v[0] - v[0] * b.v[2],</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>77</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>85375987</pre></td>
-    <td align="left" class="src coveredLine"><pre>          v[0] * b.v[1] - v[1] * b.v[0]};</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>167672535</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline double Vec3::dot(const Vec3&amp; b) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>78</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>167672535</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return v[0] * b.v[0] + v[1] * b.v[1] + v[2] * b.v[2];</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>79</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>3610200</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline Vec3 operator+(const Vec3&amp; a, const Vec3&amp; b) {</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>80</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 3087074 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>6697274</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return Vec3(a.v[0] + b.v[0], a.v[1] + b.v[1], a.v[2] + b.v[2]);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>85576261</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline Vec3 Vec3::cross(const Vec3&amp; b) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>81</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>85576261</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return {v[1] * b.v[2] - v[2] * b.v[1], v[2] * b.v[0] - v[0] * b.v[2],</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>82</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>4283704</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline Vec3 operator-(const Vec3&amp; a, const Vec3&amp; b) {</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>85576261</pre></td>
+    <td align="left" class="src coveredLine"><pre>          v[0] * b.v[1] - v[1] * b.v[0]};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>83</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 40587891 times">&check;</span><span class="takenBranch" title="Branch 3 taken 40467982 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>167263545</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return Vec3(a.v[0] - b.v[0], a.v[1] - b.v[1], a.v[2] - b.v[2]);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>84</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>7310975</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline Vec3 operator+(const Vec3&amp; a, const Vec3&amp; b) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>85</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline Vec3 operator*(const Vec3&amp; a, const double b) {</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>7310975</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return Vec3(a.v[0] + b.v[0], a.v[1] + b.v[1], a.v[2] + b.v[2]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>86</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return Vec3(b * a.v[0], b * a.v[1], b * a.v[2]);</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>87</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>249885374</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline Vec3 operator-(const Vec3&amp; a, const Vec3&amp; b) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>88</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>158371</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline Vec3 operator*(const double b, const Vec3&amp; a) {</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>249885374</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return Vec3(a.v[0] - b.v[0], a.v[1] - b.v[1], a.v[2] - b.v[2]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>89</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 3087074 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>3245445</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return Vec3(b * a.v[0], b * a.v[1], b * a.v[2]);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>90</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
+    <td align="right" class="lineno"><pre>90</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>300006</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline Vec3 operator*(const Vec3&amp; a, const double b) {</pre></td>
+    </tr>
+
+    <tr>
     <td align="right" class="lineno"><pre>91</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 12967755 times">&check;</span><span class="takenBranch" title="Branch 1 taken 19614351 times">&check;</span><span class="takenBranch" title="Branch 2 taken 12962540 times">&check;</span><span class="takenBranch" title="Branch 3 taken 19619566 times">&check;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>45549861</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline double&amp; Vec3::operator[](int index) { return v[index]; }</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>300006</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return Vec3(b * a.v[0], b * a.v[1], b * a.v[2]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>92</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 123618974 times">&check;</span><span class="takenBranch" title="Branch 2 taken 2145180 times">&check;</span><span class="takenBranch" title="Branch 3 taken 2661804 times">&check;</span><br/><span class="takenBranch" title="Branch 4 taken 37186 times">&check;</span><span class="takenBranch" title="Branch 5 taken 1384 times">&check;</span><span class="takenBranch" title="Branch 6 taken 35746 times">&check;</span><span class="takenBranch" title="Branch 7 taken 1440 times">&check;</span><br/><span class="takenBranch" title="Branch 8 taken 34888 times">&check;</span><span class="takenBranch" title="Branch 9 taken 858 times">&check;</span><span class="takenBranch" title="Branch 10 taken 33961 times">&check;</span><span class="takenBranch" title="Branch 11 taken 927 times">&check;</span><br/><span class="takenBranch" title="Branch 12 taken 33270 times">&check;</span><span class="takenBranch" title="Branch 13 taken 691 times">&check;</span><span class="takenBranch" title="Branch 14 taken 724 times">&check;</span><span class="takenBranch" title="Branch 15 taken 32546 times">&check;</span><br/><span class="takenBranch" title="Branch 16 taken 12967755 times">&check;</span><span class="takenBranch" title="Branch 17 taken 19614351 times">&check;</span><span class="takenBranch" title="Branch 18 taken 12962540 times">&check;</span><span class="takenBranch" title="Branch 19 taken 19619566 times">&check;</span><br/><span class="takenBranch" title="Branch 20 taken 4319804 times">&check;</span><span class="takenBranch" title="Branch 21 taken 3821262 times">&check;</span><span class="takenBranch" title="Branch 22 taken 4327640 times">&check;</span><span class="takenBranch" title="Branch 23 taken 3813426 times">&check;</span><br/><span class="takenBranch" title="Branch 24 taken 3661337 times">&check;</span><span class="takenBranch" title="Branch 25 taken 3251973 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>189068775</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline double Vec3::operator[](int index) const { return v[index]; }</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>93</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>3096062</pre></td>
-    <td align="left" class="src coveredLine"><pre>inline double Vec3::norm() const { return std::sqrt(this->dot(*this)); }</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>7053367</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline Vec3 operator*(const double b, const Vec3&amp; a) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>94</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// A point on a triangle</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>7053367</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return Vec3(b * a.v[0], b * a.v[1], b * a.v[2]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>95</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>struct TrianglePoint {</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>96</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  const Triangle* triangle;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>9</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline Vec3 operator/(const Vec3&amp; a, const double b) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>97</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec2 bary_coords;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>9</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return Vec3(a.v[0] / b, a.v[1] / b, a.v[2] / b);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>98</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>};</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>99</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>class Voxel {</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>208041860</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline double&amp; Vec3::operator[](int index) { return v[index]; }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>100</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre> public:</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1582484183</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline double Vec3::operator[](int index) const { return v[index]; }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>101</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3 lo;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>3194145</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline double Vec3::norm() const { return std::sqrt(this->dot(*this)); }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>102</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3 hi;</pre></td>
+    <td align="left" class="src "><pre>// A point on a triangle</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>103</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Voxel() = default;</pre></td>
+    <td align="left" class="src "><pre>struct TrianglePoint {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>104</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Voxel(const Vec3&amp; a, const Vec3&amp; b);</pre></td>
+    <td align="left" class="src "><pre>  const Triangle* triangle;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>105</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  bool intersects(const Ray&amp; r) const;</pre></td>
+    <td align="left" class="src "><pre>  Vec2 bary_coords;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>106</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // Clips triangle leaving side 'side' of plane</pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>107</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  void clip(const AxisPlane&amp; plane, bool side);</pre></td>
+    <td align="left" class="src "><pre>class Voxel {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>108</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // Extends voxel to cover point p</pre></td>
+    <td align="left" class="src "><pre> public:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>109</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  void cover(const Vec3&amp; p);</pre></td>
+    <td align="left" class="src "><pre>  Vec3 lo;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>110</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // Extends voxel to cover triangle t</pre></td>
+    <td align="left" class="src "><pre>  Vec3 hi;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>111</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  void cover(const Triangle&amp; t);</pre></td>
+    <td align="left" class="src "><pre>  Voxel() = default;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>112</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double area() const;</pre></td>
+    <td align="left" class="src "><pre>  Voxel(const Vec3&amp; a, const Vec3&amp; b);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>113</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // check that the point p is within the voxel (+EPS)</pre></td>
+    <td align="left" class="src "><pre>  bool intersects(const Ray&amp; r) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>114</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  bool isInside(const Vec3&amp; p) const;</pre></td>
+    <td align="left" class="src "><pre>  // Clips triangle leaving side 'side' of plane</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>115</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>};</pre></td>
+    <td align="left" class="src "><pre>  void clip(const AxisPlane&amp; plane, bool side);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>116</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const Voxel&amp; a);</pre></td>
+    <td align="left" class="src "><pre>  // Extends voxel to cover point p</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>117</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// Defines a point where ray intersects a triangle</pre></td>
+    <td align="left" class="src "><pre>  void cover(const Vec3&amp; p);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>118</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>struct RayIntersection {</pre></td>
+    <td align="left" class="src "><pre>  // Extends voxel to cover triangle t</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>119</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec2 bary_coords;</pre></td>
+    <td align="left" class="src "><pre>  void cover(const Triangle&amp; t);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>120</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double distance;</pre></td>
+    <td align="left" class="src "><pre>  double area() const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>121</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>};</pre></td>
+    <td align="left" class="src "><pre>  // check that the point p is within the voxel (+EPS)</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>122</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>class Triangle {</pre></td>
+    <td align="left" class="src "><pre>  bool isInside(const Vec3&amp; p) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>123</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre> public:</pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>124</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3 p0, p1, p2;</pre></td>
+    <td align="left" class="src "><pre>std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const Voxel&amp; a);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>125</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Triangle() = default;</pre></td>
+    <td align="left" class="src "><pre>// Defines a point where ray intersects a triangle</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>126</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Triangle(const Vec3&amp; p0, const Vec3&amp; p1, const Vec3&amp; p2);</pre></td>
+    <td align="left" class="src "><pre>struct RayIntersection {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>127</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // Returns the point corresponding to barycentric coordinates coords</pre></td>
+    <td align="left" class="src "><pre>  Vec2 bary_coords;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>128</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3 pointFromBary(const Vec2&amp; coords) const;</pre></td>
+    <td align="left" class="src "><pre>  double distance;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>129</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double area() const;</pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>130</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // Finds non-parallel intersections between ray r and *this</pre></td>
+    <td align="left" class="src "><pre>class Triangle {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>131</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // distance == inf if no intersection was found</pre></td>
+    <td align="left" class="src "><pre> public:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>132</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // can return distance &lt; 0 if the line r intersects</pre></td>
+    <td align="left" class="src "><pre>  Vec3 p0, p1, p2;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>133</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // the triangle before the origin of r!</pre></td>
+    <td align="left" class="src "><pre>  Triangle() = default;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>134</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  RayIntersection getRayIntersection(const Ray&amp; r) const;</pre></td>
+    <td align="left" class="src "><pre>  Triangle(const Vec3&amp; p0, const Vec3&amp; p1, const Vec3&amp; p2);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>135</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>};</pre></td>
+    <td align="left" class="src "><pre>  // Returns the point corresponding to barycentric coordinates coords</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>136</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const Triangle&amp; t);</pre></td>
+    <td align="left" class="src "><pre>  Vec3 pointFromBary(const Vec2&amp; coords) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>137</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>6</pre></td>
-    <td align="left" class="src coveredLine"><pre>class PlanePolygon {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  double area() const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>138</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre> public:</pre></td>
+    <td align="left" class="src "><pre>  void translate(const Vec3&amp; v);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>139</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  PlanePolygon(const Vec3&amp; a, const Vec3&amp; b, const Vec3&amp; c);</pre></td>
+    <td align="left" class="src "><pre>  // Finds non-parallel intersections between ray r and *this</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>140</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  PlanePolygon(const Triangle&amp; t);</pre></td>
+    <td align="left" class="src "><pre>  // distance == inf if no intersection was found</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>141</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Voxel getBoundingBox() const;</pre></td>
+    <td align="left" class="src "><pre>  // can return distance &lt; 0 if the line r intersects</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>142</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  void intersect(const AxisPlane&amp; plane, bool side);</pre></td>
+    <td align="left" class="src "><pre>  // the triangle before the origin of r!</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>143</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  size_t size() const;</pre></td>
+    <td align="left" class="src "><pre>  RayIntersection getRayIntersection(const Ray&amp; r) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>144</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3&amp; operator[](size_t index);</pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>145</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3 operator[](size_t index) const;</pre></td>
+    <td align="left" class="src "><pre>std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const Triangle&amp; t);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>146</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
+    <td align="left" class="src "><pre>class PlanePolygon {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>147</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre> private:</pre></td>
+    <td align="left" class="src "><pre> public:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>148</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::vector&lt;Vec3> points;</pre></td>
+    <td align="left" class="src "><pre>  PlanePolygon(const Vec3&amp; a, const Vec3&amp; b, const Vec3&amp; c);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>149</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>};</pre></td>
+    <td align="left" class="src "><pre>  PlanePolygon(const Triangle&amp; t);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>150</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>inline Vec3&amp; PlanePolygon::operator[](size_t index) { return points[index]; }</pre></td>
+    <td align="left" class="src "><pre>  Voxel getBoundingBox() const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>151</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>inline Vec3 PlanePolygon::operator[](size_t index) const {</pre></td>
+    <td align="left" class="src "><pre>  void intersect(const AxisPlane&amp; plane, bool side);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>152</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  return points[index];</pre></td>
+    <td align="left" class="src "><pre>  size_t size() const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>153</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="left" class="src "><pre>  Vec3&amp; operator[](size_t index);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>154</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// A class representing a clipped version of a triangle</pre></td>
+    <td align="left" class="src "><pre>  Vec3 operator[](size_t index) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>155</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>//</pre></td>
+    <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>156</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// Clipped triangle is a shape S = t \cap clip_box</pre></td>
+    <td align="left" class="src "><pre> private:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>157</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// where t is some triangle</pre></td>
+    <td align="left" class="src "><pre>  std::vector&lt;Vec3> points;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>158</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// and clip_box is formed by the axis aligned splits</pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>159</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>//</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>12</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline Vec3&amp; PlanePolygon::operator[](size_t index) { return points[index]; }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>160</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// Supports only queries about the bounding box of S</pre></td>
+    <td align="left" class="src "><pre>inline Vec3 PlanePolygon::operator[](size_t index) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>161</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/><span class="takenBranch" title="Branch 7 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 8 not taken">&cross;</span><span class="takenBranch" title="Branch 10 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 11 not taken">&cross;</span><br/><span class="takenBranch" title="Branch 13 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 14 not taken">&cross;</span><span class="takenBranch" title="Branch 16 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 17 not taken">&cross;</span><br/><span class="takenBranch" title="Branch 19 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 20 not taken">&cross;</span><span class="notTakenBranch" title="Branch 21 not taken">&cross;</span><span class="takenBranch" title="Branch 22 taken 1 times">&check;</span><br/><span class="notTakenBranch" title="Branch 23 not taken">&cross;</span><span class="takenBranch" title="Branch 24 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 25 not taken">&cross;</span><span class="takenBranch" title="Branch 26 taken 1 times">&check;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>62695850</pre></td>
-    <td align="left" class="src coveredLine"><pre>class ClipTriangle {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  return points[index];</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>162</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre> public:</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>163</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  const Triangle* triangle;</pre></td>
+    <td align="left" class="src "><pre>// A class representing a clipped version of a triangle</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>164</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>800117</pre></td>
-    <td align="left" class="src coveredLine"><pre>  ClipTriangle(const Triangle* triangle)</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>//</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>165</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>800117</pre></td>
-    <td align="left" class="src coveredLine"><pre>      : triangle(triangle), polygon(*triangle) {</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// Clipped triangle is a shape S = t \cap clip_box</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>166</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 800117 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>800117</pre></td>
-    <td align="left" class="src coveredLine"><pre>    box = polygon.getBoundingBox();</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// where t is some triangle</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>167</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>800117</pre></td>
-    <td align="left" class="src coveredLine"><pre>  }</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// and clip_box is formed by the axis aligned splits</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>168</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  bool isAxisAligned(int axis) const;</pre></td>
+    <td align="left" class="src "><pre>//</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>169</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // returns subtrees the triangle should be added to</pre></td>
+    <td align="left" class="src "><pre>// Supports only queries about the bounding box of S</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>170</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::pair&lt;bool, bool> overlapsSides(const AxisPlane&amp; plane, bool side) const;</pre></td>
+    <td align="left" class="src "><pre>class ClipTriangle {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>171</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double max(int axis) const;</pre></td>
+    <td align="left" class="src "><pre> public:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>172</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double min(int axis) const;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>800018</pre></td>
+    <td align="left" class="src coveredLine"><pre>  ClipTriangle(const Triangle&amp; triangle) : polygon(triangle) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>173</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // Updates ClipTriangle so that side 'side' of plane is remains</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 800018 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>800018</pre></td>
+    <td align="left" class="src coveredLine"><pre>    box = polygon.getBoundingBox();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>174</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // The result should never be empty!</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>800018</pre></td>
+    <td align="left" class="src coveredLine"><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>175</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  void clip(const AxisPlane&amp; plane, bool side);</pre></td>
+    <td align="left" class="src "><pre>  bool isAxisAligned(int axis) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>176</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
+    <td align="left" class="src "><pre>  // returns subtrees the triangle should be added to</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>177</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre> private:</pre></td>
+    <td align="left" class="src "><pre>  std::pair&lt;bool, bool> overlapsSides(const AxisPlane&amp; plane, bool side) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>178</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // Uses polygon representation of the clipped triangle to calculate</pre></td>
+    <td align="left" class="src "><pre>  double max(int axis) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>179</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // the bounding box.</pre></td>
+    <td align="left" class="src "><pre>  double min(int axis) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>180</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  //</pre></td>
+    <td align="left" class="src "><pre>  // Updates ClipTriangle so that side 'side' of plane is remains</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>181</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // This is not necessary and is intended to be a temporary solution</pre></td>
+    <td align="left" class="src "><pre>  // The result should never be empty!</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>182</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  //</pre></td>
+    <td align="left" class="src "><pre>  void clip(const AxisPlane&amp; plane, bool side);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>183</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // Notice that updating the bounding box is not trivial.</pre></td>
+    <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>184</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // Consider following:</pre></td>
+    <td align="left" class="src "><pre> private:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>185</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // |\|-></pre></td>
+    <td align="left" class="src "><pre>  // Uses polygon representation of the clipped triangle to calculate</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>186</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // | |</pre></td>
+    <td align="left" class="src "><pre>  // the bounding box.</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>187</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // | |\   .</pre></td>
+    <td align="left" class="src "><pre>  //</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>188</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // L-|-\  .</pre></td>
+    <td align="left" class="src "><pre>  // This is not necessary and is intended to be a temporary solution</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>189</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // Here clip parallel to y axis induces changes the</pre></td>
+    <td align="left" class="src "><pre>  //</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>190</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // minimal bounding box of the clip triangle both in</pre></td>
+    <td align="left" class="src "><pre>  // Notice that updating the bounding box is not trivial.</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>191</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // y and x directions</pre></td>
+    <td align="left" class="src "><pre>  // Consider following:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>192</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  PlanePolygon polygon;</pre></td>
+    <td align="left" class="src "><pre>  // |\|-></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>193</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Voxel box;</pre></td>
+    <td align="left" class="src "><pre>  // | |</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>194</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>};</pre></td>
+    <td align="left" class="src "><pre>  // | |\   .</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>195</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>inline bool ClipTriangle::isAxisAligned(int axis) const {</pre></td>
+    <td align="left" class="src "><pre>  // L-|-\  .</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>196</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 3533400 times">&check;</span><span class="takenBranch" title="Branch 1 taken 81493483 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 3 taken 1 times">&check;</span><br/><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span><span class="takenBranch" title="Branch 5 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 6 not taken">&cross;</span><span class="takenBranch" title="Branch 7 taken 1 times">&check;</span><br/><span class="notTakenBranch" title="Branch 8 not taken">&cross;</span><span class="takenBranch" title="Branch 9 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 10 not taken">&cross;</span><span class="takenBranch" title="Branch 11 taken 1 times">&check;</span><br/><span class="notTakenBranch" title="Branch 12 not taken">&cross;</span><span class="takenBranch" title="Branch 13 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 14 not taken">&cross;</span><span class="takenBranch" title="Branch 15 taken 1 times">&check;</span><br/><span class="notTakenBranch" title="Branch 16 not taken">&cross;</span><span class="takenBranch" title="Branch 17 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 18 not taken">&cross;</span><span class="takenBranch" title="Branch 19 taken 1 times">&check;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>85026892</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return std::abs(box.hi[axis] - box.lo[axis]) &lt; EPS;</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // Here clip parallel to y axis induces changes the</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>197</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="left" class="src "><pre>  // minimal bounding box of the clip triangle both in</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>198</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>class Ray {</pre></td>
+    <td align="left" class="src "><pre>  // y and x directions</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>199</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre> public:</pre></td>
+    <td align="left" class="src "><pre>  PlanePolygon polygon;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>200</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // p + sx;</pre></td>
+    <td align="left" class="src "><pre>  Voxel box;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>201</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3 origin;</pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>202</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3 direction;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>85026895</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline bool ClipTriangle::isAxisAligned(int axis) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>203</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // inv_direction[i] = 1 / direction[i]</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>85026895</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return std::abs(box.hi[axis] - box.lo[axis]) &lt; EPS;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>204</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // speeds up the triangle intersection calculations</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>205</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  //</pre></td>
+    <td align="left" class="src "><pre>class Ray {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>206</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // what if the user decides to modify direction? when to update this?</pre></td>
+    <td align="left" class="src "><pre> public:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>207</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3 inv_direction;</pre></td>
+    <td align="left" class="src "><pre>  // p + sx;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>208</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Ray(Vec3 origin, Vec3 direction);</pre></td>
+    <td align="left" class="src "><pre>  Vec3 origin;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>209</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>};</pre></td>
+    <td align="left" class="src "><pre>  Vec3 direction;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>210</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const Ray&amp; a);</pre></td>
+    <td align="left" class="src "><pre>  // inv_direction[i] = 1 / direction[i]</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>211</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>struct AxisPlane {</pre></td>
+    <td align="left" class="src "><pre>  // speeds up the triangle intersection calculations</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>212</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  int axis;</pre></td>
+    <td align="left" class="src "><pre>  //</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>213</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  double pos;</pre></td>
+    <td align="left" class="src "><pre>  // TODO</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>214</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>};</pre></td>
+    <td align="left" class="src "><pre>  // what if the user decides to modify direction? when to update this?</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>215</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const AxisPlane&amp; a);</pre></td>
+    <td align="left" class="src "><pre>  Vec3 inv_direction;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>216</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>TrianglePoint firstRayTriangleIntersection(</pre></td>
+    <td align="left" class="src "><pre>  Ray(Vec3 origin, Vec3 direction);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>217</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    const std::vector&lt;Triangle>&amp; triangles, const Ray&amp; r);</pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>218</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>Voxel boundingBox(const std::vector&lt;Triangle>&amp; triangles);</pre></td>
+    <td align="left" class="src "><pre>std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const Ray&amp; a);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>219</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>struct AxisPlane {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>220</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  int axis;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>221</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  double pos;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>222</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>223</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const AxisPlane&amp; a);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>224</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>struct RayTriangleIntersection {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>225</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  size_t index;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>226</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  Vec2 bary_coords;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>227</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>228</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// index of the intersected triangle and barycentric coordinates</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>229</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// returns {triangles.size(), Vec2(0)} if no intersection was found</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>230</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>RayTriangleIntersection firstRayTriangleIntersection(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>231</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    const std::vector&lt;Triangle>&amp; triangles, const Ray&amp; r);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>232</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>Voxel boundingBox(const std::vector&lt;Triangle>&amp; triangles);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>233</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>4</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline bool pointOnSegment(const Vec3&amp; p, const Vec3&amp; a, const Vec3&amp; b) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>234</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 4 times">&check;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span><span class="takenBranch" title="Branch 7 taken 4 times">&check;</span><span class="notTakenBranch" title="Branch 8 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>4</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return std::abs((a - p).norm() + (p - b).norm() - (a - b).norm()) &lt; EPS;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>235</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>236</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>#endif</pre></td>
