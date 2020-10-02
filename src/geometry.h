@@ -4,6 +4,7 @@
 #include <cmath>
 #include <iostream>
 #include <limits>
+#include <random>
 #include <vector>
 
 const double INF = std::numeric_limits<double>::infinity();
@@ -242,5 +243,38 @@ RayTriangleIntersection firstRayTriangleIntersection(
 Voxel boundingBox(const std::vector<Triangle>& triangles);
 inline bool pointOnSegment(const Vec3& p, const Vec3& a, const Vec3& b) {
   return std::abs((a - p).norm() + (p - b).norm() - (a - b).norm()) < EPS;
+}
+template<typename Generator>
+Vec3 uniformRandomHemispherePoint(Vec3 direction, Generator & g) {
+  assert(direction.norm() > EPS);
+  // Let X be the azimuth and Y the elevation of a uniformly distributed
+  // random variable in the hemisphere.
+  // Let U0 ~ U(0, 1)
+  // Let U1 ~ U(0, 1)
+  // P(y < a) = F_y(a) = (\int_{0}^{a} 2*pi * sin(x) \,dx)/2*pi = 1 - cos(a)
+  // Now
+  // Y ~ F_y^(-1)(U1) = acos(1 - U1)
+  // --> Y ~ F_y^(-1)(U1) = acos(U1)
+  // X = 2 * PI * U2
+  //
+  // Let (p_x, p_y, p_z) be the point (X, Y) in cartesian coordinates
+  // p_y = cos(Y) = U1
+  // p_z = sin(X)*sin(Y) = sin(X) * sqrt(1 - U1^2)
+  // p_x = cos(X)*sin(Y) = cos(X) * sqrt(1 - U1^2)
+
+  std::uniform_real_distribution U(0.0, 1.0);
+  double u_0 = U(g);
+  double u_1 = U(g);
+  Vec3 p(std::sin(u_0) * std::sqrt(1 - u_1 * u_1),
+         u_1,
+         std::cos(u_0) * std::sqrt(1 - u_1 * u_1));
+
+  direction = direction / direction.norm();
+  // change coordinates so that p[1] is 'direction'
+  Vec3 normal_1(-direction[1], direction[0], 0.0);
+  normal_1 = normal_1 / normal_1.norm();
+  Vec3 normal_2 = direction.cross(normal_1);
+  assert(std::abs(normal_2.norm() - 1) < EPS);
+  return p[1] * direction + p[0] * normal_1 + p[2] * normal_2;
 }
 #endif
