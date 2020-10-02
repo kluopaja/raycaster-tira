@@ -20,6 +20,8 @@ class Vec2 {
   Vec2(double x);
   Vec2(double x, double y);
   double dot(const Vec2& b) const;
+  // element-wise product
+  Vec2 multiply(const Vec2& b) const;
   friend Vec2 operator+(const Vec2& a, const Vec2& b);
   friend Vec2 operator-(const Vec2& a, const Vec2& b);
   friend Vec2 operator*(const Vec2& a, const double b);
@@ -35,6 +37,9 @@ class Vec2 {
 };
 inline double Vec2::dot(const Vec2& b) const {
   return v[0] * b.v[0] + v[1] * b.v[1];
+}
+inline Vec2 Vec2::multiply(const Vec2& b) const {
+  return Vec2(v[0] * b.v[0], v[1] * b.v[1]);
 }
 inline Vec2 operator+(const Vec2& a, const Vec2& b) {
   return Vec2(a.v[0] + b.v[0], a.v[1] + b.v[1]);
@@ -61,6 +66,8 @@ class Vec3 {
   Vec3(double x, double y, double z);
   double dot(const Vec3& b) const;
   Vec3 cross(const Vec3& b) const;
+  // element-wise product
+  Vec3 multiply(const Vec3& b) const;
   friend Vec3 operator+(const Vec3& a, const Vec3& b);
   friend Vec3 operator-(const Vec3& a, const Vec3& b);
   friend Vec3 operator*(const Vec3& a, const double b);
@@ -80,6 +87,9 @@ inline double Vec3::dot(const Vec3& b) const {
 inline Vec3 Vec3::cross(const Vec3& b) const {
   return {v[1] * b.v[2] - v[2] * b.v[1], v[2] * b.v[0] - v[0] * b.v[2],
           v[0] * b.v[1] - v[1] * b.v[0]};
+}
+inline Vec3 Vec3::multiply(const Vec3& b) const {
+  return Vec3(v[0] * b.v[0], v[1] * b.v[1], v[2] * b.v[2]);
 }
 inline Vec3 operator+(const Vec3& a, const Vec3& b) {
   return Vec3(a.v[0] + b.v[0], a.v[1] + b.v[1], a.v[2] + b.v[2]);

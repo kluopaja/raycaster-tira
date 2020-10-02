@@ -33,6 +33,18 @@ TEST(Vec2Test, DotProduct) {
   v2 = Vec2(0.0, 1.1);
   EXPECT_NEAR(v1.dot(v2), 2.2 * 1.1, EPS);
 }
+TEST(Vec2Test, MultiplyElementwise) {
+  Vec2 v1(0.0);
+  Vec2 v2(1.1, 2.2);
+  EXPECT_THAT(v1.multiply(v2), VecEq(Vec2(0.0, 0.0)));
+  v1 = Vec2(1.1, 2.2);
+  v2 = Vec2(0.0, 1.1);
+  EXPECT_THAT(v1.multiply(v2), VecEq(Vec2(0.0, 2.2 * 1.1)));
+
+  v1 = Vec2(1.1, 2.2);
+  v2 = Vec2(3.3, 4.4);
+  EXPECT_THAT(v1.multiply(v2), VecEq(Vec2(1.1 * 3.3, 2.2 * 4.4)));
+}
 TEST(Vec2Test, Minus) {
   Vec2 v1(1.1, 2.2);
   Vec2 v2(1.1, 1.2);
@@ -84,6 +96,17 @@ TEST(Vec3Test, TestDotProduct) {
   v1 = Vec3(1.1, 2.2, 3.3);
   v2 = Vec3(0.0, 1.1, 2.2);
   EXPECT_NEAR(v1.dot(v2), 2.2 * 1.1 + 3.3 * 2.2, EPS);
+}
+TEST(Vec3Test, MultiplyElementwise) {
+  Vec3 v1(0.0);
+  Vec3 v2(1.1, 2.2, 3.3);
+  EXPECT_THAT(v1.multiply(v2), VecEq(Vec3(0.0)));
+  v1 = Vec3(1.1, 2.2, 3.3);
+  v2 = Vec3(0.0, 1.1, 2.2);
+  EXPECT_THAT(v1.multiply(v2), VecEq(Vec3(0.0, 2.2 * 1.1, 3.3 * 2.2)));
+  v1 = Vec3(1.1, 2.2, 3.3);
+  v2 = Vec3(4.4, 5.5, 6.6);
+  EXPECT_THAT(v1.multiply(v2), VecEq(Vec3(1.1 * 4.4, 2.2 * 5.5, 3.3 * 6.6)));
 }
 TEST(Vec3Test, Minus) {
   Vec3 v1(1.1, 2.2, 3.3);
