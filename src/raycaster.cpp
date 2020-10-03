@@ -140,18 +140,11 @@ Vec3 Scene::castRay(const Ray& r) {
       continue;
     }
     // std::cerr << "found light! " << std::endl;
-    Vec3 light_vector = point_lights[i].position - intersection_point;
-    // std::cerr << "light_vector: " << light_vector << std::endl;
-    // std::cerr << "normal: " << normal << std::endl;
-    double light_distance = light_vector.norm();
-    light_vector = light_vector / light_distance;
-    // diffuse light
-    // no need to use any pi term here to take care of the conservation of
-    // energy because the light intensity
-    // is anyway just some random constant
-    light_color = light_color + std::max(0.0, normal.dot(light_vector)) /
-                                    light_distance *
-                                    sp.scene_triangle->material.diffuse;
+    Vec3 light_direction = point_lights[i].position - intersection_point;
+    double light_attenuation = std::max(0.0, normal.dot(light_direction))
+                               / light_direction.dot(light_direction);
+    light_color = light_color + light_attenuation
+                  * point_lights[i].color.multiply(sp.scene_triangle->material.diffuse);
   }
   return light_color;
 }
