@@ -102,6 +102,10 @@ class Scene {
                    int n_rays_per_pixel);
   Vec3 renderImagePlanePoint(double x, double y);
   Vec3 castRay(const Ray& r);
+  Vec3 totalPointLightColor(const Vec3& point, const Vec3& normal,
+                            const Material& material);
+  Vec3 pointLightColor(const Vec3& point, const Vec3& normal,
+                       const Material& material, const PointLight& point_light);
   Model model;
   std::vector<PointLight> point_lights;
   Camera camera;

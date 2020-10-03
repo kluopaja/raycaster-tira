@@ -125,28 +125,36 @@ Vec3 Scene::castRay(const Ray& r) {
 
   assert(std::abs(normal.norm() - 1.0) < EPS);
   Vec3 light_color(0.0);
-  // std::cerr << "found triangle! " << std::endl;
-  // std::cerr << "ray: " << r << std::endl;
-  // std::cerr << "intersection_point " << intersection_point << std::endl;
   // point lights
+  light_color = light_color + totalPointLightColor(intersection_point,
+                                                   normal,
+                                                   sp.scene_triangle->material);
+
+  return light_color;
+}
+Vec3 Scene::totalPointLightColor(const Vec3& point, const Vec3& normal, const Material& material) {
+  Vec3 point_color(0.0);
   for (size_t i = 0; i < point_lights.size(); ++i) {
-    Vec3 shadow_ray_direction = point_lights[i].position - intersection_point;
-    Vec3 shadow_ray_start =
-        intersection_point + shadow_ray_direction * 100 * EPS;
-    // std::cerr << "shadow ray: " << shadow_ray_start
-    //           << " " << shadow_ray_direction << std::endl;
-    if (kd_tree.trianglesIntersectSegment(shadow_ray_start,
-                                          point_lights[i].position)) {
-      continue;
-    }
-    // std::cerr << "found light! " << std::endl;
-    Vec3 light_direction = point_lights[i].position - intersection_point;
+    point_color = point_color + pointLightColor(point, normal, material, point_lights[i]);
+  }
+  return point_color;
+}
+Vec3 Scene::pointLightColor(const Vec3& point, const Vec3& normal, const Material& material, const PointLight& point_light) {
+    Vec3 shadow_ray_direction = point_light.position - point;
+    Vec3 shadow_ray_start = point + shadow_ray_direction * 100 * EPS;
+    // These are calculated already here because it is very cheap compared to
+    // the kd_tree.trianglesIntersectSegment function call. 
+    Vec3 light_direction = point_light.position - point;
     double light_attenuation = std::max(0.0, normal.dot(light_direction))
                                / light_direction.dot(light_direction);
-    light_color = light_color + light_attenuation
-                  * point_lights[i].color.multiply(sp.scene_triangle->material.diffuse);
-  }
-  return light_color;
+    if (light_attenuation < EPS) {
+      return Vec3(0.0);
+    }
+    if (kd_tree.trianglesIntersectSegment(shadow_ray_start,
+                                          point_light.position)) {
+      return Vec3(0.0);
+    }
+    return light_attenuation * point_light.color.multiply(material.diffuse);
 }
 Image::Image(int x_resolution, int y_resolution)
     : x_resolution(x_resolution), y_resolution(y_resolution) {
