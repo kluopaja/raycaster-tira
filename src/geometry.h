@@ -9,6 +9,7 @@
 
 const double INF = std::numeric_limits<double>::infinity();
 const double EPS = 1e-10;
+const double kPi = std::atan(1) * 4;
 
 class Triangle;
 class Ray;
@@ -244,18 +245,18 @@ Voxel boundingBox(const std::vector<Triangle>& triangles);
 inline bool pointOnSegment(const Vec3& p, const Vec3& a, const Vec3& b) {
   return std::abs((a - p).norm() + (p - b).norm() - (a - b).norm()) < EPS;
 }
-template<typename Generator>
-Vec3 uniformRandomHemispherePoint(Vec3 direction, Generator & g) {
+template <typename Generator>
+Vec3 uniformRandomHemispherePoint(Vec3 direction, Generator& g) {
   assert(direction.norm() > EPS);
   // Let X be the azimuth and Y the elevation of a uniformly distributed
-  // random variable in the hemisphere.
+  // random variable on the hemisphere.
   // Let U0 ~ U(0, 1)
   // Let U1 ~ U(0, 1)
   // P(y < a) = F_y(a) = (\int_{0}^{a} 2*pi * sin(x) \,dx)/2*pi = 1 - cos(a)
   // Now
   // Y ~ F_y^(-1)(U1) = acos(1 - U1)
-  // --> Y ~ F_y^(-1)(U1) = acos(U1)
-  // X = 2 * PI * U2
+  // --> Y ~ F_y^(-1)(1 - U1) = acos(U1)
+  // X = 2 * PI * U0
   //
   // Let (p_x, p_y, p_z) be the point (X, Y) in cartesian coordinates
   // p_y = cos(Y) = U1
@@ -263,10 +264,9 @@ Vec3 uniformRandomHemispherePoint(Vec3 direction, Generator & g) {
   // p_x = cos(X)*sin(Y) = cos(X) * sqrt(1 - U1^2)
 
   std::uniform_real_distribution U(0.0, 1.0);
-  double u_0 = U(g);
+  double u_0 = 2 * kPi * U(g);
   double u_1 = U(g);
-  Vec3 p(std::sin(u_0) * std::sqrt(1 - u_1 * u_1),
-         u_1,
+  Vec3 p(std::sin(u_0) * std::sqrt(1 - u_1 * u_1), u_1,
          std::cos(u_0) * std::sqrt(1 - u_1 * u_1));
 
   direction = direction / direction.norm();

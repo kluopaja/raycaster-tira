@@ -6,7 +6,6 @@
 #include "geometry.h"
 #include "kd_tree.h"
 
-const double kPi = std::atan(1) * 4;
 enum NormalType {
   kSmooth,
   kRough,
