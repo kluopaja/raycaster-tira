@@ -129,7 +129,6 @@ Vec3 Scene::castRay(const Ray& r) {
   light_color = light_color + totalPointLightColor(intersection_point,
                                                    normal,
                                                    sp.scene_triangle->material);
-
   return light_color;
 }
 Vec3 Scene::totalPointLightColor(const Vec3& point, const Vec3& normal, const Material& material) {
@@ -189,12 +188,29 @@ bool Image::savePPM(const std::string& file) {
     for (int x = 0; x < x_resolution; ++x) {
       // r g b
       for (int i = 0; i < 3; ++i) {
-        fout << floatToByte(buffer[(size_t)bufferPos(x, y)][i]);
+        fout << floatToByte(linearToSrgb(buffer[(size_t)bufferPos(x, y)][i]));
       }
     }
   }
   fout.close();
   return true;
+}
+// Converts linear intensities to sRGB values
+// ("gamma" encoding)
+// Human eye perceives light in a logarithmic scale.
+// Therefore encoding the light intensities without
+// any transformation would leave little (perceived)
+// resolution to dim intensities.
+//
+// Note that this is not a logarithmic tranformation but
+// apparently still works well.
+//
+// see http://color.org/chardata/rgb/sRGB.pdf
+double Image::linearToSrgb(double val) {
+  if (val <= 0.0031308) {
+    return 12.92 * val;
+  }
+  return 1.055 * std::pow(val, 1.0 / 2.4) - 0.055;
 }
 double Image::maxColorValue() {
   double max_value = 0;
@@ -206,4 +222,22 @@ double Image::maxColorValue() {
     }
   }
   return max_value;
+}
+Image generateGammaTestImage(int x_size, int y_size) {
+  assert(x_size > 20 && y_size > 20);
+  Image image(x_size, y_size);
+  for (int y = 0; y < y_size; ++y) {
+    for (int x = 0; x < x_size / 2; ++x) {
+      Vec3 color(0.0);
+      if ((x + y) % 2 == 0) {
+        color = Vec3(1.0);
+      }
+      image.setColor(x, y, color);
+    }
+    for (int x = x_size / 2; x < x_size; ++x) {
+      Vec3 color(0.5);
+      image.setColor(x, y, color);
+    }
+  }
+  return image;
 }

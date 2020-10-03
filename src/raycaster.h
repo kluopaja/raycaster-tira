@@ -71,9 +71,11 @@ class Image {
   void setColor(int x_pos, int y_pos, const Vec3& color);
   // scales values to [0, 1]
   void scaleMaxTo(double new_max);
+  // saves image as PPM with sRGB encoded values
   bool savePPM(const std::string& file);
 
  private:
+  double linearToSrgb(double val);
   double maxColorValue();
   int bufferPos(int x, int y);
   char floatToByte(double val);
@@ -81,6 +83,13 @@ class Image {
   int y_resolution;
   std::vector<Vec3> buffer;
 };
+// can be used to check if the used ppm viewer displays the image correctly
+// the whole image should look gray when looked at
+// display native resolution
+// (if separate black and white pixels are seen on the left side, then
+// the monitor resolution is too small or the monitor is being looked
+// from a too short distance)
+Image generateGammaTestImage(int x_size, int y_size);
 inline void Image::setColor(int x, int y, const Vec3& color) {
   assert(x >= 0 && x < x_resolution);
   assert(y >= 0 && y < y_resolution);
