@@ -36,8 +36,8 @@ cov/%.o: %.cpp
 	@mkdir -p $(@D)
 	$(CC) $(common_compile_flags) $(cov_compile_flags) -c -MMD $< -o $@ 
 
-# -include $(test_depends)
-# -include $(cov_depends)
+-include $(test_depends)
+-include $(cov_depends)
 
 .PHONY: clean
 clean :
