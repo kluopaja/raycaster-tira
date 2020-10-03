@@ -269,18 +269,18 @@
             <td class="headerValue">test_utils.cpp</td>
             <td></td>
             <td class="headerName">Lines:</td>
-            <td class="headerTableEntry">28</td>
-            <td class="headerTableEntry">28</td>
+            <td class="headerTableEntry">42</td>
+            <td class="headerTableEntry">42</td>
             <td class="headerTableEntry" style="background-color:LightGreen">100.0 %</td>
           </tr>
           <tr>
             <td class="headerName">Date:</td>
-            <td class="headerValue">2020-09-19 02:28:37</td>
+            <td class="headerValue">2020-10-03 02:53:58</td>
             <td></td>
             <td class="headerName">Branches:</td>
-            <td class="headerTableEntry">23</td>
-            <td class="headerTableEntry">40</td>
-            <td class="headerTableEntry" style="background-color:LightPink">57.5 %</td>
+            <td class="headerTableEntry">42</td>
+            <td class="headerTableEntry">78</td>
+            <td class="headerTableEntry" style="background-color:LightPink">53.8 %</td>
           </tr>
         </table>
       </td>
@@ -310,287 +310,287 @@
     <td align="right" class="lineno"><pre>2</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>namespace test {</pre></td>
+    <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>3</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6762456</pre></td>
-    <td align="left" class="src coveredLine"><pre>Vec3 randomVec3(double lo, double hi, std::mt19937&amp; random_engine) {</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>#include "raycaster.h"</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>4</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 6762456 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>6762456</pre></td>
-    <td align="left" class="src coveredLine"><pre>  assert(lo &lt; hi);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>5</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::uniform_real_distribution dist(lo, hi);</pre></td>
+    <td align="left" class="src "><pre>namespace test {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>6</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6762456</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return Vec3(dist(random_engine), dist(random_engine), dist(random_engine));</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>7162153</pre></td>
+    <td align="left" class="src coveredLine"><pre>Vec3 randomVec3(double lo, double hi, std::mt19937&amp; random_engine) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>7</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 7162153 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>7162153</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(lo &lt; hi);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>8</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 7162153 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>7162153</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::uniform_real_distribution dist(lo, hi);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>9</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 7162153 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 7162153 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/><span class="takenBranch" title="Branch 7 taken 7162153 times">&check;</span><span class="notTakenBranch" title="Branch 8 not taken">&cross;</span><span class="takenBranch" title="Branch 10 taken 7162153 times">&check;</span><span class="notTakenBranch" title="Branch 11 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>14324306</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return Vec3(dist(random_engine), dist(random_engine), dist(random_engine));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>10</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>8</pre></td>
+    <td align="right" class="lineno"><pre>11</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>170371</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>270368</pre></td>
     <td align="left" class="src coveredLine"><pre>double randomLogUniformReal(double lo_log, double hi_log,</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>9</pre></td>
+    <td align="right" class="lineno"><pre>12</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>                            std::mt19937&amp; random_engine) {</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>10</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 170371 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>170371</pre></td>
+    <td align="right" class="lineno"><pre>13</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 270368 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>270368</pre></td>
     <td align="left" class="src coveredLine"><pre>  assert(lo_log &lt; hi_log);</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>11</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::uniform_real_distribution dist(lo_log, hi_log);</pre></td>
+    <td align="right" class="lineno"><pre>14</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 270368 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>270368</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::uniform_real_distribution dist(lo_log, hi_log);</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>12</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>170371</pre></td>
+    <td align="right" class="lineno"><pre>15</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 270368 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>540736</pre></td>
     <td align="left" class="src coveredLine"><pre>  return std::pow(2.0, dist(random_engine));</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>13</pre></td>
+    <td align="right" class="lineno"><pre>16</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>14</pre></td>
+    <td align="right" class="lineno"><pre>17</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount coveredLine"><pre>210000</pre></td>
     <td align="left" class="src coveredLine"><pre>Vec2 randomBaryCoords(std::mt19937&amp; random_engine) {</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>15</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::uniform_real_distribution&lt;double> dist(0, 1);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>16</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>210000</pre></td>
-    <td align="left" class="src coveredLine"><pre>  Vec2 v(dist(random_engine), dist(random_engine));</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>17</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // limit sum to 1</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>18</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 105159 times">&check;</span><span class="takenBranch" title="Branch 1 taken 104841 times">&check;</span></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 210000 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
     <td align="right" class="linecount coveredLine"><pre>210000</pre></td>
-    <td align="left" class="src coveredLine"><pre>  v[1] = std::min(1 - v[0], v[1]);</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::uniform_real_distribution&lt;double> dist(0, 1);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>19</pre></td>
-    <td align="right" class="linebranch"></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 210000 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 210000 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/><span class="takenBranch" title="Branch 7 taken 210000 times">&check;</span><span class="notTakenBranch" title="Branch 8 not taken">&cross;</span></td>
     <td align="right" class="linecount coveredLine"><pre>210000</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return v;</pre></td>
+    <td align="left" class="src coveredLine"><pre>  Vec2 v(dist(random_engine), dist(random_engine));</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>20</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="left" class="src "><pre>  // limit sum to 1</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>21</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// generates triangles into area [lo-max_triangle_size, hi+max_triangle_size]</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>210000</pre></td>
+    <td align="left" class="src coveredLine"><pre>  v[1] = std::min(1 - v[0], v[1]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>22</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>12011</pre></td>
-    <td align="left" class="src coveredLine"><pre>std::vector&lt;Triangle> randomTriangleVector(double lo, double hi,</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>210000</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return v;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>23</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>                                           double max_triangle_size, int n,</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>24</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>                                           std::mt19937 random_engine) {</pre></td>
+    <td align="left" class="src "><pre>// generates triangles into area [lo-max_triangle_size, hi+max_triangle_size]</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>25</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 12011 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>12011</pre></td>
-    <td align="left" class="src coveredLine"><pre>  assert(lo &lt; hi);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>12010</pre></td>
+    <td align="left" class="src coveredLine"><pre>std::vector&lt;Triangle> randomTriangleVector(double lo, double hi,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>26</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::vector&lt;Triangle> v;</pre></td>
+    <td align="left" class="src "><pre>                                           double max_triangle_size, int n,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>27</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1800100 times">&check;</span><span class="takenBranch" title="Branch 1 taken 12011 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1812111</pre></td>
-    <td align="left" class="src coveredLine"><pre>  for (int i = 0; i &lt; n; ++i) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                                           std::mt19937 random_engine) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>28</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1800100 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1800100</pre></td>
-    <td align="left" class="src coveredLine"><pre>    Vec3 p0(randomVec3(lo, hi, random_engine));</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 12010 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>12010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(lo &lt; hi);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>29</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>12010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::vector&lt;Triangle> v;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>30</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1800000 times">&check;</span><span class="takenBranch" title="Branch 1 taken 12010 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1812010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  for (int i = 0; i &lt; n; ++i) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>31</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1800000 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1800000</pre></td>
+    <td align="left" class="src coveredLine"><pre>    Vec3 p0(randomVec3(lo, hi, random_engine));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>32</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>    Vec3 p1(p0 +</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>30</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1800100 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 1800100 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>1800100</pre></td>
-    <td align="left" class="src coveredLine"><pre>            randomVec3(-max_triangle_size, max_triangle_size, random_engine));</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>31</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    Vec3 p2(p0 +</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>32</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1800100 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 1800100 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>1800100</pre></td>
-    <td align="left" class="src coveredLine"><pre>            randomVec3(-max_triangle_size, max_triangle_size, random_engine));</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>33</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1800100 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1800100</pre></td>
-    <td align="left" class="src coveredLine"><pre>    Triangle t(p0, p1, p2);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1800000 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 1800000 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1800000</pre></td>
+    <td align="left" class="src coveredLine"><pre>            randomVec3(-max_triangle_size, max_triangle_size, random_engine));</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>34</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // check if the triangle has some area</pre></td>
+    <td align="left" class="src "><pre>    Vec3 p2(p0 +</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>35</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1800100 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 1800100 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/><span class="takenBranch" title="Branch 7 taken 1800100 times">&check;</span><span class="notTakenBranch" title="Branch 8 not taken">&cross;</span><span class="takenBranch" title="Branch 10 taken 1800100 times">&check;</span><span class="notTakenBranch" title="Branch 11 not taken">&cross;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>1800100</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if ((t.p1 - t.p0).cross(t.p2 - t.p0).norm() > EPS) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1800000 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 1800000 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1800000</pre></td>
+    <td align="left" class="src coveredLine"><pre>            randomVec3(-max_triangle_size, max_triangle_size, random_engine));</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>36</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1800100 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1800100</pre></td>
-    <td align="left" class="src coveredLine"><pre>      v.push_back(t);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1800000 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1800000</pre></td>
+    <td align="left" class="src coveredLine"><pre>    Triangle t(p0, p1, p2);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>37</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    }</pre></td>
+    <td align="left" class="src "><pre>    // check if the triangle has some area</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>38</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1800000 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 1800000 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/><span class="takenBranch" title="Branch 7 taken 1800000 times">&check;</span><span class="notTakenBranch" title="Branch 8 not taken">&cross;</span><span class="takenBranch" title="Branch 10 taken 1800000 times">&check;</span><span class="notTakenBranch" title="Branch 11 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1800000</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if ((t.p1 - t.p0).cross(t.p2 - t.p0).norm() > EPS) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>39</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>12011</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return v;</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1800000 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1800000</pre></td>
+    <td align="left" class="src coveredLine"><pre>      v.push_back(t);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>40</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>41</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>10000</pre></td>
-    <td align="left" class="src coveredLine"><pre>bool pointOnTrianglePlane(const Triangle&amp; t, const Vec3&amp; p) {</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>42</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>10000</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return std::abs((p - t.p0).cross(t.p1 - t.p0).dot(t.p2 - t.p0)) &lt; TEST_EPS;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>12010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return v;</pre></td>
     </tr>
 
     <tr>
@@ -604,95 +604,228 @@
     <td align="right" class="lineno"><pre>44</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
+    <td align="left" class="src "><pre>// generates scene triangles into area [lo-max_triangle_size,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>45</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>501100</pre></td>
-    <td align="left" class="src coveredLine"><pre>std::vector&lt;int> randomIntVector(int lo, int hi, int n,</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// hi+max_triangle_size]</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>46</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>                                 std::mt19937&amp; random_engine) {</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>2010</pre></td>
+    <td align="left" class="src coveredLine"><pre>std::vector&lt;SceneTriangle> randomSceneTriangleVector(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>47</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 501100 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>501100</pre></td>
-    <td align="left" class="src coveredLine"><pre>  assert(lo &lt;= hi);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    double lo, double hi, double max_triangle_size, int n,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>48</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 501100 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>501100</pre></td>
-    <td align="left" class="src coveredLine"><pre>  assert(n >= 0);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    std::mt19937 random_engine) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>49</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::uniform_int_distribution dist(lo, hi);</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 2010 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>2010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(lo &lt; hi);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>50</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::vector&lt;int> out;</pre></td>
+    <td align="left" class="src "><pre>  std::vector&lt;Triangle> t =</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>51</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 68654126 times">&check;</span><span class="takenBranch" title="Branch 1 taken 501100 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>69155226</pre></td>
-    <td align="left" class="src coveredLine"><pre>  for (int i = 0; i &lt; n; ++i) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2010 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>4020</pre></td>
+    <td align="left" class="src coveredLine"><pre>      randomTriangleVector(lo, hi, max_triangle_size, n, random_engine);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>52</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 68654126 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>68654126</pre></td>
-    <td align="left" class="src coveredLine"><pre>    out.push_back(dist(random_engine));</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>2010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::vector&lt;SceneTriangle> v;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>53</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 800000 times">&check;</span><span class="takenBranch" title="Branch 2 taken 2010 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>802010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  for (size_t i = 0; i &lt; t.size(); ++i) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>54</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    SceneTriangle scene_triangle;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>55</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>800000</pre></td>
+    <td align="left" class="src coveredLine"><pre>    scene_triangle.triangle = t[i];</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>56</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 800000 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>800000</pre></td>
+    <td align="left" class="src coveredLine"><pre>    v.push_back(scene_triangle);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>57</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>54</pre></td>
+    <td align="right" class="lineno"><pre>58</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>501100</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return out;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>4020</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return v;</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>55</pre></td>
+    <td align="right" class="lineno"><pre>59</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>56</pre></td>
+    <td align="right" class="lineno"><pre>60</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>10000</pre></td>
+    <td align="left" class="src coveredLine"><pre>bool pointOnTrianglePlane(const Triangle&amp; t, const Vec3&amp; p) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>61</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 10000 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 5 taken 10000 times">&check;</span><span class="notTakenBranch" title="Branch 6 not taken">&cross;</span><br/><span class="takenBranch" title="Branch 8 taken 10000 times">&check;</span><span class="notTakenBranch" title="Branch 9 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>10000</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return std::abs((p - t.p0).cross(t.p1 - t.p0).dot(t.p2 - t.p0)) &lt; TEST_EPS;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>62</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>63</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>57</pre></td>
+    <td align="right" class="lineno"><pre>64</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>501100</pre></td>
+    <td align="left" class="src coveredLine"><pre>std::vector&lt;int> randomIntVector(int lo, int hi, int n,</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>65</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                                 std::mt19937&amp; random_engine) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>66</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 501100 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>501100</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(lo &lt;= hi);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>67</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 501100 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>501100</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(n >= 0);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>68</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 501100 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>501100</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::uniform_int_distribution dist(lo, hi);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>69</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>501100</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::vector&lt;int> out;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>70</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 68654126 times">&check;</span><span class="takenBranch" title="Branch 1 taken 501100 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>69155226</pre></td>
+    <td align="left" class="src coveredLine"><pre>  for (int i = 0; i &lt; n; ++i) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>71</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 68654126 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 68654126 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>68654126</pre></td>
+    <td align="left" class="src coveredLine"><pre>    out.push_back(dist(random_engine));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>72</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>73</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>1002200</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return out;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>74</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>75</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>76</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>}  // namespace test</pre></td>
