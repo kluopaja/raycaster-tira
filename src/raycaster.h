@@ -4,15 +4,19 @@
 #include <vector>
 
 #include "geometry.h"
+#include "image.h"
 #include "kd_tree.h"
-
+#include "material.h"
 enum NormalType {
   kSmooth,
   kRough,
 };
-struct Material {
-  Vec3 diffuse;
-  Vec3 emitted;
+// sampling scheme for shooting rays
+// kImportanceSampling is the default
+// kUniformSphere might be useful for debugging
+enum SamplingScheme {
+  kImportanceSampling,
+  kUniformSphere,
 };
 struct SceneTriangle {
   Triangle triangle;
@@ -64,6 +68,10 @@ class Camera {
   // = (left bottom of the image plane) - (left top of the image plane)
   Vec3 image_down_vec;
 };
+// For parallel rendering
+struct ThreadResources {
+  std::mt19937 thread_mt;
+  std::vector<std::pair<int, int> > pixels;
 };
 class Scene {
  public:
@@ -71,23 +79,38 @@ class Scene {
   bool addModelFromFile(const std::string& file, const Vec3& position,
                         NormalType normal_type);
   void addPointLight(const Vec3& position, const Vec3& color);
-  Image render(int x_resolution, int y_resolution, int n_rays_per_pixel);
+  void setEnvironmentLightColor(const Vec3& color);
+  void setSamplingScheme(SamplingScheme s);
+  Image render(int x_resolution, int y_resolution, int n_rays_per_pixel,
+               int max_recursion_depth, int n_recursion_rays);
 
  private:
   Vec3 renderPixel(int x_pixel, int y_pixel, int x_resolution, int y_resolution,
-                   int n_rays_per_pixel);
-  Vec3 renderImagePlanePoint(double x, double y);
-  Vec3 castRay(const Ray& r);
-  Vec3 totalPointLightColor(const Vec3& point, const Vec3& normal,
+                   int n_rays_per_pixel, std::mt19937& thread_mt_19937);
+  Vec3 renderImagePlanePoint(double x, double y, std::mt19937& thread_mt_19937);
+  Vec3 castRay(const Ray& r, int recursion_depth,
+               std::mt19937& thread_mt_19937);
+  Vec3 totalPointLightColor(const Vec3& point, Vec3 normal, Vec3 out_vector,
                             const Material& material);
   Vec3 pointLightColor(const Vec3& point, const Vec3& normal,
-                       const Material& material, const PointLight& point_light);
+                       const Vec3& out_vector, const Material& material,
+                       const PointLight& point_light);
+  Vec3 indirectLightColor(const Vec3& point, Vec3 normal, Vec3 out_vector,
+                          const Material& material, int depth,
+                          std::mt19937& thread_mt_19937);
+  Vec3 sampleIndirectLight(const Vec3& point, const Vec3& normal,
+                           const Vec3& out_vector, const Material& material,
+                           int recursion_depth, std::mt19937& thread_mt_19937);
+  Vec3 environmentLightColor(const Ray& r);
+  Vec3 environment_light_color;
   Model model;
   std::vector<PointLight> point_lights;
   Camera camera;
   Tree kd_tree;
-  // used for anti-aliasing
-  std::mt19937 mt;
+  std::mt19937 mt_19937;
   std::uniform_real_distribution<double> subpixel_sample_distribution;
+  int max_recursion_depth;
+  int n_recursion_rays;
+  SamplingScheme sampling_scheme;
 };
 #endif
