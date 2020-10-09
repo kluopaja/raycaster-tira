@@ -77,5 +77,5 @@ test :
 .PHONY: coverage
 coverage :
 	@mkdir -p cov
-	cov/main
+	-cov/main
 	gcovr -r . --html --html-details -o cov/coverage.html
