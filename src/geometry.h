@@ -318,9 +318,18 @@ Voxel boundingBox(const std::vector<Triangle>& triangles);
 inline bool pointOnSegment(const Vec3& p, const Vec3& a, const Vec3& b) {
   return std::abs((a - p).norm() + (p - b).norm() - (a - b).norm()) < EPS;
 }
+// rotates a so that a[1] will point towards b
+inline Vec3 rotateYTo(const Vec3& a, const Vec3& b) {
+  Vec3 normal_1(-b[1], b[0], 0.0);
+  normal_1 = normal_1 / normal_1.norm();
+  Vec3 normal_2 = b.cross(normal_1);
+  assert(std::abs(normal_2.norm() - 1) < EPS);
+  return a[1] * b + a[0] * normal_1 + a[2] * normal_2;
+}
 template <typename Generator>
 Vec3 uniformRandomHemispherePoint(Vec3 direction, Generator& g) {
   assert(direction.norm() > EPS);
+  direction /= direction.norm();
   // Let X be the azimuth and Y the elevation of a uniformly distributed
   // random variable on the hemisphere.
   // Let U0 ~ U(0, 1)
@@ -341,13 +350,42 @@ Vec3 uniformRandomHemispherePoint(Vec3 direction, Generator& g) {
   double u_1 = U(g);
   Vec3 p(std::sin(u_0) * std::sqrt(1 - u_1 * u_1), u_1,
          std::cos(u_0) * std::sqrt(1 - u_1 * u_1));
-
-  direction = direction / direction.norm();
-  // change coordinates so that p[1] is 'direction'
-  Vec3 normal_1(-direction[1], direction[0], 0.0);
-  normal_1 = normal_1 / normal_1.norm();
-  Vec3 normal_2 = direction.cross(normal_1);
-  assert(std::abs(normal_2.norm() - 1) < EPS);
-  return p[1] * direction + p[0] * normal_1 + p[2] * normal_2;
+  return rotateYTo(p, direction);
+}
+template <typename Generator>
+Vec3 uniformRandomSpherePoint(Vec3 direction, Generator& g) {
+  assert(direction.norm() > EPS);
+  // TODO implement properly
+  std::uniform_real_distribution dist(0.0, 1.0);
+  if (dist(g) < 0.5) {
+    return uniformRandomHemispherePoint(direction, g);
+  }
+  return uniformRandomHemispherePoint(-1.0 * direction, g);
+}
+// Samples points from a hemisphere with pdf
+// (n + 1)/(2 * kPi) * direction.dot(v)^n
+// see:
+// https://graphics.cs.kuleuven.be/publications/Phong/.
+template <typename Generator>
+Vec3 cosineExponentRandomPoint(Vec3 direction, double exponent, Generator& g) {
+  assert(direction.norm() > EPS);
+  direction /= direction.norm();
+  std::uniform_real_distribution U(0.0, 1.0);
+  double e_1 = U(g);
+  double e_2 = U(g);
+  double cos_a = std::pow(e_1, 1.0 / (exponent + 1));
+  double sin_a = std::sqrt(1.0 - cos_a*cos_a);
+  Vec3 p(sin_a * std::cos(2.0 * kPi * e_2),
+         cos_a,
+         sin_a * std::sin(2.0 * kPi * e_2));
+  return rotateYTo(p, direction);
+}
+// pdf of cosine exponent distribution facing 'direction'
+// 0.0 outside the hemisphere!
+inline double cosineExponentPdf(Vec3 v, Vec3 direction, double exponent) {
+  v /= v.norm();
+  direction.norm();
+  if (v.dot(direction) < EPS) return 0.0;
+  return (exponent + 1) / (2 * kPi) * std::pow(v.dot(direction), exponent);
 }
 #endif
