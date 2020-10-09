@@ -223,6 +223,68 @@ TEST(Vec3Test, Norm) {
   v = Vec3(-13.2, 32.1, 1.0);
   EXPECT_NEAR(v.norm(), std::sqrt(13.2 * 13.2 + 32.1 * 32.1 + 1.0), EPS);
 }
+TEST(OnSameSideOfPlane, Simple) {
+  Vec3 a(1.0, 1.0, 0.0);
+  Vec3 b(0.0, 1.0, 1.0);
+  Vec3 n(0.0, 1.0, 0.0);
+  EXPECT_TRUE(onSameSideOfPlane(a, b, n));
+  a = Vec3(1.0, 1.0, 0.0);
+  b = Vec3(0.0, -1.0, 1.0);
+  n = Vec3(0.0, 1.0, 0.0);
+  EXPECT_FALSE(onSameSideOfPlane(a, b, n));
+}
+TEST(OnSameSideOfPlane, IdenticalVectors) {
+  Vec3 a(1.0, 2.0, 3.0);
+  Vec3 b(1.0, 2.0, 3.0);
+  Vec3 n(0.0, 1.0, 0.0);
+  EXPECT_TRUE(onSameSideOfPlane(a, b, n));
+}
+TEST(Project, IdenticalVectors) {
+  Vec3 a(1.2, 2.3, 3.4);
+  Vec3 b(1.2, 2.3, 3.4);
+  EXPECT_THAT(project(a, b), VecEq(Vec3(1.2, 2.3, 3.4)));
+}
+TEST(Project, Simple) {
+  Vec3 a(1.2, 2.3, 3.4);
+  Vec3 b(-12.0, 0.0, 0.0);
+  EXPECT_THAT(project(a, b), VecEq(Vec3(1.2, 0.0, 0.0)));
+  a = Vec3(1.2, 2.3, 3.4);
+  b = Vec3(-12.0, 0.0, 0.0);
+  EXPECT_THAT(project(a, b), VecEq(Vec3(1.2, 0.0, 0.0)));
+}
+TEST(MirrorOver, IdenticaVectors) {
+  Vec3 a(1.2, 2.3, 3.4);
+  Vec3 b(1.2, 2.3, 3.4);
+  EXPECT_THAT(mirrorOver(a, b), VecEq(Vec3(1.2, 2.3, 3.4)));
+}
+TEST(MirrorOver, Simple) {
+  Vec3 a(1.1, 0.0, 0.0);
+  Vec3 b(1.0, 1.0, 0.0);
+  EXPECT_THAT(mirrorOver(a, b), VecEq(Vec3(0.0, 1.1, 0.0)));
+}
+TEST(MirrorOver, OverNormal) {
+  Vec3 a(1.1, 2.1, -2.3);
+  Vec3 b(-2.1, 1.1, 0.0);
+  EXPECT_THAT(mirrorOver(a, b), VecEq(-1.0 * a));
+}
+// Checks that sum of a random vector and the mirror image lie on
+// correct vector and that both are of correct length
+TEST(MirrorOver, Random) {
+  std::mt19937 mt(1337);
+  for(int i = 0; i < 10000; ++i) {
+    Vec3 a = test::randomVec3(0.0, 10.0, mt);
+    Vec3 b = test::randomVec3(0.0, 10.0, mt);
+    Vec3 mirrored = mirrorOver(a, b);
+    ASSERT_NEAR(a.norm(), mirrored.norm(), EPS);
+    Vec3 sum = a + mirrored;
+    sum /= sum.norm();
+    b /= b.norm();
+    ASSERT_NEAR(sum.dot(b), 1.0, EPS);
+  }
+  Vec3 a(1.1, 2.1, -2.3);
+  Vec3 b(-2.1, 1.1, 0.0);
+  EXPECT_THAT(mirrorOver(a, b), VecEq(-1.0 * a));
+}
 TEST(VoxelTest, IntersectsSimple) {
   Voxel v({0.0, 0.0, 0.0}, {1.0, 1.0, 1.0});
   Ray r({2.0, 2.0, 2.0}, {1.0, 1.0, 1.0});

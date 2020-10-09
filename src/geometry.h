@@ -123,14 +123,35 @@ inline Vec3 Vec3::cross(const Vec3& b) const {
   return {v[1] * b.v[2] - v[2] * b.v[1], v[2] * b.v[0] - v[0] * b.v[2],
           v[0] * b.v[1] - v[1] * b.v[0]};
 }
+inline double Vec3::sum() const {
+  return v[0] + v[1] + v[2];
+}
 inline Vec3 Vec3::multiply(const Vec3& b) const {
   return Vec3(v[0] * b.v[0], v[1] * b.v[1], v[2] * b.v[2]);
+}
+inline Vec3& operator+=(Vec3& a, const Vec3& b) {
+  a.v[0] += b.v[0];
+  a.v[1] += b.v[1];
+  a.v[2] += b.v[2];
+  return a;
 }
 inline Vec3 operator+(const Vec3& a, const Vec3& b) {
   return Vec3(a.v[0] + b.v[0], a.v[1] + b.v[1], a.v[2] + b.v[2]);
 }
+inline Vec3& operator-=(Vec3& a, const Vec3& b) {
+  a.v[0] -= b.v[0];
+  a.v[1] -= b.v[1];
+  a.v[2] -= b.v[2];
+  return a;
+}
 inline Vec3 operator-(const Vec3& a, const Vec3& b) {
   return Vec3(a.v[0] - b.v[0], a.v[1] - b.v[1], a.v[2] - b.v[2]);
+}
+inline Vec3& operator*=(Vec3& a, double b) {
+  a.v[0] *= b;
+  a.v[1] *= b;
+  a.v[2] *= b;
+  return a;
 }
 inline Vec3 operator*(const Vec3& a, const double b) {
   return Vec3(b * a.v[0], b * a.v[1], b * a.v[2]);
@@ -138,12 +159,31 @@ inline Vec3 operator*(const Vec3& a, const double b) {
 inline Vec3 operator*(const double b, const Vec3& a) {
   return Vec3(b * a.v[0], b * a.v[1], b * a.v[2]);
 }
+inline Vec3& operator/=(Vec3& a, double b) {
+  a.v[0] /= b;
+  a.v[1] /= b;
+  a.v[2] /= b;
+  return a;
+}
 inline Vec3 operator/(const Vec3& a, const double b) {
   return Vec3(a.v[0] / b, a.v[1] / b, a.v[2] / b);
 }
 inline double& Vec3::operator[](int index) { return v[index]; }
 inline double Vec3::operator[](int index) const { return v[index]; }
 inline double Vec3::norm() const { return std::sqrt(this->dot(*this)); }
+// checks if a and b are on the same side of plane defined by normal
+inline bool onSameSideOfPlane(const Vec3& a, const Vec3& b, const Vec3& normal) {
+  return normal.dot(a) * normal.dot(b) > EPS;
+}
+// project a on b
+inline Vec3 project(const Vec3& a, const Vec3& b) {
+  return a.dot(b) / b.dot(b) * b;
+}
+// mirrors a over b
+inline Vec3 mirrorOver(const Vec3& a, const Vec3& b) {
+  return 2 * project(a, b) - a;
+}
+
 // A point on a triangle
 struct TrianglePoint {
   const Triangle* triangle;
