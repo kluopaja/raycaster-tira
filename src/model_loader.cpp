@@ -29,7 +29,7 @@ bool ModelLoader::load(const std::string& file, NormalType normal_type) {
   const aiScene* ai_scene = importer.ReadFile(
       file,
       aiProcess_Triangulate |  // every face will have <= 3 vertices
-          normal_flag);
+      normal_flag);
   if (!ai_scene) {
     std::cerr << "ERROR while loading the model: " << importer.GetErrorString()
               << std::endl;
@@ -48,10 +48,39 @@ void ModelLoader::loadMaterial(const aiMaterial* ai_material) {
   Material new_material;
   aiColor3D diffuse(0.0, 0.0, 0.0);
   aiColor3D emitted(0.0, 0.0, 0.0);
+  aiColor3D specular(0.0, 0.0, 0.0);
+  float specular_exp;
+  // from http://assimp.sourceforge.net/lib_html/materials.html:
+  // "Scales the specular color of the material.
+  //  This value is kept separate from the specular color by most modelers,
+  //   and so do we."
+  //
+  // So this is just used to scale the 'specular' color vector
+  float specular_strength;
+  aiColor3D transparent(0.0, 0.0, 0.0);
+  // I assume this is similar to specular_strength in that the
+  // 'transparent' needs to be scaled with '1-opacity'
+  float opacity;
+  float index_of_refraction;
   ai_material->Get(AI_MATKEY_COLOR_DIFFUSE, diffuse);
   ai_material->Get(AI_MATKEY_COLOR_AMBIENT, emitted);
+  ai_material->Get(AI_MATKEY_COLOR_SPECULAR, specular);
+  ai_material->Get(AI_MATKEY_SHININESS, specular_exp);
+  ai_material->Get(AI_MATKEY_SHININESS_STRENGTH, specular_strength);
+  ai_material->Get(AI_MATKEY_COLOR_TRANSPARENT, transparent);
+  ai_material->Get(AI_MATKEY_OPACITY, opacity);
+  ai_material->Get(AI_MATKEY_REFRACTI, index_of_refraction);
   new_material.diffuse = Vec3(diffuse.r, diffuse.g, diffuse.b);
   new_material.emitted = Vec3(emitted.r, emitted.g, emitted.b);
+  // NOTE for some reason the specular_strength is often 0 (???)
+  // therefore will be ignored for now
+  // new_material.specular = specular_strength * Vec3(specular.r, specular.g,
+  //                                                 specular.b);
+  new_material.specular = Vec3(specular.r, specular.g, specular.b);
+  new_material.specular_exp = specular_exp;
+  new_material.transparent =
+      (1.0f - opacity) * Vec3(transparent.r, transparent.g, transparent.b);
+  new_material.index_of_refraction = index_of_refraction;
   model.materials.push_back(new_material);
 }
 void ModelLoader::loadNode(const aiNode* node, const aiScene* ai_scene) {
