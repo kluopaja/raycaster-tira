@@ -33,6 +33,12 @@ TEST(Vec2Test, DotProduct) {
   v2 = Vec2(0.0, 1.1);
   EXPECT_NEAR(v1.dot(v2), 2.2 * 1.1, EPS);
 }
+TEST(Vec2Test, SumOfElements) {
+  Vec2 v1(0.0);
+  EXPECT_NEAR(v1.sum(), 0.0, EPS);
+  v1 = Vec2(1.1, -3.4);
+  EXPECT_NEAR(v1.sum(), 1.1 - 3.4, EPS);
+}
 TEST(Vec2Test, MultiplyElementwise) {
   Vec2 v1(0.0);
   Vec2 v2(1.1, 2.2);
@@ -45,12 +51,39 @@ TEST(Vec2Test, MultiplyElementwise) {
   v2 = Vec2(3.3, 4.4);
   EXPECT_THAT(v1.multiply(v2), VecEq(Vec2(1.1 * 3.3, 2.2 * 4.4)));
 }
+TEST(Vec2Test, PlusAssign) {
+  Vec2 v1(1.1, 2.2);
+  Vec2 v2(1.1, 1.2);
+  v2 += v1;
+  EXPECT_NEAR(v2[0], 2.2, EPS);
+  EXPECT_NEAR(v2[1], 3.4, EPS);
+}
+TEST(Vec2Test, Plus) {
+  Vec2 v1(1.1, 2.2);
+  Vec2 v2(1.1, 1.2);
+  Vec2 v3 = v1 + v2;
+  EXPECT_NEAR(v3[0], 2.2, EPS);
+  EXPECT_NEAR(v3[1], 3.4, EPS);
+}
+TEST(Vec2Test, MinusAssign) {
+  Vec2 v1(1.1, 2.2);
+  Vec2 v2(1.1, 1.2);
+  v1 -= v2;
+  EXPECT_NEAR(v1[0], 0.0, EPS);
+  EXPECT_NEAR(v1[1], 1.0, EPS);
+}
 TEST(Vec2Test, Minus) {
   Vec2 v1(1.1, 2.2);
   Vec2 v2(1.1, 1.2);
   Vec2 v3 = v1 - v2;
   EXPECT_NEAR(v3[0], 0.0, EPS);
   EXPECT_NEAR(v3[1], 1.0, EPS);
+}
+TEST(Vec2Test, MultipyAssign) {
+  Vec2 v1(1.0, 2.2);
+  v1 *= 1.1;
+  EXPECT_NEAR(v1[0], 1.1, EPS);
+  EXPECT_NEAR(v1[1], 2.2 * 1.1, EPS);
 }
 TEST(Vec2Test, Multipy) {
   Vec2 v1(1.0, 2.2);
@@ -60,6 +93,12 @@ TEST(Vec2Test, Multipy) {
   v2 = 1.1 * v1;
   EXPECT_NEAR(v2[0], 1.1, EPS);
   EXPECT_NEAR(v2[1], 2.2 * 1.1, EPS);
+}
+TEST(Vec2Test, DivideAssign) {
+  Vec2 v1(1.0, 2.2);
+  v1 /= 1.1;
+  EXPECT_NEAR(v1[0], 1.0 / 1.1, EPS);
+  EXPECT_NEAR(v1[1], 2.2 / 1.1, EPS);
 }
 TEST(Vec2Test, Divide) {
   Vec2 v1(1.0, 2.2);
@@ -97,6 +136,12 @@ TEST(Vec3Test, TestDotProduct) {
   v2 = Vec3(0.0, 1.1, 2.2);
   EXPECT_NEAR(v1.dot(v2), 2.2 * 1.1 + 3.3 * 2.2, EPS);
 }
+TEST(Vec3Test, SumOfElements) {
+  Vec3 v1(0.0);
+  EXPECT_NEAR(v1.sum(), 0.0, EPS);
+  v1 = Vec3(1.1, 3.4, -4.2);
+  EXPECT_NEAR(v1.sum(), 1.1 + 3.4 - 4.2, EPS);
+}
 TEST(Vec3Test, MultiplyElementwise) {
   Vec3 v1(0.0);
   Vec3 v2(1.1, 2.2, 3.3);
@@ -108,6 +153,30 @@ TEST(Vec3Test, MultiplyElementwise) {
   v2 = Vec3(4.4, 5.5, 6.6);
   EXPECT_THAT(v1.multiply(v2), VecEq(Vec3(1.1 * 4.4, 2.2 * 5.5, 3.3 * 6.6)));
 }
+TEST(Vec3Test, PlusAssign) {
+  Vec3 v1(1.1, 2.2, 3.2);
+  Vec3 v2(1.1, 1.2, -2.1);
+  v2 += v1;
+  EXPECT_NEAR(v2[0], 2.2, EPS);
+  EXPECT_NEAR(v2[1], 3.4, EPS);
+  EXPECT_NEAR(v2[2], 1.1, EPS);
+}
+TEST(Vec3Test, Plus) {
+  Vec3 v1(1.1, 2.2, 3.2);
+  Vec3 v2(1.1, 1.2, -2.1);
+  Vec3 v3 = v1 + v2;
+  EXPECT_NEAR(v3[0], 2.2, EPS);
+  EXPECT_NEAR(v3[1], 3.4, EPS);
+  EXPECT_NEAR(v3[2], 1.1, EPS);
+}
+TEST(Vec3Test, MinusAssign) {
+  Vec3 v1(1.1, 2.2, 3.3);
+  Vec3 v2(1.1, 1.2, 3.0);
+  v1 -= v2;
+  EXPECT_NEAR(v1[0], 0.0, EPS);
+  EXPECT_NEAR(v1[1], 1.0, EPS);
+  EXPECT_NEAR(v1[2], 0.3, EPS);
+}
 TEST(Vec3Test, Minus) {
   Vec3 v1(1.1, 2.2, 3.3);
   Vec3 v2(1.1, 1.2, 3.0);
@@ -116,12 +185,26 @@ TEST(Vec3Test, Minus) {
   EXPECT_NEAR(v3[1], 1.0, EPS);
   EXPECT_NEAR(v3[2], 0.3, EPS);
 }
+TEST(Vec3Test, MultipyAssign) {
+  Vec3 v1(1.0, 2.2, 3.3);
+  v1 *= 1.1;
+  EXPECT_NEAR(v1[0], 1.1, EPS);
+  EXPECT_NEAR(v1[1], 2.2 * 1.1, EPS);
+  EXPECT_NEAR(v1[2], 3.3 * 1.1, EPS);
+}
 TEST(Vec3Test, Multipy) {
   Vec3 v1(1.0, 2.2, 3.3);
   Vec3 v2 = v1 * 1.1;
   EXPECT_NEAR(v2[0], 1.1, EPS);
   EXPECT_NEAR(v2[1], 2.2 * 1.1, EPS);
   EXPECT_NEAR(v2[2], 3.3 * 1.1, EPS);
+}
+TEST(Vec3Test, DivideAssign) {
+  Vec3 v1(1.0, 2.2, 3.3);
+  v1 /= 1.1;
+  EXPECT_NEAR(v1[0], 1.0 / 1.1, EPS);
+  EXPECT_NEAR(v1[1], 2.2 / 1.1, EPS);
+  EXPECT_NEAR(v1[2], 3.3 / 1.1, EPS);
 }
 TEST(Vec3Test, Divide) {
   Vec3 v1(1.0, 2.2, 3.3);

@@ -22,12 +22,17 @@ class Vec2 {
   Vec2(double x);
   Vec2(double x, double y);
   double dot(const Vec2& b) const;
+  double sum() const;
   // element-wise product
   Vec2 multiply(const Vec2& b) const;
+  friend Vec2& operator+=(Vec2& a, const Vec2& b);
   friend Vec2 operator+(const Vec2& a, const Vec2& b);
+  friend Vec2& operator-=(Vec2& a, const Vec2& b);
   friend Vec2 operator-(const Vec2& a, const Vec2& b);
+  friend Vec2& operator*=(Vec2& a, const double b);
   friend Vec2 operator*(const Vec2& a, const double b);
   friend Vec2 operator*(const double b, const Vec2& a);
+  friend Vec2& operator/=(Vec2& a, const double b);
   friend Vec2 operator/(const Vec2& a, const double b);
   double& operator[](int index);
   double operator[](int index) const;
@@ -43,17 +48,40 @@ inline double Vec2::dot(const Vec2& b) const {
 inline Vec2 Vec2::multiply(const Vec2& b) const {
   return Vec2(v[0] * b.v[0], v[1] * b.v[1]);
 }
+inline double Vec2::sum() const {
+  return v[0] + v[1];
+}
+inline Vec2& operator+=(Vec2& a, const Vec2& b) {
+  a.v[0] += b.v[0];
+  a.v[1] += b.v[1];
+  return a;
+}
 inline Vec2 operator+(const Vec2& a, const Vec2& b) {
   return Vec2(a.v[0] + b.v[0], a.v[1] + b.v[1]);
 }
+inline Vec2& operator-=(Vec2& a, const Vec2& b) {
+  a.v[0] -= b.v[0];
+  a.v[1] -= b.v[1];
+  return a;
+}
 inline Vec2 operator-(const Vec2& a, const Vec2& b) {
   return Vec2(a.v[0] - b.v[0], a.v[1] - b.v[1]);
+}
+inline Vec2& operator*=(Vec2& a, double b) {
+  a.v[0] *= b;
+  a.v[1] *= b;
+  return a;
 }
 inline Vec2 operator*(const Vec2& a, const double b) {
   return Vec2(b * a.v[0], b * a.v[1]);
 }
 inline Vec2 operator*(const double b, const Vec2& a) {
   return Vec2(b * a.v[0], b * a.v[1]);
+}
+inline Vec2& operator/=(Vec2& a, double b) {
+  a.v[0] /= b;
+  a.v[1] /= b;
+  return a;
 }
 inline Vec2 operator/(const Vec2& a, const double b) {
   return Vec2(a.v[0] / b, a.v[1] / b);
@@ -68,12 +96,17 @@ class Vec3 {
   Vec3(double x, double y, double z);
   double dot(const Vec3& b) const;
   Vec3 cross(const Vec3& b) const;
+  double sum() const;
   // element-wise product
   Vec3 multiply(const Vec3& b) const;
+  friend Vec3& operator+=(Vec3& a, const Vec3& b);
   friend Vec3 operator+(const Vec3& a, const Vec3& b);
+  friend Vec3& operator-=(Vec3& a, const Vec3& b);
   friend Vec3 operator-(const Vec3& a, const Vec3& b);
+  friend Vec3& operator*=(Vec3& a, const double b);
   friend Vec3 operator*(const Vec3& a, const double b);
   friend Vec3 operator*(const double b, const Vec3& a);
+  friend Vec3& operator/=(Vec3& a, const double b);
   friend Vec3 operator/(const Vec3& a, const double b);
   double& operator[](int index);
   double operator[](int index) const;
