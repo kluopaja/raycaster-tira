@@ -11,7 +11,7 @@ void renderBallScene() {
   scene.addPointLight(Vec3(-10.0, 20.0, -10.0), Vec3(3.0));
   //scene.setSamplingScheme(kUniformSphere);
   scene.addModelFromFile("../models/scene.obj", Vec3(0.0), kSmooth);
-  Image result = scene.render(500, 500, 10, 4, 4);
+  Image result = scene.render(500, 500, 40, 4, 1);
   result.scaleMaxTo(1.0);
   result.savePPM("test.ppm");
   result.truncateToFraction(0.99);
