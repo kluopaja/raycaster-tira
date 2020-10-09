@@ -1,9 +1,16 @@
+#ifndef ENABLE_PARALLEL
+#define ENABLE_PARALLEL 0
+#endif
 #include "raycaster.h"
 
 #include <cassert>
 #include <chrono>
 #include <cmath>
+
+#if ENABLE_PARALLEL
 #include <execution>
+#endif
+
 #include <fstream>
 #include <iostream>
 #include <iterator>
