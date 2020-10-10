@@ -73,4 +73,35 @@ std::vector<int> randomIntVector(int lo, int hi, int n,
   return out;
 }
 
+Material randomMaterial(std::mt19937& random_engine) {
+  Material m = Material();
+  m.emitted = randomVec3(0.01, 1.0, random_engine);
+  m.diffuse = randomVec3(0.01, 1.0, random_engine);
+  m.specular = randomVec3(0.01, 1.0, random_engine);
+  // cap to 1
+  for (int i = 0; i < 3; ++i) {
+    if(m.diffuse[i] + m.specular[i] > 1) {
+      m.specular[i] = 1 - m.diffuse[i];
+    }
+  }
+  m.transparent = randomVec3(0.01, 1.0, random_engine);
+  std::uniform_real_distribution dist(0.1, 100.0);
+  m.specular_exp = dist(random_engine);
+  m.index_of_refraction = dist(random_engine);
+  return m;
+}
+double mean(const std::vector<double>& v) {
+  return std::accumulate(v.begin(), v.end(), 0.0) / v.size();
+}
+double variance(const std::vector<double>& v) {
+  double mean = test::mean(v);
+  double sum_of_squares = 0;
+  for(double x: v) {
+    sum_of_squares += std::pow(x - mean, 2);
+  }
+  return sum_of_squares / v.size();
+}
+double standard_error_mean(const std::vector<double>& v) {
+  return std::sqrt(variance(v) / v.size());
+}
 }  // namespace test

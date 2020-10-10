@@ -1,3 +1,5 @@
+#ifndef RAYCASTER_TEST_UTILS_H
+#define RAYCASTER_TEST_UTILS_H
 #include <random>
 
 #include "geometry.h"
@@ -22,4 +24,9 @@ bool pointOnTrianglePlane(const Triangle& t, const Vec3& p);
 std::vector<int> randomIntVector(int lo, int hi, int n,
                                  std::mt19937& random_engine);
 
+Material randomMaterial(std::mt19937& random_engine);
+double mean(const std::vector<double>& v);
+double variance(const std::vector<double>& v);
+double standard_error_mean(const std::vector<double>& v);
 }  // namespace test
+#endif

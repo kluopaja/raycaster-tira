@@ -1,5 +1,7 @@
 #include "material.h"
 
+#include <cmath>
+
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
@@ -60,19 +62,76 @@ TEST(Material, ApplyTransparentDiffuseOnObliqueLight) {
 TEST(Material, ImportanceSamplePdfPositive) {
   std::mt19937 mt(1337);
   for(int i = 0; i < 100000; ++i) {
-    Material m = Material();
-    m.diffuse = test::randomVec3(0.01, 1.0, mt);
-    m.emitted = test::randomVec3(0.01, 1.0, mt);
-    m.specular = test::randomVec3(0.01, 1.0, mt);
-    std::uniform_real_distribution dist(0.1, 100.0);
-    m.specular_exp = dist(mt);
-    m.index_of_refraction = dist(mt);
+    Material m = test::randomMaterial(mt);
+
     Vec3 normal = test::randomVec3(-1.0, 1.0, mt);
     normal /= normal.norm();
     Vec3 out_vector = uniformRandomHemispherePoint(normal, mt);
     Vec3 in_vector = m.importanceSample(normal, out_vector, mt);
     double pdf = m.importanceSamplePdf(in_vector, normal, out_vector);
     ASSERT_GE(pdf, EPS);
+  }
+}
+// Test that the importance sample pdf integrates to 1
+TEST(Material, ImportanceSamplePdfIntegral) {
+  std::mt19937 mt(1337);
+  for(int i = 0; i < 100; ++i) {
+    Material m = test::randomMaterial(mt);
+
+    Vec3 normal = test::randomVec3(0.01, 1.0, mt);
+    Vec3 out_vector = test::randomVec3(0.01, 1.0, mt);
+    normal /= normal.norm();
+    out_vector /= out_vector.norm();
+    double random_sphere_pdf = 1 / (4 * kPi);
+    double sum = 0;
+    int n_samples = 30000;
+    for(int j = 0; j < n_samples; ++j) {
+      Vec3 in_vector = uniformRandomSpherePoint(Vec3(1.0, 0.0, 0.0), mt);
+      sum += m.importanceSamplePdf(in_vector, normal, out_vector);
+    }
+    double integral = sum / n_samples / random_sphere_pdf;
+    ASSERT_NEAR(integral, 1.0, 0.1);
+  }
+}
+// Test that the importanceSample samples follow importanceSamplePdf
+TEST(Material, ImportanceSampleFollowsPdf) {
+  std::mt19937 mt(1337);
+  for(int i = 0; i < 100; ++i) {
+    Material m = test::randomMaterial(mt);
+    Vec3 normal = uniformRandomSpherePoint(Vec3(1.0, 0.0, 0.0), mt);
+    Vec3 out_vector = uniformRandomSpherePoint(Vec3(1.0, 0.0, 0.0), mt);
+    Vec3 area_middle = uniformRandomSpherePoint(Vec3(1.0, 0.0, 0.0), mt);
+    // minimum value for in_vector.dot(area_middle)
+    double area_border = 0.8;
+    double random_sphere_pdf = 1 / (4 * kPi);
+    std::vector<double> pdf_values;
+    int n_samples = 30000;
+    std::vector<double> sample_values;
+    for(int j = 0; j < n_samples; ++j) {
+      Vec3 in_vector = uniformRandomSpherePoint(Vec3(1.0, 0.0, 0.0), mt);
+      if (in_vector.dot(area_middle) > area_border) {
+        double tmp = m.importanceSamplePdf(in_vector, normal, out_vector);
+        pdf_values.push_back(tmp / random_sphere_pdf);
+      }
+      else {
+        pdf_values.push_back(0.0);
+      }
+      in_vector = m.importanceSample(normal, out_vector, mt);
+      if (in_vector.dot(area_middle) > area_border) {
+        sample_values.push_back(1.0);
+      }
+      else {
+        sample_values.push_back(0.0);
+      }
+    }
+    double pdf_integral = test::mean(pdf_values);
+    double pdf_max_error = 4 * test::standard_error_mean(pdf_values);
+    double sample_fraction = test::mean(sample_values);
+    double sample_max_error = 4 * test::standard_error_mean(sample_values);
+    double max_error = std::max(pdf_max_error, sample_max_error);
+    ASSERT_NEAR(pdf_integral, sample_fraction, max_error) << "with material:"
+                                                          << std::endl
+                                                          << m << std::endl;
   }
 }
 }  // namespace
