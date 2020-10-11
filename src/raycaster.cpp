@@ -230,10 +230,6 @@ Vec3 Scene::pointLightColor(const Vec3& point, const Vec3& normal,
   Vec3 in_vector = light_direction / light_direction.norm();
   Vec3 in_color = distance_dimming * point_light.color;
   Vec3 out_color = material.apply(in_vector, normal, out_vector, in_color);
-  if (out_color.norm() > 10) {
-    std::cout << "distance dimmed point: " << in_color << std::endl;
-    std::cout << out_color << std::endl;
-  }
   return material.apply(in_vector, normal, out_vector, in_color);
 }
 Vec3 Scene::indirectLightColor(const Vec3& point, Vec3 normal, Vec3 out_vector,
@@ -263,10 +259,10 @@ Vec3 Scene::sampleIndirectLight(const Vec3& point, const Vec3& normal,
     in_pdf = material.importanceSamplePdf(in_vector, normal, out_vector);
   } else {
     in_vector = uniformRandomSpherePoint(normal, thread_mt_19937);
-    // std::cerr << in_vector << normal << out_vector << std::endl;
     in_pdf = 1 / (4 * kPi);
   }
   assert(in_pdf > EPS);
+
 
   Ray in_ray(point + in_vector * 100 * EPS, in_vector);
   Vec3 in_color = castRay(in_ray, recursion_depth + 1, thread_mt_19937);
