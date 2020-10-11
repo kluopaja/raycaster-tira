@@ -208,3 +208,13 @@ Vec3 Material::opaqueSpecular(const Vec3& in_vector, const Vec3& normal,
                               const Vec3& out_vector) const {
   return phongSpecular(in_vector, normal, out_vector, specular_exp);
 }
+std::ostream& operator<<(std::ostream& out, const Material& m) {
+  out << "Material(\n";
+  out << "diffuse: " << m.diffuse << ",\n";
+  out << "emitted: " << m.emitted << ".\n";
+  out << "specular: " << m.specular << ".\n";
+  out << "specular_exp: " << m.specular_exp << ".\n";
+  out << "transparent: " << m.transparent << ".\n";
+  out << "index_of_refraction: " << m.index_of_refraction << ".)";
+  return out;
+}

@@ -2,6 +2,7 @@
 #define RAYCASTER_MATERIAL_H
 #include <random>
 #include <utility>
+#include <ostream>
 
 #include "geometry.h"
 
@@ -63,4 +64,5 @@ class Material {
   Vec3 opaqueSpecular(const Vec3& in_vector, const Vec3& normal,
                       const Vec3& out_vector) const;
 };
+std::ostream& operator<<(std::ostream& out, const Material& m);
 #endif
