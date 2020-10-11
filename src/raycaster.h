@@ -20,10 +20,11 @@ enum SamplingScheme {
 };
 struct SceneTriangle {
   Triangle triangle;
-  // TODO think if this should be Triangle
-  // change after we see where exactly this will be used
   Vec3 normals[3];
   Material material;
+  // returns a normalized interpolated triangle normal for the triangle point
+  // bary_coords
+  Vec3 normalAt(const Vec2& bary_coords);
 };
 class Model {
  public:

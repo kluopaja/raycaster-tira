@@ -25,6 +25,11 @@
 #include "utils.h"
 
 const int kNThreads = 8;
+Vec3 SceneTriangle::normalAt(const Vec2& bary_coords) {
+  Vec3 n = Triangle(normals[0], normals[1], normals[2]).pointFromBary(bary_coords);
+  n /= n.norm();
+  return n;
+}
 void Model::translate(const Vec3& v) {
   for (size_t i = 0; i < scene_triangles.size(); ++i) {
     scene_triangles[i].triangle.translate(v);
@@ -179,12 +184,8 @@ Vec3 Scene::castRay(const Ray& r, int recursion_depth,
   }
   Vec3 intersection_point =
       sp.scene_triangle->triangle.pointFromBary(sp.bary_coords);
-  // TODO change to something else
-  Vec3 normal =
-      Triangle(sp.scene_triangle->normals[0], sp.scene_triangle->normals[1],
-               sp.scene_triangle->normals[2]) .pointFromBary(sp.bary_coords);
-  normal = normal / normal.norm();
-  // normal is always pointing towards the incoming ray
+  Vec3 normal = sp.scene_triangle->normalAt(sp.bary_coords);
+
   Vec3 light_color(0.0);
   if (normal.dot(-1.0 * r.direction) < 0) {
     normal = -1.0 * normal;
