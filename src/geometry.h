@@ -319,8 +319,17 @@ inline bool pointOnSegment(const Vec3& p, const Vec3& a, const Vec3& b) {
   return std::abs((a - p).norm() + (p - b).norm() - (a - b).norm()) < EPS;
 }
 // rotates a so that a[1] will point towards b
+// assumes a and b are normalized
 inline Vec3 rotateYTo(const Vec3& a, const Vec3& b) {
-  Vec3 normal_1(-b[1], b[0], 0.0);
+  assert(std::abs(a.norm() - 1.0) < EPS);
+  assert(std::abs(b.norm() - 1.0) < EPS);
+  Vec3 normal_1;
+  if(std::abs(b[0]) < EPS) {
+    normal_1 = Vec3(1.0, 0.0, 0.0);
+  }
+  else {
+    normal_1 = Vec3(-b[1], b[0], 0.0);
+  }
   normal_1 = normal_1 / normal_1.norm();
   Vec3 normal_2 = b.cross(normal_1);
   assert(std::abs(normal_2.norm() - 1) < EPS);

@@ -771,6 +771,21 @@ TEST(PointOnSegment, Simple) {
   c = Vec3(0.0, 0.0, 2.0);
   EXPECT_FALSE(pointOnSegment(b, a, c));
 }
+// This also tests the current implementation special case b[0] == 0
+TEST(RotateYTo, Simple) {
+  Vec3 a(0.0, 1.0, 0.0);
+  Vec3 b(0.0, 0.0, 1.0);
+  EXPECT_THAT(rotateYTo(a, b), VecEq(b));
+  b = Vec3(1.0, 0.0, 0.0);
+  EXPECT_THAT(rotateYTo(a, b), VecEq(b));
+  b = Vec3(0.0, 1.0, 0.0);
+  EXPECT_THAT(rotateYTo(a, b), VecEq(b));
+  b = Vec3(0.0, 0.0, 1.0);
+  EXPECT_THAT(rotateYTo(a, b), VecEq(b));
+  b = Vec3(1.0, 2.0, 1.23);
+  b /= b.norm();
+  EXPECT_THAT(rotateYTo(a, b), VecEq(b));
+}
 TEST(UniformRandomHemispherePoint, PointsOnHemisphere) {
   std::mt19937 mt(1337);
   Vec3 direction = Vec3(1.1, 2.2, 3.3);
