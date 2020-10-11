@@ -9,6 +9,7 @@ class Image {
  public:
   Image(int x_resolution, int y_resolution);
   void setColor(int x_pos, int y_pos, const Vec3& color);
+  Vec3 getColor(int x_pos, int y_pos);
   // scales values to [0, 1]
   void scaleMaxTo(double new_max);
   // applies value = log_2((value + c)/c)
@@ -41,6 +42,9 @@ inline void Image::setColor(int x, int y, const Vec3& color) {
   assert(y >= 0 && y < y_resolution);
   assert(color[0] > -EPS && color[1] > -EPS && color[2] > -EPS);
   buffer[(size_t)bufferPos(x, y)] = color;
+}
+inline Vec3 Image::getColor(int x, int y) {
+  return buffer[(size_t)bufferPos(x, y)];
 }
 inline int Image::bufferPos(int x, int y) { return y * x_resolution + x; }
 inline char Image::floatToByte(double val) { return std::round(val * 255); }
