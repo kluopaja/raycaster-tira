@@ -105,7 +105,6 @@ Image Scene::render(int x_resolution, int y_resolution, int n_rays_per_pixel,
   subpixel_sample_distribution = std::uniform_real_distribution(0.0, 1.0);
   this->max_recursion_depth = max_recursion_depth;
   this->n_recursion_rays = n_recursion_rays;
-  this->sampling_scheme = sampling_scheme;
 #if ENABLE_PARALLEL
   // constructing a mt19937 seems to be quite expensive so only construct
   // kNThreads of them
@@ -187,9 +186,6 @@ Vec3 Scene::castRay(const Ray& r, int recursion_depth,
   Vec3 normal = sp.scene_triangle->normalAt(sp.bary_coords);
 
   Vec3 light_color(0.0);
-  if (normal.dot(-1.0 * r.direction) < 0) {
-    normal = -1.0 * normal;
-  }
   light_color = light_color + sp.scene_triangle->material.emitted;
   // point lights
   light_color = light_color + totalPointLightColor(intersection_point, normal,
