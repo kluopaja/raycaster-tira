@@ -72,7 +72,6 @@ TEST(RenderTest, OpaqueDiffuseUniformSampling) {
   scene.addModelFromFile("../models/testing/ball_diffuse.obj", Vec3(0.0), kSmooth);
   scene.setSamplingScheme(kUniformSphere);
   Image result = scene.render(20, 20, 1000, 4, 1);
-  result.savePPM("test.ppm");
   EXPECT_THAT(result.getColor(0, 0), VecNear(Vec3(0.18), 0.03));
   EXPECT_THAT(result.getColor(0, 19), VecNear(Vec3(0.18), 0.03));
   EXPECT_THAT(result.getColor(10, 10), VecNear(Vec3(0.18), 0.03));
@@ -87,7 +86,6 @@ TEST(RenderTest, OpaqueDiffuseImportanceSampling) {
   scene.addModelFromFile("../models/testing/ball_diffuse.obj", Vec3(0.0), kSmooth);
   scene.setSamplingScheme(kImportanceSampling);
   Image result = scene.render(20, 20, 100, 4, 1);
-  result.savePPM("test.ppm");
   // With importance sampling the result should be very close to 0.18
   EXPECT_THAT(result.getColor(0, 0), VecNear(Vec3(0.18), 0.001));
   EXPECT_THAT(result.getColor(0, 19), VecNear(Vec3(0.18), 0.001));
@@ -103,7 +101,6 @@ TEST(RenderTest, TransparentDiffuseUniformSampling) {
   scene.addModelFromFile("../models/testing/ball_transparent_diffuse.obj", Vec3(0.0), kSmooth);
   scene.setSamplingScheme(kImportanceSampling);
   Image result = scene.render(20, 20, 100, 4, 1);
-  result.savePPM("test.ppm");
   // With importance sampling the result should be very close to 0.18
   EXPECT_THAT(result.getColor(0, 0), VecNear(Vec3(0.18), 0.001));
   EXPECT_THAT(result.getColor(0, 19), VecNear(Vec3(0.18), 0.001));
