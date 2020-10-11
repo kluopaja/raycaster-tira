@@ -8,12 +8,12 @@
 
 class Material {
  public:
-  Vec3 diffuse;
-  Vec3 emitted;
-  Vec3 specular;
-  double specular_exp;
-  Vec3 transparent;
-  double index_of_refraction;
+  Vec3 diffuse = Vec3(0.0);
+  Vec3 emitted = Vec3(0.0);
+  Vec3 specular = Vec3(0.0);
+  double specular_exp = 0.0;
+  Vec3 transparent= Vec3(0.0);
+  double index_of_refraction = 1.0;
   // returns a direction vector from an imporatance sample distribution
   // This imporantance sample distribution is determined based only on the
   // material properties and out_vector but not, for example, light sources
