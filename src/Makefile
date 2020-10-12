@@ -20,7 +20,7 @@ main_object := main
 common_object_names := geometry kd_tree model_loader raycaster material image
 test_object_names := geometry_test kd_tree_test utils_test test_utils \
                      model_loader_test raycaster_test lighting_utils_test \
-                     image_test material_test
+                     image_test material_test vector_test
 
 
 bin_objects = $(patsubst %, bin/%.o, $(main_object) $(common_object_names))
