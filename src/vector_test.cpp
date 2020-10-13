@@ -221,13 +221,28 @@ TEST(Vector, Clear) {
 }
 TEST(Vector, PushBackCopy) {
   Vector<ElementType1> v;
-  v.pushBack({1, 2});
-  v.pushBack({2, 3});
-  v.pushBack({3, 4});
+  ElementType1 e1 = {1, 2};
+  ElementType1 e2 = {2, 3};
+  ElementType1 e3 = {3, 4};
+  v.pushBack(e1);
+  v.pushBack(e2);
+  v.pushBack(e3);
   ASSERT_EQ(v.size(), 3);
   EXPECT_THAT(v[0], ElementType1Eq(ElementType1{1, 2}));
   EXPECT_THAT(v[1], ElementType1Eq(ElementType1{2, 3}));
   EXPECT_THAT(v[2], ElementType1Eq(ElementType1{3, 4}));
+}
+// Tests the case v.pushBack(v[0])
+// This can cause bugs if the function parameters are passed by
+// reference and the internal memory is reallocated
+// to ensure there is enough space for the next element
+TEST(Vector, PushBackCopyElementInVector) {
+  Vector<int> v(1);
+  v[0] = 1;
+  v.pushBack(v[0]);
+  ASSERT_EQ(v.size(), 2);
+  EXPECT_EQ(v[0], 1);
+  EXPECT_EQ(v[1], 1);
 }
 TEST(Vector, PushBackMove) {
   Vector<ElementType1> v;
@@ -241,6 +256,17 @@ TEST(Vector, PushBackMove) {
   EXPECT_THAT(v[0], ElementType1Eq(ElementType1{1, 2}));
   EXPECT_THAT(v[1], ElementType1Eq(ElementType1{2, 3}));
   EXPECT_THAT(v[2], ElementType1Eq(ElementType1{3, 4}));
+}
+// Tests the case v.pushBack(v[0])
+// This can cause bugs if the function parameters are passed by
+// reference and the internal memory is reallocated
+// to ensure there is enough space for the next element
+TEST(Vector, PushBackMoveElementInVector) {
+  Vector<ElementType1> v(1);
+  v[0] = ElementType1{1, 2};
+  v.pushBack(std::move(v[0]));
+  ASSERT_EQ(v.size(), 2);
+  EXPECT_THAT(v[1], ElementType1Eq(ElementType1{1, 2}));
 }
 TEST(Vector, PopBack) {
   Vector<int> v(2);

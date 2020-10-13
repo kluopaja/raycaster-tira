@@ -196,18 +196,26 @@ void Vector<T>::clear() {
   destructRange(0, n_elements);
   n_elements = 0;
 }
+// Currently makes a copy of 'value' to 'tmp'
+// This fixes the issue where the 'value' reference gets invalidated
+// during the memory reallocation step
 template <class T>
 inline void Vector<T>::pushBack(const T& value) {
+  T tmp(value);
   promiseOneFree();
   assert(n_reserved > n_elements);
-  new (data + n_elements) T(value);
+  new (data + n_elements) T(std::move(tmp));
   ++n_elements;
 }
+// Currently moves the 'value' to 'tmp'
+// This fixes the issue where the 'value' reference gets invalidated
+// during the memory reallocation step
 template <class T>
 inline void Vector<T>::pushBack(T&& value) {
+  T tmp(std::move(value));
   promiseOneFree();
   assert(n_reserved > n_elements);
-  new (data + n_elements) T(std::move(value));
+  new (data + n_elements) T(std::move(tmp));
   ++n_elements;
 }
 template <class T>
