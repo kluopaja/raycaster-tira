@@ -69,6 +69,38 @@ class Camera {
   // = (left bottom of the image plane) - (left top of the image plane)
   Vec3 image_down_vec;
 };
+// Class representing the environment light, that is, that
+// a ray receives if it doesn't intersect with any triangle
+class EnvironmentLight {
+  public:
+   // All directections emit light with intensity `this->color`
+   void setUniform();
+   // L from direction v will have the
+   // radiance of `this->color` * pow(max(0, cos(alpha)), `exponent`)
+   // where alpha is the angle between `direction` and v
+   void setDirected(const Vec3& direction, double exponent);
+   void setColor(const Vec3& color);
+   // Calculates the radiance of light coming from direciton `d`
+   Vec3 colorAtDirection(Vec3 direction);
+  private:
+   // speeds up the queries a bit if this is handled separately
+   bool is_directed = 0;
+   Vec3 color = Vec3(0.0);
+   Vec3 direction = Vec3(0.0);
+   // should be >= 0
+   double cosine_exp = 0;
+};
+// std::pow(base, 0) always returns 1
+inline Vec3 EnvironmentLight::colorAtDirection(Vec3 direction) {
+  if(!is_directed) {
+    return color;
+  }
+  else {
+    direction /= direction.norm();
+    double cos_a = std::max(0.0, direction.dot(this->direction));
+    return color.multiply(std::pow(cos_a, cosine_exp));
+  }
+}
 // For parallel rendering
 struct ThreadResources {
   std::mt19937 thread_mt;
@@ -80,6 +112,14 @@ class Scene {
   bool addModelFromFile(const std::string& file, const Vec3& position,
                         NormalType normal_type);
   void addPointLight(const Vec3& position, const Vec3& color);
+  // Uniform environment light from every direction
+  void setEnvironmentLightUniform();
+  // Environment light from direction v will have the
+  // radiance of environment_light_color * cos(alpha)^exponent
+  // where environment_light_color can be set with
+  // setEnvironmentLightColor and alpha is the angle between
+  // `direction` and v
+  void setEnvironmentLightDirected(const Vec3& direction, double exponent);
   void setEnvironmentLightColor(const Vec3& color);
   void setSamplingScheme(SamplingScheme s);
   Image render(int x_resolution, int y_resolution, int n_rays_per_pixel,
@@ -103,7 +143,7 @@ class Scene {
                            const Vec3& out_vector, const Material& material,
                            int recursion_depth, std::mt19937& thread_mt_19937);
   Vec3 environmentLightColor(const Ray& r);
-  Vec3 environment_light_color;
+  EnvironmentLight environment_light;
   Model model;
   std::vector<PointLight> point_lights;
   Camera camera;

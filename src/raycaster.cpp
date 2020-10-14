@@ -17,6 +17,7 @@
 #include <memory>
 #include <random>
 #include <sstream>
+#include <string>
 #include <tuple>
 
 #include "kd_tree.h"
@@ -74,8 +75,22 @@ Ray Camera::rayFromImagePlane(double x, double y) {
   Vec3 ray_start = image_position + x * image_right_vec + y * image_down_vec;
   return Ray(ray_start, ray_start - position);
 }
-Scene::Scene(const Camera& c)
-    : environment_light_color(Vec3(0.0)),
+// std::pow(base, 0) always returns 1
+void EnvironmentLight::setUniform() {
+  is_directed = 0;
+}
+void EnvironmentLight::setDirected(const Vec3& direction, double exponent) {
+  assert(direction.norm() > EPS);
+  assert(exponent >= 0);
+  is_directed = 1;
+  this->direction = direction;
+  this->direction /= this->direction.norm();
+  cosine_exp = exponent;
+}
+void EnvironmentLight::setColor(const Vec3& color) {
+  this->color = color;
+}
+Scene::Scene(const Camera& c) :
       camera(c),
       sampling_scheme(kImportanceSampling) {}
 bool Scene::addModelFromFile(const std::string& file, const Vec3& position,
@@ -91,9 +106,20 @@ bool Scene::addModelFromFile(const std::string& file, const Vec3& position,
 void Scene::addPointLight(const Vec3& position, const Vec3& color) {
   point_lights.emplace_back(position, color);
 }
+void Scene::setEnvironmentLightUniform() {
+  environment_light.setUniform();
+}
+void Scene::setEnvironmentLightDirected(const Vec3& direction,
+                                        double exponent) {
+  assert(direction.norm() > EPS && "Environment light direction should not "
+                                   "be zero");
+  assert(exponent >= 0 && "Exponent should be non-negative");
+  environment_light.setDirected(direction, exponent);
+}
 void Scene::setEnvironmentLightColor(const Vec3& color) {
-  assert(color[0] > -EPS && color[1] > -EPS && color[2] > -EPS);
-  environment_light_color = color;
+  assert(color[0] > -EPS && color[1] > -EPS && color[2] > -EPS
+        && "Environment light color should not be negative");
+  environment_light.setColor(color);
 }
 void Scene::setSamplingScheme(SamplingScheme s) { sampling_scheme = s; }
 Image Scene::render(int x_resolution, int y_resolution, int n_rays_per_pixel,
@@ -179,7 +205,7 @@ Vec3 Scene::castRay(const Ray& r, int recursion_depth,
   ScenePoint sp = kd_tree.getClosestRayIntersection(r);
   // no intersection
   if (sp.scene_triangle == nullptr) {
-    return environmentLightColor(r);
+    return environment_light.colorAtDirection(r.direction);
   }
   Vec3 intersection_point =
       sp.scene_triangle->triangle.pointFromBary(sp.bary_coords);
@@ -220,16 +246,15 @@ Vec3 Scene::pointLightColor(const Vec3& point, const Vec3& normal,
   assert(std::abs(normal.norm() - 1.0) < EPS);
   assert(std::abs(out_vector.norm() - 1.0) < EPS);
   Vec3 shadow_ray_direction = point_light.position - point;
-  Vec3 shadow_ray_start = point + shadow_ray_direction * 100 * EPS;
+  Vec3 shadow_ray_start = point + shadow_ray_direction * 100.0 * EPS;
   if (kd_tree.trianglesIntersectSegment(shadow_ray_start,
                                         point_light.position)) {
     return Vec3(0.0);
   }
   Vec3 light_direction = point_light.position - point;
-  double distance_dimming = 1 / light_direction.dot(light_direction);
+  double distance_dimming = 1.0 / light_direction.dot(light_direction);
   Vec3 in_vector = light_direction / light_direction.norm();
   Vec3 in_color = distance_dimming * point_light.color;
-  Vec3 out_color = material.apply(in_vector, normal, out_vector, in_color);
   return material.apply(in_vector, normal, out_vector, in_color);
 }
 Vec3 Scene::indirectLightColor(const Vec3& point, Vec3 normal, Vec3 out_vector,
@@ -263,12 +288,7 @@ Vec3 Scene::sampleIndirectLight(const Vec3& point, const Vec3& normal,
   }
   assert(in_pdf > EPS);
 
-
   Ray in_ray(point + in_vector * 100 * EPS, in_vector);
   Vec3 in_color = castRay(in_ray, recursion_depth + 1, thread_mt_19937);
   return material.apply(in_vector, normal, out_vector, in_color) / in_pdf;
-}
-Vec3 Scene::environmentLightColor(const Ray& r) {
-  // "unused parameter r warning" can be ignored for now
-  return environment_light_color;
 }

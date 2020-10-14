@@ -44,6 +44,45 @@ TEST(TestCamera, CameraNotInOrigo) {
   EXPECT_THAT(r.origin, VecEq(Vec3(2.0, 0.0, 2.0)));
   EXPECT_THAT(r.direction, VecEq(Vec3(1.0, -1.0, 1.0)));
 }
+TEST(EnvironmentLight, Constructor) {
+  EnvironmentLight e;
+  EXPECT_THAT(e.colorAtDirection(Vec3(1.0)), VecEq(Vec3(0.0)));
+}
+TEST(EnvironmentLight, UniformLight) {
+  EnvironmentLight e;
+  e.setColor(Vec3(1.0, 2.0, 3.0));
+  EXPECT_THAT(e.colorAtDirection(Vec3(1.0)), VecEq(Vec3(1.0, 2.0, 3.0)));
+  EXPECT_THAT(e.colorAtDirection(Vec3(0.0, 1.0, 0.0)), VecEq(Vec3(1.0, 2.0, 3.0)));
+  EXPECT_THAT(e.colorAtDirection(Vec3(-1.0)), VecEq(Vec3(1.0, 2.0, 3.0)));
+}
+TEST(EnvironmentLight, DirectedLightOneExponent) {
+  EnvironmentLight e;
+  e.setColor(Vec3(1.0, 2.0, 3.));
+  e.setDirected(Vec3(1.0, 0.0, 0.0), 1.0);
+  // opposite direction
+  EXPECT_THAT(e.colorAtDirection(Vec3(-1.0, 0.0, 0.0)), VecEq(Vec3(0.0, 0.0, 0.0)));
+  // perpendicular direction should also be 0
+  EXPECT_THAT(e.colorAtDirection(Vec3(0.0, 1.0, 0.0)), VecEq(Vec3(0.0, 0.0, 0.0)));
+  // calculate the cos attenuation
+  Vec3 correct = std::cos(kPi/4) * Vec3(1.0, 2.0, 3.);
+  EXPECT_THAT(e.colorAtDirection(Vec3(1.0, 1.0, 0.0)), VecEq(correct));
+  // direct should also be 1
+  EXPECT_THAT(e.colorAtDirection(Vec3(1.0, 0.0, 0.0)), VecEq(Vec3(1.0, 2.0, 3.0)));
+}
+TEST(EnvironmentLight, DirectedLightLargeExponent) {
+  EnvironmentLight e;
+  e.setColor(Vec3(1.0, 2.0, 3.));
+  e.setDirected(Vec3(1.0, 0.0, 0.0), 123.0);
+  // opposite direction
+  EXPECT_THAT(e.colorAtDirection(Vec3(-1.0, 0.0, 0.0)), VecEq(Vec3(0.0, 0.0, 0.0)));
+  // perpendicular direction should also be 0
+  EXPECT_THAT(e.colorAtDirection(Vec3(0.0, 1.0, 0.0)), VecEq(Vec3(0.0, 0.0, 0.0)));
+  // calculate the cos attenuation
+  Vec3 correct = std::pow(std::cos(kPi/4), 123.0) * Vec3(1.0, 2.0, 3.);
+  EXPECT_THAT(e.colorAtDirection(Vec3(1.0, 1.0, 0.0)), VecEq(correct));
+  // direct should also be 1
+  EXPECT_THAT(e.colorAtDirection(Vec3(1.0, 0.0, 0.0)), VecEq(Vec3(1.0, 2.0, 3.0)));
+}
 TEST(RenderTest, EnvironmentLightColor) {
   Camera camera(Vec3(0, 0.0, .0), Vec3(0.0, 0.0, -1.0),
                 Vec3(0.0, 1.0, 0.0), kPi / 5.0, kPi / 5.0);
