@@ -14,9 +14,11 @@ inline Vec3 phongSpecular(const Vec3& in_vector, const Vec3& normal,
   if(!onSameSideOfPlane(in_vector, out_vector, normal)) {
     return Vec3(0.0);
   }
+  double normalization = (exponent + 1.0) / (2 * kPi);
   double cos_alpha = std::max(out_vector.dot(mirrorOver(in_vector, normal)),
                               0.0);
-  return (exponent + 2.0) / (2 * kPi) * std::pow(cos_alpha, exponent);
+  double cos_theta = std::abs(normal.dot(out_vector));
+  return normalization * std::pow(cos_alpha, exponent) / cos_theta;
 }
 // eta_1 is the refractive index of material on the side of normal
 // eta_2 is the refractive index of material on the other side
