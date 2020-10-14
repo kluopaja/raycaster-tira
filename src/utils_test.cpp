@@ -146,6 +146,17 @@ TEST(QuickSort, Simple) {
   c = {0, 1, 2, 3};
   EXPECT_THAT(v, ContainerEq(c));
 }
+TEST(MmQuickSort, Simple) {
+  std::vector<int> v = {4, 3, 2, 1};
+  mmQuickSort(v.begin(), v.end());
+  std::vector<int> c = {1, 2, 3, 4};
+  EXPECT_THAT(v, ContainerEq(c));
+
+  v = {0, 2, 1, 3};
+  mmQuickSort(v.begin(), v.end());
+  c = {0, 1, 2, 3};
+  EXPECT_THAT(v, ContainerEq(c));
+}
 TEST(QuickSort, RandomSmall) {
   std::mt19937 mt(1337);
   int n_tests = 100'000;
@@ -160,6 +171,20 @@ TEST(QuickSort, RandomSmall) {
   }
   std::cerr << n_tests << " random test cases run" << std::endl;
 }
+TEST(MmQuickSort, RandomSmall) {
+  std::mt19937 mt(1337);
+  int n_tests = 100'000;
+  for (int i = 0; i < n_tests; ++i) {
+    std::uniform_int_distribution dist(1, 30);
+    int n_values = dist(mt);
+    std::vector<int> v = test::randomIntVector(1, 30, n_values, mt);
+    std::vector<int> v_copy = v;
+    mmQuickSort(v.begin(), v.end());
+    std::sort(v_copy.begin(), v_copy.end());
+    ASSERT_THAT(v, ContainerEq(v_copy));
+  }
+  std::cerr << n_tests << " random test cases run" << std::endl;
+}
 TEST(QuickSort, RandomLarge) {
   std::mt19937 mt(1337);
   int n_tests = 50;
@@ -169,6 +194,20 @@ TEST(QuickSort, RandomLarge) {
     std::vector<int> v = test::randomIntVector(1, 1'000'000, n_values, mt);
     std::vector<int> v_copy = v;
     quickSort(v.begin(), v.end());
+    std::sort(v_copy.begin(), v_copy.end());
+    ASSERT_THAT(v, ContainerEq(v_copy));
+  }
+  std::cerr << n_tests << " random test cases run" << std::endl;
+}
+TEST(MmQuickSort, RandomLarge) {
+  std::mt19937 mt(1337);
+  int n_tests = 50;
+  for (int i = 0; i < n_tests; ++i) {
+    std::uniform_int_distribution dist(1, 1'000'000);
+    int n_values = dist(mt);
+    std::vector<int> v = test::randomIntVector(1, 1'000'000, n_values, mt);
+    std::vector<int> v_copy = v;
+    mmQuickSort(v.begin(), v.end());
     std::sort(v_copy.begin(), v_copy.end());
     ASSERT_THAT(v, ContainerEq(v_copy));
   }

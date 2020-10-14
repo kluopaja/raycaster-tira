@@ -193,6 +193,9 @@ RandomAccessIterator selectK(RandomAccessIterator begin,
   }
   return selectK(begin + n_less + n_same, end, k - n_less - n_same);
 }
+// Sorts elements in range [begin, end) using quicksort with
+// the median of three rule.
+// Worst case O(n^2) time complexity
 template <typename RandomAccessIterator>
 void quickSort(RandomAccessIterator begin, RandomAccessIterator end) {
   if (end - begin <= 1) {
@@ -203,9 +206,7 @@ void quickSort(RandomAccessIterator begin, RandomAccessIterator end) {
     return;
   }
 
-  // too slow
-  // RandomAccessIterator pivot = selectK(begin, end, (end - begin - 1) / 2);
-  // instead use the median of three rule
+  // use the median of three pivot rule
   RandomAccessIterator mid = begin + (end - begin - 1) / 2;
   RandomAccessIterator pivot;
   if (*mid < *begin) std::swap(*begin, *mid);
@@ -220,6 +221,26 @@ void quickSort(RandomAccessIterator begin, RandomAccessIterator end) {
   partition(begin, end, n_less, n_same, pivot);
   quickSort(begin, begin + n_less);
   quickSort(begin + n_less + n_same, end);
+}
+// Sorts elements in the range [begin, end) with quicksort
+// using the median of medians pivot rule.
+// Worst case O(n log n) time complexity
+template <typename RandomAccessIterator>
+void mmQuickSort(RandomAccessIterator begin, RandomAccessIterator end) {
+  if (end - begin <= 1) {
+    return;
+  }
+  if (end - begin < 100) {
+    insertionSort(begin, end);
+    return;
+  }
+
+  RandomAccessIterator pivot = selectK(begin, end, (end - begin - 1) / 2);
+  std::ptrdiff_t n_less, n_same;
+  std::tie(n_less, n_same) = countRelativeValues(begin, end, pivot);
+  partition(begin, end, n_less, n_same, pivot);
+  mmQuickSort(begin, begin + n_less);
+  mmQuickSort(begin + n_less + n_same, end);
 }
 
 }  // namespace
