@@ -1,7 +1,5 @@
 #include "test_utils.h"
 
-#include "raycaster.h"
-
 namespace test {
 Vec3 randomVec3(double lo, double hi, std::mt19937& random_engine) {
   assert(lo < hi);

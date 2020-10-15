@@ -1,9 +1,9 @@
-#include "lighting_utils.h"
+#include "../../lighting_utils.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "test_utils.h"
+#include "../test_utils.h"
 
 using ::testing::PrintToString;
 

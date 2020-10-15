@@ -1,4 +1,4 @@
-#include "kd_tree.h"
+#include "../../kd_tree.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -6,9 +6,9 @@
 #include <chrono>
 #include <tuple>
 
-#include "geometry.h"
-#include "raycaster.h"
-#include "test_utils.h"
+#include "../../geometry.h"
+#include "../../raycaster.h"
+#include "../test_utils.h"
 
 using ::testing::ContainerEq;
 using ::testing::PrintToString;

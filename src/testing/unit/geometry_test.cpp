@@ -1,4 +1,4 @@
-#include "geometry.h"
+#include "../../geometry.h"
 
 #include <gmock/gmock-more-matchers.h>
 #include <gmock/gmock.h>
@@ -6,8 +6,8 @@
 
 #include <random>
 
-#include "kd_tree.h"
-#include "test_utils.h"
+#include "../../kd_tree.h"
+#include "../test_utils.h"
 
 using ::testing::PrintToString;
 

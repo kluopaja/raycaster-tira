@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "../../utils.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -6,7 +6,7 @@
 #include <chrono>
 #include <random>
 
-#include "test_utils.h"
+#include "../test_utils.h"
 
 using ::testing::ContainerEq;
 using ::testing::PrintToString;

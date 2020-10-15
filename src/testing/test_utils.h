@@ -2,8 +2,8 @@
 #define RAYCASTER_TEST_UTILS_H
 #include <random>
 
-#include "geometry.h"
-#include "raycaster.h"
+#include "../geometry.h"
+#include "../raycaster.h"
 
 const double TEST_EPS = 1e-7;
 

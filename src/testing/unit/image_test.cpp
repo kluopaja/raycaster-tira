@@ -1,4 +1,4 @@
-#include "image.h"
+#include "../../image.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>

@@ -1,12 +1,12 @@
-#include "model_loader.h"
+#include "../../model_loader.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 #include <iostream>
 
-#include "geometry.h"
-#include "raycaster.h"
+#include "../../geometry.h"
+#include "../../raycaster.h"
 
 using ::testing::ElementsAreArray;
 using ::testing::PrintToString;

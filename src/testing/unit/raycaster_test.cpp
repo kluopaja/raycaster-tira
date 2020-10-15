@@ -1,4 +1,4 @@
-#include "raycaster.h"
+#include "../../raycaster.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>

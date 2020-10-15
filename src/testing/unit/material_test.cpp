@@ -1,12 +1,12 @@
-#include "material.h"
+#include "../../material.h"
 
 #include <cmath>
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "geometry.h"
-#include "test_utils.h"
+#include "../../geometry.h"
+#include "../test_utils.h"
 using ::testing::PrintToString;
 
 namespace {
