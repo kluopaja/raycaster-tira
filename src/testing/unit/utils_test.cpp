@@ -20,6 +20,12 @@ TEST(InsertionSort, Simple) {
   std::vector<int> c = {1, 2, 3, 4, 5};
   EXPECT_THAT(v, ContainerEq(c));
 }
+TEST(InsertionSort, EmptyVector) {
+  std::vector<int> v;
+  insertionSort(v.begin(), v.end());
+  std::vector<int> c;
+  EXPECT_THAT(v, ContainerEq(c));
+}
 TEST(InsertionSort, Random) {
   std::mt19937 mt(1337);
   int n_tests = 100'000;
@@ -50,18 +56,9 @@ TEST(MedianMax5, Random) {
   }
   std::cerr << n_tests << " random test cases run" << std::endl;
 }
-TEST(MedianOfMedians, Random) {}
-TEST(CountRelativeValues, Simple) {
-  std::vector<int> v = {0, 1, 2, 3, 3, 4, 5};
-  int n_less, n_same;
-  std::tie(n_less, n_same) =
-      countRelativeValues(v.begin(), v.end(), v.begin() + 3);
-  EXPECT_THAT(n_less, 3);
-  EXPECT_THAT(n_same, 2);
-}
 TEST(Partition, Simple) {
   std::vector<int> v = {3, 2, 2, 1, 1, 0};
-  partition(v.begin(), v.end(), 3, 2, v.begin() + 1);
+  partition(v.begin(), v.end(), v.begin() + 1);
   std::vector<int> p1(v.begin(), v.begin() + 3);
   std::vector<int> p2(v.begin() + 3, v.begin() + 5);
   std::vector<int> p3(v.begin() + 5, v.end());
@@ -71,6 +68,14 @@ TEST(Partition, Simple) {
   EXPECT_THAT(p1, UnorderedElementsAreArray(c1.begin(), c1.end()));
   EXPECT_THAT(p2, UnorderedElementsAreArray(c2.begin(), c2.end()));
   EXPECT_THAT(p3, UnorderedElementsAreArray(c3.begin(), c3.end()));
+}
+TEST(Partition, CountRelativeValues) {
+  std::vector<int> v = {0, 1, 2, 3, 3, 4, 5};
+  int n_less, n_same;
+  std::tie(n_less, n_same) =
+      partition(v.begin(), v.end(), v.begin() + 3);
+  EXPECT_THAT(n_less, 3);
+  EXPECT_THAT(n_same, 2);
 }
 TEST(Partition, Random) {
   std::mt19937 mt(1337);
@@ -82,17 +87,25 @@ TEST(Partition, Random) {
     std::uniform_int_distribution pivot_dist(0, n - 1);
     std::vector<int>::iterator pivot = v.begin() + pivot_dist(mt);
 
-    int n_less, n_same;
-    std::tie(n_less, n_same) = countRelativeValues(v.begin(), v.end(), pivot);
     // calculate the correct result
     std::vector<int> v_copy = v;
+    int n_less_correct = 0;
+    int n_same_correct = 0;
+    for(auto x: v) {
+      if(x == *pivot) ++n_same_correct;
+      if(x < *pivot) ++ n_less_correct;
+    }
     std::sort(v_copy.begin(), v_copy.end());
-    std::vector<int> c1(v_copy.begin(), v_copy.begin() + n_less);
-    std::vector<int> c2(v_copy.begin() + n_less,
-                        v_copy.begin() + n_less + n_same);
-    std::vector<int> c3(v_copy.begin() + n_less + n_same, v_copy.end());
+    std::vector<int> c1(v_copy.begin(), v_copy.begin() + n_less_correct);
+    std::vector<int> c2(v_copy.begin() + n_less_correct,
+                        v_copy.begin() + n_less_correct + n_same_correct);
+    std::vector<int> c3(v_copy.begin() + n_less_correct + n_same_correct,
+                        v_copy.end());
 
-    partition(v.begin(), v.end(), n_less, n_same, pivot);
+    int n_less, n_same;
+    std::tie(n_less, n_same) = partition(v.begin(), v.end(), pivot);
+    ASSERT_EQ(n_less, n_less_correct);
+    ASSERT_EQ(n_same, n_same_correct);
     std::vector<int> p1(v.begin(), v.begin() + n_less);
     std::vector<int> p2(v.begin() + n_less, v.begin() + n_less + n_same);
     std::vector<int> p3(v.begin() + n_less + n_same, v.end());
