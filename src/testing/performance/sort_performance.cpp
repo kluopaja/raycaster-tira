@@ -9,7 +9,7 @@
 #include "../../utils.h"
 #include "../../vector.h"
 #include "performance_utils.h"
-#include "../../test_utils.h"
+#include "../test_utils.h"
 
 namespace {
 struct SortTestResult {
@@ -86,7 +86,7 @@ SortTestResult testRandomRepeat(int n_elements, int n_times) {
 // Prints performance test results to std::cout
 void generateReport() {
   int n = 1;
-  std::cout << std::string(20, '*');
+  std::cout << std::string(20, '*') << std::endl;
   std::cout << "Generating performance report for sorting functions" << std::endl;
   std::cout << "Sorting random vectors:" << std::endl;
   for(int i = 0; i <= 6; ++i) {

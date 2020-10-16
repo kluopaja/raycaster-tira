@@ -57,7 +57,7 @@ TEST(MedianMax5, Random) {
   std::cerr << n_tests << " random test cases run" << std::endl;
 }
 TEST(Partition, Simple) {
-  std::vector<int> v = {3, 2, 2, 1, 1, 0};
+  Vector<int> v = {3, 2, 2, 1, 1, 0};
   partition(v.begin(), v.end(), v.begin() + 1);
   Vector<int> p1(v.begin(), v.begin() + 3);
   Vector<int> p2(v.begin() + 3, v.begin() + 5);

@@ -109,7 +109,7 @@ test :
 coverage :
 	@mkdir -p testing/cov
 	-./testing/cov/main
-	gcovr -r . --html --html-details -o cov/coverage.html
+	gcovr -r . --html --html-details -o testing/cov/coverage.html
 
 .PHONY: performance
 performance :
