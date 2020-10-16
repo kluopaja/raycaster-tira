@@ -1,0 +1,11 @@
+mtllib XY_mirror.mtl
+usemtl Mirror
+v -1000 -1000 0
+v -1000 1000 0
+v 1000 1000 0
+v 1000 -1000 0
+vn 0 0 1
+vn 0 0 1
+vn 0 0 1
+vn 0 0 1
+f 1//1 2//2 3//3 4//4
