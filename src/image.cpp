@@ -77,6 +77,21 @@ bool Image::savePPM(const std::string& file) {
   fout.close();
   return true;
 }
+double Image::distanceTo(const Image& other) {
+  assert(x_resolution == other.x_resolution);
+  assert(y_resolution == other.y_resolution);
+  double sum_of_squares = 0;
+  for (int y = 0; y < y_resolution; ++y) {
+    for (int x = 0; x < x_resolution; ++x) {
+      // r g b
+      for (int i = 0; i < 3; ++i) {
+        std::size_t pos = (size_t)bufferPos(x, y);
+        sum_of_squares += std::pow(buffer[pos][i] - other.buffer[pos][i], 2.0);
+      }
+    }
+  }
+  return std::sqrt(sum_of_squares);
+}
 // Converts linear intensities to sRGB values
 // ("gamma" encoding)
 // Human eye perceives light in a logarithmic scale.

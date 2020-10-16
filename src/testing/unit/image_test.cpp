@@ -75,4 +75,15 @@ TEST(TestImage, ScaleMaxTo) {
 
   EXPECT_THAT(file, ElementsAreArray(correct_file));
 }
+TEST(TestImage, DistanceTo) {
+  Image image(2, 3);
+  Image image2(2, 3);
+  image.setColor(1, 2, Vec3(10, 5, 0.0));
+  image2.setColor(1, 2, Vec3(10, 5, 0.0));
+  EXPECT_NEAR(image.distanceTo(image2), 0.0, EPS);
+  image.setColor(1, 0, Vec3(1.0, 0.0, 0.0));
+  EXPECT_NEAR(image.distanceTo(image2), 1.0, EPS);
+  image2.setColor(1, 1, Vec3(0.0, 0.0, 2.0));
+  EXPECT_NEAR(image.distanceTo(image2), std::sqrt(1.0 + 4.0), EPS);
+}
 }  // namespace

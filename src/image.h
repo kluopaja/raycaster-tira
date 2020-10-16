@@ -20,7 +20,8 @@ class Image {
   void truncateToFraction(double c);
   // saves image as PPM with sRGB encoded values
   bool savePPM(const std::string& file);
-
+  // Calculates the Euclidean distance between two images
+  double distanceTo(const Image& other);
  private:
   double linearToSrgb(double val);
   double maxColorValue();
