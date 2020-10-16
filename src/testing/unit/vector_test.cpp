@@ -80,6 +80,14 @@ TEST(Vector, SizeConstructorInitialization) {
     ASSERT_THAT(v2[i].b, 2);
   }
 }
+TEST(Vector, InitializerListConstructor) {
+  Vector<int> v = {0, 1, 2};
+  ASSERT_EQ(v.size(), 3);
+  ASSERT_EQ(v.capacity(), 3);
+  EXPECT_EQ(v[0], 0);
+  EXPECT_EQ(v[1], 1);
+  EXPECT_EQ(v[2], 2);
+}
 TEST(Vector, CopyConstructor) {
   Vector<int> v1(3);
   v1[0] = 0;
@@ -170,6 +178,10 @@ TEST(Vector, Begin) {
   (*v.begin()) = 5;
   EXPECT_EQ(v[0], 5);
 }
+TEST(Vector, ConstBegin) {
+  const Vector<int> v = {1, 2, 3};
+  EXPECT_EQ(v[0], *v.begin());
+}
 TEST(Vector, End) {
   Vector<int> v(3);
   v[2] = 10;
@@ -177,6 +189,10 @@ TEST(Vector, End) {
   int* end = v.end();
   EXPECT_EQ(std::distance(begin, end), 3);
   EXPECT_EQ(*(--end), 10);
+}
+TEST(Vector, ConstEnd) {
+  const Vector<int> v = {1, 2, 3};
+  EXPECT_EQ(v[2], *(v.end() - 1));
 }
 TEST(Vector, Capacity) {
   Vector<int> v;

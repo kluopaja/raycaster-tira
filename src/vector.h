@@ -4,10 +4,15 @@
 #include <cmath>
 #include <new>
 #include <ostream>
+#include <initializer_list>
+#include <iterator>
 // A class implementing a dynamic array
 template <class T>
 class Vector {
  public:
+  using value_type = T;
+  using const_iterator = const T*;
+  using iterator = T*;
   // Construct a vector with 0 elements
   // Reserves memory for exactly 0 elements
   Vector() = default;
@@ -18,10 +23,17 @@ class Vector {
   //
   // Time complexity O(n_elements)
   Vector(std::size_t n_elements);
+  // Constructs a vector with elements from the initializer list `v`
+  //
+  // Reserves memory for exactly `v.size()` elements.
+  //
+  // Time complexity O(`v.size()`)
+  Vector(std::initializer_list<T> v);
   // Will not reserve any more memory than needed to store the elements from 'a'
   //
   // Time complexity O(n_elements)
   Vector(const Vector& a);
+  Vector(const_iterator begin, const_iterator end);
   // Leaves 'a' to the state of a valid empty vector
   //
   // Time complexity O(1)
@@ -35,11 +47,13 @@ class Vector {
   // Returns a pointer to the first element
   //
   // Time complexity O(1)
-  T* begin();
+  iterator begin();
+  const_iterator begin() const;
   // Returns a pointer to the "element" following the last element
   //
   // Time complexity O(1)
-  T* end();
+  iterator end();
+  const_iterator end() const;
   // Time complexity O(1)
   std::size_t size() const;
   // Reserves memory for total of 'new_n_reserved' elements.
@@ -59,7 +73,8 @@ class Vector {
   // Time complexity O(this->size())
   void shrinkToFit();
   // Removes all elements from the Vector and calls their destructors.
-  // Leaves the reserved space intact.
+  // Leaves the amount of reserved space intact. Does not reallocate
+  // memory.
   //
   // Time complexity O(this->size())
   void clear();
@@ -118,12 +133,33 @@ Vector<T>::Vector(std::size_t n_elements)
   data = allocateMemory(n_reserved);
   valueInitializeRange(0, n_elements);
 }
+template<class T>
+Vector<T>::Vector(std::initializer_list<T> v) {
+  n_elements = v.size();
+  n_reserved = v.size();
+  data = allocateMemory(n_reserved);
+  T* add_pos = data;
+  for(auto x: v) {
+    new (add_pos++) T(x);
+  }
+}
 template <class T>
 Vector<T>::Vector(const Vector& a)
     : n_elements(a.n_elements), n_reserved(a.n_elements) {
   data = allocateMemory(n_reserved);
   for (std::size_t i = 0; i < n_elements; ++i) {
     new (data + i) T(a.data[i]);
+  }
+}
+template <class T>
+Vector<T>::Vector(const_iterator begin, const_iterator end) {
+  assert(std::distance(begin, end) >= 0);
+  n_elements = std::size_t(std::distance(begin, end));
+  n_reserved = n_elements;
+  data = allocateMemory(n_reserved);
+  T* add_pos = data;
+  for(auto it = begin; it != end; ++it) {
+    new (add_pos++) T(*it);
   }
 }
 template <class T>
@@ -161,11 +197,19 @@ inline T& Vector<T>::operator[](std::size_t index) const {
   return data[index];
 }
 template <class T>
-inline T* Vector<T>::begin() {
+inline typename Vector<T>::iterator Vector<T>::begin() {
   return data;
 }
 template <class T>
-inline T* Vector<T>::end() {
+inline typename Vector<T>::const_iterator Vector<T>::begin() const {
+  return data;
+}
+template <class T>
+inline typename Vector<T>::iterator Vector<T>::end() {
+  return data + n_elements;
+}
+template <class T>
+inline typename Vector<T>::const_iterator Vector<T>::end() const {
   return data + n_elements;
 }
 template <class T>
@@ -291,5 +335,17 @@ std::ostream& operator<<(std::ostream& out, const Vector<T>& v) {
   }
   out << ")";
   return out;
+}
+template <class T>
+bool operator==(const Vector<T>& a, const Vector<T>& b) {
+  if (a.size() != b.size()) {
+    return 0;
+  }
+  for(std::size_t i = 0; i < a.size(); ++i) {
+    if(a[i] != b[i]) {
+      return 0;
+    }
+  }
+  return 1;
 }
 #endif
