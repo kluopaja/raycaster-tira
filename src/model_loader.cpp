@@ -83,7 +83,7 @@ void ModelLoader::loadMaterial(const aiMaterial* ai_material) {
   new_material.transparent =
       (1.0f - opacity) * Vec3(transparent.r, transparent.g, transparent.b);
   new_material.index_of_refraction = index_of_refraction;
-  model.materials.push_back(new_material);
+  model.materials.pushBack(new_material);
 }
 void ModelLoader::loadNode(const aiNode* node, const aiScene* ai_scene) {
   for (size_t i = 0; i < node->mNumMeshes; ++i) {
@@ -119,7 +119,7 @@ void ModelLoader::loadMesh(const aiMesh* mesh) {
       scene_triangle.normals[j] = normals[j];
     }
     scene_triangle.material = model.materials[mesh->mMaterialIndex];
-    model.scene_triangles.push_back(scene_triangle);
+    model.scene_triangles.pushBack(scene_triangle);
   }
 }
 

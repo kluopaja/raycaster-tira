@@ -1,6 +1,7 @@
 #ifndef RAYCASTER_KD_TREE_H
 #define RAYCASTER_KD_TREE_H
 #include <memory>
+#include <vector>
 
 #include "geometry.h"
 // forward declare SceneTriangle to solve circular include issue
@@ -13,8 +14,8 @@ class Node {
  public:
   Node(std::unique_ptr<Node> left, std::unique_ptr<Node> right,
        const Voxel& voxel, const AxisPlane& plane);
-  Node(const std::vector<Triangle>& triangles,
-       const std::vector<SceneTriangle*> scene_triangles, const Voxel& voxel);
+  Node(const Vector<Triangle>& triangles,
+       const Vector<SceneTriangle*> scene_triangles, const Voxel& voxel);
   ScenePoint getClosestRayIntersection(const Ray& r) const;
 
  private:
@@ -24,8 +25,8 @@ class Node {
   // minimum x coordinate of right.voxel
   std::unique_ptr<Node> left;
   std::unique_ptr<Node> right;
-  std::vector<Triangle> triangles;
-  std::vector<SceneTriangle*> scene_triangles;
+  Vector<Triangle> triangles;
+  Vector<SceneTriangle*> scene_triangles;
   Voxel voxel;
   AxisPlane plane;
   bool isLeaf() const;
@@ -47,10 +48,10 @@ class Tree {
   std::unique_ptr<Node> root;
 };
 
-Tree buildKdTree(const std::vector<SceneTriangle*>& scene_triangles, double k_t,
+Tree buildKdTree(const Vector<SceneTriangle*>& scene_triangles, double k_t,
                  double k_i);
-std::vector<Triangle> extractTriangles(
-    const std::vector<SceneTriangle*>& scene_triangles);
+Vector<Triangle> extractTriangles(
+    const Vector<SceneTriangle*>& scene_triangles);
 
 // Calculates the surface area heuristic cost
 // for splits [(n_left + n_plane), (n_right)]

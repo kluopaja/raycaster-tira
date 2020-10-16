@@ -37,14 +37,17 @@ void Model::translate(const Vec3& v) {
   }
 }
 void Model::concatenate(const Model& a) {
-  scene_triangles.insert(scene_triangles.end(), a.scene_triangles.begin(),
-                         a.scene_triangles.end());
-  materials.insert(materials.end(), a.materials.begin(), a.materials.end());
+  for (auto x: a.scene_triangles) {
+    scene_triangles.pushBack(x);
+  }
+  for (auto x: a.materials) {
+    materials.pushBack(x);
+  }
 }
 Tree Model::buildKdTree(double k_t, double k_i) {
-  std::vector<SceneTriangle*> scene_triangle_pointers;
+  Vector<SceneTriangle*> scene_triangle_pointers;
   for (size_t i = 0; i < scene_triangles.size(); ++i) {
-    scene_triangle_pointers.push_back(&scene_triangles[i]);
+    scene_triangle_pointers.pushBack(&scene_triangles[i]);
   }
   return ::buildKdTree(scene_triangle_pointers, k_t, k_i);
 }
@@ -104,7 +107,7 @@ bool Scene::addModelFromFile(const std::string& file, const Vec3& position,
   return true;
 }
 void Scene::addPointLight(const Vec3& position, const Vec3& color) {
-  point_lights.emplace_back(position, color);
+  point_lights.pushBack(PointLight(position, color));
 }
 void Scene::setEnvironmentLightUniform() {
   environment_light.setUniform();
@@ -134,15 +137,15 @@ Image Scene::render(int x_resolution, int y_resolution, int n_rays_per_pixel,
 #if ENABLE_PARALLEL
   // constructing a mt19937 seems to be quite expensive so only construct
   // kNThreads of them
-  std::vector<ThreadResources> thread_resources;
+  Vector<ThreadResources> thread_resources;
   for (int i = 0; i < kNThreads; ++i) {
     unsigned int seed = mt_19937();
-    thread_resources.push_back({std::mt19937(seed), {}});
+    thread_resources.pushBack({std::mt19937(seed), {}});
   }
   for (int x_pixel = 0; x_pixel < x_resolution; ++x_pixel) {
     for (int y_pixel = 0; y_pixel < y_resolution; ++y_pixel) {
       int target_thread = (x_pixel + y_pixel * y_resolution) % kNThreads;
-      thread_resources[(size_t)target_thread].pixels.push_back(
+      thread_resources[(size_t)target_thread].pixels.pushBack(
           {x_pixel, y_pixel});
     }
   }

@@ -104,24 +104,24 @@ TEST(Material, ImportanceSampleFollowsPdf) {
     // minimum value for in_vector.dot(area_middle)
     double area_border = 0.8;
     double random_sphere_pdf = 1 / (4 * kPi);
-    std::vector<double> pdf_values;
+    Vector<double> pdf_values;
     int n_samples = 30000;
-    std::vector<double> sample_values;
+    Vector<double> sample_values;
     for(int j = 0; j < n_samples; ++j) {
       Vec3 in_vector = uniformRandomSpherePoint(Vec3(1.0, 0.0, 0.0), mt);
       if (in_vector.dot(area_middle) > area_border) {
         double tmp = m.importanceSamplePdf(in_vector, normal, out_vector);
-        pdf_values.push_back(tmp / random_sphere_pdf);
+        pdf_values.pushBack(tmp / random_sphere_pdf);
       }
       else {
-        pdf_values.push_back(0.0);
+        pdf_values.pushBack(0.0);
       }
       in_vector = m.importanceSample(normal, out_vector, mt);
       if (in_vector.dot(area_middle) > area_border) {
-        sample_values.push_back(1.0);
+        sample_values.pushBack(1.0);
       }
       else {
-        sample_values.push_back(0.0);
+        sample_values.pushBack(0.0);
       }
     }
     double pdf_integral = test::mean(pdf_values);

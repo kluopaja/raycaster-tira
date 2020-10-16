@@ -228,7 +228,7 @@ Voxel PlanePolygon::getBoundingBox() const {
   return bounds;
 }
 void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
-  std::vector<Vec3> new_points;
+  Vector<Vec3> new_points;
   for (size_t i = 0; i < points.size(); ++i) {
     bool retain = 0;
     if (side == 0) {
@@ -241,7 +241,7 @@ void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
       }
     }
     if (retain) {
-      new_points.push_back(points[i]);
+      new_points.pushBack(points[i]);
     }
     size_t nxt_i = i + 1;
     if (nxt_i == points.size()) nxt_i = 0;
@@ -256,7 +256,7 @@ void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
     // check if the plane intersect the segment
     if (a[plane.axis] + EPS < plane.pos && plane.pos < b[plane.axis] - EPS) {
       double t = (plane.pos - a[plane.axis]) / side_length;
-      new_points.push_back((1.0 - t) * a + t * b);
+      new_points.pushBack((1.0 - t) * a + t * b);
     }
   }
   points = new_points;
@@ -312,7 +312,7 @@ std::ostream& operator<<(std::ostream& out, const AxisPlane& a) {
   return out;
 }
 RayTriangleIntersection firstRayTriangleIntersection(
-    const std::vector<Triangle>& triangles, const Ray& r) {
+    const Vector<Triangle>& triangles, const Ray& r) {
   RayTriangleIntersection closest_point = {triangles.size(), {}};
   double closest_distance = INF;
   for (size_t i = 0; i < triangles.size(); ++i) {
@@ -324,7 +324,7 @@ RayTriangleIntersection firstRayTriangleIntersection(
   }
   return closest_point;
 }
-Voxel boundingBox(const std::vector<Triangle>& triangles) {
+Voxel boundingBox(const Vector<Triangle>& triangles) {
   if (triangles.size() == 0) {
     return {Vec3(0), Vec3(0)};
   }

@@ -20,11 +20,11 @@ Vec2 randomBaryCoords(std::mt19937& random_engine) {
   return v;
 }
 // generates triangles into area [lo-max_triangle_size, hi+max_triangle_size]
-std::vector<Triangle> randomTriangleVector(double lo, double hi,
+Vector<Triangle> randomTriangleVector(double lo, double hi,
                                            double max_triangle_size, int n,
                                            std::mt19937 random_engine) {
   assert(lo < hi);
-  std::vector<Triangle> v;
+  Vector<Triangle> v;
   for (int i = 0; i < n; ++i) {
     Vec3 p0(randomVec3(lo, hi, random_engine));
     Vec3 p1(p0 +
@@ -34,24 +34,24 @@ std::vector<Triangle> randomTriangleVector(double lo, double hi,
     Triangle t(p0, p1, p2);
     // check if the triangle has some area
     if ((t.p1 - t.p0).cross(t.p2 - t.p0).norm() > EPS) {
-      v.push_back(t);
+      v.pushBack(t);
     }
   }
   return v;
 }
 // generates scene triangles into area [lo-max_triangle_size,
 // hi+max_triangle_size]
-std::vector<SceneTriangle> randomSceneTriangleVector(
+Vector<SceneTriangle> randomSceneTriangleVector(
     double lo, double hi, double max_triangle_size, int n,
     std::mt19937 random_engine) {
   assert(lo < hi);
-  std::vector<Triangle> t =
+  Vector<Triangle> t =
       randomTriangleVector(lo, hi, max_triangle_size, n, random_engine);
-  std::vector<SceneTriangle> v;
+  Vector<SceneTriangle> v;
   for (size_t i = 0; i < t.size(); ++i) {
     SceneTriangle scene_triangle;
     scene_triangle.triangle = t[i];
-    v.push_back(scene_triangle);
+    v.pushBack(scene_triangle);
   }
   return v;
 }
@@ -59,14 +59,14 @@ bool pointOnTrianglePlane(const Triangle& t, const Vec3& p) {
   return std::abs((p - t.p0).cross(t.p1 - t.p0).dot(t.p2 - t.p0)) < TEST_EPS;
 }
 
-std::vector<int> randomIntVector(int lo, int hi, int n,
+Vector<int> randomIntVector(int lo, int hi, int n,
                                  std::mt19937& random_engine) {
   assert(lo <= hi);
   assert(n >= 0);
   std::uniform_int_distribution dist(lo, hi);
-  std::vector<int> out;
+  Vector<int> out;
   for (int i = 0; i < n; ++i) {
-    out.push_back(dist(random_engine));
+    out.pushBack(dist(random_engine));
   }
   return out;
 }
@@ -88,10 +88,10 @@ Material randomMaterial(std::mt19937& random_engine) {
   m.index_of_refraction = dist(random_engine);
   return m;
 }
-double mean(const std::vector<double>& v) {
+double mean(const Vector<double>& v) {
   return std::accumulate(v.begin(), v.end(), 0.0) / v.size();
 }
-double variance(const std::vector<double>& v) {
+double variance(const Vector<double>& v) {
   double mean = test::mean(v);
   double sum_of_squares = 0;
   for(double x: v) {
@@ -99,7 +99,7 @@ double variance(const std::vector<double>& v) {
   }
   return sum_of_squares / v.size();
 }
-double standard_error_mean(const std::vector<double>& v) {
+double standard_error_mean(const Vector<double>& v) {
   return std::sqrt(variance(v) / v.size());
 }
 }  // namespace test

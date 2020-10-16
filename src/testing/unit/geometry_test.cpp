@@ -8,6 +8,7 @@
 
 #include "../../kd_tree.h"
 #include "../test_utils.h"
+#include "../../vector.h"
 
 using ::testing::PrintToString;
 
@@ -683,12 +684,12 @@ TEST(ClipTriangle, ClipParallel) {
   EXPECT_NEAR(ct.max(0), 1.0, EPS);
 }
 TEST(FirstRayTriangleIntersection, Simple) {
-  std::vector<Triangle> scene;
-  scene.push_back(
+  Vector<Triangle> scene;
+  scene.pushBack(
       Triangle(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0)));
-  scene.push_back(
+  scene.pushBack(
       Triangle(Vec3(2.0, 2.0, 0.0), Vec3(2.5, 2.0, 0.0), Vec3(2.0, 2.5, 0.0)));
-  scene.push_back(
+  scene.pushBack(
       Triangle(Vec3(2.2, 1.0, 0.0), Vec3(1.3, 2.2, 0.0), Vec3(1.1, 2.1, 0.0)));
   Ray r = Ray(Vec3(0.0, 0.0, 1.0), Vec3(2.1, 2.1, 1.0));
   RayTriangleIntersection rti = firstRayTriangleIntersection(scene, r);
@@ -699,11 +700,11 @@ TEST(FirstRayTriangleIntersection, Simple) {
   EXPECT_EQ(rti.index, 1);
 
   scene.clear();
-  scene.push_back(
+  scene.pushBack(
       Triangle(Vec3(0.0, 0.0, 0.0), Vec3(1.0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0)));
-  scene.push_back(
+  scene.pushBack(
       Triangle(Vec3(0.0, 0.0, 1.0), Vec3(1.0, 0.0, 1.0), Vec3(0.0, 1.0, 1.0)));
-  scene.push_back(
+  scene.pushBack(
       Triangle(Vec3(0.0, 0.0, 2.0), Vec3(1.0, 0.0, 2.0), Vec3(0.0, 1.0, 2.0)));
 
   r = Ray(Vec3(0.3, 0.3, -10.0), Vec3(0.0, 0.0, 1.0));
@@ -730,7 +731,7 @@ TEST(FirstRayTriangleIntersection, Random) {
   int n_same_triangle = 0;
   for (int i = 0; i < 10'000; ++i) {
     double max_triangle_size = test::randomLogUniformReal(-10, 0, mt);
-    std::vector<Triangle> scene =
+    Vector<Triangle> scene =
         test::randomTriangleVector(-1, 1, max_triangle_size, 100, mt);
     Vec2 bary_coords = test::randomBaryCoords(mt);
     Vec3 p = scene[0].pointFromBary(bary_coords);

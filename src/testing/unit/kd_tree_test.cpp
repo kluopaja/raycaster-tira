@@ -101,9 +101,9 @@ TEST(SurfaceAreaHeuristic, TrianglesOnPlane) {
 // tests that the extractTriangles reverses createClipTriangles correctly
 TEST(CreateAndExtractTriangles, Simple) {
   std::mt19937 mt(1337);
-  std::vector<Triangle> tv = test::randomTriangleVector(-10, 10, 10, 100, mt);
-  std::vector<ClipTriangle> ct = createClipTriangles(tv);
-  std::vector<Triangle> restored = extractTriangles(ct);
+  Vector<Triangle> tv = test::randomTriangleVector(-10, 10, 10, 100, mt);
+  Vector<ClipTriangle> ct = createClipTriangles(tv);
+  Vector<Triangle> restored = extractTriangles(ct);
   EXPECT_THAT(restored, TriangleVecEq(tv));
 }
 */
@@ -113,13 +113,13 @@ TEST(TreeBuilderKdTreeQueries, Random3d) {
   std::mt19937 mt(1337);
   for (int i = 0; i < 1000; ++i) {
     double triangle_scale = test::randomLogUniformReal(-4, 7, mt);
-    std::vector<SceneTriangle> scene =
+    Vector<SceneTriangle> scene =
         test::randomSceneTriangleVector(0.0, 100.0, triangle_scale, 100, mt);
-    std::vector<SceneTriangle*> scene_p;
+    Vector<SceneTriangle*> scene_p;
     for (auto& x : scene) {
-      scene_p.push_back(&x);
+      scene_p.pushBack(&x);
     }
-    std::vector<Triangle> triangles = extractTriangles(scene_p);
+    Vector<Triangle> triangles = extractTriangles(scene_p);
     Tree t = buildKdTree(scene_p, 1.0, 40.0);
     for (int j = 0; j < 100; ++j) {
       Ray r(test::randomVec3(0.0, 100.0, mt), test::randomVec3(-1.0, 1.0, mt));
@@ -137,7 +137,7 @@ TEST(TreeBuilderKdTreeQueries, Random3dAxisParallel) {
   std::mt19937 mt(1337);
   for (int i = 0; i < 1000; ++i) {
     double triangle_scale = test::randomLogUniformReal(-4, 7, mt);
-    std::vector<SceneTriangle> scene =
+    Vector<SceneTriangle> scene =
         test::randomSceneTriangleVector(0.0, 100.0, triangle_scale, 100, mt);
     // make triangles parallel to some axis
     std::uniform_int_distribution axis_dist(0, 2);
@@ -146,11 +146,11 @@ TEST(TreeBuilderKdTreeQueries, Random3dAxisParallel) {
       scene[j].triangle.p1[ax] = scene[j].triangle.p0[ax];
       scene[j].triangle.p2[ax] = scene[j].triangle.p0[ax];
     }
-    std::vector<SceneTriangle*> scene_p;
+    Vector<SceneTriangle*> scene_p;
     for (auto& x : scene) {
-      scene_p.push_back(&x);
+      scene_p.pushBack(&x);
     }
-    std::vector<Triangle> triangles = extractTriangles(scene_p);
+    Vector<Triangle> triangles = extractTriangles(scene_p);
     Tree t = buildKdTree(scene_p, 1.0, 40.0);
     for (int j = 0; j < 100; ++j) {
       Ray r(test::randomVec3(0.0, 100.0, mt), test::randomVec3(-1.0, 1.0, mt));
@@ -174,13 +174,13 @@ TEST(TreeBuilderKdTreeQueries, Random3dSmallTrianglePerformance) {
   int n_rays = 0;
   int n_intersections = 0;
   for (int i = 0; i < 5; ++i) {
-    std::vector<SceneTriangle> scene =
+    Vector<SceneTriangle> scene =
         test::randomSceneTriangleVector(0.0, 100.0, 0.05, 100000, mt);
-    std::vector<SceneTriangle*> scene_p;
+    Vector<SceneTriangle*> scene_p;
     for (auto& x : scene) {
-      scene_p.push_back(&x);
+      scene_p.pushBack(&x);
     }
-    std::vector<Triangle> triangles = extractTriangles(scene_p);
+    Vector<Triangle> triangles = extractTriangles(scene_p);
     Tree t = buildKdTree(scene_p, 1.0, 40.0);
     std::cerr << "tree " << i << " done " << std::endl;
     for (int i = 0; i < 100; ++i) {
@@ -213,13 +213,13 @@ TEST(TreeBuilderKdTreeQueries, Random3dLargeTrianglePerformance) {
   int n_rays = 0;
   int n_intersections = 0;
   for (int i = 0; i < 5; ++i) {
-    std::vector<SceneTriangle> scene =
+    Vector<SceneTriangle> scene =
         test::randomSceneTriangleVector(0.0, 100.0, 3, 20000, mt);
-    std::vector<SceneTriangle*> scene_p;
+    Vector<SceneTriangle*> scene_p;
     for (auto& x : scene) {
-      scene_p.push_back(&x);
+      scene_p.pushBack(&x);
     }
-    std::vector<Triangle> triangles = extractTriangles(scene_p);
+    Vector<Triangle> triangles = extractTriangles(scene_p);
     Tree t = buildKdTree(scene_p, 1.0, 40.0);
     std::cerr << "tree " << i << " done " << std::endl;
     for (int i = 0; i < 100; ++i) {
@@ -247,8 +247,10 @@ TEST(TreeBuilderKdTreeQueries, Random3dLargeTrianglePerformance) {
 }
 TEST(TreeBuilderKdTreeQueries, TestTrianglesIntersectSegmentSimple) {
   Triangle triangle(Vec3(0.0), Vec3(0.0, 1.0, 0.0), Vec3(0.0, 0.0, 1.0));
-  std::vector<SceneTriangle> scene = {{triangle, {}, {}}};
-  std::vector<SceneTriangle*> scene_p = {&scene[0]};
+  Vector<SceneTriangle> scene;
+  scene.pushBack({triangle, {}, {}});
+  Vector<SceneTriangle*> scene_p;
+  scene_p.pushBack(&scene[0]);
   Tree tree = buildKdTree(scene_p, 1.0, 5.0);
   Vec3 a(-0.5, 0.2, 0.2);
   Vec3 b(0.5, 0.2, 0.2);

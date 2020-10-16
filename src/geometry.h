@@ -5,7 +5,7 @@
 #include <iostream>
 #include <limits>
 #include <random>
-#include <vector>
+#include "vector.h"
 
 const double INF = std::numeric_limits<double>::infinity();
 const double EPS = 1e-10;
@@ -239,7 +239,7 @@ class PlanePolygon {
   Vec3 operator[](size_t index) const;
 
  private:
-  std::vector<Vec3> points;
+  Vector<Vec3> points;
 };
 inline Vec3& PlanePolygon::operator[](size_t index) { return points[index]; }
 inline Vec3 PlanePolygon::operator[](size_t index) const {
@@ -313,8 +313,8 @@ struct RayTriangleIntersection {
 // index of the intersected triangle and barycentric coordinates
 // returns {triangles.size(), Vec2(0)} if no intersection was found
 RayTriangleIntersection firstRayTriangleIntersection(
-    const std::vector<Triangle>& triangles, const Ray& r);
-Voxel boundingBox(const std::vector<Triangle>& triangles);
+    const Vector<Triangle>& triangles, const Ray& r);
+Voxel boundingBox(const Vector<Triangle>& triangles);
 inline bool pointOnSegment(const Vec3& p, const Vec3& a, const Vec3& b) {
   return std::abs((a - p).norm() + (p - b).norm() - (a - b).norm()) < EPS;
 }

@@ -49,11 +49,11 @@ int qsortCompare(const void* a, const void* b) {
 // Compares std::qsort, std::sort, quickSort and mmQuickSort algoritms
 SortTestResult testRandom(int n_elements) {
   std::mt19937 mt(1337);
-  std::vector<int> v_qsort = test::randomIntVector(0, n_elements, n_elements,
+  Vector<int> v_qsort = test::randomIntVector(0, n_elements, n_elements,
                                                    mt);
-  std::vector<int> v_std_sort = v_qsort;
-  std::vector<int> v_quick_sort = v_qsort;
-  std::vector<int> v_mm_quick_sort = v_qsort;
+  Vector<int> v_std_sort = v_qsort;
+  Vector<int> v_quick_sort = v_qsort;
+  Vector<int> v_mm_quick_sort = v_qsort;
   SortTestResult result;
   Timer timer;
   timer.start();

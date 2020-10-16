@@ -13,20 +13,20 @@ Vec3 randomVec3(double lo, double hi, std::mt19937& random_engine);
 double randomLogUniformReal(double lo_log, double hi_log,
                             std::mt19937& random_engine);
 Vec2 randomBaryCoords(std::mt19937& random_engine);
-std::vector<Triangle> randomTriangleVector(double lo, double hi,
+Vector<Triangle> randomTriangleVector(double lo, double hi,
                                            double max_triangle_size, int n,
                                            std::mt19937 random_engine);
-std::vector<SceneTriangle> randomSceneTriangleVector(
+Vector<SceneTriangle> randomSceneTriangleVector(
     double lo, double hi, double max_triangle_size, int n,
     std::mt19937 random_engine);
 bool pointOnTrianglePlane(const Triangle& t, const Vec3& p);
 
-std::vector<int> randomIntVector(int lo, int hi, int n,
+Vector<int> randomIntVector(int lo, int hi, int n,
                                  std::mt19937& random_engine);
 
 Material randomMaterial(std::mt19937& random_engine);
-double mean(const std::vector<double>& v);
-double variance(const std::vector<double>& v);
-double standard_error_mean(const std::vector<double>& v);
+double mean(const Vector<double>& v);
+double variance(const Vector<double>& v);
+double standard_error_mean(const Vector<double>& v);
 }  // namespace test
 #endif

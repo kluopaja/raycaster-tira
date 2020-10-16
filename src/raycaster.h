@@ -34,8 +34,8 @@ class Model {
   void concatenate(const Model& a);
   void translate(const Vec3& v);
   Tree buildKdTree(double k_t, double k_i);
-  std::vector<SceneTriangle> scene_triangles;
-  std::vector<Material> materials;
+  Vector<SceneTriangle> scene_triangles;
+  Vector<Material> materials;
 };
 class PointLight {
  public:
@@ -104,7 +104,7 @@ inline Vec3 EnvironmentLight::colorAtDirection(Vec3 direction) {
 // For parallel rendering
 struct ThreadResources {
   std::mt19937 thread_mt;
-  std::vector<std::pair<int, int> > pixels;
+  Vector<std::pair<int, int> > pixels;
 };
 class Scene {
  public:
@@ -145,7 +145,7 @@ class Scene {
   Vec3 environmentLightColor(const Ray& r);
   EnvironmentLight environment_light;
   Model model;
-  std::vector<PointLight> point_lights;
+  Vector<PointLight> point_lights;
   Camera camera;
   Tree kd_tree;
   std::mt19937 mt_19937;
