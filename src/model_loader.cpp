@@ -22,9 +22,18 @@ class ModelLoader {
 
 bool ModelLoader::load(const std::string& file, NormalType normal_type) {
   Assimp::Importer importer;
-  unsigned int normal_flag = aiProcess_GenNormals;
-  if (normal_type == kSmooth) {
-    normal_flag = aiProcess_GenSmoothNormals;
+  unsigned int normal_flag = 0;
+  switch (normal_type) {
+    case NormalType::kSmooth:
+      normal_flag = aiProcess_GenSmoothNormals;
+      break;
+    case NormalType::kRough:
+      normal_flag = aiProcess_GenNormals;
+      break;
+    default:
+      assert(0);
+  }
+  if (normal_type == NormalType::kSmooth) {
   }
   const aiScene* ai_scene = importer.ReadFile(
       file,

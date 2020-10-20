@@ -7,10 +7,17 @@
 #include "image.h"
 #include "kd_tree.h"
 #include "material.h"
-enum NormalType {
+enum class NormalType {
   kSmooth,
   kRough,
+  N_ENUM_VALUES,
 };
+enum class EnvironmentLightType {
+  kUniform,
+  kDirected,
+  N_ENUM_VALUES,
+};
+
 // sampling scheme for shooting rays
 // kImportanceSampling is the default
 // kUniformSphere might be useful for debugging

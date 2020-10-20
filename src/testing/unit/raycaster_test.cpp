@@ -173,7 +173,7 @@ TEST(RenderTest, OpaqueDiffuseUniformSampling) {
                 Vec3(0.0, 1.0, 0.0), kPi / 7.0, kPi / 7.0);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
-  scene.addModelFromFile("../models/testing/ball_diffuse.obj", Vec3(0.0), kSmooth);
+  scene.addModelFromFile("../models/testing/ball_diffuse.obj", Vec3(0.0), NormalType::kSmooth);
   scene.setSamplingScheme(kUniformSphere);
   Image result = scene.render(20, 20, 1000, 4, 1);
   EXPECT_THAT(result.getColor(0, 0), VecNear(Vec3(0.18), 0.03));
@@ -187,7 +187,7 @@ TEST(RenderTest, OpaqueDiffuseImportanceSampling) {
                 Vec3(0.0, 1.0, 0.0), kPi / 7.0, kPi / 7.0);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
-  scene.addModelFromFile("../models/testing/ball_diffuse.obj", Vec3(0.0), kSmooth);
+  scene.addModelFromFile("../models/testing/ball_diffuse.obj", Vec3(0.0), NormalType::kSmooth);
   scene.setSamplingScheme(kImportanceSampling);
   Image result = scene.render(20, 20, 100, 4, 1);
   // With importance sampling the result should be very close to 0.18
@@ -202,7 +202,7 @@ TEST(RenderTest, TransparentDiffuseUniformSampling) {
                 Vec3(0.0, 1.0, 0.0), kPi / 7.0, kPi / 7.0);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
-  scene.addModelFromFile("../models/testing/ball_transparent_diffuse.obj", Vec3(0.0), kSmooth);
+  scene.addModelFromFile("../models/testing/ball_transparent_diffuse.obj", Vec3(0.0), NormalType::kSmooth);
   scene.setSamplingScheme(kImportanceSampling);
   Image result = scene.render(20, 20, 100, 4, 1);
   // With importance sampling the result should be very close to 0.18
@@ -217,7 +217,7 @@ TEST(RenderTest, MirrorEnvironment) {
                 Vec3(0.0, 1.0, 0.0), kPi / 1.1, kPi / 1.1);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
-  scene.addModelFromFile("../models/testing/XY_mirror.obj", Vec3(0.0), kSmooth);
+  scene.addModelFromFile("../models/testing/XY_mirror.obj", Vec3(0.0), NormalType::kSmooth);
   scene.setSamplingScheme(kImportanceSampling);
   Image result = scene.render(100, 100, 100, 4, 1);
   EXPECT_THAT(result.getColor(0, 0), VecNear(Vec3(1.0), 0.001));
@@ -231,7 +231,7 @@ TEST(RenderTest, MirrorScene) {
                 Vec3(0.0, 1.0, 0.0), kPi / 4.0, kPi / 4.0);
   Scene scene_real(camera);
   scene_real.setEnvironmentLightColor(Vec3(1.0));
-  scene_real.addModelFromFile("../models/testing/ball_transparent_diffuse.obj", Vec3(0.0), kSmooth);
+  scene_real.addModelFromFile("../models/testing/ball_transparent_diffuse.obj", Vec3(0.0), NormalType::kSmooth);
   scene_real.setSamplingScheme(kImportanceSampling);
   Image image_real = scene_real.render(200, 200, 100, 4, 1);
 
@@ -239,8 +239,8 @@ TEST(RenderTest, MirrorScene) {
                 Vec3(0.0, 1.0, 0.0), kPi / 4.0, kPi / 4.0);
   Scene scene_mirror(camera2);
   scene_mirror.setEnvironmentLightColor(Vec3(1.0));
-  scene_mirror.addModelFromFile("../models/testing/ball_transparent_diffuse.obj", Vec3(0.0), kSmooth);
-  scene_mirror.addModelFromFile("../models/testing/XY_mirror.obj", Vec3(0.0, 0.0, 2.5), kSmooth);
+  scene_mirror.addModelFromFile("../models/testing/ball_transparent_diffuse.obj", Vec3(0.0), NormalType::kSmooth);
+  scene_mirror.addModelFromFile("../models/testing/XY_mirror.obj", Vec3(0.0, 0.0, 2.5), NormalType::kSmooth);
   scene_mirror.setSamplingScheme(kImportanceSampling);
   Image image_mirror = scene_mirror.render(200, 200, 100, 4, 1);
   std::cerr << "Distance between real and mirrored: "
@@ -253,7 +253,7 @@ TEST(RenderTest, ColorMirrorEnvironment) {
                 Vec3(0.0, 1.0, 0.0), kPi / 1.1, kPi / 1.1);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
-  scene.addModelFromFile("../models/testing/XY_mirror_blue.obj", Vec3(0.0), kSmooth);
+  scene.addModelFromFile("../models/testing/XY_mirror_blue.obj", Vec3(0.0), NormalType::kSmooth);
   scene.setSamplingScheme(kImportanceSampling);
   Image result = scene.render(100, 100, 100, 4, 1);
   EXPECT_THAT(result.getColor(0, 0), VecNear(Vec3(0.0, 0.0, 1.0), 0.001));
