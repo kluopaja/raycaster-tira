@@ -342,7 +342,7 @@ bool operator==(const Vector<T>& a, const Vector<T>& b) {
     return 0;
   }
   for(std::size_t i = 0; i < a.size(); ++i) {
-    if(a[i] != b[i]) {
+    if(!(a[i] == b[i])) {
       return 0;
     }
   }
