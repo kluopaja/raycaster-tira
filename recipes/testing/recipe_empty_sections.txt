@@ -1,0 +1,13 @@
+camera
+model
+  file file.txt
+model
+  file file.txt
+point_light
+point_light
+environment_light
+render
+image
+  file file.txt
+image
+  file file.txt

@@ -116,6 +116,7 @@ class Vec3 {
  private:
   double v[3];
 };
+std::istream& operator>>(std::istream& in, Vec3& a);
 inline double Vec3::dot(const Vec3& b) const {
   return v[0] * b.v[0] + v[1] * b.v[1] + v[2] * b.v[2];
 }

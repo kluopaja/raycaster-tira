@@ -11,6 +11,10 @@ std::ostream& operator<<(std::ostream& out, const Vec3& a) {
   out << "Vec3(" << a[0] << ", " << a[1] << ", " << a[2] << ")";
   return out;
 }
+std::istream& operator>>(std::istream& in, Vec3& a) {
+  in >> a[0] >> a[1] >> a[2];
+  return in;
+}
 
 Voxel::Voxel(const Vec3& lo, const Vec3& hi) : lo(lo), hi(hi) {}
 // Implements a fast voxel ray intersection with the correct handling of
