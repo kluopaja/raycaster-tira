@@ -1,7 +1,6 @@
 #ifndef RAYCASTER_RAYCASTER_H
 #define RAYCASTER_RAYCASTER_H
 #include <random>
-#include <vector>
 
 #include "geometry.h"
 #include "image.h"

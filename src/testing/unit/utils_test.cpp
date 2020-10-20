@@ -15,9 +15,9 @@ using ::testing::UnorderedElementsAreArray;
 namespace {
 
 TEST(InsertionSort, Simple) {
-  std::vector<int> v = {5, 4, 3, 2, 1};
+  Vector<int> v = {5, 4, 3, 2, 1};
   insertionSort(v.begin(), v.end());
-  std::vector<int> c = {1, 2, 3, 4, 5};
+  Vector<int> c = {1, 2, 3, 4, 5};
   EXPECT_THAT(v, ContainerEq(c));
 }
 TEST(InsertionSort, EmptyVector) {

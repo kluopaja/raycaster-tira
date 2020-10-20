@@ -1,9 +1,9 @@
 #ifndef RAYCASTER_KD_TREE_H
 #define RAYCASTER_KD_TREE_H
 #include <memory>
-#include <vector>
 
 #include "geometry.h"
+#include "vector.h"
 // forward declare SceneTriangle to solve circular include issue
 struct SceneTriangle;
 struct ScenePoint {

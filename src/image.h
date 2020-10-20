@@ -2,7 +2,6 @@
 #define RAYCASTER_IMAGE_H
 #include <cmath>
 #include <string>
-#include <vector>
 
 #include "geometry.h"
 class Image {
