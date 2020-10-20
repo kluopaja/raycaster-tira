@@ -23,22 +23,22 @@ class ElementType1 {
 };
 TEST(Vector, DefaultConstructor) {
   Vector<int> v;
-  EXPECT_THAT(v.size(), 0u);
+  EXPECT_EQ(v.size(), 0u);
 
   Vector<ElementType1> v2;
-  EXPECT_THAT(v.size(), 0u);
+  EXPECT_EQ(v.size(), 0u);
 }
 // Tests that Vector(std::size_t n_elements) creates vectors of correct
 // size
 TEST(Vector, SizeConstructorSize) {
   Vector<int> v(0);
-  EXPECT_THAT(v.size(), 0u);
+  EXPECT_EQ(v.size(), 0u);
 
   Vector<int> v2(10);
-  EXPECT_THAT(v2.size(), 10u);
+  EXPECT_EQ(v2.size(), 10u);
 
   Vector<ElementType1> v3(1000);
-  EXPECT_THAT(v3.size(), 1000u);
+  EXPECT_EQ(v3.size(), 1000u);
 }
 // TODO test the destructor
 TEST(Vector, OperatorSquareBrackets) {
@@ -74,10 +74,10 @@ TEST(Vector, SizeConstructorInitialization) {
     ASSERT_EQ(v1[i], 0);
   }
   Vector<ElementType1> v2(100);
-  ASSERT_THAT(v2.size(), 100u);
+  ASSERT_EQ(v2.size(), 100u);
   for (std::size_t i = 0; i < 100; ++i) {
-    ASSERT_THAT(v2[i].a, 0);
-    ASSERT_THAT(v2[i].b, 2);
+    ASSERT_EQ(v2[i].a, 0);
+    ASSERT_EQ(v2[i].b, 2);
   }
 }
 TEST(Vector, InitializerListConstructor) {
@@ -289,7 +289,7 @@ TEST(Vector, PopBack) {
   v[0] = 1;
   v[1] = 2;
   v.popBack();
-  ASSERT_THAT(v.size(), 1u);
+  ASSERT_EQ(v.size(), 1u);
   EXPECT_EQ(v[0], 1);
   v.popBack();
   ASSERT_EQ(v.size(), 0u);
@@ -300,12 +300,12 @@ TEST(Vector, ResizeIncrease) {
   v[0] = 1;
   v[1] = 2;
   v.resize(4);
-  ASSERT_THAT(v.capacity(), 4u);
-  ASSERT_THAT(v.size(), 4u);
-  EXPECT_THAT(v[0], 1);
-  EXPECT_THAT(v[1], 2);
-  EXPECT_THAT(v[2], 0);
-  EXPECT_THAT(v[3], 0);
+  ASSERT_EQ(v.capacity(), 4u);
+  ASSERT_EQ(v.size(), 4u);
+  EXPECT_EQ(v[0], 1);
+  EXPECT_EQ(v[1], 2);
+  EXPECT_EQ(v[2], 0);
+  EXPECT_EQ(v[3], 0);
 }
 // Test decreaseing the Vector size with Vector.resize
 TEST(Vector, ResizeDecrease) {
@@ -314,9 +314,9 @@ TEST(Vector, ResizeDecrease) {
   v[1] = 2;
   v[2] = 3;
   v.resize(1);
-  ASSERT_THAT(v.capacity(), 3u);
-  ASSERT_THAT(v.size(), 1u);
-  EXPECT_THAT(v[0], 1);
+  ASSERT_EQ(v.capacity(), 3u);
+  ASSERT_EQ(v.size(), 1u);
+  EXPECT_EQ(v[0], 1);
 }
 TEST(Vector, Swap) {
   Vector<int> v1(3);
@@ -328,15 +328,15 @@ TEST(Vector, Swap) {
   v2[0] = 3;
   v2[1] = 4;
   v1.swap(v2);
-  EXPECT_THAT(v1.capacity(), 2);
-  ASSERT_THAT(v1.size(), 2);
-  EXPECT_THAT(v1[0], 3);
-  EXPECT_THAT(v1[1], 4);
-  EXPECT_THAT(v2.capacity(), 10);
-  ASSERT_THAT(v2.size(), 3);
-  EXPECT_THAT(v2[0], 0);
-  EXPECT_THAT(v2[1], 1);
-  EXPECT_THAT(v2[2], 2);
+  EXPECT_EQ(v1.capacity(), 2);
+  ASSERT_EQ(v1.size(), 2);
+  EXPECT_EQ(v1[0], 3);
+  EXPECT_EQ(v1[1], 4);
+  EXPECT_EQ(v2.capacity(), 10);
+  ASSERT_EQ(v2.size(), 3);
+  EXPECT_EQ(v2[0], 0);
+  EXPECT_EQ(v2[1], 1);
+  EXPECT_EQ(v2[2], 2);
 }
 TEST(Vector, Random) {
   std::mt19937 mt(1337);
