@@ -6,7 +6,11 @@
 #include <fstream>
 
 using ::testing::ElementsAreArray;
+using ::testing::PrintToString;
 namespace {
+MATCHER_P(VecEq, v, "should equal " + PrintToString(v)) {
+  return (v - arg).norm() < EPS;
+}
 // Tests that the pixel values are stored at the correct
 // positions of the file.
 TEST(TestImage, Simple) {
@@ -85,5 +89,38 @@ TEST(TestImage, DistanceTo) {
   EXPECT_NEAR(image.distanceTo(image2), 1.0, EPS);
   image2.setColor(1, 1, Vec3(0.0, 0.0, 2.0));
   EXPECT_NEAR(image.distanceTo(image2), std::sqrt(1.0 + 4.0), EPS);
+}
+// Test that truncateToFraction(c) where c = 1 doesn't do anything
+TEST(TestImage, TruncateToFractionAllValues) {
+  Image image(1, 3);
+  image.setColor(0, 0, Vec3(1.0));
+  image.setColor(0, 1, Vec3(2.0));
+  image.setColor(0, 2, Vec3(3.0));
+  Image image_copy = image;
+  image.truncateToFraction(1.0);
+  EXPECT_NEAR(image.distanceTo(image_copy), 0.0, EPS);
+}
+// Test that truncating to small value sets all of the pixel values
+// to the value of smallest pixel value
+TEST(TestImage, TruncateToFractionZero) {
+  Image image(1, 3);
+  image.setColor(0, 0, Vec3(1.0));
+  image.setColor(0, 1, Vec3(2.0));
+  image.setColor(0, 2, Vec3(3.0));
+  Image image_copy = image;
+  image.truncateToFraction(0.001);
+  EXPECT_THAT(image.getColor(0, 0), VecEq(Vec3(1.0)));
+  EXPECT_THAT(image.getColor(0, 1), VecEq(Vec3(1.0)));
+  EXPECT_THAT(image.getColor(0, 2), VecEq(Vec3(1.0)));
+}
+TEST(TestImage, TruncateToFractionSimple) {
+  Image image(1, 3);
+  image.setColor(0, 0, Vec3(1.0));
+  image.setColor(0, 1, Vec3(2.0));
+  image.setColor(0, 2, Vec3(3.0));
+  image.truncateToFraction(0.7);
+  EXPECT_THAT(image.getColor(0, 0), VecEq(Vec3(1.0)));
+  EXPECT_THAT(image.getColor(0, 1), VecEq(Vec3(2.0)));
+  EXPECT_THAT(image.getColor(0, 2), VecEq(Vec3(2.0)));
 }
 }  // namespace

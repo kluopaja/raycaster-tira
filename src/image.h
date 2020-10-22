@@ -14,8 +14,15 @@ class Image {
   // applies value = log_2((value + c)/c)
   // for debugging.
   void toLog2(double c);
-  // Let f be smallest value such that c of all pixel values are at most f
-  // then applies value = max(value, f)
+  // Cuts off the fraction (1 - c) of pixel values.
+  //
+  // Let n be the total number of pixel values
+  // (n = x_resolution * y_resolution * 3)
+  // Let f be the floor(c * n)'th element of the sorted
+  // pixel value array and the value of the first element if floor(c * n) = 0
+  // The function applies value = min(value, f) for every pixel value
+  //
+  // Assumes 0 < c <= 1
   void truncateToFraction(double c);
   // saves image as PPM with sRGB encoded values
   bool savePPM(const std::string& file);
