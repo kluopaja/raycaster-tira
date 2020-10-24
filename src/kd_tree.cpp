@@ -306,20 +306,37 @@ Vector<Triangle> extractTriangles(
   }
   return triangles;
 }
+// Favors splits that cut off empty space
+//
+// Corresponds to \lambda in the paper
+inline double cutOffBonus(double l_area, double r_area, TriangleCounts counts) {
+  // Check that some empty space is really being cut off
+  if(l_area < 1.0 - EPS && counts.right == 0){
+    return 0.8;
+  }
+  if(r_area < 1.0 - EPS && counts.left == 0) {
+    return 0.8;
+  }
+  return 1.0;
+}
 std::pair<double, bool> surfaceAreaHeuristic(double l_area, double r_area,
                                              TriangleCounts counts,
                                              double traversal_cost,
                                              double intersection_cost) {
   std::pair<double, bool> left;
   // try inserting triangles on plane to the left subtree
+  double cut_off_bonus = cutOffBonus(l_area, r_area, counts);
   left.first =
       traversal_cost +
-      intersection_cost * (l_area * (n_left + n_plane) + r_area * n_right);
+      intersection_cost * (l_area * (counts.left + counts.plane) + r_area * counts.right);
+
+  left.first *= cut_off_bonus;
   left.second = false;
   std::pair<double, bool> right;
   right.first =
       traversal_cost +
-      intersection_cost * (l_area * n_left + r_area * (n_right + n_plane));
+      intersection_cost * (l_area * counts.left + r_area * (counts.right + counts.plane));
+  right.first *= cut_off_bonus;
   right.second = true;
   return std::min(left, right);
 }
