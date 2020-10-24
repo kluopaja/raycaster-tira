@@ -113,12 +113,17 @@ class Vec3 {
   friend Vec3 operator/(const Vec3& a, const double b);
   double& operator[](int index);
   double operator[](int index) const;
+  // Euclidean norm
   double norm() const;
   friend std::ostream& operator<<(std::ostream& out, const Vec3& a);
 
  private:
-  double v[3];
+  double v[3] = {0.0, 0.0, 0.0};
 };
+// assumes a.norm() > 0
+inline Vec3 normalize(const Vec3& a) {
+  return a / a.norm();
+}
 std::istream& operator>>(std::istream& in, Vec3& a);
 inline double Vec3::dot(const Vec3& b) const {
   return v[0] * b.v[0] + v[1] * b.v[1] + v[2] * b.v[2];

@@ -129,6 +129,14 @@ TEST(Vec3Test, ConstructorOneValue) {
   EXPECT_EQ(v[1], -1.2345);
   EXPECT_EQ(v[2], -1.2345);
 }
+TEST(Vec3Test, Normalize) {
+  Vec3 v1(std::sqrt(1.0/3));
+  EXPECT_THAT(normalize(v1), VecEq(Vec3(std::sqrt(1.0/3))));
+  Vec3 v2(2.0);
+  EXPECT_THAT(normalize(v2), VecEq(Vec3(std::sqrt(1.0/3))));
+  Vec3 v3(123.0, 0.0, 0.0);
+  EXPECT_THAT(normalize(v3), VecEq(Vec3(1.0, 0.0, 0.0)));
+}
 TEST(Vec3Test, TestDotProduct) {
   Vec3 v1(0.0);
   Vec3 v2(1.1, 2.2, 3.3);
