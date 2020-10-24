@@ -18,13 +18,14 @@ perf_link_flags := -O2 $(common_link_flags)
 cov_link_flags := -O0 --coverage $(common_link_flags) $(common_test_link_flags)
 
 main_object := main
-prog_object_names := geometry kd_tree model_loader raycaster material image
+prog_object_names := geometry kd_tree model_loader raycaster material image\
+                     input renderer
 test_common_object_names := test_utils
 test_unit_object_names := geometry_test kd_tree_test utils_test \
                           model_loader_test raycaster_test lighting_utils_test \
-                          image_test material_test vector_test
+                          image_test material_test vector_test input_test
 test_perf_object_names := performance_main performance_utils \
-                          sort_performance
+                          sort_performance kd_performance
 
 bin_objects = $(patsubst %, bin/%.o, $(main_object) $(prog_object_names))
 
