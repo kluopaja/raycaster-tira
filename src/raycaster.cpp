@@ -62,8 +62,8 @@ Camera::Camera(const Vec3& position, const Vec3& front_vec, const Vec3& up_vec,
   assert(EPS < y_fov && y_fov < kPi - EPS);
   assert(front_vec.norm() > EPS);
   assert(up_vec.norm() > EPS);
-  assert(std::abs(front_vec.dot(up_vec)) < EPS);
-
+  assert(std::abs(front_vec.dot(up_vec)) < EPS
+         && "Camera up and front vectors should be perpendicular");
   image_down_vec =
       -2 * up_vec / up_vec.norm() * std::tan(y_fov / 2) * front_vec.norm();
   Vec3 right_vec = front_vec.cross(up_vec);
@@ -78,7 +78,6 @@ Ray Camera::rayFromImagePlane(double x, double y) {
   Vec3 ray_start = image_position + x * image_right_vec + y * image_down_vec;
   return Ray(ray_start, ray_start - position);
 }
-// std::pow(base, 0) always returns 1
 void EnvironmentLight::setUniform() {
   is_directed = 0;
 }
@@ -150,7 +149,7 @@ Image Scene::render(int x_resolution, int y_resolution, int n_rays_per_pixel,
     }
   }
   Image image(x_resolution, y_resolution);
-  for_each(std::execution::par, thread_resources.begin(),
+  std::for_each(std::execution::par, thread_resources.begin(),
            thread_resources.end(), [&](ThreadResources& x) {
              for (auto pixel : x.pixels) {
                Vec3 pixel_color =
@@ -220,12 +219,12 @@ Vec3 Scene::castRay(const Ray& r, int recursion_depth,
   light_color = light_color + sp.scene_triangle->material.emitted;
   // point lights
   light_color = light_color + totalPointLightColor(intersection_point, normal,
-                                                   -1.0 * r.direction,
+                                                   out_vector,
                                                    sp.scene_triangle->material);
   if (recursion_depth < max_recursion_depth) {
     light_color =
         light_color + indirectLightColor(intersection_point, normal,
-                                         -1.0 * r.direction,
+                                         out_vector,
                                          sp.scene_triangle->material,
                                          recursion_depth, thread_mt_19937);
   }
@@ -235,8 +234,6 @@ Vec3 Scene::castRay(const Ray& r, int recursion_depth,
 }
 Vec3 Scene::totalPointLightColor(const Vec3& point, Vec3 normal,
                                  Vec3 out_vector, const Material& material) {
-  normal /= normal.norm();
-  out_vector /= out_vector.norm();
   Vec3 point_color(0.0);
   for (size_t i = 0; i < point_lights.size(); ++i) {
     point_color = point_color + pointLightColor(point, normal, out_vector,
@@ -250,23 +247,22 @@ Vec3 Scene::pointLightColor(const Vec3& point, const Vec3& normal,
                             const PointLight& point_light) {
   assert(std::abs(normal.norm() - 1.0) < EPS);
   assert(std::abs(out_vector.norm() - 1.0) < EPS);
-  Vec3 shadow_ray_direction = point_light.position - point;
-  Vec3 shadow_ray_start = point + shadow_ray_direction * 100.0 * EPS;
+  Vec3 light_direction = point_light.position - point;
+  Vec3 in_vector = normalize(light_direction);
+  // To prevent self-collisions, add some offset before
+  // the start of the ray
+  Vec3 shadow_ray_start = point + in_vector * 100.0 * EPS;
   if (kd_tree.trianglesIntersectSegment(shadow_ray_start,
                                         point_light.position)) {
     return Vec3(0.0);
   }
-  Vec3 light_direction = point_light.position - point;
   double distance_dimming = 1.0 / light_direction.dot(light_direction);
-  Vec3 in_vector = light_direction / light_direction.norm();
   Vec3 in_color = distance_dimming * point_light.color;
   return material.apply(in_vector, normal, out_vector, in_color);
 }
 Vec3 Scene::indirectLightColor(const Vec3& point, Vec3 normal, Vec3 out_vector,
                                const Material& material, int recursion_depth,
                                std::mt19937& thread_mt_19937) {
-  normal /= normal.norm();
-  out_vector /= out_vector.norm();
   assert(std::abs(normal.norm() - 1.0) < EPS);
   assert(std::abs(out_vector.norm() - 1.0) < EPS);
   Vec3 out_color(0.0);
@@ -288,12 +284,13 @@ Vec3 Scene::sampleIndirectLight(const Vec3& point, const Vec3& normal,
     in_vector = material.importanceSample(normal, out_vector, thread_mt_19937);
     in_pdf = material.importanceSamplePdf(in_vector, normal, out_vector);
   } else {
-    in_vector = uniformRandomSpherePoint(normal, thread_mt_19937);
+    in_vector = uniformRandomSpherePoint(thread_mt_19937);
     in_pdf = 1 / (4 * kPi);
   }
   assert(in_pdf > EPS);
+  Vec3 ray_start = point + 100 * EPS * in_vector;;
 
-  Ray in_ray(point + in_vector * 100 * EPS, in_vector);
+  Ray in_ray(ray_start, in_vector);
   Vec3 in_color = castRay(in_ray, recursion_depth + 1, thread_mt_19937);
   return material.apply(in_vector, normal, out_vector, in_color) / in_pdf;
 }

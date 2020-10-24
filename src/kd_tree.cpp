@@ -67,7 +67,9 @@ class TreeBuilder {
                              const SplitPlane& plane) const;
 };
 TreeBuilder::TreeBuilder(double traversal_cost, double intersection_cost)
-    : traversal_cost(traversal_cost), intersection_cost(intersection_cost) {}
+    : traversal_cost(traversal_cost), intersection_cost(intersection_cost) {
+  assert(traversal_cost > EPS && intersection_cost > EPS);
+}
 
 Tree TreeBuilder::build(
     const Vector<SceneTriangle*>& scene_triangles) const {
@@ -115,13 +117,10 @@ SplitPlane TreeBuilder::findPlane(
   SplitPlane best_split = {{}, 0, std::numeric_limits<double>::infinity()};
   for (int i = 0; i < 3; ++i) {
     Vector<Event> event_list = createEventList(build_triangles, i);
-    // number of triagles having an overlap with non-zero area
-    // with V_l \ p and V_r \p
-    int n_left = 0;
-    // ... with p
-    int n_plane = 0;
-    // ... with V_r \ p
-    int n_right = build_triangles.size();
+    TriangleCounts counts;
+    counts.left = 0;
+    counts.plane = 0;
+    counts.right = build_triangles.size();
     AxisPlane current_plane = {i, 0.0};
     for (size_t j = 0; j < event_list.size();) {
       current_plane.pos = event_list[j].pos;
@@ -162,24 +161,24 @@ SplitPlane TreeBuilder::findPlane(
         ++j;
       }
       // updating intersection counts
-      n_right -= n_end_plane_intersection;
-      n_right -= n_new_on_plane;
-      n_plane += n_new_on_plane;
+      counts.right -= n_end_plane_intersection;
+      counts.right -= n_new_on_plane;
+      counts.plane += n_new_on_plane;
       // Plane check
       double l_area, r_area;
       std::tie(l_area, r_area) = relativeSubvoxelAreas(voxel, current_plane);
       double cost;
       bool side;
       std::tie(cost, side) =
-          surfaceAreaHeuristic(l_area, r_area, n_left, n_plane, n_right,
+          surfaceAreaHeuristic(l_area, r_area, counts,
                                traversal_cost, intersection_cost);
       if (cost < best_split.cost) {
         best_split = {current_plane, side, cost};
       }
       // After
-      n_left += n_start_plane_intersection;
-      n_plane -= n_new_on_plane;
-      n_left += n_new_on_plane;
+      counts.left += n_start_plane_intersection;
+      counts.plane -= n_new_on_plane;
+      counts.left += n_new_on_plane;
     }
   }
   return best_split;
@@ -236,7 +235,7 @@ Node::Node(std::unique_ptr<Node> left, std::unique_ptr<Node> right,
       voxel(voxel),
       plane(plane) {}
 Node::Node(const Vector<Triangle>& triangles,
-           const Vector<SceneTriangle*> scene_triangles,
+           const Vector<SceneTriangle*>& scene_triangles,
            const Voxel& voxel)
     : triangles(triangles), scene_triangles(scene_triangles), voxel(voxel) {}
 
@@ -305,8 +304,8 @@ Vector<Triangle> extractTriangles(
   return triangles;
 }
 std::pair<double, bool> surfaceAreaHeuristic(double l_area, double r_area,
-                                             int n_left, int n_plane,
-                                             int n_right, double traversal_cost,
+                                             TriangleCounts counts,
+                                             double traversal_cost,
                                              double intersection_cost) {
   std::pair<double, bool> left;
   // try inserting triangles on plane to the left subtree
@@ -321,7 +320,7 @@ std::pair<double, bool> surfaceAreaHeuristic(double l_area, double r_area,
   right.second = true;
   return std::min(left, right);
 }
-// returns SA(V_l)/SA(V) and SA(V_l)/SA(V)
+// returns SA(V_l)/SA(V) and SA(V_r)/SA(V)
 std::pair<double, double> relativeSubvoxelAreas(const Voxel& voxel,
                                                 const AxisPlane& plane) {
   // axes for the voxel face parallel to plane
@@ -345,6 +344,7 @@ std::pair<double, double> relativeSubvoxelAreas(const Voxel& voxel,
 }
 Tree buildKdTree(const Vector<SceneTriangle*>& triangles, double k_t,
                  double k_i) {
+  assert(k_t > EPS && k_i > EPS);
   TreeBuilder builder(k_t, k_i);
   return builder.build(triangles);
 }

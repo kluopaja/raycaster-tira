@@ -30,7 +30,7 @@ SortTestResult operator/(const SortTestResult& a, double b) {
 std::ostream& operator<<(std::ostream& out, const SortTestResult& result) {
   out << std::left;
   out << std::setw(25);
-  out << "qsort: " << result.qsort_time/1e6 << "ms" << std::endl;
+  out << "std::qsort: " << result.qsort_time/1e6 << "ms" << std::endl;
   out << std::setw(25);
   out << "std::sort: " << result.std_sort_time/1e6 << "ms" << std::endl;;
   out << std::setw(25);

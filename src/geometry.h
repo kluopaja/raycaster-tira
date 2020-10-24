@@ -42,7 +42,7 @@ class Vec2 {
   friend std::ostream& operator<<(std::ostream& out, const Vec2& a);
 
  private:
-  double v[2];
+  double v[2] = {0.0, 0.0};
 };
 inline double Vec2::dot(const Vec2& b) const {
   return v[0] * b.v[0] + v[1] * b.v[1];
@@ -399,14 +399,12 @@ Vec3 uniformRandomHemispherePoint(Vec3 direction, Generator& g) {
 }
 // Returns a uniformly random point from a unit sphere
 template <typename Generator>
-Vec3 uniformRandomSpherePoint(Vec3 direction, Generator& g) {
-  assert(direction.norm() > EPS);
-  // TODO implement properly
+Vec3 uniformRandomSpherePoint(Generator& g) {
   std::uniform_real_distribution dist(0.0, 1.0);
   if (dist(g) < 0.5) {
-    return uniformRandomHemispherePoint(direction, g);
+    return uniformRandomHemispherePoint(Vec3(1.0, 0.0, 0.0), g);
   }
-  return uniformRandomHemispherePoint(-1.0 * direction, g);
+  return uniformRandomHemispherePoint(Vec3(-1.0, 0.0, 0.0), g);
 }
 // Samples points from a hemisphere with pdf
 // (n + 1)/(2 * kPi) * direction.dot(v)^n
@@ -415,7 +413,7 @@ Vec3 uniformRandomSpherePoint(Vec3 direction, Generator& g) {
 // Assumes `direction` is normalized
 template <typename Generator>
 Vec3 cosineExponentRandomPoint(Vec3 direction, double exponent, Generator& g) {
-  assert(direction.norm() > EPS);
+  assert(std::abs(direction.norm() - 1.0) < EPS);
   direction /= direction.norm();
   std::uniform_real_distribution U(0.0, 1.0);
   double e_1 = U(g);
@@ -431,6 +429,8 @@ Vec3 cosineExponentRandomPoint(Vec3 direction, double exponent, Generator& g) {
 // 0.0 outside the hemisphere!
 // Assumes `direction` and `v` are normalized
 inline double cosineExponentPdf(Vec3 v, Vec3 direction, double exponent) {
+  assert(std::abs(direction.norm() - 1.0) < EPS);
+  assert(std::abs(v.norm() - 1.0) < EPS);
   v /= v.norm();
   direction.norm();
   if (v.dot(direction) < EPS) return 0.0;

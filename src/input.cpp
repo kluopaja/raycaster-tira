@@ -184,19 +184,19 @@ std::ostream& operator<<(std::ostream& out, const EnvironmentLightType& a) {
 
 // Reports an error for too many definitions of some section
 void printMultiSectionError(Section section, int line) {
-  std::cerr << "Line " << line
+  std::cerr << "Line " << line+1
             << ": Second definition of ";
   std::cerr << enumToStr(section);
   std::cerr << ". Only one is allowed per file" << std::endl;
 }
 // Reports an error for many identically named fields within a section
 void printMultiFieldError(const std::string& name, int line) {
-  std::cerr << "Line " << line << ": Second definition of field ";
+  std::cerr << "Line " << line+1 << ": Second definition of field ";
   std::cerr << name << ". Only one is allowed per section." << std::endl;
 }
 // Reports an error for incorrectly formatted field value
 void printFieldParseError(const std::string& name, int line) {
-  std::cerr << "Line " << line << ": Failed parsing value of field ";
+  std::cerr << "Line " << line+1 << ": Failed parsing value of field ";
   std::cerr << name << "." << std::endl;
 }
 // Stores one line of the input. `parsed` is set to 1 after

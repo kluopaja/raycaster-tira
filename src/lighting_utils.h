@@ -30,6 +30,8 @@ inline Vec3 phongSpecular(const Vec3& in_vector, const Vec3& normal,
 inline std::pair<Vec3, bool> perfectRefraction(Vec3 in_vector,
                                                Vec3 normal,
                                                double eta_1, double eta_2) {
+  assert(std::abs(in_vector.norm() - 1.0) < EPS);
+  assert(std::abs(normal.norm() - 1.0) < EPS);
   // internally the function assumes that the eta_1 is on the side of
   // plane where in_vector is
   // also that normal is on the same side as in_vector
@@ -37,9 +39,6 @@ inline std::pair<Vec3, bool> perfectRefraction(Vec3 in_vector,
     normal = -1.0 * normal;
     std::swap(eta_1, eta_2);
   }
-  normal /= normal.norm();
-  double in_length = in_vector.norm();
-  in_vector /= in_length;
   // Assume n and in_vector are normalized
   // Let w1 = proj_n(in_vector)
   // and w2 = proj_n(out_vector)

@@ -59,39 +59,42 @@ TEST(RelativeSubvoxelAreas, FlatVoxel) {
 TEST(SurfaceAreaHeuristic, Simple) {
   double l_area = 0.5;
   double r_area = 0.5;
-  int n_left = 10;
-  int n_plane = 0;
-  int n_right = 2;
+  TriangleCounts counts;
+  counts.left = 10;
+  counts.plane = 0;
+  counts.right = 2;
   double traversal_cost = 10.0;
   double intersection_cost = 1.0;
   double cost;
   bool side;
   std::tie(cost, side) =
-      surfaceAreaHeuristic(l_area, r_area, n_left, n_plane, n_right,
+      surfaceAreaHeuristic(l_area, r_area, counts,
                            traversal_cost, intersection_cost);
   double correct =
-      traversal_cost + intersection_cost * (l_area * n_left + r_area * n_right);
+      traversal_cost + intersection_cost * (l_area * counts.left + r_area * counts.right);
   EXPECT_NEAR(cost, correct, EPS);
 }
 TEST(SurfaceAreaHeuristic, TrianglesOnPlane) {
   double l_area = 0.5;
   double r_area = 0.5;
-  int n_left = 10;
-  int n_plane = 4;
-  int n_right = 2;
+  TriangleCounts counts;
+  counts.left = 10;
+  counts.plane = 4;
+  counts.right = 2;
   double traversal_cost = 10.0;
   double intersection_cost = 1.0;
   double cost;
   bool side;
+
   std::tie(cost, side) =
-      surfaceAreaHeuristic(l_area, r_area, n_left, n_plane, n_right,
+      surfaceAreaHeuristic(l_area, r_area, counts,
                            traversal_cost, intersection_cost);
   double l_correct =
       traversal_cost +
-      intersection_cost * (l_area * (n_left + n_plane) + r_area * n_right);
+      intersection_cost * (l_area * (counts.left + counts.plane) + r_area * counts.right);
   double r_correct =
       traversal_cost +
-      intersection_cost * (l_area * n_left + r_area * (n_right + n_plane));
+      intersection_cost * (l_area * counts.left + r_area * (counts.right + counts.plane));
 
   EXPECT_NEAR(cost, std::min(l_correct, r_correct), EPS);
   EXPECT_EQ(side, l_correct <= r_correct ? 0 : 1);

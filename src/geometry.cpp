@@ -260,6 +260,8 @@ void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
     // check if the plane intersects the segment
     if (a[plane.axis] + EPS < plane.pos && plane.pos < b[plane.axis] - EPS) {
       double t = (plane.pos - a[plane.axis]) / side_length;
+      assert(t < 1.0 + EPS);
+      assert(t > -EPS);
       new_points.pushBack((1.0 - t) * a + t * b);
     }
   }
@@ -295,8 +297,8 @@ std::pair<bool, bool> ClipTriangle::overlapsSides(const AxisPlane& plane,
 double ClipTriangle::max(int axis) const { return box.hi[axis]; }
 double ClipTriangle::min(int axis) const { return box.lo[axis]; }
 void ClipTriangle::clip(const AxisPlane& plane, bool side) {
-  assert(side != 0 || (plane.pos > min(plane.axis) - EPS));
-  assert(side != 1 || (plane.pos < max(plane.axis) + EPS));
+  assert(side == 1 || (plane.pos > min(plane.axis) - EPS));
+  assert(side == 0 || (plane.pos < max(plane.axis) + EPS));
   polygon.intersect(plane, side);
   assert(polygon.size() > 1);
   box = polygon.getBoundingBox();
