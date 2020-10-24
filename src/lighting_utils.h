@@ -63,8 +63,7 @@ inline std::pair<Vec3, bool> perfectRefraction(Vec3 in_vector,
     return {Vec3(0.0), 0};
   }
   Vec3 w2 = -1.0 * normal * std::sqrt(1.0 - u2_dot);
-  // scale back to original
-  return {in_length * (u2 + w2), 1};
+  return {(u2 + w2), 1};
 }
 // calculates fresnel factor using the Schlick's approximation
 // eta_1 is the refractive index of the side on the side of normal

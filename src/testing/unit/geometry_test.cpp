@@ -925,7 +925,7 @@ TEST(UniformRandomHemispherePoint, UniformDistribution) {
 }
 TEST(CosineExponentRandomPoint, PointsOnHemisphere) {
   std::mt19937 mt(1337);
-  Vec3 direction = Vec3(1.1, 2.2, 3.3);
+  Vec3 direction = normalize(Vec3(1.1, 2.2, 3.3));
   std::uniform_real_distribution exponent_distribution(0.001, 5.0);
   for(int i = 0; i < 10000; ++i) {
     double exponent = exponent_distribution(mt);

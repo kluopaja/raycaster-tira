@@ -46,23 +46,23 @@ TEST(PerfectRefraction, SameRefractiveIndexSimple) {
   EXPECT_TRUE(success);
 }
 TEST(PerfectRefraction, SameRefractiveIndex) {
-  Vec3 in_vector(1.0, 4.0, 0.0);
-  Vec3 normal(1.1, 2.2, 3.3);
+  Vec3 in_vector = normalize(Vec3(1.0, 4.0, 0.0));
+  Vec3 normal = normalize(Vec3(1.1, 2.2, 3.3));
   double eta_1 = 4.0;
   double eta_2 = 4.0;
   Vec3 out_vector;
   bool success;
   std::tie(out_vector, success) = perfectRefraction(in_vector, normal,
                                                     eta_1, eta_2);
-  Vec3 correct(-1.0, -4.0, 0.0);
+  Vec3 correct = normalize(Vec3(-1.0, -4.0, 0.0));
   EXPECT_THAT(out_vector, VecEq(correct));
   EXPECT_TRUE(success);
 }
 TEST(PerfectRefraction, SameRefractiveIndexRandom) {
   std::mt19937 mt(1337);
   for(int i = 0; i < 10000; ++i) {
-    Vec3 in_vector = test::randomVec3(-2.0, 2.0, mt);
-    Vec3 normal = test::randomVec3(-2.0, 2.0, mt);
+    Vec3 in_vector = normalize(test::randomVec3(-2.0, 2.0, mt));
+    Vec3 normal = normalize(test::randomVec3(-2.0, 2.0, mt));
     double eta_1 = 4.0;
     double eta_2 = 4.0;
     Vec3 out_vector;
@@ -98,8 +98,8 @@ TEST(PerfectRefraction, DifferentRefractiveIndexSimple) {
 TEST(PerfectRefraction, IsReversibleRandom) {
   std::mt19937 mt(1337);
   for(int i = 0; i < 10000; ++i) {
-    Vec3 in_vector = test::randomVec3(-2.0, 2.0, mt);
-    Vec3 normal = test::randomVec3(-2.0, 2.0, mt);
+    Vec3 in_vector = normalize(test::randomVec3(-2.0, 2.0, mt));
+    Vec3 normal = normalize(test::randomVec3(-2.0, 2.0, mt));
     std::uniform_real_distribution dist(0.1, 10.0);
     double eta_1 = dist(mt);
     double eta_2 = dist(mt);
