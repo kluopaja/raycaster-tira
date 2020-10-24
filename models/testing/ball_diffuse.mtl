@@ -1,0 +1,9 @@
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl Diffuse
+Ns 500
+Ka 0.0 0.0 0.0
+Kd 0.18 0.18 0.18
+Ks 0.0 0.0 0.0
+Kt 0.0 0.0 0.0
