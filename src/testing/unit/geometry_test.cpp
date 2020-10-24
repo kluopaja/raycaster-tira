@@ -894,7 +894,7 @@ TEST(UniformRandomHemispherePoint, UniformDistribution) {
   // direction.dot(direction_normal) == 0
   // if the distribution is uniform, there should be exactly
   // half as many dots wihin some angle from direction_normal
-  // than wihtin some angle from direction
+  // than wihtin some angle from `direction`
   Vec3 direction_normal(direction[1],
                         -direction[0], 0.0);
   direction_normal = direction_normal / direction_normal.norm();
@@ -923,6 +923,48 @@ TEST(UniformRandomHemispherePoint, UniformDistribution) {
   double fraction_near_in_between = (double)n_near_in_between / n_points;
   EXPECT_NEAR(fraction_near_normal*2, fraction_near_direction, 0.01);
   EXPECT_NEAR(fraction_near_in_between, fraction_near_direction, 0.01);
+}
+TEST(UniformRandomSpherePoint, PointsOnSphere) {
+  std::mt19937 mt(1337);
+  for(int i = 0; i < 10000; ++i) {
+    Vec3 random_point = uniformRandomSpherePoint(mt);
+    ASSERT_NEAR(random_point.norm(), 1, EPS);
+  }
+}
+TEST(UniformRandomSpherePoint, UniformDistribution) {
+  std::mt19937 mt(1337);
+  Vec3 direction = normalize(Vec3(-3.3, -2.2, -1.1));
+  // direction.dot(direction_normal) == 0
+  // if the distribution is uniform, there should be exactly
+  // as many dots wihin some angle from direction_normal
+  // than wihtin some angle from `direction`
+  Vec3 direction_normal(direction[1],
+                        -direction[0], 0.0);
+  direction_normal = normalize(direction_normal);
+  assert(direction.dot(direction_normal) < EPS);
+  Vec3 opposite = normalize(-1.0 * direction);
+  int n_points = 500000;
+  int n_near_direction = 0;
+  int n_near_opposite = 0;
+  int n_near_normal = 0;
+  for (int i = 0; i < n_points; ++i) {
+    Vec3 random_point = uniformRandomSpherePoint(mt);
+    // project to the normalized direction
+    if (random_point.dot(direction) > 0.8) {
+      ++n_near_direction;
+    }
+    if (random_point.dot(direction_normal) > 0.8) {
+      ++n_near_normal;
+    }
+    if (random_point.dot(opposite) > 0.8) {
+      ++n_near_opposite;
+    }
+  }
+  double fraction_near_direction = (double)n_near_direction / n_points;
+  double fraction_near_normal = (double)n_near_normal / n_points;
+  double fraction_near_opposite = (double)n_near_opposite / n_points;
+  EXPECT_NEAR(fraction_near_normal, fraction_near_direction, 0.01);
+  EXPECT_NEAR(fraction_near_opposite, fraction_near_direction, 0.01);
 }
 TEST(CosineExponentRandomPoint, PointsOnHemisphere) {
   std::mt19937 mt(1337);
