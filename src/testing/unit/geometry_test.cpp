@@ -568,7 +568,89 @@ TEST(PlanePolygon, IntersectSimple) {
   EXPECT_NEAR((r.lo - c.lo).norm(), 0, EPS);
   EXPECT_NEAR((r.hi - c.hi).norm(), 0, EPS);
 }
-// TODO add more intersection tests
+//   . *
+//   * *
+//..*. *..
+// * .*
+//****
+TEST(PlanePolygon, IntersectTwice1) {
+  Triangle t(Vec3(0.0), Vec3(1.0, 1.0, 0.0), Vec3(0.5, 0.0, 0.0));
+  PlanePolygon p(t);
+  p.intersect({1, 0.5}, 1);
+  EXPECT_EQ(p.size(), 3);
+  Voxel r = p.getBoundingBox();
+  Voxel c = Voxel(Vec3(0.5, 0.5, 0.0), Vec3(1.0, 1.0, 0.0));
+  EXPECT_NEAR((r.lo - c.lo).norm(), 0, EPS);
+  EXPECT_NEAR((r.hi - c.hi).norm(), 0, EPS);
+  p.intersect({0, 0.7}, 0);
+  r = p.getBoundingBox();
+  c = Voxel(Vec3(0.5, 0.5, 0.0), Vec3(0.7, 0.7, 0.0));
+  EXPECT_NEAR((r.lo - c.lo).norm(), 0, EPS);
+  EXPECT_NEAR((r.hi - c.hi).norm(), 0, EPS);
+  EXPECT_EQ(p.size(), 3);
+}
+//    .*
+//   *. *
+//..* .*..
+// * *.
+//****.
+TEST(PlanePolygon, IntersectTwice2) {
+  Triangle t(Vec3(0.0), Vec3(1.0, 1.0, 0.0), Vec3(0.5, 0.0, 0.0));
+  PlanePolygon p(t);
+  p.intersect({1, 0.5}, 0);
+  Voxel r = p.getBoundingBox();
+  Voxel c = Voxel(Vec3(0.0, 0.0, 0.0), Vec3(0.75, 0.5, 0.0));
+  EXPECT_NEAR((r.lo - c.lo).norm(), 0, EPS);
+  EXPECT_NEAR((r.hi - c.hi).norm(), 0, EPS);
+  EXPECT_EQ(p.size(), 4);
+  p.intersect({0, 0.7}, 0);
+  r = p.getBoundingBox();
+  c = Voxel(Vec3(0.0, 0.0, 0.0), Vec3(0.7, 0.5, 0.0));
+  EXPECT_NEAR((r.lo - c.lo).norm(), 0, EPS);
+  EXPECT_NEAR((r.hi - c.hi).norm(), 0, EPS);
+  EXPECT_EQ(p.size(), 5);
+}
+//    *
+//   * *
+//..* *..
+// * *
+//****
+TEST(PlanePolygon, IntersectSame) {
+  Triangle t(Vec3(0.0), Vec3(1.0, 1.0, 0.0), Vec3(0.5, 0.0, 0.0));
+  PlanePolygon p(t);
+  p.intersect({1, 0.5}, 0);
+  Voxel r = p.getBoundingBox();
+  Voxel c = Voxel(Vec3(0.0, 0.0, 0.0), Vec3(0.75, 0.5, 0.0));
+  EXPECT_NEAR((r.lo - c.lo).norm(), 0, EPS);
+  EXPECT_NEAR((r.hi - c.hi).norm(), 0, EPS);
+  EXPECT_EQ(p.size(), 4);
+  p.intersect({1, 0.5}, 0);
+  r = p.getBoundingBox();
+  EXPECT_NEAR((r.lo - c.lo).norm(), 0, EPS);
+  EXPECT_NEAR((r.hi - c.hi).norm(), 0, EPS);
+  EXPECT_EQ(p.size(), 4);
+}
+//    *
+//   * *
+//..* *..
+// * *
+//****
+TEST(PlanePolygon, IntersectSameDifferentSides) {
+  Triangle t(Vec3(0.0), Vec3(1.0, 1.0, 0.0), Vec3(0.5, 0.0, 0.0));
+  PlanePolygon p(t);
+  p.intersect({1, 0.5}, 0);
+  Voxel r = p.getBoundingBox();
+  Voxel c = Voxel(Vec3(0.0, 0.0, 0.0), Vec3(0.75, 0.5, 0.0));
+  EXPECT_NEAR((r.lo - c.lo).norm(), 0, EPS);
+  EXPECT_NEAR((r.hi - c.hi).norm(), 0, EPS);
+  EXPECT_EQ(p.size(), 4);
+  p.intersect({1, 0.5}, 1);
+  r = p.getBoundingBox();
+  c = Voxel(Vec3(0.5, 0.5, 0.0), Vec3(0.75, 0.5, 0.0));
+  EXPECT_NEAR((r.lo - c.lo).norm(), 0, EPS);
+  EXPECT_NEAR((r.hi - c.hi).norm(), 0, EPS);
+  EXPECT_EQ(p.size(), 2);
+}
 TEST(PlanePolygon, Size) {
   Triangle t(Vec3(1.0, 0.0, 0.0), Vec3(1.1), Vec3(2.2));
   PlanePolygon p(t);

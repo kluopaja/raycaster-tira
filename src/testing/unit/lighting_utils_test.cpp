@@ -11,6 +11,14 @@ namespace {
 MATCHER_P(VecEq, v, "should equal " + PrintToString(v)) {
   return (v - arg).norm() < EPS;
 }
+// No reflecion should be seen on the other side of the plane
+TEST(PhongSpecular, DifferentSideOfPlane) {
+  Vec3 in_vector(0.0, 1.0, 0.0);
+  Vec3 out_vector(0.0, -1.0, 0.0);
+  Vec3 normal(0.0, 1.0, 0.0);
+  Vec3 result = phongSpecular(in_vector, normal, out_vector, 10);
+  EXPECT_THAT(result, VecEq(Vec3(0.0)));
+}
 TEST(PerfectRefraction, NormalVector) {
   Vec3 in_vector(0.0, 1.0, 0.0);
   Vec3 normal(0.0, 1.0, 0.0);
@@ -70,6 +78,22 @@ TEST(PerfectRefraction, SameRefractiveIndexRandom) {
     ASSERT_THAT(in_vector, VecEq(out_vector_2));
   }
 }
+TEST(PerfectRefraction, DifferentRefractiveIndexSimple) {
+  Vec3 in_vector = normalize(Vec3(-1.0, 1.0, 0.0));
+  Vec3 normal = normalize(Vec3(0.0, 1.0, 0.0));
+  double eta_1 = 2.0;
+  double eta_2 = 4.0;
+  Vec3 out_vector;
+  bool success;
+  std::tie(out_vector, success) = perfectRefraction(in_vector, normal,
+                                                    eta_1, eta_2);
+  // sin(theta_2) = eta_1 / eta_2 * sin(theta_1)
+  double sin_theta_2 = eta_1 / eta_2 * (-in_vector[0]);
+  double cos_theta_2 = std::sqrt(1 - std::pow(sin_theta_2, 2));
+  Vec3 correct = Vec3(sin_theta_2, -cos_theta_2, 0.0);
+  EXPECT_THAT(out_vector, VecEq(correct));
+  EXPECT_TRUE(success);
+}
 // test that refraction is reversible if it is successful
 TEST(PerfectRefraction, IsReversibleRandom) {
   std::mt19937 mt(1337);
@@ -89,5 +113,32 @@ TEST(PerfectRefraction, IsReversibleRandom) {
         eta_1, eta_2);
     ASSERT_THAT(in_vector, VecEq(out_vector_2));
   }
+}
+// test that very high refractive index bends the light close to the normal
+TEST(PerfectRefraction, HighRefactiveIndex) {
+  Vec3 in_vector = normalize(Vec3(1.0, 4.0, 0.0));
+  Vec3 normal = normalize(Vec3(1.1, 2.2, 3.3));
+  double eta_1 = 1.0;
+  double eta_2 = 1e9;
+  Vec3 out_vector;
+  bool success;
+  std::tie(out_vector, success) = perfectRefraction(in_vector, normal,
+                                                    eta_1, eta_2);
+  Vec3 projection_on_normal = project(out_vector, normal);
+  double distance = (projection_on_normal - out_vector).norm();
+  EXPECT_LE(distance, 0.000001);
+  EXPECT_TRUE(success);
+}
+// Tests total internal reflection with very high eta_1
+TEST(PerfectRefraction, TotalInternalReflection) {
+  Vec3 in_vector = normalize(Vec3(1.0, 4.0, 0.0));
+  Vec3 normal = normalize(Vec3(1.1, 2.2, 3.3));
+  double eta_1 = 1e9;
+  double eta_2 = 1.0;
+  Vec3 out_vector;
+  bool success;
+  std::tie(out_vector, success) = perfectRefraction(in_vector, normal,
+                                                    eta_1, eta_2);
+  EXPECT_FALSE(success);
 }
 }
