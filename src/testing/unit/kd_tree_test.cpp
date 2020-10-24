@@ -110,6 +110,14 @@ TEST(CreateAndExtractTriangles, Simple) {
   EXPECT_THAT(restored, TriangleVecEq(tv));
 }
 */
+// Test that tree building and queries work for an empty tree
+TEST(TreeBuilder, Empty) {
+  Vector<SceneTriangle*> scene_p;
+  Tree t = buildKdTree(scene_p, 1.0, 40.0);
+  Ray r(Vec3(1.0), Vec3(1.0));
+  ScenePoint sp = t.getClosestRayIntersection(r);
+  ASSERT_EQ(sp.scene_triangle, nullptr);
+}
 // tests both the TreeBuilder and Tree by building a tree and
 // making queries
 TEST(TreeBuilderKdTreeQueries, Random3d) {

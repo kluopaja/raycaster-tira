@@ -82,6 +82,9 @@ Tree TreeBuilder::build(
 // implements the O(n log^2 n) algorithm
 std::unique_ptr<Node> TreeBuilder::recursiveBuild(
     Vector<BuildTriangle>& build_triangles, const Voxel& voxel) const {
+  if(build_triangles.size() == 0) {
+    return std::make_unique<Node>(Vector<Triangle>(), Vector<SceneTriangle*>(), voxel);
+  }
   // the surface area heuristic is not well defined if the voxel has
   // zero area so we will just terminate
   if (voxel.area() < EPS) {
