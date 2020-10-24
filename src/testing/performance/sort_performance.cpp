@@ -89,7 +89,7 @@ void generateSortReport() {
   std::cout << std::string(20, '*') << std::endl;
   std::cout << "Generating performance report for sorting functions" << std::endl;
   std::cout << "Sorting random vectors:" << std::endl;
-  for(int i = 0; i <= 6; ++i) {
+  for(int i = 0; i <= 7; ++i) {
     SortTestResult result = testRandomRepeat(n, 100);
     std::cout << "n = " << n << std::endl;
     std::cout << result << std::endl;
