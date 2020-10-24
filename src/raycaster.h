@@ -219,5 +219,9 @@ class Scene {
   int max_recursion_depth;
   int n_recursion_rays;
   SamplingScheme sampling_scheme;
+  // Cost estimate for kd tree traveral
+  double k_t = 15;
+  // Cost estimate for triangle intersection
+  double k_i = 20;
 };
 #endif

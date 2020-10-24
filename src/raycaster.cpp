@@ -124,13 +124,28 @@ void Scene::setEnvironmentLightColor(const Vec3& color) {
   environment_light.setColor(color);
 }
 void Scene::setSamplingScheme(SamplingScheme s) { sampling_scheme = s; }
+void Scene::setCosts(double new_k_t, double new_k_i) {
+  assert(new_k_t > 0);
+  assert(new_k_i > 0);
+  k_t = new_k_t;
+  k_i = new_k_i;
+}
 Image Scene::render(int x_resolution, int y_resolution, int n_rays_per_pixel,
                     int max_recursion_depth, int n_recursion_rays) {
-  kd_tree = model.buildKdTree(1.0, 5.0);
-  std::cout << "start rendering... " << std::endl;
+  assert(x_resolution > 0);
+  assert(y_resolution > 0);
+  assert(n_rays_per_pixel > 0);
+  assert(max_recursion_depth > 0);
+  assert(n_recursion_rays > 0);
+
+  std::cout << "starting to build the kd tree..." << std::endl;
+  kd_tree = model.buildKdTree(k_t, k_i);
+
+  std::cout << "starting to render... " << std::endl;
   auto start_time = std::chrono::high_resolution_clock::now();
   mt_19937 = std::mt19937(1337);
   subpixel_sample_distribution = std::uniform_real_distribution(0.0, 1.0);
+
   this->max_recursion_depth = max_recursion_depth;
   this->n_recursion_rays = n_recursion_rays;
 #if ENABLE_PARALLEL
