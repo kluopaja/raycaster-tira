@@ -13,7 +13,7 @@ model
 point_light
   pos 0 1.5 0.0
   color 1 1 1 
-jender
+render
   width       500
   height      500
   pixel_rays  5
