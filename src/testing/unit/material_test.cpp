@@ -86,7 +86,7 @@ TEST(Material, ImportanceSamplePdfIntegral) {
     double sum = 0;
     int n_samples = 30000;
     for(int j = 0; j < n_samples; ++j) {
-      Vec3 in_vector = uniformRandomSpherePoint(Vec3(1.0, 0.0, 0.0), mt);
+      Vec3 in_vector = uniformRandomSpherePoint(mt);
       sum += m.importanceSamplePdf(in_vector, normal, out_vector);
     }
     double integral = sum / n_samples / random_sphere_pdf;
@@ -98,9 +98,9 @@ TEST(Material, ImportanceSampleFollowsPdf) {
   std::mt19937 mt(1337);
   for(int i = 0; i < 100; ++i) {
     Material m = test::randomMaterial(mt);
-    Vec3 normal = uniformRandomSpherePoint(Vec3(1.0, 0.0, 0.0), mt);
-    Vec3 out_vector = uniformRandomSpherePoint(Vec3(1.0, 0.0, 0.0), mt);
-    Vec3 area_middle = uniformRandomSpherePoint(Vec3(1.0, 0.0, 0.0), mt);
+    Vec3 normal = uniformRandomSpherePoint(mt);
+    Vec3 out_vector = uniformRandomSpherePoint(mt);
+    Vec3 area_middle = uniformRandomSpherePoint(mt);
     // minimum value for in_vector.dot(area_middle)
     double area_border = 0.8;
     double random_sphere_pdf = 1 / (4 * kPi);
@@ -108,7 +108,7 @@ TEST(Material, ImportanceSampleFollowsPdf) {
     int n_samples = 30000;
     Vector<double> sample_values;
     for(int j = 0; j < n_samples; ++j) {
-      Vec3 in_vector = uniformRandomSpherePoint(Vec3(1.0, 0.0, 0.0), mt);
+      Vec3 in_vector = uniformRandomSpherePoint(mt);
       if (in_vector.dot(area_middle) > area_border) {
         double tmp = m.importanceSamplePdf(in_vector, normal, out_vector);
         pdf_values.pushBack(tmp / random_sphere_pdf);
