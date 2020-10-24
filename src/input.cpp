@@ -511,10 +511,20 @@ std::string getParentPath(const std::string& path) {
 void fixFilePaths(const std::string& input_file_path, Recipe& recipe) {
   std::string parent_path = getParentPath(input_file_path);
   for(auto& model: recipe.models) {
-    model.file = parent_path + "/" + model.file;
+    if(parent_path == "") {
+      model.file = "./" + model.file;
+    }
+    else {
+      model.file = parent_path + "/" + model.file;
+    }
   }
   for(auto& image: recipe.images) {
-    image.file = parent_path + "/" + image.file;
+    if(parent_path == "") {
+      image.file = "./" + image.file;
+    }
+    else {
+      image.file = parent_path + "/" + image.file;
+    }
   }
 }
 // Finds comments in `input` and marks them parsed
