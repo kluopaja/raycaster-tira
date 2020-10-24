@@ -208,11 +208,12 @@ Vec3 Scene::castRay(const Ray& r, int recursion_depth,
   ScenePoint sp = kd_tree.getClosestRayIntersection(r);
   // no intersection
   if (sp.scene_triangle == nullptr) {
-    return environment_light.colorAtDirection(r.direction);
+    return environment_light.colorAtDirection(r.getDirection());
   }
   Vec3 intersection_point =
       sp.scene_triangle->triangle.pointFromBary(sp.bary_coords);
   Vec3 normal = sp.scene_triangle->normalAt(sp.bary_coords);
+  Vec3 out_vector = normalize(-1.0 * r.getDirection());
 
   Vec3 light_color(0.0);
   light_color = light_color + sp.scene_triangle->material.emitted;

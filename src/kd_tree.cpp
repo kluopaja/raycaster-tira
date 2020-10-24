@@ -258,7 +258,7 @@ ScenePoint Node::getClosestRayIntersection(const Ray& r) const {
   }
   // first the closer leaf
   ScenePoint result;
-  if (r.direction[plane.axis] >= 0) {
+  if (r.getDirection()[plane.axis] >= 0) {
     result = left->getClosestRayIntersection(r);
     if (result.scene_triangle != nullptr) {
       return result;
