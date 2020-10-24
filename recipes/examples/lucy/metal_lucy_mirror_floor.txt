@@ -1,0 +1,33 @@
+camera
+  pos     0 4 50
+  front   0.0 0.0 -0.1
+  up      0.0 1.0 0.0
+  x_fov   45
+  y_fov   45
+
+model
+  file    ../../../models/lucy/lucy3.obj
+  pos     0.0 0.0 0.0
+  normal  smooth
+
+model
+  file    ../../../models/XZ_plane/XZ_plane_mirror.obj
+  pos     0.0 0.0 0.0
+  normal  smooth
+
+environment_light
+  color   1.0 1.0 1.0
+  type    directed
+  direction 1.0 1.0 1.0
+  exp 2
+
+render
+  width       1000
+  height      1000
+  pixel_rays  40
+  depth       3
+  branching   4
+
+image
+  file      metal_lucy_mirror_floor.ppm
+  truncate  0.99
