@@ -14,68 +14,104 @@ ifeq ($(enable_parallel), 1)
   bin_link_flags += -ltbb
 endif
 test_link_flags := -O2 $(common_link_flags) $(common_test_link_flags)
+perf_link_flags := -O2 $(common_link_flags)
 cov_link_flags := -O0 --coverage $(common_link_flags) $(common_test_link_flags)
 
 main_object := main
-common_object_names := geometry kd_tree model_loader raycaster material image
-test_object_names := geometry_test kd_tree_test utils_test test_utils \
-                     model_loader_test raycaster_test lighting_utils_test \
-                     image_test
+prog_object_names := geometry kd_tree model_loader raycaster material image\
+                     input renderer
+test_common_object_names := test_utils
+test_unit_object_names := geometry_test kd_tree_test utils_test \
+                          model_loader_test raycaster_test lighting_utils_test \
+                          image_test material_test vector_test input_test
+test_perf_object_names := performance_main performance_utils \
+                          sort_performance kd_performance
 
+bin_objects = $(patsubst %, bin/%.o, $(main_object) $(prog_object_names))
 
-bin_objects = $(patsubst %, bin/%.o, $(main_object) $(common_object_names))
-test_objects = $(patsubst %, test/%.o, $(test_object_names) \
-               $(common_object_names))
-cov_objects = $(patsubst %, cov/%.o, $(test_object_names) \
-              $(common_object_names))
+test_prog_objects := $(patsubst %, testing/bin/%.o, $(prog_object_names))
+test_common_objects := $(patsubst %, testing/bin/%.o, $(test_common_object_names))
+test_unit_objects := $(patsubst %, testing/bin/%.o, $(test_unit_object_names))
+test_perf_objects := $(patsubst %, testing/bin/%.o, $(test_perf_object_names))
 
-bin_depends := $(patsubst %, bin/%.d, $(main_object) $(common_object_names))
-test_depends := $(patsubst %, test/%.d, $(test_object_names) \
-                $(common_object_names))
-cov_depends := $(patsubst %, cov/%.d, $(test_objects_names) \
-               $(common_objects_names))
+cov_prog_objects = $(patsubst %, testing/cov/%.o, $(prog_object_names))
+cov_common_objects = $(patsubst %, testing/cov/%.o, $(test_common_object_names))
+cov_unit_objects = $(patsubst %, testing/cov/%.o, $(test_unit_object_names))
 
-all: bin/main test/main cov/main
+all_unit_objects := $(test_prog_objects) $(test_common_objects) $(test_unit_objects)
+all_perf_objects := $(test_prog_objects) $(test_common_objects) $(test_perf_objects)
+all_cov_objects := $(cov_prog_objects) $(cov_common_objects) $(cov_unit_objects)
+
+all: bin/main testing/bin/unit testing/bin/performance testing/cov/main
 
 bin/main : $(bin_objects)
-	@mkdir -p bin
 	$(CC) $(bin_link_flags) -o bin/main $(bin_objects)
 
-test/main : $(test_objects)
-	@mkdir -p test
-	$(CC) $(test_link_flags) -o test/main $(test_objects)
+testing/bin/unit : $(all_unit_objects)
+	$(CC) $(test_link_flags) -o testing/bin/unit $(all_unit_objects)
 
-cov/main : $(cov_objects)
-	@mkdir -p cov
-	$(CC) $(cov_link_flags) -o cov/main $(cov_objects)
+testing/bin/performance : $(all_perf_objects)
+	$(CC) $(perf_link_flags) -o testing/bin/performance $(all_perf_objects)
+
+testing/cov/main: $(all_cov_objects)
+	$(CC) $(cov_link_flags) -o testing/cov/main $(all_cov_objects)
+
+# for $$(notdir %) in the rule prerequisites
+.SECONDEXPANSION:
 
 bin/%.o: %.cpp
 	@mkdir -p $(@D)
 	$(CC) $(common_compile_flags) $(bin_compile_flags) -c -MMD $< -o $@
 
-test/%.o: %.cpp
+$(test_prog_objects): %.o: $$(notdir %).cpp
 	@mkdir -p $(@D)
 	$(CC) $(common_compile_flags) $(test_compile_flags) -c -MMD $< -o $@
 
-cov/%.o: %.cpp
+$(test_common_objects): %.o: testing/$$(notdir %).cpp
+	@mkdir -p $(@D)
+	$(CC) $(common_compile_flags) $(test_compile_flags) -c -MMD $< -o $@
+
+$(test_unit_objects): %.o: testing/unit/$$(notdir %).cpp
+	@mkdir -p $(@D)
+	$(CC) $(common_compile_flags) $(test_compile_flags) -c -MMD $< -o $@
+
+$(test_perf_objects): %.o: testing/performance/$$(notdir %).cpp
+	@mkdir -p $(@D)
+	$(CC) $(common_compile_flags) $(test_compile_flags) -c -MMD $< -o $@
+
+$(cov_prog_objects): %.o: $$(notdir %).cpp
+	@mkdir -p $(@D)
+	$(CC) $(common_compile_flags) $(cov_compile_flags) -c -MMD $< -o $@
+
+$(cov_common_objects): %.o: testing/$$(notdir %).cpp
 	@mkdir -p $(@D)
 	$(CC) $(common_compile_flags) $(cov_compile_flags) -c -MMD $< -o $@ 
 
--include $(test_depends)
--include $(cov_depends)
+$(cov_unit_objects): %.o: testing/unit/$$(notdir %).cpp
+	@mkdir -p $(@D)
+	$(CC) $(common_compile_flags) $(cov_compile_flags) -c -MMD $< -o $@ 
+
+
+-include $(wildcard bin/*.d)
+-include $(wildcard testing/bin/*.d)
+-include $(wildcard testing/cov/*.d)
 
 .PHONY: clean
 clean :
-	rm -rf ./cov
-	rm -rf ./test
+	rm -rf ./testing/cov
+	rm -rf ./testing/bin
 	rm -rf ./bin
 
 .PHONY: test
 test :
-	test/main
+	./testing/bin/unit
 
 .PHONY: coverage
 coverage :
-	@mkdir -p cov
-	-cov/main
-	gcovr -r . --html --html-details -o cov/coverage.html
+	@mkdir -p testing/cov
+	-./testing/cov/main
+	gcovr -r . --html --html-details -o testing/cov/coverage.html
+
+.PHONY: performance
+performance :
+	./testing/bin/performance

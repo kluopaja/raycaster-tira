@@ -269,18 +269,18 @@
             <td class="headerValue">kd_tree.cpp</td>
             <td></td>
             <td class="headerName">Lines:</td>
-            <td class="headerTableEntry">171</td>
-            <td class="headerTableEntry">180</td>
-            <td class="headerTableEntry" style="background-color:LightGreen">95.0 %</td>
+            <td class="headerTableEntry">190</td>
+            <td class="headerTableEntry">229</td>
+            <td class="headerTableEntry" style="background-color:#FFFF55">83.0 %</td>
           </tr>
           <tr>
             <td class="headerName">Date:</td>
-            <td class="headerValue">2020-10-03 02:53:58</td>
+            <td class="headerValue">2020-10-25 00:24:10</td>
             <td></td>
             <td class="headerName">Branches:</td>
-            <td class="headerTableEntry">118</td>
-            <td class="headerTableEntry">184</td>
-            <td class="headerTableEntry" style="background-color:LightPink">64.1 %</td>
+            <td class="headerTableEntry">134</td>
+            <td class="headerTableEntry">216</td>
+            <td class="headerTableEntry" style="background-color:LightPink">62.0 %</td>
           </tr>
         </table>
       </td>
@@ -338,28 +338,28 @@
     <td align="right" class="lineno"><pre>6</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>#include &lt;vector></pre></td>
+    <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>7</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
+    <td align="left" class="src "><pre>#include "raycaster.h"</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>8</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>#include "raycaster.h"</pre></td>
+    <td align="left" class="src "><pre>#include "utils.h"</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>9</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>#include "utils.h"</pre></td>
+    <td align="left" class="src "><pre>#include "vector.h"</pre></td>
     </tr>
 
     <tr>
@@ -449,42 +449,42 @@
     <tr>
     <td align="right" class="lineno"><pre>22</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2011</pre></td>
-    <td align="left" class="src coveredLine"><pre>std::vector&lt;BuildTriangle> createBuildTriangles(</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
+    <td align="left" class="src coveredLine"><pre>Vector&lt;BuildTriangle> createBuildTriangles(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>23</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    const std::vector&lt;SceneTriangle*>&amp; scene_triangles) {</pre></td>
+    <td align="left" class="src "><pre>    const Vector&lt;SceneTriangle*>&amp; scene_triangles) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>24</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2011</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::vector&lt;BuildTriangle> build_triangles;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
+    <td align="left" class="src coveredLine"><pre>  Vector&lt;BuildTriangle> build_triangles;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>25</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 800001 times">&check;</span><span class="takenBranch" title="Branch 2 taken 2011 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>802012</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 825607 times">&check;</span><span class="takenBranch" title="Branch 2 taken 2026 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>827633</pre></td>
     <td align="left" class="src coveredLine"><pre>  for (size_t i = 0; i &lt; scene_triangles.size(); ++i) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>26</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 800001 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>800001</pre></td>
-    <td align="left" class="src coveredLine"><pre>    build_triangles.push_back(</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 825607 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>825607</pre></td>
+    <td align="left" class="src coveredLine"><pre>    build_triangles.pushBack(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>27</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 800001 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>800001</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 825607 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>825607</pre></td>
     <td align="left" class="src coveredLine"><pre>        {ClipTriangle(scene_triangles[i]->triangle), scene_triangles[i]});</pre></td>
     </tr>
 
@@ -498,7 +498,7 @@
     <tr>
     <td align="right" class="lineno"><pre>29</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2011</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
     <td align="left" class="src coveredLine"><pre>  return build_triangles;</pre></td>
     </tr>
 
@@ -512,36 +512,36 @@
     <tr>
     <td align="right" class="lineno"><pre>31</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6698314</pre></td>
-    <td align="left" class="src coveredLine"><pre>std::vector&lt;SceneTriangle*> extractSceneTriangles(</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1150704</pre></td>
+    <td align="left" class="src coveredLine"><pre>Vector&lt;SceneTriangle*> extractSceneTriangles(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>32</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    const std::vector&lt;BuildTriangle>&amp; build_triangles) {</pre></td>
+    <td align="left" class="src "><pre>    const Vector&lt;BuildTriangle>&amp; build_triangles) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>33</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6698314</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::vector&lt;SceneTriangle*> scene_triangles;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1150704</pre></td>
+    <td align="left" class="src coveredLine"><pre>  Vector&lt;SceneTriangle*> scene_triangles;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>34</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1571768 times">&check;</span><span class="takenBranch" title="Branch 2 taken 6698314 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>8270082</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1471753 times">&check;</span><span class="takenBranch" title="Branch 2 taken 1150704 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>2622457</pre></td>
     <td align="left" class="src coveredLine"><pre>  for (size_t i = 0; i &lt; build_triangles.size(); ++i) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>35</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 1571768 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1571768</pre></td>
-    <td align="left" class="src coveredLine"><pre>    scene_triangles.push_back(build_triangles[i].scene_triangle);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 1471753 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1471753</pre></td>
+    <td align="left" class="src coveredLine"><pre>    scene_triangles.pushBack(build_triangles[i].scene_triangle);</pre></td>
     </tr>
 
     <tr>
@@ -554,7 +554,7 @@
     <tr>
     <td align="right" class="lineno"><pre>37</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6698314</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1150704</pre></td>
     <td align="left" class="src coveredLine"><pre>  return scene_triangles;</pre></td>
     </tr>
 
@@ -568,7 +568,7 @@
     <tr>
     <td align="right" class="lineno"><pre>39</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2397432057</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1872737387</pre></td>
     <td align="left" class="src coveredLine"><pre>bool operator&lt;(const Event&amp; a, const Event&amp; b) { return a.pos &lt; b.pos; }</pre></td>
     </tr>
 
@@ -618,14 +618,14 @@
     <td align="right" class="lineno"><pre>46</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::vector&lt;BuildTriangle> left;</pre></td>
+    <td align="left" class="src "><pre>  Vector&lt;BuildTriangle> left;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>47</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::vector&lt;BuildTriangle> right;</pre></td>
+    <td align="left" class="src "><pre>  Vector&lt;BuildTriangle> right;</pre></td>
     </tr>
 
     <tr>
@@ -660,7 +660,7 @@
     <td align="right" class="lineno"><pre>52</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Tree build(const std::vector&lt;SceneTriangle*>&amp; scene_triangles) const;</pre></td>
+    <td align="left" class="src "><pre>  Tree build(const Vector&lt;SceneTriangle*>&amp; scene_triangles) const;</pre></td>
     </tr>
 
     <tr>
@@ -709,14 +709,14 @@
     <td align="right" class="lineno"><pre>59</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      std::vector&lt;BuildTriangle>&amp; build_triangles, const Voxel&amp; voxel) const;</pre></td>
+    <td align="left" class="src "><pre>      Vector&lt;BuildTriangle>&amp; build_triangles, const Voxel&amp; voxel) const;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>60</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  SplitPlane findPlane(const std::vector&lt;BuildTriangle>&amp; clip_triangles,</pre></td>
+    <td align="left" class="src "><pre>  SplitPlane findPlane(const Vector&lt;BuildTriangle>&amp; clip_triangles,</pre></td>
     </tr>
 
     <tr>
@@ -737,14 +737,14 @@
     <td align="right" class="lineno"><pre>63</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::vector&lt;Event> createEventList(</pre></td>
+    <td align="left" class="src "><pre>  Vector&lt;Event> createEventList(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>64</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      const std::vector&lt;BuildTriangle>&amp; build_triangles, int dimension) const;</pre></td>
+    <td align="left" class="src "><pre>      const Vector&lt;BuildTriangle>&amp; build_triangles, int dimension) const;</pre></td>
     </tr>
 
     <tr>
@@ -758,7 +758,7 @@
     <td align="right" class="lineno"><pre>66</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  SplitResult splitTriangles(const std::vector&lt;BuildTriangle>&amp; build_triangles,</pre></td>
+    <td align="left" class="src "><pre>  SplitResult splitTriangles(const Vector&lt;BuildTriangle>&amp; build_triangles,</pre></td>
     </tr>
 
     <tr>
@@ -778,526 +778,526 @@
     <tr>
     <td align="right" class="lineno"><pre>69</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2011</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
     <td align="left" class="src coveredLine"><pre>TreeBuilder::TreeBuilder(double traversal_cost, double intersection_cost)</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>70</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2011</pre></td>
-    <td align="left" class="src coveredLine"><pre>    : traversal_cost(traversal_cost), intersection_cost(intersection_cost) {}</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
+    <td align="left" class="src coveredLine"><pre>    : traversal_cost(traversal_cost), intersection_cost(intersection_cost) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>71</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 2026 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span><span class="takenBranch" title="Branch 2 taken 2026 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(traversal_cost > EPS &amp;&amp; intersection_cost > EPS);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>72</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2011</pre></td>
-    <td align="left" class="src coveredLine"><pre>Tree TreeBuilder::build(</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
+    <td align="left" class="src coveredLine"><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>73</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    const std::vector&lt;SceneTriangle*>&amp; scene_triangles) const {</pre></td>
+    <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>74</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2011 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 2011 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>2011</pre></td>
-    <td align="left" class="src coveredLine"><pre>  Voxel voxel = boundingBox(extractTriangles(scene_triangles));</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
+    <td align="left" class="src coveredLine"><pre>Tree TreeBuilder::build(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>75</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::vector&lt;BuildTriangle> build_triangles =</pre></td>
+    <td align="left" class="src "><pre>    const Vector&lt;SceneTriangle*>&amp; scene_triangles) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>76</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2011 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>4022</pre></td>
-    <td align="left" class="src coveredLine"><pre>      createBuildTriangles(scene_triangles);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2026 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 2026 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
+    <td align="left" class="src coveredLine"><pre>  Voxel voxel = boundingBox(extractTriangles(scene_triangles));</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>77</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2011 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>2011</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::unique_ptr&lt;Node> root = recursiveBuild(build_triangles, voxel);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  Vector&lt;BuildTriangle> build_triangles =</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>78</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>4022</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return Tree(std::move(root));</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2026 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>4052</pre></td>
+    <td align="left" class="src coveredLine"><pre>      createBuildTriangles(scene_triangles);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>79</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2026 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::unique_ptr&lt;Node> root = recursiveBuild(build_triangles, voxel);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>80</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// implements the O(n log^2 n) algorithm</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>4052</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return Tree(std::move(root));</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>81</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>13394617</pre></td>
-    <td align="left" class="src coveredLine"><pre>std::unique_ptr&lt;Node> TreeBuilder::recursiveBuild(</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>82</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    std::vector&lt;BuildTriangle>&amp; build_triangles, const Voxel&amp; voxel) const {</pre></td>
+    <td align="left" class="src "><pre>// implements the O(n log^2 n) algorithm</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>83</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // the surface area heuristic is not well defined if the voxel has</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>9906096</pre></td>
+    <td align="left" class="src coveredLine"><pre>std::unique_ptr&lt;Node> TreeBuilder::recursiveBuild(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>84</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // zero area so we will just terminate</pre></td>
+    <td align="left" class="src "><pre>    Vector&lt;BuildTriangle>&amp; build_triangles, const Voxel&amp; voxel) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>85</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 13394617 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 13394617 times">&check;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>13394617</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (voxel.area() &lt; EPS) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 3803357 times">&check;</span><span class="takenBranch" title="Branch 2 taken 6102739 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9906096</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if(build_triangles.size() == 0) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>86</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // make a leaf</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 3803357 times">&check;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>7606714</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return std::make_unique&lt;Node>(Vector&lt;Triangle>(), Vector&lt;SceneTriangle*>(), voxel);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>87</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    std::vector&lt;SceneTriangle*> scene_triangles =</pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>88</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
-    <td align="left" class="src uncoveredLine"><pre>        extractSceneTriangles(build_triangles);</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // the surface area heuristic is not well defined if the voxel has</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>89</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
-    <td align="left" class="src uncoveredLine"><pre>    return std::make_unique&lt;Node>(extractTriangles(scene_triangles),</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // zero area so we will just terminate</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>90</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
-    <td align="left" class="src uncoveredLine"><pre>                                  scene_triangles, voxel);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6102739 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 3 taken 513 times">&check;</span><span class="takenBranch" title="Branch 4 taken 6102226 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>6102739</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (voxel.area() &lt; EPS) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>91</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="left" class="src "><pre>    // make a leaf</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>92</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 13394617 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>13394617</pre></td>
-    <td align="left" class="src coveredLine"><pre>  SplitPlane split_plane = findPlane(build_triangles, voxel);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    Vector&lt;SceneTriangle*> scene_triangles =</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>93</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // termination criterion</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 513 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>513</pre></td>
+    <td align="left" class="src coveredLine"><pre>        extractSceneTriangles(build_triangles);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>94</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6698314 times">&check;</span><span class="takenBranch" title="Branch 2 taken 6696303 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>13394617</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (split_plane.cost > intersection_cost * (double)build_triangles.size()) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 513 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1026</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return std::make_unique&lt;Node>(extractTriangles(scene_triangles),</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>95</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // make a leaf</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 513 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>513</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  scene_triangles, voxel);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>96</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    std::vector&lt;SceneTriangle*> scene_triangles =</pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>97</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6698314 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>6698314</pre></td>
-    <td align="left" class="src coveredLine"><pre>        extractSceneTriangles(build_triangles);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6102226 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>6102226</pre></td>
+    <td align="left" class="src coveredLine"><pre>  SplitPlane split_plane = findPlane(build_triangles, voxel);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>98</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6698314 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>13396628</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return std::make_unique&lt;Node>(extractTriangles(scene_triangles),</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // termination criterion</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>99</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6698314 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>6698314</pre></td>
-    <td align="left" class="src coveredLine"><pre>                                  scene_triangles, voxel);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1150191 times">&check;</span><span class="takenBranch" title="Branch 2 taken 4952035 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>6102226</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (split_plane.cost > intersection_cost * (double)build_triangles.size()) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>100</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="left" class="src "><pre>    // make a leaf</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>101</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6696303 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>13392606</pre></td>
-    <td align="left" class="src coveredLine"><pre>  SplitResult split = splitTriangles(build_triangles, split_plane);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    Vector&lt;SceneTriangle*> scene_triangles =</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>102</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>  build_triangles.clear();</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1150191 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1150191</pre></td>
+    <td align="left" class="src coveredLine"><pre>        extractSceneTriangles(build_triangles);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>103</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>  Voxel left_voxel(voxel);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1150191 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>2300382</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return std::make_unique&lt;Node>(extractTriangles(scene_triangles),</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>104</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>  Voxel right_voxel(voxel);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1150191 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1150191</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                  scene_triangles, voxel);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>105</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6696303 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>  left_voxel.clip(split_plane.plane, 0);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>106</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6696303 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>  right_voxel.clip(split_plane.plane, 1);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 4952035 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9904070</pre></td>
+    <td align="left" class="src coveredLine"><pre>  SplitResult split = splitTriangles(build_triangles, split_plane);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>107</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6696303 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>13392606</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::unique_ptr&lt;Node> left = recursiveBuild(split.left, left_voxel);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 4952035 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>  build_triangles.clear();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>108</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6696303 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>13392606</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::unique_ptr&lt;Node> right = recursiveBuild(split.right, right_voxel);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>  Voxel left_voxel(voxel);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>109</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return std::make_unique&lt;Node>(std::move(left), std::move(right), voxel,</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>  Voxel right_voxel(voxel);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>110</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6696303 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>                                split_plane.plane);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 4952035 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>  left_voxel.clip(split_plane.plane, 0);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>111</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 4952035 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>  right_voxel.clip(split_plane.plane, 1);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>112</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 4952035 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9904070</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::unique_ptr&lt;Node> left = recursiveBuild(split.left, left_voxel);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>113</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 4952035 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9904070</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::unique_ptr&lt;Node> right = recursiveBuild(split.right, right_voxel);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>114</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return std::make_unique&lt;Node>(std::move(left), std::move(right), voxel,</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>115</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 4952035 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>                                split_plane.plane);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>116</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>112</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>13394617</pre></td>
-    <td align="left" class="src coveredLine"><pre>SplitPlane TreeBuilder::findPlane(</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>113</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    const std::vector&lt;BuildTriangle>&amp; build_triangles,</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>114</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    const Voxel&amp; voxel) const {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>115</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>13394617</pre></td>
-    <td align="left" class="src coveredLine"><pre>  SplitPlane best_split = {{}, 0, std::numeric_limits&lt;double>::infinity()};</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>116</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 40183851 times">&check;</span><span class="takenBranch" title="Branch 1 taken 13394617 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>53578468</pre></td>
-    <td align="left" class="src coveredLine"><pre>  for (int i = 0; i &lt; 3; ++i) {</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>117</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 40183851 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>80367702</pre></td>
-    <td align="left" class="src coveredLine"><pre>    std::vector&lt;Event> event_list = createEventList(build_triangles, i);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>6102226</pre></td>
+    <td align="left" class="src coveredLine"><pre>SplitPlane TreeBuilder::findPlane(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>118</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // number of triagles having an overlap with non-zero area</pre></td>
+    <td align="left" class="src "><pre>    const Vector&lt;BuildTriangle>&amp; build_triangles,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>119</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // with V_l \ p and V_r \p</pre></td>
+    <td align="left" class="src "><pre>    const Voxel&amp; voxel) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>120</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>40183851</pre></td>
-    <td align="left" class="src coveredLine"><pre>    int n_left = 0;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>6102226</pre></td>
+    <td align="left" class="src coveredLine"><pre>  SplitPlane best_split = {{}, 0, std::numeric_limits&lt;double>::infinity()};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>121</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // ... with p</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 18306678 times">&check;</span><span class="takenBranch" title="Branch 1 taken 6102226 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>24408904</pre></td>
+    <td align="left" class="src coveredLine"><pre>  for (int i = 0; i &lt; 3; ++i) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>122</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>40183851</pre></td>
-    <td align="left" class="src coveredLine"><pre>    int n_plane = 0;</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 18306678 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>36613356</pre></td>
+    <td align="left" class="src coveredLine"><pre>    Vector&lt;Event> event_list = createEventList(build_triangles, i);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>123</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // ... with V_r \ p</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>18306678</pre></td>
+    <td align="left" class="src coveredLine"><pre>    TriangleCounts counts;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>124</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>40183851</pre></td>
-    <td align="left" class="src coveredLine"><pre>    int n_right = build_triangles.size();</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>18306678</pre></td>
+    <td align="left" class="src coveredLine"><pre>    counts.left = 0;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>125</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>40183851</pre></td>
-    <td align="left" class="src coveredLine"><pre>    AxisPlane current_plane = {i, 0.0};</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>18306678</pre></td>
+    <td align="left" class="src coveredLine"><pre>    counts.plane = 0;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>126</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 122847207 times">&check;</span><span class="takenBranch" title="Branch 2 taken 40183851 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>163031058</pre></td>
-    <td align="left" class="src coveredLine"><pre>    for (size_t j = 0; j &lt; event_list.size();) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>18306678</pre></td>
+    <td align="left" class="src coveredLine"><pre>    counts.right = build_triangles.size();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>127</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
-    <td align="left" class="src coveredLine"><pre>      current_plane.pos = event_list[j].pos;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>18306678</pre></td>
+    <td align="left" class="src coveredLine"><pre>    AxisPlane current_plane = {i, 0.0};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>128</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      //  :/</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 119876056 times">&check;</span><span class="takenBranch" title="Branch 2 taken 18306678 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>138182734</pre></td>
+    <td align="left" class="src coveredLine"><pre>    for (size_t j = 0; j &lt; event_list.size();) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>129</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      //  /_</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
+    <td align="left" class="src coveredLine"><pre>      current_plane.pos = event_list[j].pos;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>130</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      //  :</pre></td>
+    <td align="left" class="src "><pre>      //  :/</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>131</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      // Before plane check:</pre></td>
+    <td align="left" class="src "><pre>      //  /_</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>132</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      //     These are still counted as part of the right side</pre></td>
+    <td align="left" class="src "><pre>      //  :</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>133</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      // After:</pre></td>
+    <td align="left" class="src "><pre>      // Before plane check:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>134</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      //     Added to left side</pre></td>
+    <td align="left" class="src "><pre>      //     These are still counted as part of the right side</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>135</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
-    <td align="left" class="src coveredLine"><pre>      int n_start_plane_intersection = 0;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>      // After:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>136</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      // \:</pre></td>
+    <td align="left" class="src "><pre>      //     Added to left side</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>137</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      // _\ .</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
+    <td align="left" class="src coveredLine"><pre>      int n_start_plane_intersection = 0;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>138</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      //  :</pre></td>
+    <td align="left" class="src "><pre>      // \:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>139</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      // Before plane check:</pre></td>
+    <td align="left" class="src "><pre>      // _\ .</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>140</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      //     Removed from the right side</pre></td>
+    <td align="left" class="src "><pre>      //  :</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>141</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
-    <td align="left" class="src coveredLine"><pre>      int n_end_plane_intersection = 0;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>      // Before plane check:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>142</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      //  :</pre></td>
+    <td align="left" class="src "><pre>      //     Removed from the right side</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>143</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      //  |</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
+    <td align="left" class="src coveredLine"><pre>      int n_end_plane_intersection = 0;</pre></td>
     </tr>
 
     <tr>
@@ -1311,602 +1311,602 @@
     <td align="right" class="lineno"><pre>145</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      // Before plane check:</pre></td>
+    <td align="left" class="src "><pre>      //  |</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>146</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      //     Removed from the right side</pre></td>
+    <td align="left" class="src "><pre>      //  :</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>147</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      //     Added to the plane</pre></td>
+    <td align="left" class="src "><pre>      // Before plane check:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>148</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      // After:</pre></td>
+    <td align="left" class="src "><pre>      //     Removed from the right side</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>149</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      //     Added to left side</pre></td>
+    <td align="left" class="src "><pre>      //     Added to the plane</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>150</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
-    <td align="left" class="src coveredLine"><pre>      int n_new_on_plane = 0;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>      // After:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>151</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 225725046 times">&check;</span><span class="takenBranch" title="Branch 2 taken 24424866 times">&check;</span><span class="takenBranch" title="Branch 3 taken 127302705 times">&check;</span><span class="takenBranch" title="Branch 4 taken 122847207 times">&check;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>475874958</pre></td>
-    <td align="left" class="src coveredLine"><pre>      while (j &lt; event_list.size() &amp;&amp;</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>      //     Added to left side</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>152</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 127302705 times">&check;</span><span class="takenBranch" title="Branch 2 taken 98422341 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>225725046</pre></td>
-    <td align="left" class="src coveredLine"><pre>             event_list[j].pos &lt;= current_plane.pos + EPS) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
+    <td align="left" class="src coveredLine"><pre>      int n_new_on_plane = 0;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>153</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 62353722 times">&check;</span><span class="takenBranch" title="Branch 2 taken 64948983 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>127302705</pre></td>
-    <td align="left" class="src coveredLine"><pre>        if (event_list[j].type == 0) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 229484596 times">&check;</span><span class="takenBranch" title="Branch 2 taken 18306678 times">&check;</span><span class="takenBranch" title="Branch 3 taken 127915218 times">&check;</span><span class="takenBranch" title="Branch 4 taken 119876056 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>477275870</pre></td>
+    <td align="left" class="src coveredLine"><pre>      while (j &lt; event_list.size() &amp;&amp;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>154</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>62353722</pre></td>
-    <td align="left" class="src coveredLine"><pre>          ++n_start_plane_intersection;</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 127915218 times">&check;</span><span class="takenBranch" title="Branch 2 taken 101569378 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>229484596</pre></td>
+    <td align="left" class="src coveredLine"><pre>             event_list[j].pos &lt;= current_plane.pos + EPS) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>155</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>        }</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 63065718 times">&check;</span><span class="takenBranch" title="Branch 2 taken 64849500 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>127915218</pre></td>
+    <td align="left" class="src coveredLine"><pre>        if (event_list[j].type == 0) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>156</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2595261 times">&check;</span><span class="takenBranch" title="Branch 2 taken 124707444 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>127302705</pre></td>
-    <td align="left" class="src coveredLine"><pre>        if (event_list[j].type == 1) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>63065718</pre></td>
+    <td align="left" class="src coveredLine"><pre>          ++n_start_plane_intersection;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>157</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2595261</pre></td>
-    <td align="left" class="src coveredLine"><pre>          ++n_new_on_plane;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>158</pre></td>
-    <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>        }</pre></td>
     </tr>
 
     <tr>
+    <td align="right" class="lineno"><pre>158</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1783782 times">&check;</span><span class="takenBranch" title="Branch 2 taken 126131436 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>127915218</pre></td>
+    <td align="left" class="src coveredLine"><pre>        if (event_list[j].type == 1) {</pre></td>
+    </tr>
+
+    <tr>
     <td align="right" class="lineno"><pre>159</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 62353722 times">&check;</span><span class="takenBranch" title="Branch 2 taken 64948983 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>127302705</pre></td>
-    <td align="left" class="src coveredLine"><pre>        if (event_list[j].type == 2) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>1783782</pre></td>
+    <td align="left" class="src coveredLine"><pre>          ++n_new_on_plane;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>160</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>62353722</pre></td>
-    <td align="left" class="src coveredLine"><pre>          ++n_end_plane_intersection;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>161</pre></td>
-    <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>        }</pre></td>
     </tr>
 
     <tr>
+    <td align="right" class="lineno"><pre>161</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 63065718 times">&check;</span><span class="takenBranch" title="Branch 2 taken 64849500 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>127915218</pre></td>
+    <td align="left" class="src coveredLine"><pre>        if (event_list[j].type == 2) {</pre></td>
+    </tr>
+
+    <tr>
     <td align="right" class="lineno"><pre>162</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>127302705</pre></td>
-    <td align="left" class="src coveredLine"><pre>        ++j;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>63065718</pre></td>
+    <td align="left" class="src coveredLine"><pre>          ++n_end_plane_intersection;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>163</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      }</pre></td>
+    <td align="left" class="src "><pre>        }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>164</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>127915218</pre></td>
+    <td align="left" class="src coveredLine"><pre>        ++j;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>165</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>      }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>166</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>      // updating intersection counts</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>165</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
-    <td align="left" class="src coveredLine"><pre>      n_right -= n_end_plane_intersection;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>166</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
-    <td align="left" class="src coveredLine"><pre>      n_right -= n_new_on_plane;</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>167</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
-    <td align="left" class="src coveredLine"><pre>      n_plane += n_new_on_plane;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
+    <td align="left" class="src coveredLine"><pre>      counts.right -= n_end_plane_intersection;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>168</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
+    <td align="left" class="src coveredLine"><pre>      counts.right -= n_new_on_plane;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>169</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
+    <td align="left" class="src coveredLine"><pre>      counts.plane += n_new_on_plane;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>170</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>      // Plane check</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>169</pre></td>
+    <td align="right" class="lineno"><pre>171</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>      double l_area, r_area;</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>170</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 122847207 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
+    <td align="right" class="lineno"><pre>172</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 119876056 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
     <td align="left" class="src coveredLine"><pre>      std::tie(l_area, r_area) = relativeSubvoxelAreas(voxel, current_plane);</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>171</pre></td>
+    <td align="right" class="lineno"><pre>173</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>      double cost;</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>172</pre></td>
+    <td align="right" class="lineno"><pre>174</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>      bool side;</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>173</pre></td>
+    <td align="right" class="lineno"><pre>175</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
     <td align="left" class="src coveredLine"><pre>      std::tie(cost, side) =</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>174</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
-    <td align="left" class="src coveredLine"><pre>          surfaceAreaHeuristic(l_area, r_area, n_left, n_plane, n_right,</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>175</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 122847207 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>245694414</pre></td>
-    <td align="left" class="src coveredLine"><pre>                               traversal_cost, intersection_cost);</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>176</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 25866915 times">&check;</span><span class="takenBranch" title="Branch 1 taken 96980292 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
-    <td align="left" class="src coveredLine"><pre>      if (cost &lt; best_split.cost) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
+    <td align="left" class="src coveredLine"><pre>          surfaceAreaHeuristic(l_area, r_area, counts,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>177</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>25866915</pre></td>
-    <td align="left" class="src coveredLine"><pre>        best_split = {current_plane, side, cost};</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 119876056 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>239752112</pre></td>
+    <td align="left" class="src coveredLine"><pre>                               traversal_cost, intersection_cost);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>178</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 21198792 times">&check;</span><span class="takenBranch" title="Branch 1 taken 98677264 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
+    <td align="left" class="src coveredLine"><pre>      if (cost &lt; best_split.cost) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>179</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>21198792</pre></td>
+    <td align="left" class="src coveredLine"><pre>        best_split = {current_plane, side, cost};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>180</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>      }</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>179</pre></td>
+    <td align="right" class="lineno"><pre>181</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>      // After</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>180</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
-    <td align="left" class="src coveredLine"><pre>      n_left += n_start_plane_intersection;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>181</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
-    <td align="left" class="src coveredLine"><pre>      n_plane -= n_new_on_plane;</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>182</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847207</pre></td>
-    <td align="left" class="src coveredLine"><pre>      n_left += n_new_on_plane;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
+    <td align="left" class="src coveredLine"><pre>      counts.left += n_start_plane_intersection;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>183</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    }</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
+    <td align="left" class="src coveredLine"><pre>      counts.plane -= n_new_on_plane;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>184</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>119876056</pre></td>
+    <td align="left" class="src coveredLine"><pre>      counts.left += n_new_on_plane;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>185</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>13394617</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return best_split;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>186</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>187</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>40183851</pre></td>
-    <td align="left" class="src coveredLine"><pre>std::vector&lt;Event> TreeBuilder::createEventList(</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>6102226</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return best_split;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>188</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    const std::vector&lt;BuildTriangle>&amp; build_triangles, int dimension) const {</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>189</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>40183851</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::vector&lt;Event> event_list;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>18306678</pre></td>
+    <td align="left" class="src coveredLine"><pre>Vector&lt;Event> TreeBuilder::createEventList(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>190</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 64948983 times">&check;</span><span class="takenBranch" title="Branch 2 taken 40183851 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>105132834</pre></td>
-    <td align="left" class="src coveredLine"><pre>  for (size_t i = 0; i &lt; build_triangles.size(); ++i) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    const Vector&lt;BuildTriangle>&amp; build_triangles, int dimension) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>191</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 2595261 times">&check;</span><span class="takenBranch" title="Branch 3 taken 62353722 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>64948983</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (build_triangles[i].clip_triangle.isAxisAligned(dimension)) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>18306678</pre></td>
+    <td align="left" class="src coveredLine"><pre>  Vector&lt;Event> event_list;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>192</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2595261</pre></td>
-    <td align="left" class="src coveredLine"><pre>      event_list.push_back(</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 64849500 times">&check;</span><span class="takenBranch" title="Branch 2 taken 18306678 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>83156178</pre></td>
+    <td align="left" class="src coveredLine"><pre>  for (size_t i = 0; i &lt; build_triangles.size(); ++i) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>193</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 2595261 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 5 taken 2595261 times">&check;</span><span class="notTakenBranch" title="Branch 6 not taken">&cross;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>2595261</pre></td>
-    <td align="left" class="src coveredLine"><pre>          {1, build_triangles[i].clip_triangle.min(dimension)});</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 1783782 times">&check;</span><span class="takenBranch" title="Branch 3 taken 63065718 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>64849500</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (build_triangles[i].clip_triangle.isAxisAligned(dimension)) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>194</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>1783782</pre></td>
+    <td align="left" class="src coveredLine"><pre>      event_list.pushBack(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>195</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 1783782 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 5 taken 1783782 times">&check;</span><span class="notTakenBranch" title="Branch 6 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1783782</pre></td>
+    <td align="left" class="src coveredLine"><pre>          {1, build_triangles[i].clip_triangle.min(dimension)});</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>196</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>    } else {</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>195</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
-    <td align="left" class="src uncoveredLine"><pre>      event_list.push_back(</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>196</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 62353722 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 5 taken 62353722 times">&check;</span><span class="notTakenBranch" title="Branch 6 not taken">&cross;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>62353722</pre></td>
-    <td align="left" class="src coveredLine"><pre>          {0, build_triangles[i].clip_triangle.min(dimension)});</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>197</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>62353722</pre></td>
-    <td align="left" class="src coveredLine"><pre>      event_list.push_back(</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>      event_list.pushBack(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>198</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 62353722 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 5 taken 62353722 times">&check;</span><span class="notTakenBranch" title="Branch 6 not taken">&cross;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>62353722</pre></td>
-    <td align="left" class="src coveredLine"><pre>          {2, build_triangles[i].clip_triangle.max(dimension)});</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 63065718 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 5 taken 63065718 times">&check;</span><span class="notTakenBranch" title="Branch 6 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>63065718</pre></td>
+    <td align="left" class="src coveredLine"><pre>          {0, build_triangles[i].clip_triangle.min(dimension)});</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>199</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>63065718</pre></td>
+    <td align="left" class="src coveredLine"><pre>      event_list.pushBack(</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>200</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 63065718 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 5 taken 63065718 times">&check;</span><span class="notTakenBranch" title="Branch 6 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>63065718</pre></td>
+    <td align="left" class="src coveredLine"><pre>          {2, build_triangles[i].clip_triangle.max(dimension)});</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>201</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>    }</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>200</pre></td>
+    <td align="right" class="lineno"><pre>202</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>201</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 40183851 times">&check;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>40183851</pre></td>
-    <td align="left" class="src coveredLine"><pre>  quickSort(event_list.begin(), event_list.end());</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>202</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>40183851</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return event_list;</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>203</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 18306678 times">&check;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>18306678</pre></td>
+    <td align="left" class="src coveredLine"><pre>  quickSort(event_list.begin(), event_list.end());</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>204</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>SplitResult TreeBuilder::splitTriangles(</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>18306678</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return event_list;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>205</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    const std::vector&lt;BuildTriangle>&amp; build_triangles,</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>206</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    const SplitPlane&amp; plane) const {</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>SplitResult TreeBuilder::splitTriangles(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>207</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // Split build_triangles according to the plane</pre></td>
+    <td align="left" class="src "><pre>    const Vector&lt;BuildTriangle>&amp; build_triangles,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>208</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>13392606</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::vector&lt;BuildTriangle> left_build_triangles;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    const SplitPlane&amp; plane) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>209</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>13392606</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::vector&lt;BuildTriangle> right_build_triangles;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // Split build_triangles according to the plane</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>210</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 20077893 times">&check;</span><span class="takenBranch" title="Branch 2 taken 6696303 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>26774196</pre></td>
-    <td align="left" class="src coveredLine"><pre>  for (size_t i = 0; i &lt; build_triangles.size(); ++i) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>  Vector&lt;BuildTriangle> left_build_triangles;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>211</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>  Vector&lt;BuildTriangle> right_build_triangles;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>212</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 20146549 times">&check;</span><span class="takenBranch" title="Branch 2 taken 4952035 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>25098584</pre></td>
+    <td align="left" class="src coveredLine"><pre>  for (size_t i = 0; i &lt; build_triangles.size(); ++i) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>213</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>    bool to_left, to_right;</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>212</pre></td>
+    <td align="right" class="lineno"><pre>214</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>20077893</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>20146549</pre></td>
     <td align="left" class="src coveredLine"><pre>    std::tie(to_left, to_right) =</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>213</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 20077893 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>40155786</pre></td>
+    <td align="right" class="lineno"><pre>215</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 20146549 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>40293098</pre></td>
     <td align="left" class="src coveredLine"><pre>        build_triangles[i].clip_triangle.overlapsSides(plane.plane, plane.side);</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>214</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9819952 times">&check;</span><span class="takenBranch" title="Branch 1 taken 10257941 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>20077893</pre></td>
+    <td align="right" class="lineno"><pre>216</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9888867 times">&check;</span><span class="takenBranch" title="Branch 1 taken 10257682 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>20146549</pre></td>
     <td align="left" class="src coveredLine"><pre>    if (!to_left) {</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>215</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 9819952 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>9819952</pre></td>
-    <td align="left" class="src coveredLine"><pre>      right_build_triangles.push_back(build_triangles[i]);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>216</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9486174 times">&check;</span><span class="takenBranch" title="Branch 1 taken 771767 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>10257941</pre></td>
-    <td align="left" class="src coveredLine"><pre>    } else if (!to_right) {</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>217</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 9486174 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>9486174</pre></td>
-    <td align="left" class="src coveredLine"><pre>      left_build_triangles.push_back(build_triangles[i]);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 9888867 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9888867</pre></td>
+    <td align="left" class="src coveredLine"><pre>      right_build_triangles.pushBack(build_triangles[i]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>218</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 9611536 times">&check;</span><span class="takenBranch" title="Branch 1 taken 646146 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>10257682</pre></td>
+    <td align="left" class="src coveredLine"><pre>    } else if (!to_right) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>219</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 9611536 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9611536</pre></td>
+    <td align="left" class="src coveredLine"><pre>      left_build_triangles.pushBack(build_triangles[i]);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>220</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>    } else {</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>219</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 771767 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1543534</pre></td>
+    <td align="right" class="lineno"><pre>221</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 646146 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1292292</pre></td>
     <td align="left" class="src coveredLine"><pre>      BuildTriangle left = build_triangles[i];</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>220</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 771767 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1543534</pre></td>
+    <td align="right" class="lineno"><pre>222</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 646146 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1292292</pre></td>
     <td align="left" class="src coveredLine"><pre>      BuildTriangle right = build_triangles[i];</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>221</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 771767 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>771767</pre></td>
+    <td align="right" class="lineno"><pre>223</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 646146 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>646146</pre></td>
     <td align="left" class="src coveredLine"><pre>      left.clip_triangle.clip(plane.plane, 0);</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>222</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 771767 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>771767</pre></td>
+    <td align="right" class="lineno"><pre>224</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 646146 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>646146</pre></td>
     <td align="left" class="src coveredLine"><pre>      right.clip_triangle.clip(plane.plane, 1);</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>223</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 771767 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>771767</pre></td>
-    <td align="left" class="src coveredLine"><pre>      left_build_triangles.push_back(left);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>224</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 771767 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>771767</pre></td>
-    <td align="left" class="src coveredLine"><pre>      right_build_triangles.push_back(right);</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>225</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 646146 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>646146</pre></td>
+    <td align="left" class="src coveredLine"><pre>      left_build_triangles.pushBack(left);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>226</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 646146 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>646146</pre></td>
+    <td align="left" class="src coveredLine"><pre>      right_build_triangles.pushBack(right);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>227</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>    }</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>226</pre></td>
+    <td align="right" class="lineno"><pre>228</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>227</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 6696303 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 6696303 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>13392606</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return {left_build_triangles, right_build_triangles};</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>228</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>229</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 4952035 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 4952035 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>9904070</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return {left_build_triangles, right_build_triangles};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>230</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}  // namespace</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
@@ -1919,831 +1919,1300 @@
     <tr>
     <td align="right" class="lineno"><pre>232</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>Node::Node(std::unique_ptr&lt;Node> left, std::unique_ptr&lt;Node> right,</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}  // namespace</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>233</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>           const Voxel&amp; voxel, const AxisPlane&amp; plane)</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>234</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>    : left(std::move(left)),</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>Node::Node(std::unique_ptr&lt;Node> left, std::unique_ptr&lt;Node> right,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>235</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>      right(std::move(right)),</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>           const Voxel&amp; voxel, const AxisPlane&amp; plane)</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>236</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>    : left(std::move(left)),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>237</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>      right(std::move(right)),</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>238</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>      voxel(voxel),</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>237</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6696303</pre></td>
-    <td align="left" class="src coveredLine"><pre>      plane(plane) {}</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>238</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6698314</pre></td>
-    <td align="left" class="src coveredLine"><pre>Node::Node(const std::vector&lt;Triangle>&amp; triangles,</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>239</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>           const std::vector&lt;SceneTriangle*> scene_triangles,</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>4952035</pre></td>
+    <td align="left" class="src coveredLine"><pre>      plane(plane) {}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>240</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6698314</pre></td>
-    <td align="left" class="src coveredLine"><pre>           const Voxel&amp; voxel)</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>4954061</pre></td>
+    <td align="left" class="src coveredLine"><pre>Node::Node(const Vector&lt;Triangle>&amp; triangles,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>241</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 6698314 times">&check;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span><span class="takenBranch" title="Branch 6 taken 6698314 times">&check;</span><span class="notTakenBranch" title="Branch 7 not taken">&cross;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>6698314</pre></td>
-    <td align="left" class="src coveredLine"><pre>    : triangles(triangles), scene_triangles(scene_triangles), voxel(voxel) {}</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>           const Vector&lt;SceneTriangle*>&amp; scene_triangles,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>242</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>4954061</pre></td>
+    <td align="left" class="src coveredLine"><pre>           const Voxel&amp; voxel)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>243</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 4954061 times">&check;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span><span class="takenBranch" title="Branch 6 taken 4954061 times">&check;</span><span class="notTakenBranch" title="Branch 7 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>4954061</pre></td>
+    <td align="left" class="src coveredLine"><pre>    : triangles(triangles), scene_triangles(scene_triangles), voxel(voxel) {}</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>244</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>243</pre></td>
+    <td align="right" class="lineno"><pre>245</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>8041066</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>862686027</pre></td>
     <td align="left" class="src coveredLine"><pre>ScenePoint Node::getClosestRayIntersection(const Ray&amp; r) const {</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>244</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 8041066 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 3 taken 2983740 times">&check;</span><span class="takenBranch" title="Branch 4 taken 5057326 times">&check;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>8041066</pre></td>
+    <td align="right" class="lineno"><pre>246</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 862686027 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 3 taken 295566421 times">&check;</span><span class="takenBranch" title="Branch 4 taken 567119606 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>862686027</pre></td>
     <td align="left" class="src coveredLine"><pre>  if (!voxel.intersects(r)) {</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>245</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 2983740 times">&check;</span><span class="takenBranch" title="Branch 1 taken 2983740 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>5967480</pre></td>
+    <td align="right" class="lineno"><pre>247</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>295566421</pre></td>
     <td align="left" class="src coveredLine"><pre>    return {nullptr, {}};</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>246</pre></td>
+    <td align="right" class="lineno"><pre>248</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>247</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1022110 times">&check;</span><span class="takenBranch" title="Branch 2 taken 4035216 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>5057326</pre></td>
+    <td align="right" class="lineno"><pre>249</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 110591104 times">&check;</span><span class="takenBranch" title="Branch 2 taken 456528502 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>567119606</pre></td>
     <td align="left" class="src coveredLine"><pre>  if (isLeaf()) {</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>248</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1022110 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1022110</pre></td>
-    <td align="left" class="src coveredLine"><pre>    RayTriangleIntersection res = firstRayTriangleIntersection(triangles, r);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>249</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // Check that the intersection is actually within the voxel.</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>250</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // Some of the triangles extend outside the voxels</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 110591104 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>110591104</pre></td>
+    <td align="left" class="src coveredLine"><pre>    RayTriangleIntersection res = firstRayTriangleIntersection(triangles, r);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>251</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // but the tree traversal assumes that the intersections are within</pre></td>
+    <td align="left" class="src "><pre>    // Check that the intersection is actually within the voxel.</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>252</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // the voxel (the closer voxel is checked first for the intersections)</pre></td>
+    <td align="left" class="src "><pre>    // Some of the triangles extend outside the voxels</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>253</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 38571 times">&check;</span><span class="takenBranch" title="Branch 2 taken 983539 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1060681</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (res.index != triangles.size() &amp;&amp;</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // but the tree traversal assumes that the intersections are within</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>254</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 38571 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 5 taken 38571 times">&check;</span><span class="notTakenBranch" title="Branch 6 not taken">&cross;</span><br/><span class="takenBranch" title="Branch 7 taken 32547 times">&check;</span><span class="takenBranch" title="Branch 8 taken 6024 times">&check;</span><span class="takenBranch" title="Branch 9 taken 32547 times">&check;</span><span class="takenBranch" title="Branch 10 taken 989563 times">&check;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>1060681</pre></td>
-    <td align="left" class="src coveredLine"><pre>        voxel.isInside(triangles[res.index].pointFromBary(res.bary_coords))) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // the voxel (the closer voxel is checked first for the intersections)</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>255</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>32547</pre></td>
-    <td align="left" class="src coveredLine"><pre>      return {scene_triangles[res.index], res.bary_coords};</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 14822231 times">&check;</span><span class="takenBranch" title="Branch 2 taken 95768873 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>125413335</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (res.index != triangles.size() &amp;&amp;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>256</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    }</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 14822231 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="takenBranch" title="Branch 5 taken 14822231 times">&check;</span><span class="notTakenBranch" title="Branch 6 not taken">&cross;</span><br/><span class="takenBranch" title="Branch 7 taken 13596840 times">&check;</span><span class="takenBranch" title="Branch 8 taken 1225391 times">&check;</span><span class="takenBranch" title="Branch 9 taken 13596840 times">&check;</span><span class="takenBranch" title="Branch 10 taken 96994264 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>125413335</pre></td>
+    <td align="left" class="src coveredLine"><pre>        voxel.isInside(triangles[res.index].pointFromBary(res.bary_coords))) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>257</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 989563 times">&check;</span><span class="takenBranch" title="Branch 1 taken 989563 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1979126</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return {nullptr, {}};</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>13596840</pre></td>
+    <td align="left" class="src coveredLine"><pre>      return {scene_triangles[res.index], res.bary_coords};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>258</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>259</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // first the closer leaf</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>96994264</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return {nullptr, {}};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>260</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  ScenePoint result;</pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>261</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2145180 times">&check;</span><span class="takenBranch" title="Branch 2 taken 1890036 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>4035216</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (r.direction[plane.axis] >= 0) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // first the closer leaf</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>262</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 2145180 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>2145180</pre></td>
-    <td align="left" class="src coveredLine"><pre>    result = left->getClosestRayIntersection(r);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>456528502</pre></td>
+    <td align="left" class="src coveredLine"><pre>  ScenePoint result;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>263</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 118005 times">&check;</span><span class="takenBranch" title="Branch 1 taken 2027175 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>2145180</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (result.scene_triangle != nullptr) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 211863310 times">&check;</span><span class="takenBranch" title="Branch 3 taken 244665192 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>456528502</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (r.getDirection()[plane.axis] >= 0) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>264</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>118005</pre></td>
-    <td align="left" class="src coveredLine"><pre>      return result;</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 211863310 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>211863310</pre></td>
+    <td align="left" class="src coveredLine"><pre>    result = left->getClosestRayIntersection(r);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>265</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    }</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 23931640 times">&check;</span><span class="takenBranch" title="Branch 1 taken 187931670 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>211863310</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (result.scene_triangle != nullptr) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>266</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 2027175 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>2027175</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return right->getClosestRayIntersection(r);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>23931640</pre></td>
+    <td align="left" class="src coveredLine"><pre>      return result;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>267</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>268</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 1890036 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1890036</pre></td>
-    <td align="left" class="src coveredLine"><pre>  result = right->getClosestRayIntersection(r);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 187931670 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>187931670</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return right->getClosestRayIntersection(r);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>269</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 112364 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1777672 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1890036</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (result.scene_triangle != nullptr) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>270</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>112364</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return result;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>271</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
+    <td align="right" class="lineno"><pre>270</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 244665192 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>244665192</pre></td>
+    <td align="left" class="src coveredLine"><pre>  result = right->getClosestRayIntersection(r);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>271</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 50563602 times">&check;</span><span class="takenBranch" title="Branch 1 taken 194101590 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>244665192</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (result.scene_triangle != nullptr) {</pre></td>
+    </tr>
+
+    <tr>
     <td align="right" class="lineno"><pre>272</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 1777672 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1777672</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return left->getClosestRayIntersection(r);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>50563602</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return result;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>273</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>274</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
-    <td align="left" class="src uncoveredLine"><pre>Tree::Tree(Tree&amp;&amp; a) noexcept : root(std::move(a.root)) {}</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 194101590 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>194101590</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return left->getClosestRayIntersection(r);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>275</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
-    <td align="left" class="src uncoveredLine"><pre>Tree&amp; Tree::operator=(Tree&amp;&amp; a) noexcept {</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>276</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount uncoveredLine"><pre></pre></td>
-    <td align="left" class="src uncoveredLine"><pre>  root = std::move(a.root);</pre></td>
+    <td align="left" class="src uncoveredLine"><pre>std::size_t Node::numLeaves() const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>277</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount uncoveredLine"><pre></pre></td>
-    <td align="left" class="src uncoveredLine"><pre>  return *this;</pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  if(isLeaf()) return 1;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>278</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  return left->numLeaves() + right->numLeaves();</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>279</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>279</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>201000</pre></td>
-    <td align="left" class="src coveredLine"><pre>ScenePoint Tree::getClosestRayIntersection(const Ray&amp; r) const {</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>280</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>201000</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return root->getClosestRayIntersection(r);</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>std::size_t Node::numNonEmptyLeaves() const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>281</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>};</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  if(isLeaf()) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>282</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// for now simply uses the getClosestRayIntersection</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>    if(triangles.size() > 0) return 1;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>283</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// could possibly be sped up implementing a seconds recursive</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>    return 0;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>284</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// intersection test separately for this</pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>285</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>3</pre></td>
-    <td align="left" class="src coveredLine"><pre>bool Tree::trianglesIntersectSegment(const Vec3&amp; a, const Vec3&amp; b) const {</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  return left->numNonEmptyLeaves() + right->numNonEmptyLeaves();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>286</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 3 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 3 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>3</pre></td>
-    <td align="left" class="src coveredLine"><pre>  Ray r(a, b - a);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>287</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 3 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>3</pre></td>
-    <td align="left" class="src coveredLine"><pre>  ScenePoint sp = root->getClosestRayIntersection(r);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>std::size_t Node::totalTriangles() const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>288</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // no intersection</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  if(isLeaf()) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>289</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 2 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>3</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (sp.scene_triangle == nullptr) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>    return triangles.size();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>290</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return false;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>291</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  return left->totalTriangles() + right->totalTriangles();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>292</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  Vec3 intersection_point =</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>293</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
-    <td align="left" class="src coveredLine"><pre>      sp.scene_triangle->triangle.pointFromBary(sp.bary_coords);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>double Node::cost(double traversal_cost, double intersection_cost) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>294</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 3 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (pointOnSegment(intersection_point, a, b)) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  double cost_sum = 0;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>295</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return true;</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  if(voxel.area() &lt; EPS) return 0;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>296</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="left" class="src "><pre>  // I assume that they didn't include the leaves to this</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>297</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount uncoveredLine"><pre></pre></td>
-    <td align="left" class="src uncoveredLine"><pre>  return false;</pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  if(!isLeaf()) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>298</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>    cost_sum += voxel.area() * traversal_cost;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>299</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6702335</pre></td>
-    <td align="left" class="src coveredLine"><pre>std::vector&lt;Triangle> extractTriangles(</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>300</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    const std::vector&lt;SceneTriangle*>&amp; scene_triangles) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>301</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6702335</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::vector&lt;Triangle> triangles;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>302</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 3171769 times">&check;</span><span class="takenBranch" title="Branch 2 taken 6702335 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>9874104</pre></td>
-    <td align="left" class="src coveredLine"><pre>  for (size_t i = 0; i &lt; scene_triangles.size(); ++i) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>303</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 3171769 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>3171769</pre></td>
-    <td align="left" class="src coveredLine"><pre>    triangles.push_back(scene_triangles[i]->triangle);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>304</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
+    <td align="right" class="lineno"><pre>300</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  if(isLeaf()) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>301</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>    cost_sum += voxel.area() * triangles.size() * intersection_cost;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>302</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>    return cost_sum / voxel.area();</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>303</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>304</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  cost_sum += left->cost(traversal_cost, intersection_cost)</pre></td>
+    </tr>
+
+    <tr>
     <td align="right" class="lineno"><pre>305</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>6702335</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return triangles;</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>              * left->voxel.area();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>306</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  cost_sum += right->cost(traversal_cost, intersection_cost)</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>307</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847209</pre></td>
-    <td align="left" class="src coveredLine"><pre>std::pair&lt;double, bool> surfaceAreaHeuristic(double l_area, double r_area,</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>              * right->voxel.area();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>308</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>                                             int n_left, int n_plane,</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  return cost_sum / voxel.area();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>309</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>                                             int n_right, double traversal_cost,</pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>310</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>                                             double intersection_cost) {</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>Voxel Node::boundingBox() const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>311</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847209</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::pair&lt;double, bool> left;</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  return voxel;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>312</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // try inserting triangles on plane to the left subtree</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>313</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847209</pre></td>
-    <td align="left" class="src coveredLine"><pre>  left.first =</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>std::size_t Tree::numLeaves() const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>314</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847209</pre></td>
-    <td align="left" class="src coveredLine"><pre>      traversal_cost +</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  return root->numLeaves();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>315</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847209</pre></td>
-    <td align="left" class="src coveredLine"><pre>      intersection_cost * (l_area * (n_left + n_plane) + r_area * n_right);</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>316</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847209</pre></td>
-    <td align="left" class="src coveredLine"><pre>  left.second = false;</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>std::size_t Tree::numNonEmptyLeaves() const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>317</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847209</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::pair&lt;double, bool> right;</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  return root->numNonEmptyLeaves();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>318</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847209</pre></td>
-    <td align="left" class="src coveredLine"><pre>  right.first =</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>319</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847209</pre></td>
-    <td align="left" class="src coveredLine"><pre>      traversal_cost +</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>double Tree::averageTrianglesInLeaf() const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>320</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847209</pre></td>
-    <td align="left" class="src coveredLine"><pre>      intersection_cost * (l_area * n_left + r_area * (n_right + n_plane));</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  return (double)root->totalTriangles() / root->numNonEmptyLeaves();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>321</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847209</pre></td>
-    <td align="left" class="src coveredLine"><pre>  right.second = true;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>322</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 122847209 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>122847209</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return std::min(left, right);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>double Tree::cost(double traversal_cost, double intersection_cost) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>323</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  return root->cost(traversal_cost, intersection_cost);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>324</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// returns SA(V_l)/SA(V) and SA(V_l)/SA(V)</pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>325</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>std::pair&lt;double, double> relativeSubvoxelAreas(const Voxel&amp; voxel,</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>Voxel Tree::boundingBox() const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>326</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>                                                const AxisPlane&amp; plane) {</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  return root->boundingBox();</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>327</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // axes for the voxel face parallel to plane</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>328</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  int base1 = (plane.axis + 1) % 3;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>24124262</pre></td>
+    <td align="left" class="src coveredLine"><pre>ScenePoint Tree::getClosestRayIntersection(const Ray&amp; r) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>329</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  int base2 = (plane.axis + 2) % 3;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>24124262</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return root->getClosestRayIntersection(r);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>330</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  double base1_length = voxel.hi[base1] - voxel.lo[base1];</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>};</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>331</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  double base2_length = voxel.hi[base2] - voxel.lo[base2];</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// for now simply uses the getClosestRayIntersection</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>332</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  double side_length = voxel.hi[plane.axis] - voxel.lo[plane.axis];</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// could possibly be sped up implementing a seconds recursive</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>333</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
+    <td align="left" class="src "><pre>// intersection test separately for this</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>334</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  double base_area = base1_length * base2_length;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>3</pre></td>
+    <td align="left" class="src coveredLine"><pre>bool Tree::trianglesIntersectSegment(const Vec3&amp; a, const Vec3&amp; b) const {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>335</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  double base_perimeter = 2 * (base1_length + base2_length);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 3 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 4 taken 3 times">&check;</span><span class="notTakenBranch" title="Branch 5 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>3</pre></td>
+    <td align="left" class="src coveredLine"><pre>  Ray r(a, b - a);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>336</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  double side_area = base_perimeter * side_length;</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 3 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>3</pre></td>
+    <td align="left" class="src coveredLine"><pre>  ScenePoint sp = root->getClosestRayIntersection(r);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>337</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  double left_length = (plane.pos - voxel.lo[plane.axis]);</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // no intersection</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>338</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 2 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>3</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (sp.scene_triangle == nullptr) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>339</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  double sa_left = base_perimeter * left_length + 2 * base_area;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>2</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return false;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>340</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  double sa_right =</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>341</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>      base_perimeter * (side_length - left_length) + 2 * base_area;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  Vec3 intersection_point =</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>342</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  double sa_total = side_area + 2 * base_area;</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
+    <td align="left" class="src coveredLine"><pre>      sp.scene_triangle->triangle.pointFromBary(sp.bary_coords);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>343</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 122847210 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  assert(sa_total > EPS);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="takenBranch" title="Branch 3 taken 1 times">&check;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (pointOnSegment(intersection_point, a, b)) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>344</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>122847210</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return {sa_left / sa_total, sa_right / sa_total};</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return true;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>345</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>346</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2011</pre></td>
-    <td align="left" class="src coveredLine"><pre>Tree buildKdTree(const std::vector&lt;SceneTriangle*>&amp; triangles, double k_t,</pre></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  return false;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>347</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>                 double k_i) {</pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>348</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2011</pre></td>
-    <td align="left" class="src coveredLine"><pre>  TreeBuilder builder(k_t, k_i);</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1154740</pre></td>
+    <td align="left" class="src coveredLine"><pre>Vector&lt;Triangle> extractTriangles(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>349</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2011 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>4022</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return builder.build(triangles);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    const Vector&lt;SceneTriangle*>&amp; scene_triangles) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>350</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>1154740</pre></td>
+    <td align="left" class="src coveredLine"><pre>  Vector&lt;Triangle> triangles;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>351</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 3097360 times">&check;</span><span class="takenBranch" title="Branch 2 taken 1154740 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>4252100</pre></td>
+    <td align="left" class="src coveredLine"><pre>  for (size_t i = 0; i &lt; scene_triangles.size(); ++i) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>352</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 3097360 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>3097360</pre></td>
+    <td align="left" class="src coveredLine"><pre>    triangles.pushBack(scene_triangles[i]->triangle);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>353</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>354</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>1154740</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return triangles;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>355</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>356</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// Favors splits that cut off empty space</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>357</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>//</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>358</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// Corresponds to \lambda in the paper</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>359</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline double cutOffBonus(double l_area, double r_area, TriangleCounts counts) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>360</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // Check that some empty space is really being cut off</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>361</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 107778774 times">&check;</span><span class="takenBranch" title="Branch 1 taken 12097284 times">&check;</span><span class="takenBranch" title="Branch 2 taken 6209394 times">&check;</span><span class="takenBranch" title="Branch 3 taken 101569380 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if(l_area &lt; 1.0 - EPS &amp;&amp; counts.right == 0){</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>362</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>6209394</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return 0.8;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>363</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>364</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 101949808 times">&check;</span><span class="takenBranch" title="Branch 1 taken 11716856 times">&check;</span><span class="takenBranch" title="Branch 2 taken 6464309 times">&check;</span><span class="takenBranch" title="Branch 3 taken 95485499 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>113666664</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if(r_area &lt; 1.0 - EPS &amp;&amp; counts.left == 0) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>365</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>6464309</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return 0.8;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>366</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>367</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>107202355</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return 1.0;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>368</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>369</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>std::pair&lt;double, bool> surfaceAreaHeuristic(double l_area, double r_area,</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>370</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                                             TriangleCounts counts,</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>371</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                                             double traversal_cost,</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>372</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                                             double intersection_cost) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>373</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::pair&lt;double, bool> left;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>374</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // try inserting triangles on plane to the left subtree</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>375</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>  double cut_off_bonus = cutOffBonus(l_area, r_area, counts);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>376</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>  left.first =</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>377</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>      traversal_cost +</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>378</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>      intersection_cost * (l_area * (counts.left + counts.plane) + r_area * counts.right);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>379</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>380</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>  left.first *= cut_off_bonus;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>381</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>  left.second = false;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>382</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::pair&lt;double, bool> right;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>383</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>  right.first =</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>384</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>      traversal_cost +</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>385</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>      intersection_cost * (l_area * counts.left + r_area * (counts.right + counts.plane));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>386</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>  right.first *= cut_off_bonus;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>387</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>  right.second = true;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>388</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 119876058 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>119876058</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return std::min(left, right);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>389</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>390</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// returns SA(V_l)/SA(V) and SA(V_r)/SA(V)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>391</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>std::pair&lt;double, double> relativeSubvoxelAreas(const Voxel&amp; voxel,</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>392</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                                                const AxisPlane&amp; plane) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>393</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // axes for the voxel face parallel to plane</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>394</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  int base1 = (plane.axis + 1) % 3;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>395</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  int base2 = (plane.axis + 2) % 3;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>396</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  double base1_length = voxel.hi[base1] - voxel.lo[base1];</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>397</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  double base2_length = voxel.hi[base2] - voxel.lo[base2];</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>398</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  double side_length = voxel.hi[plane.axis] - voxel.lo[plane.axis];</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>399</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>400</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  double base_area = base1_length * base2_length;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>401</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  double base_perimeter = 2 * (base1_length + base2_length);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>402</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  double side_area = base_perimeter * side_length;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>403</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  double left_length = (plane.pos - voxel.lo[plane.axis]);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>404</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>405</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  double sa_left = base_perimeter * left_length + 2 * base_area;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>406</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  double sa_right =</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>407</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>      base_perimeter * (side_length - left_length) + 2 * base_area;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>408</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  double sa_total = side_area + 2 * base_area;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>409</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 119876059 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(sa_total > EPS);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>410</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>119876059</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return {sa_left / sa_total, sa_right / sa_total};</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>411</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>412</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
+    <td align="left" class="src coveredLine"><pre>Tree buildKdTree(const Vector&lt;SceneTriangle*>&amp; triangles, double k_t,</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>413</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                 double k_i) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>414</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 2026 times">&check;</span><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span><span class="takenBranch" title="Branch 2 taken 2026 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(k_t > EPS &amp;&amp; k_i > EPS);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>415</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>2026</pre></td>
+    <td align="left" class="src coveredLine"><pre>  TreeBuilder builder(k_t, k_i);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>416</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2026 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>4052</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return builder.build(triangles);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>417</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>}</pre></td>

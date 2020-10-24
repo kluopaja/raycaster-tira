@@ -9,8 +9,8 @@ Vec3 Material::importanceSample(const Vec3& normal, const Vec3& out_vector,
                                 std::mt19937& mt) const {
   assert(std::abs(out_vector.norm() - 1.0) < EPS);
   assert(std::abs(normal.norm() - 1.0) < EPS);
-  Vec3 direction;
-  // probably could just return an error or any vector
+  // Check if the material absorbs all light
+  // Probably could just return an error or any vector
   // but to keep the sampling separated from BRDF evaluation
   // try to return a reasonable direction
   if (diffuse.sum() + specular.sum() < EPS) {
@@ -143,11 +143,11 @@ double Material::transparentSpecularPdf(const Vec3& in_vector,
   }
   double pdf = 0.0;
   // note that here we have to use out_vector to estimate the incoming
-  // ray fresnel factor
+  // ray fresnel factor because this is the pdf of the importance sampling
+  // distribution which was generated with out_vector
   double f = fresnelFactor(out_vector, normal, 1.0, index_of_refraction);
   pdf += f * cosineExponentPdf(in_vector, out_reflection, specular_exp);
   pdf += (1.0 - f) * cosineExponentPdf(in_vector, out_refraction, specular_exp);
-
   return pdf;
 }
 double Material::opaqueSpecularPdf(const Vec3& in_vector, const Vec3& normal,
@@ -163,19 +163,17 @@ Vec3 Material::diffuseBrdf(const Vec3& in_vector, const Vec3& normal,
              .multiply(opaqueDiffuse(in_vector, normal, out_vector));
   return out;
 }
-Vec3 Material::transparentDiffuse() const { return diffuse / (2 * kPi); }
+Vec3 Material::transparentDiffuse() const { return 1.0 / (2.0 * kPi); }
 Vec3 Material::opaqueDiffuse(const Vec3& in_vector, const Vec3& normal,
                              const Vec3& out_vector) const {
   if (onSameSideOfPlane(in_vector, out_vector, normal)) {
-    return diffuse / kPi;
+    return 1.0 / kPi;
   }
   return Vec3(0.0);
 }
 Vec3 Material::specularBrdf(const Vec3& in_vector, const Vec3& normal,
                             const Vec3& out_vector) const {
   Vec3 out(0.0);
-  if (transparent.norm() > 0.9) {
-  }
   Vec3 tmp = transparentSpecular(in_vector, normal, out_vector);
   out += transparent.multiply(tmp);
   tmp = opaqueSpecular(in_vector, normal, out_vector);
@@ -196,10 +194,16 @@ Vec3 Material::transparentSpecular(const Vec3& in_vector, const Vec3& normal,
   Vec3 out(0.0);
   double f = fresnelFactor(in_vector, normal, 1.0, index_of_refraction);
   out += f * phongSpecular(in_vector, normal, out_vector, specular_exp);
-  // where the light would need to come to reflect like 'refraction'
-  Vec3 imaginary_in = mirrorOver(in_refraction, normal);
-  out +=
-      (1.0 - f) * phongSpecular(imaginary_in, normal, out_vector, specular_exp);
+  assert(std::abs(in_vector.norm() - 1.0) < EPS);
+  assert(std::abs(normal.norm() - 1.0) < EPS);
+  Vec3 out_refraction = 0;
+  std::tie(out_refraction, refraction_ok) =
+    perfectRefraction(out_vector, normal, 1.0, index_of_refraction);
+  if(refraction_ok) {
+    Vec3 imaginary_out = mirrorOver(out_refraction, normal);
+    out +=
+      (1.0 - f) * phongSpecular(in_vector, normal, imaginary_out, specular_exp);
+  }
   return out;
 }
 // Separate function so that adding additional grazing angle specular
@@ -207,4 +211,14 @@ Vec3 Material::transparentSpecular(const Vec3& in_vector, const Vec3& normal,
 Vec3 Material::opaqueSpecular(const Vec3& in_vector, const Vec3& normal,
                               const Vec3& out_vector) const {
   return phongSpecular(in_vector, normal, out_vector, specular_exp);
+}
+std::ostream& operator<<(std::ostream& out, const Material& m) {
+  out << "Material(\n";
+  out << "diffuse: " << m.diffuse << ",\n";
+  out << "emitted: " << m.emitted << ".\n";
+  out << "specular: " << m.specular << ".\n";
+  out << "specular_exp: " << m.specular_exp << ".\n";
+  out << "transparent: " << m.transparent << ".\n";
+  out << "index_of_refraction: " << m.index_of_refraction << ".)";
+  return out;
 }

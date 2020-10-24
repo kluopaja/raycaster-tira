@@ -25,7 +25,7 @@ void Image::scaleMaxTo(double new_max) {
   }
 }
 void Image::truncateToFraction(double c) {
-  assert(c > -EPS);
+  assert(c > 0);
   assert(c < 1 + EPS);
   std::vector<double> values;
   for (int y = 0; y < y_resolution; ++y) {
@@ -36,7 +36,10 @@ void Image::truncateToFraction(double c) {
     }
   }
   quickSort(values.begin(), values.end());
-  double limit = values[(size_t)(values.size() * c)];
+  assert(values.size() > 0);
+  std::size_t fraction_pos
+      = std::max((std::size_t)1, (std::size_t)(c * values.size() + EPS)) - 1.0;
+  double limit = values[fraction_pos];
   for (int y = 0; y < y_resolution; ++y) {
     for (int x = 0; x < x_resolution; ++x) {
       for (int i = 0; i < 3; ++i) {
@@ -76,6 +79,21 @@ bool Image::savePPM(const std::string& file) {
   }
   fout.close();
   return true;
+}
+double Image::distanceTo(const Image& other) {
+  assert(x_resolution == other.x_resolution);
+  assert(y_resolution == other.y_resolution);
+  double sum_of_squares = 0;
+  for (int y = 0; y < y_resolution; ++y) {
+    for (int x = 0; x < x_resolution; ++x) {
+      // r g b
+      for (int i = 0; i < 3; ++i) {
+        std::size_t pos = (size_t)bufferPos(x, y);
+        sum_of_squares += std::pow(buffer[pos][i] - other.buffer[pos][i], 2.0);
+      }
+    }
+  }
+  return std::sqrt(sum_of_squares);
 }
 // Converts linear intensities to sRGB values
 // ("gamma" encoding)

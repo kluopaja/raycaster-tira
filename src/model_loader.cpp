@@ -22,18 +22,29 @@ class ModelLoader {
 
 bool ModelLoader::load(const std::string& file, NormalType normal_type) {
   Assimp::Importer importer;
-  unsigned int normal_flag = aiProcess_GenNormals;
-  if (normal_type == kSmooth) {
-    normal_flag = aiProcess_GenSmoothNormals;
+  unsigned int normal_flag = 0;
+  switch (normal_type) {
+    case NormalType::kSmooth:
+      normal_flag = aiProcess_GenSmoothNormals;
+      break;
+    case NormalType::kRough:
+      normal_flag = aiProcess_GenNormals;
+      break;
+    default:
+      assert(0);
+  }
+  if (normal_type == NormalType::kSmooth) {
   }
   const aiScene* ai_scene = importer.ReadFile(
       file,
       aiProcess_Triangulate |  // every face will have <= 3 vertices
-      normal_flag);
+      normal_flag |
+      aiProcess_ValidateDataStructure |
+      aiProcess_FindDegenerates); // finds degenerate things (e.g. triangles)
   if (!ai_scene) {
     std::cerr << "ERROR while loading the model: " << importer.GetErrorString()
               << std::endl;
-    return false;
+    std::exit(0);
   }
   loadMaterials(ai_scene);
   loadNode(ai_scene->mRootNode, ai_scene);
@@ -81,7 +92,7 @@ void ModelLoader::loadMaterial(const aiMaterial* ai_material) {
   new_material.transparent =
       (1.0f - opacity) * Vec3(transparent.r, transparent.g, transparent.b);
   new_material.index_of_refraction = index_of_refraction;
-  model.materials.push_back(new_material);
+  model.materials.pushBack(new_material);
 }
 void ModelLoader::loadNode(const aiNode* node, const aiScene* ai_scene) {
   for (size_t i = 0; i < node->mNumMeshes; ++i) {
@@ -117,7 +128,7 @@ void ModelLoader::loadMesh(const aiMesh* mesh) {
       scene_triangle.normals[j] = normals[j];
     }
     scene_triangle.material = model.materials[mesh->mMaterialIndex];
-    model.scene_triangles.push_back(scene_triangle);
+    model.scene_triangles.pushBack(scene_triangle);
   }
 }
 

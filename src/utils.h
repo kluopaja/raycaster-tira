@@ -9,13 +9,13 @@
 namespace {
 
 template <typename RandomAccessIterator>
-RandomAccessIterator selectK(RandomAccessIterator begin,
-                             RandomAccessIterator end, std::ptrdiff_t k);
+inline RandomAccessIterator selectK(RandomAccessIterator begin,
+                                    RandomAccessIterator end, std::ptrdiff_t k);
 // used to sort small arrays
 // has better performance for small arrays than quickSort
 template <typename RandomAccessIterator>
 void insertionSort(RandomAccessIterator begin, RandomAccessIterator end) {
-  for (RandomAccessIterator it = begin + 1; it != end; ++it) {
+  for (RandomAccessIterator it = begin + 1; it < end; ++it) {
     for (RandomAccessIterator it2 = it - 1; *(it2 + 1) < *it2; --it2) {
       std::swap(*it2, *(it2 + 1));
       if (it2 == begin) {
@@ -24,56 +24,62 @@ void insertionSort(RandomAccessIterator begin, RandomAccessIterator end) {
     }
   }
 }
+// Partially sorts the elements of the array based on whether
+// they are smaller, equal or greater than `*pivot`
+//
+// Returns pair {`n_less`, `n_same`} where `n_less` and `n_same`
+// are the numbers of elements less and equal to `*pivot`
+//
+// Assumes that begin < end
 template <typename RandomAccessIterator>
-void partition(RandomAccessIterator begin, RandomAccessIterator end,
-               std::ptrdiff_t n_less, std::ptrdiff_t n_same,
-               RandomAccessIterator pivot) {
-  RandomAccessIterator less_pos = begin;
-  RandomAccessIterator same_pos = begin + n_less;
-  RandomAccessIterator more_pos = begin + n_less + n_same;
-  // first put pivot to its correct place so it won't be accidentially
-  // swapped later
-  std::swap(*same_pos, *pivot);
-  pivot = same_pos++;
-  for (RandomAccessIterator it = begin; it != end;) {
+inline std::pair<std::ptrdiff_t, std::ptrdiff_t> partition(
+    RandomAccessIterator begin, RandomAccessIterator end,
+    RandomAccessIterator pivot) {
+  std::ptrdiff_t n_same = 0;
+  std::ptrdiff_t n_more = 0;
+  // Every element in the interval [`begin`, `add_pos`) should be
+  // in the correct place
+  RandomAccessIterator add_pos = begin;
+  // Counts the number of elements equal to `*pivot`
+  // After this every element smaller thatn `*pivot`
+  // should be in the range [`begin`, `add_pos`]
+  for (RandomAccessIterator it = begin; it != end; ++it) {
+    n_more += (*pivot < *it);
     if (*it < *pivot) {
-      // check if the current element is already in the correct place
-      if (it < less_pos) {
-        ++it;
+      // Check if the current element is already in the correct place
+      if (it == add_pos) {
+        ++add_pos;
       }
-      // otherwise put it to the correct place
+      // Otherwise put it to the correct place
       else {
-        std::swap(*(less_pos++), *it);
-      }
-    } else if (*pivot < *it) {
-      if (it >= begin + n_less + n_same && it < more_pos) {
-        ++it;
-      } else {
-        std::swap(*(more_pos++), *it);
-      }
-    } else {
-      if (it >= begin + n_less && it < same_pos) {
-        ++it;
-      } else {
-        std::swap(*(same_pos++), *it);
+        // Note that now `*add_pos` will never contain a value
+        // smaller than `*pivot`. If that was the case, we would
+        // have already added it the range [`begin`, `add_pos`) earlier
+        std::swap(*add_pos, *it);
+        // Make sure that `*pivot` still contains the pivot value
+        // after the swap
+        if (pivot == add_pos) {
+          pivot = it;
+        }
+        ++add_pos;
       }
     }
   }
-}
-// returns a tuple {n_less, n_same, n_more}
-// where n_less is the number of values less than pivot
-// n_same and n_more similarly
-template <typename RandomAccessIterator>
-std::pair<std::ptrdiff_t, std::ptrdiff_t> countRelativeValues(
-    RandomAccessIterator begin, RandomAccessIterator end,
-    RandomAccessIterator pivot) {
-  std::ptrdiff_t n_less = 0;
-  std::ptrdiff_t n_same = 0;
-  for (RandomAccessIterator it = begin; it != end; ++it) {
-    if (*it < *pivot) {
-      ++n_less;
-    } else if (!(*pivot < *it)) {
-      ++n_same;
+  std::ptrdiff_t n_less = add_pos - begin;
+  n_same = end - add_pos - n_more;
+  if (n_same == 0) return std::make_pair(n_less, n_same);
+  // now that the range [begin, begin + n_less) is filled with correct elements
+  // we can no longer encounter elements for which *it < *pivot
+  for (RandomAccessIterator it = add_pos + n_same; it != end;) {
+    // just advance if the current element is already in the correct place
+    if (*pivot < *it) {
+      ++it;
+    }
+    // otherwise swap it to the correct place and make sure that
+    // pivot stil pointing to an element equal to pivot
+    else {
+      std::swap(*add_pos, *it);
+      pivot = add_pos++;
     }
   }
   return std::make_pair(n_less, n_same);
@@ -183,16 +189,18 @@ RandomAccessIterator selectK(RandomAccessIterator begin,
   // calculate approximate median
   RandomAccessIterator median_of_medians = medianOfMedians(begin, end);
   std::ptrdiff_t n_less, n_same;
-  std::tie(n_less, n_same) = countRelativeValues(begin, end, median_of_medians);
+  std::tie(n_less, n_same) = partition(begin, end, median_of_medians);
   if (k >= n_less && k < n_less + n_same) {
-    return median_of_medians;
+    return begin + n_less;
   }
-  partition(begin, end, n_less, n_same, median_of_medians);
   if (k < n_less) {
     return selectK(begin, begin + n_less, k);
   }
   return selectK(begin + n_less + n_same, end, k - n_less - n_same);
 }
+// Sorts elements in range [begin, end) using quicksort with
+// the median of three rule.
+// Worst case O(n^2) time complexity
 template <typename RandomAccessIterator>
 void quickSort(RandomAccessIterator begin, RandomAccessIterator end) {
   if (end - begin <= 1) {
@@ -203,9 +211,7 @@ void quickSort(RandomAccessIterator begin, RandomAccessIterator end) {
     return;
   }
 
-  // too slow
-  // RandomAccessIterator pivot = selectK(begin, end, (end - begin - 1) / 2);
-  // instead use the median of three rule
+  // use the median of three pivot rule
   RandomAccessIterator mid = begin + (end - begin - 1) / 2;
   RandomAccessIterator pivot;
   if (*mid < *begin) std::swap(*begin, *mid);
@@ -216,10 +222,28 @@ void quickSort(RandomAccessIterator begin, RandomAccessIterator end) {
     pivot = mid;
 
   std::ptrdiff_t n_less, n_same;
-  std::tie(n_less, n_same) = countRelativeValues(begin, end, pivot);
-  partition(begin, end, n_less, n_same, pivot);
+  std::tie(n_less, n_same) = partition(begin, end, pivot);
   quickSort(begin, begin + n_less);
   quickSort(begin + n_less + n_same, end);
+}
+// Sorts elements in the range [begin, end) with quicksort
+// using the median of medians pivot rule.
+// Worst case O(n log n) time complexity
+template <typename RandomAccessIterator>
+void mmQuickSort(RandomAccessIterator begin, RandomAccessIterator end) {
+  if (end - begin <= 1) {
+    return;
+  }
+  if (end - begin < 100) {
+    insertionSort(begin, end);
+    return;
+  }
+
+  RandomAccessIterator pivot = selectK(begin, end, (end - begin - 1) / 2);
+  std::ptrdiff_t n_less, n_same;
+  std::tie(n_less, n_same) = partition(begin, end, pivot);
+  mmQuickSort(begin, begin + n_less);
+  mmQuickSort(begin + n_less + n_same, end);
 }
 
 }  // namespace

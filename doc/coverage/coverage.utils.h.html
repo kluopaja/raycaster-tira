@@ -269,18 +269,18 @@
             <td class="headerValue">utils.h</td>
             <td></td>
             <td class="headerName">Lines:</td>
-            <td class="headerTableEntry">110</td>
-            <td class="headerTableEntry">110</td>
-            <td class="headerTableEntry" style="background-color:LightGreen">100.0 %</td>
+            <td class="headerTableEntry">111</td>
+            <td class="headerTableEntry">112</td>
+            <td class="headerTableEntry" style="background-color:LightGreen">99.1 %</td>
           </tr>
           <tr>
             <td class="headerName">Date:</td>
-            <td class="headerValue">2020-10-03 02:53:58</td>
+            <td class="headerValue">2020-10-25 00:24:10</td>
             <td></td>
             <td class="headerName">Branches:</td>
-            <td class="headerTableEntry">113</td>
-            <td class="headerTableEntry">126</td>
-            <td class="headerTableEntry" style="background-color:#FFFF55">89.7 %</td>
+            <td class="headerTableEntry">110</td>
+            <td class="headerTableEntry">147</td>
+            <td class="headerTableEntry" style="background-color:LightPink">74.8 %</td>
           </tr>
         </table>
       </td>
@@ -380,14 +380,14 @@
     <td align="right" class="lineno"><pre>12</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>RandomAccessIterator selectK(RandomAccessIterator begin,</pre></td>
+    <td align="left" class="src "><pre>inline RandomAccessIterator selectK(RandomAccessIterator begin,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>13</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>                             RandomAccessIterator end, std::ptrdiff_t k);</pre></td>
+    <td align="left" class="src "><pre>                                    RandomAccessIterator end, std::ptrdiff_t k);</pre></td>
     </tr>
 
     <tr>
@@ -414,42 +414,42 @@
     <tr>
     <td align="right" class="lineno"><pre>17</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>25285876</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>20308645</pre></td>
     <td align="left" class="src coveredLine"><pre>void insertionSort(RandomAccessIterator begin, RandomAccessIterator end) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>18</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 161945848 times">&check;</span><span class="takenBranch" title="Branch 3 taken 25285876 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>187231724</pre></td>
-    <td align="left" class="src coveredLine"><pre>  for (RandomAccessIterator it = begin + 1; it != end; ++it) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 192678959 times">&check;</span><span class="takenBranch" title="Branch 1 taken 20308642 times">&check;</span><span class="takenBranch" title="Branch 2 taken 24 times">&check;</span><span class="takenBranch" title="Branch 3 taken 3 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>212987628</pre></td>
+    <td align="left" class="src coveredLine"><pre>  for (RandomAccessIterator it = begin + 1; it &lt; end; ++it) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>19</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 4 taken 984244718 times">&check;</span><span class="takenBranch" title="Branch 5 taken 971933596 times">&check;</span><span class="takenBranch" title="Branch 6 taken 94333403 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>2050511717</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1228760673 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1070229085 times">&check;</span><span class="takenBranch" title="Branch 2 taken 99330853 times">&check;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span><br/><span class="takenBranch" title="Branch 5 taken 24 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>2398320635</pre></td>
     <td align="left" class="src coveredLine"><pre>    for (RandomAccessIterator it2 = it - 1; *(it2 + 1) &lt; *it2; --it2) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>20</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1899353003</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>2218961324</pre></td>
     <td align="left" class="src coveredLine"><pre>      std::swap(*it2, *(it2 + 1));</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>21</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 10787134 times">&check;</span><span class="takenBranch" title="Branch 2 taken 1888565869 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1899353003</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 13319672 times">&check;</span><span class="takenBranch" title="Branch 1 taken 2205641652 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>2218961324</pre></td>
     <td align="left" class="src coveredLine"><pre>      if (it2 == begin) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>22</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>10787134</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>13319672</pre></td>
     <td align="left" class="src coveredLine"><pre>        break;</pre></td>
     </tr>
 
@@ -477,7 +477,7 @@
     <tr>
     <td align="right" class="lineno"><pre>26</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>25285876</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>20308645</pre></td>
     <td align="left" class="src coveredLine"><pre>}</pre></td>
     </tr>
 
@@ -485,350 +485,350 @@
     <td align="right" class="lineno"><pre>27</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>template &lt;typename RandomAccessIterator></pre></td>
+    <td align="left" class="src "><pre>// Partially sorts the elements of the array based on whether</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>28</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2021234</pre></td>
-    <td align="left" class="src coveredLine"><pre>void partition(RandomAccessIterator begin, RandomAccessIterator end,</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// they are smaller, equal or greater than `*pivot`</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>29</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>               std::ptrdiff_t n_less, std::ptrdiff_t n_same,</pre></td>
+    <td align="left" class="src "><pre>//</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>30</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>               RandomAccessIterator pivot) {</pre></td>
+    <td align="left" class="src "><pre>// Returns pair {`n_less`, `n_same`} where `n_less` and `n_same`</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>31</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2021234</pre></td>
-    <td align="left" class="src coveredLine"><pre>  RandomAccessIterator less_pos = begin;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// are the numbers of elements less and equal to `*pivot`</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>32</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2021234</pre></td>
-    <td align="left" class="src coveredLine"><pre>  RandomAccessIterator same_pos = begin + n_less;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>//</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>33</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2021234</pre></td>
-    <td align="left" class="src coveredLine"><pre>  RandomAccessIterator more_pos = begin + n_less + n_same;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// Assumes that begin &lt; end</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>34</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // first put pivot to its correct place so it won't be accidentially</pre></td>
+    <td align="left" class="src "><pre>template &lt;typename RandomAccessIterator></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>35</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // swapped later</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>19911633</pre></td>
+    <td align="left" class="src coveredLine"><pre>inline std::pair&lt;std::ptrdiff_t, std::ptrdiff_t> partition(</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>36</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2021234</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::swap(*same_pos, *pivot);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>37</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2021234</pre></td>
-    <td align="left" class="src coveredLine"><pre>  pivot = same_pos++;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>38</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2218453766 times">&check;</span><span class="takenBranch" title="Branch 2 taken 2021234 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>2220475000</pre></td>
-    <td align="left" class="src coveredLine"><pre>  for (RandomAccessIterator it = begin; it != end;) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>39</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 802324296 times">&check;</span><span class="takenBranch" title="Branch 3 taken 1105681921 times">&check;</span><span class="takenBranch" title="Branch 4 taken 310447549 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>2218453766</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (*it &lt; *pivot) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>40</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      // check if the current element is already in the correct place</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>41</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 552473270 times">&check;</span><span class="takenBranch" title="Branch 2 taken 552473270 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1104946540</pre></td>
-    <td align="left" class="src coveredLine"><pre>      if (it &lt; less_pos) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>42</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>552473270</pre></td>
-    <td align="left" class="src coveredLine"><pre>        ++it;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>43</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      }</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>44</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      // otherwise put it to the correct place</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>45</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      else {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>46</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>552473270</pre></td>
-    <td align="left" class="src coveredLine"><pre>        std::swap(*(less_pos++), *it);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>47</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      }</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>48</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 799620940 times">&check;</span><span class="takenBranch" title="Branch 3 taken 313082309 times">&check;</span><span class="takenBranch" title="Branch 4 taken 803977 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1113507226</pre></td>
-    <td align="left" class="src coveredLine"><pre>    } else if (*pivot &lt; *it) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>49</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 560431593 times">&check;</span><span class="takenBranch" title="Branch 4 taken 548832919 times">&check;</span><span class="takenBranch" title="Branch 6 taken 554632256 times">&check;</span><span class="takenBranch" title="Branch 7 taken 5799337 times">&check;</span><br/><span class="takenBranch" title="Branch 8 taken 554632256 times">&check;</span><span class="takenBranch" title="Branch 9 taken 554632256 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1109264512</pre></td>
-    <td align="left" class="src coveredLine"><pre>      if (it >= begin + n_less + n_same &amp;&amp; it &lt; more_pos) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>50</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>554632256</pre></td>
-    <td align="left" class="src coveredLine"><pre>        ++it;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>51</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      } else {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>52</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>554632256</pre></td>
-    <td align="left" class="src coveredLine"><pre>        std::swap(*(more_pos++), *it);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>53</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      }</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>54</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    } else {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>55</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 3249102 times">&check;</span><span class="takenBranch" title="Branch 3 taken 993612 times">&check;</span><span class="takenBranch" title="Branch 5 taken 3131974 times">&check;</span><span class="takenBranch" title="Branch 6 taken 117128 times">&check;</span><br/><span class="takenBranch" title="Branch 7 taken 3131974 times">&check;</span><span class="takenBranch" title="Branch 8 taken 1110740 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>4242714</pre></td>
-    <td align="left" class="src coveredLine"><pre>      if (it >= begin + n_less &amp;&amp; it &lt; same_pos) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>56</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>3131974</pre></td>
-    <td align="left" class="src coveredLine"><pre>        ++it;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>57</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      } else {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>58</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1110740</pre></td>
-    <td align="left" class="src coveredLine"><pre>        std::swap(*(same_pos++), *it);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>59</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>      }</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>60</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    }</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>61</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>62</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2021234</pre></td>
-    <td align="left" class="src coveredLine"><pre>}</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>63</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// returns a tuple {n_less, n_same, n_more}</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>64</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// where n_less is the number of values less than pivot</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>65</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// n_same and n_more similarly</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>66</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>template &lt;typename RandomAccessIterator></pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>67</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2517370</pre></td>
-    <td align="left" class="src coveredLine"><pre>std::pair&lt;std::ptrdiff_t, std::ptrdiff_t> countRelativeValues(</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>68</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>    RandomAccessIterator begin, RandomAccessIterator end,</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>69</pre></td>
+    <td align="right" class="lineno"><pre>37</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>    RandomAccessIterator pivot) {</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>70</pre></td>
+    <td align="right" class="lineno"><pre>38</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2517370</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::ptrdiff_t n_less = 0;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>19911633</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::ptrdiff_t n_same = 0;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>39</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>19911633</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::ptrdiff_t n_more = 0;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>40</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // Every element in the interval [`begin`, `add_pos`) should be</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>41</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // in the correct place</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>42</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>19911633</pre></td>
+    <td align="left" class="src coveredLine"><pre>  RandomAccessIterator add_pos = begin;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>43</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // Counts the number of elements equal to `*pivot`</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>44</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // After this every element smaller thatn `*pivot`</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>45</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // should be in the range [`begin`, `add_pos`]</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>46</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 2410670786 times">&check;</span><span class="takenBranch" title="Branch 1 taken 19911633 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>2430582419</pre></td>
+    <td align="left" class="src coveredLine"><pre>  for (RandomAccessIterator it = begin; it != end; ++it) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>47</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>2410670786</pre></td>
+    <td align="left" class="src coveredLine"><pre>    n_more += (*pivot &lt; *it);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>48</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1022579867 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1235887619 times">&check;</span><span class="takenBranch" title="Branch 2 taken 152203300 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>2410670786</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (*it &lt; *pivot) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>49</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>      // Check if the current element is already in the correct place</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>50</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 253117798 times">&check;</span><span class="takenBranch" title="Branch 1 taken 931718179 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1184835977</pre></td>
+    <td align="left" class="src coveredLine"><pre>      if (it == add_pos) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>51</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>253117798</pre></td>
+    <td align="left" class="src coveredLine"><pre>        ++add_pos;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>52</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>      }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>53</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>      // Otherwise put it to the correct place</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>54</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>      else {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>55</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        // Note that now `*add_pos` will never contain a value</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>56</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        // smaller than `*pivot`. If that was the case, we would</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>57</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        // have already added it the range [`begin`, `add_pos`) earlier</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>58</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>931718179</pre></td>
+    <td align="left" class="src coveredLine"><pre>        std::swap(*add_pos, *it);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>59</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        // Make sure that `*pivot` still contains the pivot value</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>60</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        // after the swap</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>61</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 23882541 times">&check;</span><span class="takenBranch" title="Branch 1 taken 907835638 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>931718179</pre></td>
+    <td align="left" class="src coveredLine"><pre>        if (pivot == add_pos) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>62</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>23882541</pre></td>
+    <td align="left" class="src coveredLine"><pre>          pivot = it;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>63</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>        }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>64</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>931718179</pre></td>
+    <td align="left" class="src coveredLine"><pre>        ++add_pos;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>65</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>      }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>66</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>67</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>68</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>19911633</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::ptrdiff_t n_less = add_pos - begin;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>69</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>19911633</pre></td>
+    <td align="left" class="src coveredLine"><pre>  n_same = end - add_pos - n_more;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>70</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 19911633 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>19911633</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (n_same == 0) return std::make_pair(n_less, n_same);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>71</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2517370</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::ptrdiff_t n_same = 0;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // now that the range [begin, begin + n_less) is filled with correct elements</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>72</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1112826393 times">&check;</span><span class="takenBranch" title="Branch 2 taken 2517370 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1115343763</pre></td>
-    <td align="left" class="src coveredLine"><pre>  for (RandomAccessIterator it = begin; it != end; ++it) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // we can no longer encounter elements for which *it &lt; *pivot</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>73</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 401827558 times">&check;</span><span class="takenBranch" title="Branch 3 taken 555435766 times">&check;</span><span class="takenBranch" title="Branch 4 taken 155563069 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1112826393</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (*it &lt; *pivot) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1216468990 times">&check;</span><span class="takenBranch" title="Branch 1 taken 19911633 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1236380623</pre></td>
+    <td align="left" class="src coveredLine"><pre>  for (RandomAccessIterator it = add_pos + n_same; it != end;) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>74</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>553138680</pre></td>
-    <td align="left" class="src coveredLine"><pre>      ++n_less;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // just advance if the current element is already in the correct place</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>75</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 3270035 times">&check;</span><span class="takenBranch" title="Branch 3 taken 401595892 times">&check;</span><span class="takenBranch" title="Branch 4 taken 154821786 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>559687713</pre></td>
-    <td align="left" class="src coveredLine"><pre>    } else if (!(*pivot &lt; *it)) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1050318754 times">&check;</span><span class="takenBranch" title="Branch 1 taken 165270423 times">&check;</span><span class="takenBranch" title="Branch 2 taken 879813 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1216468990</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (*pivot &lt; *it) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>76</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>4011318</pre></td>
-    <td align="left" class="src coveredLine"><pre>      ++n_same;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1201609150</pre></td>
+    <td align="left" class="src coveredLine"><pre>      ++it;</pre></td>
     </tr>
 
     <tr>
@@ -842,1047 +842,1215 @@
     <td align="right" class="lineno"><pre>78</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="left" class="src "><pre>    // otherwise swap it to the correct place and make sure that</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>79</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 2517370 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>5034740</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return std::make_pair(n_less, n_same);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // pivot stil pointing to an element equal to pivot</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>80</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="left" class="src "><pre>    else {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>81</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// finds median of maximum 5 elements</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>14859840</pre></td>
+    <td align="left" class="src coveredLine"><pre>      std::swap(*add_pos, *it);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>82</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>// uses at most 6 comparisons</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>14859840</pre></td>
+    <td align="left" class="src coveredLine"><pre>      pivot = add_pos++;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>83</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>template &lt;typename RandomAccessIterator></pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>84</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2805821</pre></td>
-    <td align="left" class="src coveredLine"><pre>RandomAccessIterator medianMax5(RandomAccessIterator begin,</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>85</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>                                RandomAccessIterator end) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 19911633 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>19911633</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return std::make_pair(n_less, n_same);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>86</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span><span class="takenBranch" title="Branch 2 taken 2805821 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>2805821</pre></td>
-    <td align="left" class="src coveredLine"><pre>  assert(begin &lt; end);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>87</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span><span class="takenBranch" title="Branch 2 taken 2805821 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>2805821</pre></td>
-    <td align="left" class="src coveredLine"><pre>  assert(end - begin &lt;= 5);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// finds median of maximum 5 elements</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>88</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1954950 times">&check;</span><span class="takenBranch" title="Branch 2 taken 850871 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>2805821</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (end - begin == 5) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// uses at most 6 comparisons</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>89</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // here in comments we treat the numbers as</pre></td>
+    <td align="left" class="src "><pre>template &lt;typename RandomAccessIterator></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>90</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 845353 times">&check;</span><span class="takenBranch" title="Branch 3 taken 1109597 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1954950</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[1] &lt; begin[0]) std::swap(begin[0], begin[1]);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>207317983</pre></td>
+    <td align="left" class="src coveredLine"><pre>RandomAccessIterator medianMax5(RandomAccessIterator begin,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>91</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 898833 times">&check;</span><span class="takenBranch" title="Branch 3 taken 1056117 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1954950</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[3] &lt; begin[2]) std::swap(begin[2], begin[3]);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>                                RandomAccessIterator end) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>92</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 0 &lt;= 1</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 207317983 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>207317983</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(begin &lt; end);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>93</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 2 &lt;= 3</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 207317983 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>207317983</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(end - begin &lt;= 5);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>94</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 881554 times">&check;</span><span class="takenBranch" title="Branch 3 taken 1073396 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1954950</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[2] &lt; begin[0]) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 192071604 times">&check;</span><span class="takenBranch" title="Branch 1 taken 15246379 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>207317983</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (end - begin == 5) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>95</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>881554</pre></td>
-    <td align="left" class="src coveredLine"><pre>      std::swap(begin[0], begin[2]);</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // here in comments we treat the numbers as</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>96</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>881554</pre></td>
-    <td align="left" class="src coveredLine"><pre>      std::swap(begin[1], begin[3]);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 86345826 times">&check;</span><span class="takenBranch" title="Branch 1 taken 105725778 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>192071604</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[1] &lt; begin[0]) std::swap(begin[0], begin[1]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>97</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    }</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 86378599 times">&check;</span><span class="takenBranch" title="Branch 1 taken 105693005 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>192071604</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[3] &lt; begin[2]) std::swap(begin[2], begin[3]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>98</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // possible orders:</pre></td>
+    <td align="left" class="src "><pre>    // 0 &lt;= 1</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>99</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 0123</pre></td>
+    <td align="left" class="src "><pre>    // 2 &lt;= 3</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>100</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 0213</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 91119159 times">&check;</span><span class="takenBranch" title="Branch 1 taken 100952445 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>192071604</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[2] &lt; begin[0]) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>101</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 0231</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>91119159</pre></td>
+    <td align="left" class="src coveredLine"><pre>      std::swap(begin[0], begin[2]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>102</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    //</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>91119159</pre></td>
+    <td align="left" class="src coveredLine"><pre>      std::swap(begin[1], begin[3]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>103</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // now we can ignore the 0 because it can never be the median</pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>104</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // and will always be located before the median</pre></td>
+    <td align="left" class="src "><pre>    // possible orders:</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>105</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    //</pre></td>
+    <td align="left" class="src "><pre>    // 0123</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>106</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // the median will be the third largest of 1 2 3 4</pre></td>
+    <td align="left" class="src "><pre>    // 0213</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>107</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // note that this is similar to the end - begin == 4!</pre></td>
+    <td align="left" class="src "><pre>    // 0231</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>108</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 1088022 times">&check;</span><span class="takenBranch" title="Branch 3 taken 866928 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1954950</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[4] &lt; begin[1]) std::swap(begin[1], begin[4]);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    //</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>109</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 688708 times">&check;</span><span class="takenBranch" title="Branch 3 taken 1266242 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1954950</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[2] &lt; begin[1]) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // now we can ignore the 0 because it can never be the median</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>110</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>688708</pre></td>
-    <td align="left" class="src coveredLine"><pre>      std::swap(begin[1], begin[2]);</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // and will always be located before the median</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>111</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>688708</pre></td>
-    <td align="left" class="src coveredLine"><pre>      std::swap(begin[3], begin[4]);</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    //</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>112</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    }</pre></td>
+    <td align="left" class="src "><pre>    // the median will be the third largest of 1 2 3 4</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>113</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 1 &lt; 4, 2 &lt; 3, 1 &lt; 2</pre></td>
+    <td align="left" class="src "><pre>    // note that this is similar to the end - begin == 4!</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>114</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // possible orders</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 107691185 times">&check;</span><span class="takenBranch" title="Branch 1 taken 84380419 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>192071604</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[4] &lt; begin[1]) std::swap(begin[1], begin[4]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>115</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 1423</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 73577644 times">&check;</span><span class="takenBranch" title="Branch 1 taken 118493960 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>192071604</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[2] &lt; begin[1]) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>116</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 1243</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>73577644</pre></td>
+    <td align="left" class="src coveredLine"><pre>      std::swap(begin[1], begin[2]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>117</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 1234</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>73577644</pre></td>
+    <td align="left" class="src coveredLine"><pre>      std::swap(begin[3], begin[4]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>118</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 1184681 times">&check;</span><span class="takenBranch" title="Branch 3 taken 770269 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1954950</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[2] &lt; begin[4]) return begin + 2;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>119</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>770269</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return begin + 4;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>120</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>121</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 182685 times">&check;</span><span class="takenBranch" title="Branch 2 taken 668186 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>850871</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (end - begin == 4) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>122</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 69995 times">&check;</span><span class="takenBranch" title="Branch 3 taken 112690 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>182685</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[1] &lt; begin[0]) std::swap(begin[0], begin[1]);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>123</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 87957 times">&check;</span><span class="takenBranch" title="Branch 3 taken 94728 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>182685</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[3] &lt; begin[2]) std::swap(begin[2], begin[3]);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>124</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 0 &lt;= 1</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>125</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 2 &lt;= 3</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>126</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 83210 times">&check;</span><span class="takenBranch" title="Branch 3 taken 99475 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>182685</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[2] &lt; begin[0]) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>127</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>83210</pre></td>
-    <td align="left" class="src coveredLine"><pre>      std::swap(begin[0], begin[2]);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>128</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>83210</pre></td>
-    <td align="left" class="src coveredLine"><pre>      std::swap(begin[1], begin[3]);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>129</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>    }</pre></td>
     </tr>
 
     <tr>
+    <td align="right" class="lineno"><pre>119</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // 1 &lt; 4, 2 &lt; 3, 1 &lt; 2</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>120</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // possible orders</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>121</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // 1423</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>122</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // 1243</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>123</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // 1234</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>124</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 121176775 times">&check;</span><span class="takenBranch" title="Branch 1 taken 70894829 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>192071604</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[2] &lt; begin[4]) return begin + 2;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>125</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>70894829</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return begin + 4;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>126</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>127</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 2763819 times">&check;</span><span class="takenBranch" title="Branch 1 taken 12482560 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>15246379</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (end - begin == 4) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>128</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1266945 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1496874 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>2763819</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[1] &lt; begin[0]) std::swap(begin[0], begin[1]);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>129</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1289168 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1474651 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>2763819</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[3] &lt; begin[2]) std::swap(begin[2], begin[3]);</pre></td>
+    </tr>
+
+    <tr>
     <td align="right" class="lineno"><pre>130</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // xx = 01, yy = 23</pre></td>
+    <td align="left" class="src "><pre>    // 0 &lt;= 1</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>131</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // xxyy</pre></td>
+    <td align="left" class="src "><pre>    // 2 &lt;= 3</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>132</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // xyxy</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1376953 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1386866 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>2763819</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[2] &lt; begin[0]) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>133</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // xyyx</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1376953</pre></td>
+    <td align="left" class="src coveredLine"><pre>      std::swap(begin[0], begin[2]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>134</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 49884 times">&check;</span><span class="takenBranch" title="Branch 3 taken 132801 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>182685</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[1] &lt; begin[2]) return begin + 1;</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>1376953</pre></td>
+    <td align="left" class="src coveredLine"><pre>      std::swap(begin[1], begin[3]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>135</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>132801</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return begin + 2;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>136</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="left" class="src "><pre>    // xx = 01, yy = 23</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>137</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 190796 times">&check;</span><span class="takenBranch" title="Branch 2 taken 477390 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>668186</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (end - begin == 3) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // xxyy</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>138</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 73790 times">&check;</span><span class="takenBranch" title="Branch 3 taken 117006 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>190796</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[1] &lt; begin[0]) std::swap(begin[0], begin[1]);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // xyxy</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>139</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 0 &lt; 1 2</pre></td>
+    <td align="left" class="src "><pre>    // xyyx</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>140</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 114495 times">&check;</span><span class="takenBranch" title="Branch 3 taken 76301 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>190796</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[2] &lt; begin[1]) std::swap(begin[1], begin[2]);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1062629 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1701190 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>2763819</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[1] &lt; begin[2]) return begin + 1;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>141</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 0 &lt; 2</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>1701190</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return begin + 2;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>142</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>    // 1 &lt; 2</pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>143</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 61345 times">&check;</span><span class="takenBranch" title="Branch 3 taken 129451 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>190796</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[1] &lt; begin[0]) return begin;</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 3395113 times">&check;</span><span class="takenBranch" title="Branch 1 taken 9087447 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>12482560</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (end - begin == 3) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>144</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>129451</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return begin + 1;</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1485356 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1909757 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>3395113</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[1] &lt; begin[0]) std::swap(begin[0], begin[1]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>145</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="left" class="src "><pre>    // 0 &lt; 1 2</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>146</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 340046 times">&check;</span><span class="takenBranch" title="Branch 2 taken 137344 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>477390</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (end - begin == 2) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1991522 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1403591 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>3395113</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[2] &lt; begin[1]) std::swap(begin[1], begin[2]);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>147</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 149663 times">&check;</span><span class="takenBranch" title="Branch 3 taken 190383 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>340046</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if (begin[0] &lt; begin[1]) return begin;</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // 0 &lt; 2</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>148</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>190383</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return begin + 1;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>    // 1 &lt; 2</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>149</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1154978 times">&check;</span><span class="takenBranch" title="Branch 1 taken 2240135 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>3395113</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[1] &lt; begin[0]) return begin;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>150</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>2240135</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return begin + 1;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>151</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>150</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // end - begin == 1</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>151</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>137344</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return begin;</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>152</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 6558304 times">&check;</span><span class="takenBranch" title="Branch 1 taken 2529143 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9087447</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (end - begin == 2) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>153</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 3338542 times">&check;</span><span class="takenBranch" title="Branch 1 taken 3219762 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>6558304</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if (begin[0] &lt; begin[1]) return begin;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>154</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>template &lt;typename RandomAccessIterator></pre></td>
+    <td align="right" class="linecount coveredLine"><pre>3219762</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return begin + 1;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>155</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>913558</pre></td>
-    <td align="left" class="src coveredLine"><pre>RandomAccessIterator medianOfMedians(RandomAccessIterator begin,</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>156</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>                                     RandomAccessIterator end) {</pre></td>
+    <td align="left" class="src "><pre>  // end - begin == 1</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>157</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span><span class="takenBranch" title="Branch 2 taken 913558 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>913558</pre></td>
-    <td align="left" class="src coveredLine"><pre>  assert(begin &lt; end);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>2529143</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return begin;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>158</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 469515 times">&check;</span><span class="takenBranch" title="Branch 2 taken 444043 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>913558</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (end - begin &lt;= 5) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>159</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>469515</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return medianMax5(begin, end);</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>160</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="left" class="src "><pre>template &lt;typename RandomAccessIterator></pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>161</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // divide the interval into chunks of max 5</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>17937895</pre></td>
+    <td align="left" class="src coveredLine"><pre>RandomAccessIterator medianOfMedians(RandomAccessIterator begin,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>162</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // store the medians of these at the beginning of the container</pre></td>
+    <td align="left" class="src "><pre>                                     RandomAccessIterator end) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>163</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>444043</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::ptrdiff_t n = end - begin;</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 17937895 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>17937895</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(begin &lt; end);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>164</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 2236306 times">&check;</span><span class="takenBranch" title="Branch 1 taken 444043 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>2680349</pre></td>
-    <td align="left" class="src coveredLine"><pre>  for (std::ptrdiff_t i = 0; 5 * i &lt; n; ++i) {</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 8964351 times">&check;</span><span class="takenBranch" title="Branch 1 taken 8973544 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>17937895</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (end - begin &lt;= 5) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>165</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2236306</pre></td>
-    <td align="left" class="src coveredLine"><pre>    RandomAccessIterator chunk_end = begin + n;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>8964351</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return medianMax5(begin, end);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>166</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1792263 times">&check;</span><span class="takenBranch" title="Branch 1 taken 444043 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>2236306</pre></td>
-    <td align="left" class="src coveredLine"><pre>    if ((i + 1) * 5 &lt; n) chunk_end = begin + (i + 1) * 5;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>167</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2236306</pre></td>
-    <td align="left" class="src coveredLine"><pre>    RandomAccessIterator med = medianMax5(begin + i * 5, chunk_end);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>168</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>2236306</pre></td>
-    <td align="left" class="src coveredLine"><pre>    std::swap(begin[i], *med);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>169</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>170</pre></td>
+    <td align="right" class="lineno"><pre>167</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>444043</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::ptrdiff_t new_length = (n + 4) / 5;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // divide the interval into chunks of max 5</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>168</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // store the medians of these at the beginning of the container</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>169</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>8973544</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::ptrdiff_t n = end - begin;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>170</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 198253632 times">&check;</span><span class="takenBranch" title="Branch 1 taken 8973544 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>207227176</pre></td>
+    <td align="left" class="src coveredLine"><pre>  for (std::ptrdiff_t i = 0; 5 * i &lt; n; ++i) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>171</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>444043</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return selectK(begin, begin + new_length, (new_length - 1) / 2);</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>198253632</pre></td>
+    <td align="left" class="src coveredLine"><pre>    RandomAccessIterator chunk_end = begin + n;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>172</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 189280088 times">&check;</span><span class="takenBranch" title="Branch 1 taken 8973544 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>198253632</pre></td>
+    <td align="left" class="src coveredLine"><pre>    if ((i + 1) * 5 &lt; n) chunk_end = begin + (i + 1) * 5;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>173</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>198253632</pre></td>
+    <td align="left" class="src coveredLine"><pre>    RandomAccessIterator med = medianMax5(begin + i * 5, chunk_end);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>174</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>198253632</pre></td>
+    <td align="left" class="src coveredLine"><pre>    std::swap(begin[i], *med);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>175</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>176</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>8973544</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::ptrdiff_t new_length = (n + 4) / 5;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>177</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>8973544</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return selectK(begin, begin + new_length, (new_length - 1) / 2);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>178</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>173</pre></td>
+    <td align="right" class="lineno"><pre>179</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>174</pre></td>
+    <td align="right" class="lineno"><pre>180</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>template &lt;typename RandomAccessIterator></pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>175</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>961468</pre></td>
-    <td align="left" class="src coveredLine"><pre>RandomAccessIterator selectK(RandomAccessIterator begin,</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>176</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>                             RandomAccessIterator end, std::ptrdiff_t k) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>177</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 1 not taken">&cross;</span><span class="takenBranch" title="Branch 2 taken 961468 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>961468</pre></td>
-    <td align="left" class="src coveredLine"><pre>  assert(begin &lt; end);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>178</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>961468</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::ptrdiff_t n = end - begin;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>179</pre></td>
-    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 961468 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>961468</pre></td>
-    <td align="left" class="src coveredLine"><pre>  assert(k &lt; n);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>180</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 47910 times">&check;</span><span class="takenBranch" title="Branch 1 taken 913558 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>961468</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (n == 1) {</pre></td>
-    </tr>
-
-    <tr>
     <td align="right" class="lineno"><pre>181</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>47910</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return begin;</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>19156600</pre></td>
+    <td align="left" class="src coveredLine"><pre>RandomAccessIterator selectK(RandomAccessIterator begin,</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>182</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="left" class="src "><pre>                             RandomAccessIterator end, std::ptrdiff_t k) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>183</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // calculate approximate median</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 19156600 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>19156600</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(begin &lt; end);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>184</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 913558 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>913558</pre></td>
-    <td align="left" class="src coveredLine"><pre>  RandomAccessIterator median_of_medians = medianOfMedians(begin, end);</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>19156600</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::ptrdiff_t n = end - begin;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>185</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  std::ptrdiff_t n_less, n_same;</pre></td>
+    <td align="right" class="linebranch"><span class="notTakenBranch" title="Branch 0 not taken">&cross;</span><span class="takenBranch" title="Branch 1 taken 19156600 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>19156600</pre></td>
+    <td align="left" class="src coveredLine"><pre>  assert(k &lt; n);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>186</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 913558 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>913558</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::tie(n_less, n_same) = countRelativeValues(begin, end, median_of_medians);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 1218705 times">&check;</span><span class="takenBranch" title="Branch 1 taken 17937895 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>19156600</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (n == 1) {</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>187</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 743300 times">&check;</span><span class="takenBranch" title="Branch 1 taken 170258 times">&check;</span><span class="takenBranch" title="Branch 2 taken 496136 times">&check;</span><span class="takenBranch" title="Branch 3 taken 247164 times">&check;</span><br/></td>
-    <td align="right" class="linecount coveredLine"><pre>913558</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (k >= n_less &amp;&amp; k &lt; n_less + n_same) {</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>1218705</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return begin;</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>188</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>496136</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return median_of_medians;</pre></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>189</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
+    <td align="left" class="src "><pre>  // calculate approximate median</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>190</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>417422</pre></td>
-    <td align="left" class="src coveredLine"><pre>  partition(begin, end, n_less, n_same, median_of_medians);</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 17937895 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>17937895</pre></td>
+    <td align="left" class="src coveredLine"><pre>  RandomAccessIterator median_of_medians = medianOfMedians(begin, end);</pre></td>
     </tr>
 
     <tr>
     <td align="right" class="lineno"><pre>191</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 170258 times">&check;</span><span class="takenBranch" title="Branch 1 taken 247164 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>417422</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (k &lt; n_less) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>192</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 170258 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>170258</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return selectK(begin, begin + n_less, k);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>193</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>194</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 247164 times">&check;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>247164</pre></td>
-    <td align="left" class="src coveredLine"><pre>  return selectK(begin + n_less + n_same, end, k - n_less - n_same);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>195</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>}</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>196</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>template &lt;typename RandomAccessIterator></pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>197</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>43589575</pre></td>
-    <td align="left" class="src coveredLine"><pre>void quickSort(RandomAccessIterator begin, RandomAccessIterator end) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>198</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 16800889 times">&check;</span><span class="takenBranch" title="Branch 2 taken 26788686 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>43589575</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (end - begin &lt;= 1) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>199</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>41986764</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>200</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>201</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 25185875 times">&check;</span><span class="takenBranch" title="Branch 2 taken 1602811 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>26788686</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (end - begin &lt; 100) {</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>202</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>25185875</pre></td>
-    <td align="left" class="src coveredLine"><pre>    insertionSort(begin, end);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>203</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>25185875</pre></td>
-    <td align="left" class="src coveredLine"><pre>    return;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>204</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  }</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>205</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>206</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // too slow</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>207</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // RandomAccessIterator pivot = selectK(begin, end, (end - begin - 1) / 2);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>208</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  // instead use the median of three rule</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>209</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1602811</pre></td>
-    <td align="left" class="src coveredLine"><pre>  RandomAccessIterator mid = begin + (end - begin - 1) / 2;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>210</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1602811</pre></td>
-    <td align="left" class="src coveredLine"><pre>  RandomAccessIterator pivot;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>211</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 460670 times">&check;</span><span class="takenBranch" title="Branch 3 taken 781525 times">&check;</span><span class="takenBranch" title="Branch 4 taken 360616 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1602811</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (*mid &lt; *begin) std::swap(*begin, *mid);</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>212</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 614725 times">&check;</span><span class="takenBranch" title="Branch 4 taken 752106 times">&check;</span><span class="takenBranch" title="Branch 5 taken 235980 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1602811</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (*(end - 1) &lt; *mid) std::swap(*mid, *(end - 1));</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>213</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 306851 times">&check;</span><span class="takenBranch" title="Branch 3 taken 831458 times">&check;</span><span class="takenBranch" title="Branch 4 taken 464502 times">&check;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1602811</pre></td>
-    <td align="left" class="src coveredLine"><pre>  if (*mid &lt; *begin)</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>214</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>520938</pre></td>
-    <td align="left" class="src coveredLine"><pre>    pivot = begin;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>215</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre>  else</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>216</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1081873</pre></td>
-    <td align="left" class="src coveredLine"><pre>    pivot = mid;</pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>217</pre></td>
-    <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount "><pre></pre></td>
-    <td align="left" class="src "><pre></pre></td>
-    </tr>
-
-    <tr>
-    <td align="right" class="lineno"><pre>218</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>  std::ptrdiff_t n_less, n_same;</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>219</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1602811 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1602811</pre></td>
-    <td align="left" class="src coveredLine"><pre>  std::tie(n_less, n_same) = countRelativeValues(begin, end, pivot);</pre></td>
+    <td align="right" class="lineno"><pre>192</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 17937895 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>17937895</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::tie(n_less, n_same) = partition(begin, end, median_of_medians);</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>220</pre></td>
+    <td align="right" class="lineno"><pre>193</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 13820652 times">&check;</span><span class="takenBranch" title="Branch 1 taken 4117243 times">&check;</span><span class="takenBranch" title="Branch 2 taken 8197568 times">&check;</span><span class="takenBranch" title="Branch 3 taken 5623084 times">&check;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>17937895</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (k >= n_less &amp;&amp; k &lt; n_less + n_same) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>194</pre></td>
     <td align="right" class="linebranch"></td>
-    <td align="right" class="linecount coveredLine"><pre>1602811</pre></td>
-    <td align="left" class="src coveredLine"><pre>  partition(begin, end, n_less, n_same, pivot);</pre></td>
+    <td align="right" class="linecount coveredLine"><pre>8197568</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return begin + n_less;</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>221</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 2 taken 1602811 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1602811</pre></td>
-    <td align="left" class="src coveredLine"><pre>  quickSort(begin, begin + n_less);</pre></td>
+    <td align="right" class="lineno"><pre>195</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>222</pre></td>
-    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 3 taken 1602811 times">&check;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span></td>
-    <td align="right" class="linecount coveredLine"><pre>1602811</pre></td>
-    <td align="left" class="src coveredLine"><pre>  quickSort(begin + n_less + n_same, end);</pre></td>
+    <td align="right" class="lineno"><pre>196</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 4117243 times">&check;</span><span class="takenBranch" title="Branch 1 taken 5623084 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>9740327</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (k &lt; n_less) {</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>223</pre></td>
+    <td align="right" class="lineno"><pre>197</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 4117243 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>4117243</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return selectK(begin, begin + n_less, k);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>198</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>199</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 5623084 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>5623084</pre></td>
+    <td align="left" class="src coveredLine"><pre>  return selectK(begin + n_less + n_same, end, k - n_less - n_same);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>200</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>}</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>224</pre></td>
+    <td align="right" class="lineno"><pre>201</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// Sorts elements in range [begin, end) using quicksort with</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>202</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// the median of three rule.</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>203</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// Worst case O(n^2) time complexity</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>204</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>template &lt;typename RandomAccessIterator></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>205</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>21766803</pre></td>
+    <td align="left" class="src coveredLine"><pre>void quickSort(RandomAccessIterator begin, RandomAccessIterator end) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>206</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 367602 times">&check;</span><span class="takenBranch" title="Branch 1 taken 21399198 times">&check;</span><span class="takenBranch" title="Branch 2 taken 3 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>21766803</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (end - begin &lt;= 1) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>207</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>20136793</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>208</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>209</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 19769188 times">&check;</span><span class="takenBranch" title="Branch 1 taken 1630013 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>21399201</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (end - begin &lt; 100) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>210</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>19769191</pre></td>
+    <td align="left" class="src coveredLine"><pre>    insertionSort(begin, end);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>211</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>19769191</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>212</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>213</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
+    <td align="right" class="lineno"><pre>214</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  // use the median of three pivot rule</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>215</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>1630010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  RandomAccessIterator mid = begin + (end - begin - 1) / 2;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>216</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount uncoveredLine"><pre></pre></td>
+    <td align="left" class="src uncoveredLine"><pre>  RandomAccessIterator pivot;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>217</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 460965 times">&check;</span><span class="takenBranch" title="Branch 1 taken 809219 times">&check;</span><span class="takenBranch" title="Branch 2 taken 359826 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1630010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (*mid &lt; *begin) std::swap(*begin, *mid);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>218</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 614596 times">&check;</span><span class="takenBranch" title="Branch 1 taken 742224 times">&check;</span><span class="takenBranch" title="Branch 2 taken 273190 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><br/><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1630010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (*(end - 1) &lt; *mid) std::swap(*mid, *(end - 1));</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>219</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 306191 times">&check;</span><span class="takenBranch" title="Branch 1 taken 829813 times">&check;</span><span class="takenBranch" title="Branch 2 taken 494006 times">&check;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1630010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (*mid &lt; *begin)</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>220</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>517803</pre></td>
+    <td align="left" class="src coveredLine"><pre>    pivot = begin;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>221</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  else</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>222</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>1112207</pre></td>
+    <td align="left" class="src coveredLine"><pre>    pivot = mid;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>223</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>224</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  std::ptrdiff_t n_less, n_same;</pre></td>
+    </tr>
+
+    <tr>
     <td align="right" class="lineno"><pre>225</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1630010 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1630010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::tie(n_less, n_same) = partition(begin, end, pivot);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>226</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1630010 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>1630010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  quickSort(begin, begin + n_less);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>227</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 1630010 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span><span class="notTakenBranch" title="Branch 3 not taken">&cross;</span><span class="notTakenBranch" title="Branch 4 not taken">&cross;</span><br/></td>
+    <td align="right" class="linecount coveredLine"><pre>1630010</pre></td>
+    <td align="left" class="src coveredLine"><pre>  quickSort(begin + n_less + n_same, end);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>228</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>229</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// Sorts elements in the range [begin, end) with quicksort</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>230</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// using the median of medians pivot rule.</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>231</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>// Worst case O(n log n) time complexity</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>232</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>template &lt;typename RandomAccessIterator></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>233</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>785504</pre></td>
+    <td align="left" class="src coveredLine"><pre>void mmQuickSort(RandomAccessIterator begin, RandomAccessIterator end) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>234</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 3326 times">&check;</span><span class="takenBranch" title="Branch 1 taken 782178 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>785504</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (end - begin &lt;= 1) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>235</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>442778</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>236</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>237</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 0 taken 439452 times">&check;</span><span class="takenBranch" title="Branch 1 taken 342726 times">&check;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>782178</pre></td>
+    <td align="left" class="src coveredLine"><pre>  if (end - begin &lt; 100) {</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>238</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>439452</pre></td>
+    <td align="left" class="src coveredLine"><pre>    insertionSort(begin, end);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>239</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount coveredLine"><pre>439452</pre></td>
+    <td align="left" class="src coveredLine"><pre>    return;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>240</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  }</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>241</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>242</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 342726 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>342726</pre></td>
+    <td align="left" class="src coveredLine"><pre>  RandomAccessIterator pivot = selectK(begin, end, (end - begin - 1) / 2);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>243</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>  std::ptrdiff_t n_less, n_same;</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>244</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 342726 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>342726</pre></td>
+    <td align="left" class="src coveredLine"><pre>  std::tie(n_less, n_same) = partition(begin, end, pivot);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>245</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 342726 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>342726</pre></td>
+    <td align="left" class="src coveredLine"><pre>  mmQuickSort(begin, begin + n_less);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>246</pre></td>
+    <td align="right" class="linebranch"><span class="takenBranch" title="Branch 1 taken 342726 times">&check;</span><span class="notTakenBranch" title="Branch 2 not taken">&cross;</span></td>
+    <td align="right" class="linecount coveredLine"><pre>342726</pre></td>
+    <td align="left" class="src coveredLine"><pre>  mmQuickSort(begin + n_less + n_same, end);</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>247</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre>}</pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>248</pre></td>
+    <td align="right" class="linebranch"></td>
+    <td align="right" class="linecount "><pre></pre></td>
+    <td align="left" class="src "><pre></pre></td>
+    </tr>
+
+    <tr>
+    <td align="right" class="lineno"><pre>249</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>}  // namespace</pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>226</pre></td>
+    <td align="right" class="lineno"><pre>250</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre></pre></td>
     </tr>
 
     <tr>
-    <td align="right" class="lineno"><pre>227</pre></td>
+    <td align="right" class="lineno"><pre>251</pre></td>
     <td align="right" class="linebranch"></td>
     <td align="right" class="linecount "><pre></pre></td>
     <td align="left" class="src "><pre>#endif</pre></td>

@@ -11,6 +11,10 @@ std::ostream& operator<<(std::ostream& out, const Vec3& a) {
   out << "Vec3(" << a[0] << ", " << a[1] << ", " << a[2] << ")";
   return out;
 }
+std::istream& operator>>(std::istream& in, Vec3& a) {
+  in >> a[0] >> a[1] >> a[2];
+  return in;
+}
 
 Voxel::Voxel(const Vec3& lo, const Vec3& hi) : lo(lo), hi(hi) {}
 // Implements a fast voxel ray intersection with the correct handling of
@@ -85,19 +89,19 @@ Voxel::Voxel(const Vec3& lo, const Vec3& hi) : lo(lo), hi(hi) {}
 bool Voxel::intersects(const Ray& r) const {
   double t_min, t_max;
   double ty_min, ty_max;
-  if (r.inv_direction[0] >= 0) {
-    t_min = (lo[0] - r.origin[0]) * r.inv_direction[0];
-    t_max = (hi[0] - r.origin[0]) * r.inv_direction[0];
+  if (r.getInvDirection()[0] >= 0) {
+    t_min = (lo[0] - r.getOrigin()[0]) * r.getInvDirection()[0];
+    t_max = (hi[0] - r.getOrigin()[0]) * r.getInvDirection()[0];
   } else {
-    t_min = (hi[0] - r.origin[0]) * r.inv_direction[0];
-    t_max = (lo[0] - r.origin[0]) * r.inv_direction[0];
+    t_min = (hi[0] - r.getOrigin()[0]) * r.getInvDirection()[0];
+    t_max = (lo[0] - r.getOrigin()[0]) * r.getInvDirection()[0];
   }
-  if (r.inv_direction[1] >= 0) {
-    ty_min = (lo[1] - r.origin[1]) * r.inv_direction[1];
-    ty_max = (hi[1] - r.origin[1]) * r.inv_direction[1];
+  if (r.getInvDirection()[1] >= 0) {
+    ty_min = (lo[1] - r.getOrigin()[1]) * r.getInvDirection()[1];
+    ty_max = (hi[1] - r.getOrigin()[1]) * r.getInvDirection()[1];
   } else {
-    ty_min = (hi[1] - r.origin[1]) * r.inv_direction[1];
-    ty_max = (lo[1] - r.origin[1]) * r.inv_direction[1];
+    ty_min = (hi[1] - r.getOrigin()[1]) * r.getInvDirection()[1];
+    ty_max = (lo[1] - r.getOrigin()[1]) * r.getInvDirection()[1];
   }
   // check if the new intervals doesn't overlap with the first one
   if ((t_min > ty_max) || (ty_min > t_max)) {
@@ -112,12 +116,12 @@ bool Voxel::intersects(const Ray& r) const {
     t_max = ty_max;
   }
   double tz_min, tz_max;
-  if (r.inv_direction[2] >= 0) {
-    tz_min = (lo[2] - r.origin[2]) * r.inv_direction[2];
-    tz_max = (hi[2] - r.origin[2]) * r.inv_direction[2];
+  if (r.getInvDirection()[2] >= 0) {
+    tz_min = (lo[2] - r.getOrigin()[2]) * r.getInvDirection()[2];
+    tz_max = (hi[2] - r.getOrigin()[2]) * r.getInvDirection()[2];
   } else {
-    tz_min = (hi[2] - r.origin[2]) * r.inv_direction[2];
-    tz_max = (lo[2] - r.origin[2]) * r.inv_direction[2];
+    tz_min = (hi[2] - r.getOrigin()[2]) * r.getInvDirection()[2];
+    tz_max = (lo[2] - r.getOrigin()[2]) * r.getInvDirection()[2];
   }
   if ((t_min > tz_max) || (tz_min > t_max)) {
     return false;
@@ -184,24 +188,24 @@ void Triangle::translate(const Vec3& v) {
 // https://cadxfem.org/inf/Fast%20MinimumStorage%20RayTriangle%20Intersection.pdf
 // also detects intersections to the side of the triangle
 // and EPS outside the triangle
-RayIntersection Triangle::getRayIntersection(const Ray& r) const {
+inline RayIntersection Triangle::getRayIntersection(const Ray& r) const {
   Vec3 edge1 = p1 - p0;
   Vec3 edge2 = p2 - p0;
-  Vec3 pvec = r.direction.cross(edge2);
+  Vec3 pvec = r.getDirection().cross(edge2);
   double det = edge1.dot(pvec);
   // ray parallel to the triangle
   if (det > -EPS && det < EPS) {
     return {{}, std::numeric_limits<double>::infinity()};
   }
   double inv_det = 1.0 / det;
-  Vec3 tvec = r.origin - p0;
+  Vec3 tvec = r.getOrigin() - p0;
   RayIntersection result;
   result.bary_coords[0] = tvec.dot(pvec) * inv_det;
   if (result.bary_coords[0] < -EPS || result.bary_coords[0] > 1.0 + EPS) {
     return {{}, std::numeric_limits<double>::infinity()};
   }
   Vec3 qvec = tvec.cross(edge1);
-  result.bary_coords[1] = r.direction.dot(qvec) * inv_det;
+  result.bary_coords[1] = r.getDirection().dot(qvec) * inv_det;
   if (result.bary_coords[1] < -EPS ||
       result.bary_coords[0] + result.bary_coords[1] > 1.0 + EPS) {
     return {{}, std::numeric_limits<double>::infinity()};
@@ -228,7 +232,7 @@ Voxel PlanePolygon::getBoundingBox() const {
   return bounds;
 }
 void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
-  std::vector<Vec3> new_points;
+  Vector<Vec3> new_points;
   for (size_t i = 0; i < points.size(); ++i) {
     bool retain = 0;
     if (side == 0) {
@@ -241,7 +245,7 @@ void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
       }
     }
     if (retain) {
-      new_points.push_back(points[i]);
+      new_points.pushBack(points[i]);
     }
     size_t nxt_i = i + 1;
     if (nxt_i == points.size()) nxt_i = 0;
@@ -253,10 +257,12 @@ void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
       std::swap(a, b);
       side_length = -side_length;
     }
-    // check if the plane intersect the segment
+    // check if the plane intersects the segment
     if (a[plane.axis] + EPS < plane.pos && plane.pos < b[plane.axis] - EPS) {
       double t = (plane.pos - a[plane.axis]) / side_length;
-      new_points.push_back((1.0 - t) * a + t * b);
+      assert(t < 1.0 + EPS);
+      assert(t > -EPS);
+      new_points.pushBack((1.0 - t) * a + t * b);
     }
   }
   points = new_points;
@@ -291,8 +297,8 @@ std::pair<bool, bool> ClipTriangle::overlapsSides(const AxisPlane& plane,
 double ClipTriangle::max(int axis) const { return box.hi[axis]; }
 double ClipTriangle::min(int axis) const { return box.lo[axis]; }
 void ClipTriangle::clip(const AxisPlane& plane, bool side) {
-  assert(side != 0 || (plane.pos > min(plane.axis) - EPS));
-  assert(side != 1 || (plane.pos < max(plane.axis) + EPS));
+  assert(side == 1 || (plane.pos > min(plane.axis) - EPS));
+  assert(side == 0 || (plane.pos < max(plane.axis) + EPS));
   polygon.intersect(plane, side);
   assert(polygon.size() > 1);
   box = polygon.getBoundingBox();
@@ -304,7 +310,7 @@ Ray::Ray(Vec3 origin, Vec3 direction) : origin(origin), direction(direction) {
   }
 }
 std::ostream& operator<<(std::ostream& out, const Ray& a) {
-  out << "Ray(\n" << a.origin << ",\n" << a.direction << ")";
+  out << "Ray(\n" << a.getOrigin() << ",\n" << a.getDirection() << ")";
   return out;
 }
 std::ostream& operator<<(std::ostream& out, const AxisPlane& a) {
@@ -312,7 +318,7 @@ std::ostream& operator<<(std::ostream& out, const AxisPlane& a) {
   return out;
 }
 RayTriangleIntersection firstRayTriangleIntersection(
-    const std::vector<Triangle>& triangles, const Ray& r) {
+    const Vector<Triangle>& triangles, const Ray& r) {
   RayTriangleIntersection closest_point = {triangles.size(), {}};
   double closest_distance = INF;
   for (size_t i = 0; i < triangles.size(); ++i) {
@@ -324,7 +330,7 @@ RayTriangleIntersection firstRayTriangleIntersection(
   }
   return closest_point;
 }
-Voxel boundingBox(const std::vector<Triangle>& triangles) {
+Voxel boundingBox(const Vector<Triangle>& triangles) {
   if (triangles.size() == 0) {
     return {Vec3(0), Vec3(0)};
   }

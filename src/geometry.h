@@ -5,7 +5,7 @@
 #include <iostream>
 #include <limits>
 #include <random>
-#include <vector>
+#include "vector.h"
 
 const double INF = std::numeric_limits<double>::infinity();
 const double EPS = 1e-10;
@@ -22,6 +22,7 @@ class Vec2 {
   Vec2(double x);
   Vec2(double x, double y);
   double dot(const Vec2& b) const;
+  // Sum of elements
   double sum() const;
   // element-wise product
   Vec2 multiply(const Vec2& b) const;
@@ -36,11 +37,12 @@ class Vec2 {
   friend Vec2 operator/(const Vec2& a, const double b);
   double& operator[](int index);
   double operator[](int index) const;
+  // Euclidean norm
   double norm() const;
   friend std::ostream& operator<<(std::ostream& out, const Vec2& a);
 
  private:
-  double v[2];
+  double v[2] = {0.0, 0.0};
 };
 inline double Vec2::dot(const Vec2& b) const {
   return v[0] * b.v[0] + v[1] * b.v[1];
@@ -96,6 +98,7 @@ class Vec3 {
   Vec3(double x, double y, double z);
   double dot(const Vec3& b) const;
   Vec3 cross(const Vec3& b) const;
+  // Sum of elements
   double sum() const;
   // element-wise product
   Vec3 multiply(const Vec3& b) const;
@@ -110,12 +113,18 @@ class Vec3 {
   friend Vec3 operator/(const Vec3& a, const double b);
   double& operator[](int index);
   double operator[](int index) const;
+  // Euclidean norm
   double norm() const;
   friend std::ostream& operator<<(std::ostream& out, const Vec3& a);
 
  private:
-  double v[3];
+  double v[3] = {0.0, 0.0, 0.0};
 };
+// assumes a.norm() > 0
+inline Vec3 normalize(const Vec3& a) {
+  return a / a.norm();
+}
+std::istream& operator>>(std::istream& in, Vec3& a);
 inline double Vec3::dot(const Vec3& b) const {
   return v[0] * b.v[0] + v[1] * b.v[1] + v[2] * b.v[2];
 }
@@ -171,15 +180,15 @@ inline Vec3 operator/(const Vec3& a, const double b) {
 inline double& Vec3::operator[](int index) { return v[index]; }
 inline double Vec3::operator[](int index) const { return v[index]; }
 inline double Vec3::norm() const { return std::sqrt(this->dot(*this)); }
-// checks if a and b are on the same side of plane defined by normal
+// Checks if a and b are on the same side of plane defined by normal
 inline bool onSameSideOfPlane(const Vec3& a, const Vec3& b, const Vec3& normal) {
   return normal.dot(a) * normal.dot(b) > EPS;
 }
-// project a on b
+// Project a on b
 inline Vec3 project(const Vec3& a, const Vec3& b) {
   return a.dot(b) / b.dot(b) * b;
 }
-// mirrors a over b
+// Mirrors a over b
 inline Vec3 mirrorOver(const Vec3& a, const Vec3& b) {
   return 2 * project(a, b) - a;
 }
@@ -189,12 +198,14 @@ struct TrianglePoint {
   const Triangle* triangle;
   Vec2 bary_coords;
 };
+// A class representing a three dimensional rectangle
 class Voxel {
  public:
   Vec3 lo;
   Vec3 hi;
   Voxel() = default;
   Voxel(const Vec3& a, const Vec3& b);
+  // Checks if ray `r` intersects *this
   bool intersects(const Ray& r) const;
   // Clips triangle leaving side 'side' of plane
   void clip(const AxisPlane& plane, bool side);
@@ -202,6 +213,7 @@ class Voxel {
   void cover(const Vec3& p);
   // Extends voxel to cover triangle t
   void cover(const Triangle& t);
+  // Returns the surface area of the Voxel
   double area() const;
   // check that the point p is within the voxel (+EPS)
   bool isInside(const Vec3& p) const;
@@ -219,7 +231,9 @@ class Triangle {
   Triangle(const Vec3& p0, const Vec3& p1, const Vec3& p2);
   // Returns the point corresponding to barycentric coordinates coords
   Vec3 pointFromBary(const Vec2& coords) const;
+  // Area of the triangle
   double area() const;
+  // Translates the triangle by `v`
   void translate(const Vec3& v);
   // Finds non-parallel intersections between ray r and *this
   // distance == inf if no intersection was found
@@ -228,18 +242,26 @@ class Triangle {
   RayIntersection getRayIntersection(const Ray& r) const;
 };
 std::ostream& operator<<(std::ostream& out, const Triangle& t);
+// A class representing a planar polygon in 3d space
+// Always initialized from a triangle and the only modificatoin
+// is to get the intersection with a axis-aligned half-plane
 class PlanePolygon {
  public:
   PlanePolygon(const Vec3& a, const Vec3& b, const Vec3& c);
   PlanePolygon(const Triangle& t);
+  // Returns the bounding box of this
   Voxel getBoundingBox() const;
+  // Intersects *this with the side `side` of `plane`
+  // 0 is the smaller side and 1 is the larger side
+  // Stores the result to *this
   void intersect(const AxisPlane& plane, bool side);
+  // Returns the number of vertices in the polygon
   size_t size() const;
   Vec3& operator[](size_t index);
   Vec3 operator[](size_t index) const;
 
  private:
-  std::vector<Vec3> points;
+  Vector<Vec3> points;
 };
 inline Vec3& PlanePolygon::operator[](size_t index) { return points[index]; }
 inline Vec3 PlanePolygon::operator[](size_t index) const {
@@ -257,10 +279,14 @@ class ClipTriangle {
   ClipTriangle(const Triangle& triangle) : polygon(triangle) {
     box = polygon.getBoundingBox();
   }
+  // `axis` should be 0, 1 or 2
   bool isAxisAligned(int axis) const;
   // returns subtrees the triangle should be added to
   std::pair<bool, bool> overlapsSides(const AxisPlane& plane, bool side) const;
+  // Returns the maximum coordinates on the axis `axis`
+  // `axis` should be 0, 1, 2
   double max(int axis) const;
+  // Minimum coordinates
   double min(int axis) const;
   // Updates ClipTriangle so that side 'side' of plane is remains
   // The result should never be empty!
@@ -282,23 +308,35 @@ class ClipTriangle {
   // minimal bounding box of the clip triangle both in
   // y and x directions
   PlanePolygon polygon;
+  // The axis aligned box of the clipped triangle
   Voxel box;
 };
 inline bool ClipTriangle::isAxisAligned(int axis) const {
   return std::abs(box.hi[axis] - box.lo[axis]) < EPS;
 }
+// A class representing a ray
+// The reason why this is a class and not a struct
+// is to prevent anyone from modifying the inv_direction.
 class Ray {
  public:
+   Vec3 getOrigin() const {
+     return origin;
+   }
+   Vec3 getDirection() const {
+     return direction;
+   }
+   Vec3 getInvDirection() const {
+     return inv_direction;
+   }
+  Ray(Vec3 origin, Vec3 direction);
+ private:
   // p + sx;
   Vec3 origin;
   Vec3 direction;
   // inv_direction[i] = 1 / direction[i]
-  // speeds up the triangle intersection calculations
-  //
-  // TODO
-  // what if the user decides to modify direction? when to update this?
+  // supposedly speeds up the triangle intersection calculations
   Vec3 inv_direction;
-  Ray(Vec3 origin, Vec3 direction);
+
 };
 std::ostream& operator<<(std::ostream& out, const Ray& a);
 struct AxisPlane {
@@ -313,19 +351,31 @@ struct RayTriangleIntersection {
 // index of the intersected triangle and barycentric coordinates
 // returns {triangles.size(), Vec2(0)} if no intersection was found
 RayTriangleIntersection firstRayTriangleIntersection(
-    const std::vector<Triangle>& triangles, const Ray& r);
-Voxel boundingBox(const std::vector<Triangle>& triangles);
+    const Vector<Triangle>& triangles, const Ray& r);
+Voxel boundingBox(const Vector<Triangle>& triangles);
+// Returns 1 if `p` lies on the segment from `a` to `b`
 inline bool pointOnSegment(const Vec3& p, const Vec3& a, const Vec3& b) {
   return std::abs((a - p).norm() + (p - b).norm() - (a - b).norm()) < EPS;
 }
 // rotates a so that a[1] will point towards b
+// assumes a and b are normalized
 inline Vec3 rotateYTo(const Vec3& a, const Vec3& b) {
-  Vec3 normal_1(-b[1], b[0], 0.0);
+  assert(std::abs(a.norm() - 1.0) < EPS);
+  assert(std::abs(b.norm() - 1.0) < EPS);
+  Vec3 normal_1;
+  if(std::abs(b[0]) < EPS) {
+    normal_1 = Vec3(1.0, 0.0, 0.0);
+  }
+  else {
+    normal_1 = Vec3(-b[1], b[0], 0.0);
+  }
   normal_1 = normal_1 / normal_1.norm();
   Vec3 normal_2 = b.cross(normal_1);
   assert(std::abs(normal_2.norm() - 1) < EPS);
   return a[1] * b + a[0] * normal_1 + a[2] * normal_2;
 }
+// Returns a uniformly random point from a unit hemisphere facing direction
+// `direction`
 template <typename Generator>
 Vec3 uniformRandomHemispherePoint(Vec3 direction, Generator& g) {
   assert(direction.norm() > EPS);
@@ -352,23 +402,23 @@ Vec3 uniformRandomHemispherePoint(Vec3 direction, Generator& g) {
          std::cos(u_0) * std::sqrt(1 - u_1 * u_1));
   return rotateYTo(p, direction);
 }
+// Returns a uniformly random point from a unit sphere
 template <typename Generator>
-Vec3 uniformRandomSpherePoint(Vec3 direction, Generator& g) {
-  assert(direction.norm() > EPS);
-  // TODO implement properly
+Vec3 uniformRandomSpherePoint(Generator& g) {
   std::uniform_real_distribution dist(0.0, 1.0);
   if (dist(g) < 0.5) {
-    return uniformRandomHemispherePoint(direction, g);
+    return uniformRandomHemispherePoint(Vec3(1.0, 0.0, 0.0), g);
   }
-  return uniformRandomHemispherePoint(-1.0 * direction, g);
+  return uniformRandomHemispherePoint(Vec3(-1.0, 0.0, 0.0), g);
 }
 // Samples points from a hemisphere with pdf
 // (n + 1)/(2 * kPi) * direction.dot(v)^n
 // see:
 // https://graphics.cs.kuleuven.be/publications/Phong/.
+// Assumes `direction` is normalized
 template <typename Generator>
 Vec3 cosineExponentRandomPoint(Vec3 direction, double exponent, Generator& g) {
-  assert(direction.norm() > EPS);
+  assert(std::abs(direction.norm() - 1.0) < EPS);
   direction /= direction.norm();
   std::uniform_real_distribution U(0.0, 1.0);
   double e_1 = U(g);
@@ -382,7 +432,10 @@ Vec3 cosineExponentRandomPoint(Vec3 direction, double exponent, Generator& g) {
 }
 // pdf of cosine exponent distribution facing 'direction'
 // 0.0 outside the hemisphere!
+// Assumes `direction` and `v` are normalized
 inline double cosineExponentPdf(Vec3 v, Vec3 direction, double exponent) {
+  assert(std::abs(direction.norm() - 1.0) < EPS);
+  assert(std::abs(v.norm() - 1.0) < EPS);
   v /= v.norm();
   direction.norm();
   if (v.dot(direction) < EPS) return 0.0;

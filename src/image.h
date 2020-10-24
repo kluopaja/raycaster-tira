@@ -2,24 +2,32 @@
 #define RAYCASTER_IMAGE_H
 #include <cmath>
 #include <string>
-#include <vector>
 
 #include "geometry.h"
 class Image {
  public:
   Image(int x_resolution, int y_resolution);
   void setColor(int x_pos, int y_pos, const Vec3& color);
+  Vec3 getColor(int x_pos, int y_pos);
   // scales values to [0, 1]
   void scaleMaxTo(double new_max);
   // applies value = log_2((value + c)/c)
   // for debugging.
   void toLog2(double c);
-  // Let f be smallest value such that c of all pixel values are at most f
-  // then applies value = max(value, f)
+  // Cuts off the fraction (1 - c) of pixel values.
+  //
+  // Let n be the total number of pixel values
+  // (n = x_resolution * y_resolution * 3)
+  // Let f be the floor(c * n)'th element of the sorted
+  // pixel value array and the value of the first element if floor(c * n) = 0
+  // The function applies value = min(value, f) for every pixel value
+  //
+  // Assumes 0 < c <= 1
   void truncateToFraction(double c);
   // saves image as PPM with sRGB encoded values
   bool savePPM(const std::string& file);
-
+  // Calculates the Euclidean distance between two images
+  double distanceTo(const Image& other);
  private:
   double linearToSrgb(double val);
   double maxColorValue();
@@ -41,6 +49,9 @@ inline void Image::setColor(int x, int y, const Vec3& color) {
   assert(y >= 0 && y < y_resolution);
   assert(color[0] > -EPS && color[1] > -EPS && color[2] > -EPS);
   buffer[(size_t)bufferPos(x, y)] = color;
+}
+inline Vec3 Image::getColor(int x, int y) {
+  return buffer[(size_t)bufferPos(x, y)];
 }
 inline int Image::bufferPos(int x, int y) { return y * x_resolution + x; }
 inline char Image::floatToByte(double val) { return std::round(val * 255); }
