@@ -130,8 +130,8 @@ a models/bunny/bunny\_hires.obj The model contains about 69 000 triangles.
 
 Excluding the time used to build the kd tree,
 the rendering time was about 0.05 s with the kd tree
-and 21 s without it which is about 400 x improvement compared with the
-kd tree.
+and 21 s without it. This is about 400 x improvement compared with the
+naive implementation.
 
 
 # References
