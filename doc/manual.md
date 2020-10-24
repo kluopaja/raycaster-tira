@@ -26,10 +26,20 @@ Performance report can be generated with the command `make performance`.
 The program can be run running the following
 commands in the `src/` directory: `./bin/main PATH_TO_INPUT` or
 `PATH_TO_MAIN PATH_TO_INPUT --verbose` which will also print some extra
-information (currently only about the input parsing process).
+information about the input file parsin. With the `--verbose` flag
+the program will also generate a file name `gamma_test.ppm`
+which can be used to test if the used image viewer can
+display the generated PPM files correctly. The left side
+of the image consists of black and white squares in a chessboard
+pattern. If viewed from a distance with the native display
+resolution, the color of the left and right sides
+of the image should be the same.
+
 
 As output, the program will generate some number of images as
 defined in the input file.
+
+The program will also generate a file
 
 For geometry calculations the program uses the epsilon value of 1e-10.
 If the models contain very small triangles, this might cause
