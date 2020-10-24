@@ -1,0 +1,68 @@
+
+newmtl Mirror
+
+  Ns 1000000
+  Kd 0 0 0
+  Ka 0 0 0
+  Ks 1 1 1
+
+
+newmtl rightWall
+  Ns 10.0000
+  Ni 1.5000
+  illum 2
+  Kd 0.14 0.45 0.091
+  Ks 0 0 0
+  Ke 0 0 0
+
+  
+newmtl floor
+  Ns 10.0000
+  Ni 1.0000
+  illum 2
+  Kd 0.725 0.71 0.68
+  Ks 0 0 0
+  Ke 0 0 0
+
+
+newmtl ceiling
+  Ns 10.0000
+  Ni 1.0000
+  illum 2
+  Kd 0.725 0.71 0.68
+  Ks 0     0    0
+  Ke 0     0    0
+  
+
+newmtl backWall
+  Ns 10.0000
+  Ni 1.0000
+  illum 2
+  Kd 0.725 0.71 0.68
+  Ks 0 0 0
+  Ke 0 0 0
+
+
+newmtl shortBox
+  Ni 1.0000
+  Ka 0 0 0
+  Kd 0 0.9 0.9
+  Ks 0 0 0
+  Ke 0 0 0
+  
+
+newmtl tallBox
+  Ns 10.0000
+  Ni 1.0000
+  illum 2
+  Kd 0.725 0.71 0.68
+  Ks 0 0 0
+  Ke 0 0 0
+
+newmtl light
+  Ns 10.0000
+  Ni 1.0000
+  illum 2
+  Ka 10 10 10 # White
+  Kd 0.78 0.78 0.78
+  Ks 0 0 0
