@@ -1,0 +1,11 @@
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl Frost
+Ns 1000.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.2 0.2 0.2
+Ks 0.8 0.8 0.8
+Tf 1 1 1
+d 0.0
+Ni 1.450000
