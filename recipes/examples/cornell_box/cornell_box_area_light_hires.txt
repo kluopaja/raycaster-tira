@@ -1,0 +1,27 @@
+camera
+  pos     0 1.2 4
+  front   0.0 0.0 -0.1
+  up      0.0 1.0 0.0
+  x_fov   45
+  y_fov   45
+
+model
+  file    ../../../models/CornellBox/cornell_box_area_light.obj
+  pos     0.0 0.0 0.0
+  normal  rough
+
+model
+  file ../../../models/bunny/frost_bunny.obj
+  pos 0.3 0.0 0.4
+  normal smooth
+
+render
+  width       1000
+  height      1000
+  pixel_rays  144
+  depth       9
+  branching   2
+
+image
+  file      cornell_box_area_light_hires.ppm
+  truncate  0.99

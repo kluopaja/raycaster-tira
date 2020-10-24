@@ -1,0 +1,36 @@
+camera
+  pos     0 1.2 4
+  front   0.0 0.0 -0.1
+  up      0.0 1.0 0.0
+  x_fov   45
+  y_fov   45
+
+model
+  file    ../../../models/CornellBox/cornell_point_light.obj
+  pos     0.0 0.0 0.0
+  normal  rough
+
+model
+  file ../../../models/ball/0_2_glass_ball.obj
+  pos 0.2 0.8 0.4
+  normal smooth
+
+model
+  file ../../../models/ball/0_2_metal_ball.obj
+  pos -0.4 1.4 -0.1
+  normal smooth
+
+point_light
+  pos 0 1.8 0
+  color 1 1 1
+
+render
+  width       2000
+  height      2000
+  pixel_rays  67
+  depth       9
+  branching   2
+
+image
+  file      cornell_box_point_light_hires.ppm
+  truncate  0.99

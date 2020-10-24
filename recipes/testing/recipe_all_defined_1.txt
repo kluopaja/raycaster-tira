@@ -1,0 +1,51 @@
+camera
+  pos 0.0 0.0 10.0
+  front 0.0 1.0 -1.0
+  up 0.0 1.0 1.0
+  x_fov 90
+  y_fov 85
+
+// This is just some comment
+//and this
+       // and this
+  model
+  file ball.obj
+  pos 10.0 10.0 123
+  normal rough
+
+// vertical whitespaces or field order should not matter
+model
+    pos -1.0       2.0     3.0
+file triangle.obj
+  normal smooth
+
+point_light
+  pos 1 2 3
+  color 100 100 100
+
+point_light
+  pos 3 2 1
+  color 4 5 6
+
+environment_light
+  color 1 1 1
+  type directed
+  direction 10 10 10
+  exp 1000
+
+render
+  width 100
+  depth 10
+  branching 14
+  height 200
+  pixel_rays 123
+
+image
+  file asdf.ppm
+  truncate 0.99
+  scale_max 0.9
+
+image
+  file asdf2.ppm
+  truncate 0.89
+  scale_max 0.19

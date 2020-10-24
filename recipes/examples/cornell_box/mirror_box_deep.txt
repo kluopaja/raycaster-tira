@@ -1,0 +1,25 @@
+camera
+  pos     0 1.0 1
+  front   0.01 0.0 -0.1
+  up      0.0 1.0 0.0
+  x_fov   45
+  y_fov   45
+
+model
+  file    ../../../models/CornellBox/mirror_box.obj
+  pos     0.0 0.0 0.0
+  normal  rough
+
+point_light
+  pos 0 1.5 0.0
+  color 1 1 1 
+jender
+  width       500
+  height      500
+  pixel_rays  5
+  depth       50
+  branching   1
+
+image
+  file      mirror_box_deep.ppm
+  truncate  0.99

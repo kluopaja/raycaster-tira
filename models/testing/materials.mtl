@@ -1,0 +1,42 @@
+newmtl Green
+Ka 0.0 0.0 0.0
+Kd 0.0 0.8 0.0
+Ks 0.2 0.2 0.2
+
+Ns 2.0
+
+newmtl WhiteGlossy
+Ka 0.0 0.0 0.0
+Kd 0.8 0.8 0.8
+Ks 0.2 0.2 0.2.
+Ns 10.0
+
+newmtl Glass
+Ns 10000.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.01 0.01 0.01
+Ks 0.800 0.990000 0.990000
+Tf 0.5 0.5 0.5
+d 0.0
+Ni 1.450000
+
+newmtl WhiteFrost
+Ns 10.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.2 0.2 0.2
+Ks 0.80000 0.80000 0.80000
+Tf 0.5 0.5 0.5
+d 0.0
+Ni 1.450000
+
+newmtl WhiteLight
+Ka 1.0 1.0 1.0
+Kd 0.0 0.0 0.0
+
+newmtl GreenishTransparent
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+d 0.0
+Tf 1.0 0.20 0.95
+Ni 1.5

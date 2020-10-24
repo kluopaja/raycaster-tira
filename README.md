@@ -12,8 +12,6 @@
 
 [Week report 5](https://github.com/kluopaja/raycaster-tira/blob/master/doc/week_reports/week5.md)
 
-[Week report 6](https://github.com/kluopaja/raycaster-tira/blob/master/doc/week_reports/week6.md)
-
 [Code coverage report](https://kluopaja.github.io/raycaster-tira/doc/coverage/coverage.html)
 
 ## Building

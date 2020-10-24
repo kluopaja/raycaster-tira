@@ -1,0 +1,11 @@
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl Glass
+Ns 100000000
+Ka 0 0 0
+Kd 0.0 0 0
+Ks 1 0.0 1
+Tf 1 1 1
+d 0
+Ni 1.4
