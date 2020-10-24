@@ -23,7 +23,7 @@ Performance report can be generated with the command `make performance`.
 
 ## Usage
 
-The program can be run running the following
+The program can be run by running the following
 commands in the `src/` directory: `./bin/main PATH_TO_INPUT` or
 `PATH_TO_MAIN PATH_TO_INPUT --verbose` which will also print some extra
 information about the input file parsin. With the `--verbose` flag
@@ -38,8 +38,6 @@ of the image should be the same.
 
 As output, the program will generate some number of images as
 defined in the input file.
-
-The program will also generate a file
 
 For geometry calculations the program uses the epsilon value of 1e-10.
 If the models contain very small triangles, this might cause

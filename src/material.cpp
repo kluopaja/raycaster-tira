@@ -9,7 +9,6 @@ Vec3 Material::importanceSample(const Vec3& normal, const Vec3& out_vector,
                                 std::mt19937& mt) const {
   assert(std::abs(out_vector.norm() - 1.0) < EPS);
   assert(std::abs(normal.norm() - 1.0) < EPS);
-  Vec3 direction;
   // Check if the material absorbs all light
   // Probably could just return an error or any vector
   // but to keep the sampling separated from BRDF evaluation
