@@ -25,9 +25,15 @@ class Node {
   //
   // Return {nullptr, Vec2(0.0, 0.0)} if no intersection was found
   ScenePoint getClosestRayIntersection(const Ray& r) const;
+  // Utilities used to analyze the tree structure
+  //
+  // Number of leaf nodes in the subtree
   std::size_t numLeaves() const;
+  // Number of non-empty leaf nodes in the subtree
   std::size_t numNonEmptyLeaves() const;
+  // Total number of triangles in the subtree
   std::size_t totalTriangles() const;
+  // Cost of the subtree according to the equation 3 of the paper
   double cost(double traversal_cost, double intersection_cost) const;
   // Returns the smallest axis aligned bounding box of *this
   Voxel boundingBox() const;
@@ -70,10 +76,16 @@ class Tree {
   bool trianglesIntersectSegment(const Vec3& a, const Vec3& b) const;
   Tree(std::unique_ptr<Node> root) : root(std::move(root)) {}
   Tree() = default;
+  // Utilities used to analyze the tree structure
+  // Number of leaf nodes in the tree
   std::size_t numLeaves() const;
+  // Number of non-empty leaf nodes in the tree
   std::size_t numNonEmptyLeaves() const;
+  // Average number of triangles in non-empty leaves
   double averageTrianglesInLeaf() const;
+  // Cost of the tree according to the equation 3 of the paper
   double cost(double traversal_cost, double intersection_cost) const;
+  // Returns the smallest axis aligned bounding box of *this
   Voxel boundingBox() const;
  private:
   std::unique_ptr<Node> root;

@@ -273,10 +273,57 @@ ScenePoint Node::getClosestRayIntersection(const Ray& r) const {
   }
   return left->getClosestRayIntersection(r);
 }
-Tree::Tree(Tree&& a) noexcept : root(std::move(a.root)) {}
-Tree& Tree::operator=(Tree&& a) noexcept {
-  root = std::move(a.root);
-  return *this;
+std::size_t Node::numLeaves() const {
+  if(isLeaf()) return 1;
+  return left->numLeaves() + right->numLeaves();
+}
+std::size_t Node::numNonEmptyLeaves() const {
+  if(isLeaf()) {
+    if(triangles.size() > 0) return 1;
+    return 0;
+  }
+  return left->numNonEmptyLeaves() + right->numNonEmptyLeaves();
+}
+std::size_t Node::totalTriangles() const {
+  if(isLeaf()) {
+    return triangles.size();
+  }
+  return left->totalTriangles() + right->totalTriangles();
+}
+double Node::cost(double traversal_cost, double intersection_cost) const {
+  double cost_sum = 0;
+  if(voxel.area() < EPS) return 0;
+  // I assume that they didn't include the leaves to this
+  if(!isLeaf()) {
+    cost_sum += voxel.area() * traversal_cost;
+  }
+  if(isLeaf()) {
+    cost_sum += voxel.area() * triangles.size() * intersection_cost;
+    return cost_sum / voxel.area();
+  }
+  cost_sum += left->cost(traversal_cost, intersection_cost)
+              * left->voxel.area();
+  cost_sum += right->cost(traversal_cost, intersection_cost)
+              * right->voxel.area();
+  return cost_sum / voxel.area();
+};
+Voxel Node::boundingBox() const {
+  return voxel;
+}
+std::size_t Tree::numLeaves() const {
+  return root->numLeaves();
+}
+std::size_t Tree::numNonEmptyLeaves() const {
+  return root->numNonEmptyLeaves();
+}
+double Tree::averageTrianglesInLeaf() const {
+  return (double)root->totalTriangles() / root->numNonEmptyLeaves();
+}
+double Tree::cost(double traversal_cost, double intersection_cost) const {
+  return root->cost(traversal_cost, intersection_cost);
+};
+Voxel Tree::boundingBox() const {
+  return root->boundingBox();
 }
 ScenePoint Tree::getClosestRayIntersection(const Ray& r) const {
   return root->getClosestRayIntersection(r);

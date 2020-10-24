@@ -84,7 +84,7 @@ SortTestResult testRandomRepeat(int n_elements, int n_times) {
 
 }  // namespace
 // Prints performance test results to std::cout
-void generateReport() {
+void generateSortReport() {
   int n = 1;
   std::cout << std::string(20, '*') << std::endl;
   std::cout << "Generating performance report for sorting functions" << std::endl;
