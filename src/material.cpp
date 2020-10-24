@@ -197,10 +197,14 @@ Vec3 Material::transparentSpecular(const Vec3& in_vector, const Vec3& normal,
   out += f * phongSpecular(in_vector, normal, out_vector, specular_exp);
   assert(std::abs(in_vector.norm() - 1.0) < EPS);
   assert(std::abs(normal.norm() - 1.0) < EPS);
-  // where the light would need to come to reflect like 'refraction'
-  Vec3 imaginary_in = mirrorOver(in_refraction, normal);
-  out +=
-      (1.0 - f) * phongSpecular(imaginary_in, normal, out_vector, specular_exp);
+  Vec3 out_refraction = 0;
+  std::tie(out_refraction, refraction_ok) =
+    perfectRefraction(out_vector, normal, 1.0, index_of_refraction);
+  if(refraction_ok) {
+    Vec3 imaginary_out = mirrorOver(out_refraction, normal);
+    out +=
+      (1.0 - f) * phongSpecular(in_vector, normal, imaginary_out, specular_exp);
+  }
   return out;
 }
 // Separate function so that adding additional grazing angle specular
