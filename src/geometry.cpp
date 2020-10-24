@@ -257,7 +257,7 @@ void PlanePolygon::intersect(const AxisPlane& plane, bool side) {
       std::swap(a, b);
       side_length = -side_length;
     }
-    // check if the plane intersect the segment
+    // check if the plane intersects the segment
     if (a[plane.axis] + EPS < plane.pos && plane.pos < b[plane.axis] - EPS) {
       double t = (plane.pos - a[plane.axis]) / side_length;
       new_points.pushBack((1.0 - t) * a + t * b);

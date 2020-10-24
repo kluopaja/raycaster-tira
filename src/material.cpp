@@ -10,7 +10,8 @@ Vec3 Material::importanceSample(const Vec3& normal, const Vec3& out_vector,
   assert(std::abs(out_vector.norm() - 1.0) < EPS);
   assert(std::abs(normal.norm() - 1.0) < EPS);
   Vec3 direction;
-  // probably could just return an error or any vector
+  // Check if the material absorbs all light
+  // Probably could just return an error or any vector
   // but to keep the sampling separated from BRDF evaluation
   // try to return a reasonable direction
   if (diffuse.sum() + specular.sum() < EPS) {

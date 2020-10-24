@@ -4,7 +4,6 @@
 // calculates the specular component of Phong lighting
 // returns Vec3(0.0) if in_vector and out_vector are on 
 // different sides of plane defined by 'normal'
-// TODO think if should care about this or not?
 // all input vectors should be normalized
 inline Vec3 phongSpecular(const Vec3& in_vector, const Vec3& normal,
                           const Vec3& out_vector, double exponent) {
@@ -14,6 +13,8 @@ inline Vec3 phongSpecular(const Vec3& in_vector, const Vec3& normal,
   if(!onSameSideOfPlane(in_vector, out_vector, normal)) {
     return Vec3(0.0);
   }
+  // To follow the conservation of energy we need to
+  // multiply by this
   double normalization = (exponent + 1.0) / (2 * kPi);
   double cos_alpha = std::max(out_vector.dot(mirrorOver(in_vector, normal)),
                               0.0);
@@ -24,6 +25,8 @@ inline Vec3 phongSpecular(const Vec3& in_vector, const Vec3& normal,
 // eta_2 is the refractive index of material on the other side
 // returns {Vec3(0.0), 0} if there was a total internal reflection
 // otherwise returns {v, 1} where v is the refracted ray
+//
+// Assumes that `in_vector` and `normal` are normalized
 inline std::pair<Vec3, bool> perfectRefraction(Vec3 in_vector,
                                                Vec3 normal,
                                                double eta_1, double eta_2) {
@@ -68,13 +71,13 @@ inline std::pair<Vec3, bool> perfectRefraction(Vec3 in_vector,
 // eta_1 is the refractive index of the side on the side of normal
 // eta_2 is the refractive index of the other side
 // In Schlick's approximation these are identical!
+// All input vectors should be normalized
 inline double fresnelFactor(const Vec3& in_vector, const Vec3& normal,
                             double eta_1, double eta_2) {
   // note that swapping \eta_1 and \eta_2 would just swap the 
   // sign of tmp. This would not be present in tmp * tmp
   double tmp = (eta_1 - eta_2) / (eta_1 + eta_2);
   double r_0 = tmp * tmp;
-  // check that std::abs should really be used
   return r_0 + (1.0 - r_0) * std::pow(1.0 - std::abs(normal.dot(in_vector)),
                                       5.0);
 }

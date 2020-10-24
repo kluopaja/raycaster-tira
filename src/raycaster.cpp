@@ -163,7 +163,8 @@ Image Scene::render(int x_resolution, int y_resolution, int n_rays_per_pixel,
   Image image(x_resolution, y_resolution);
   for (int x_pixel = 0; x_pixel < x_resolution; ++x_pixel) {
     for (int y_pixel = 0; y_pixel < y_resolution; ++y_pixel) {
-      // TODO make this equivalent with the parallel part
+      // Note that this is not exactly equivalent to the parallelel
+      // version. (Random numbers can be different)
       Vec3 pixel_color = renderPixel(x_pixel, y_pixel, x_resolution,
                                      y_resolution, n_rays_per_pixel, mt_19937);
       image.setColor(x_pixel, y_pixel, pixel_color);
