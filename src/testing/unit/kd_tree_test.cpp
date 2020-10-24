@@ -162,7 +162,7 @@ TEST(TreeBuilderKdTreeQueries, Random3dAxisParallel) {
       scene_p.pushBack(&x);
     }
     Vector<Triangle> triangles = extractTriangles(scene_p);
-    Tree t = buildKdTree(scene_p, 1.0, 40.0);
+    Tree t = buildKdTree(scene_p, 15, 20.0);
     for (int j = 0; j < 100; ++j) {
       Ray r(test::randomVec3(0.0, 100.0, mt), test::randomVec3(-1.0, 1.0, mt));
       ScenePoint sp = t.getClosestRayIntersection(r);
@@ -192,10 +192,10 @@ TEST(TreeBuilderKdTreeQueries, Random3dSmallTrianglePerformance) {
       scene_p.pushBack(&x);
     }
     Vector<Triangle> triangles = extractTriangles(scene_p);
-    Tree t = buildKdTree(scene_p, 1.0, 40.0);
+    Tree t = buildKdTree(scene_p, 15, 20.0);
     std::cerr << "tree " << i << " done " << std::endl;
     for (int i = 0; i < 100; ++i) {
-      Ray r(test::randomVec3(0.0, 1.0, mt), test::randomVec3(0.0, 1.0, mt));
+      Ray r(test::randomVec3(0.0, 100.0, mt), test::randomVec3(0.0, 1.0, mt));
       auto t0 = std::chrono::high_resolution_clock::now();
       ScenePoint sp = t.getClosestRayIntersection(r);
       auto t1 = std::chrono::high_resolution_clock::now();
@@ -231,10 +231,10 @@ TEST(TreeBuilderKdTreeQueries, Random3dLargeTrianglePerformance) {
       scene_p.pushBack(&x);
     }
     Vector<Triangle> triangles = extractTriangles(scene_p);
-    Tree t = buildKdTree(scene_p, 1.0, 40.0);
+    Tree t = buildKdTree(scene_p, 15, 20.0);
     std::cerr << "tree " << i << " done " << std::endl;
     for (int i = 0; i < 100; ++i) {
-      Ray r(test::randomVec3(0.0, 1.0, mt), test::randomVec3(0.0, 1.0, mt));
+      Ray r(test::randomVec3(0.0, 100.0, mt), test::randomVec3(0.0, 1.0, mt));
       auto t0 = std::chrono::high_resolution_clock::now();
       ScenePoint sp = t.getClosestRayIntersection(r);
       auto t1 = std::chrono::high_resolution_clock::now();

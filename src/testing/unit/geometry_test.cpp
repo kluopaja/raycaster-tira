@@ -11,6 +11,7 @@
 #include "../../vector.h"
 
 using ::testing::PrintToString;
+using ::testing::UnorderedElementsAreArray;
 
 namespace {
 MATCHER_P(VecEq, v, "should equal " + PrintToString(v)) {
