@@ -23,7 +23,7 @@ MATCHER_P(TriangleEq, v, "should equal " + PrintToString(v)) {
 }
 TEST(TestLoadModel, SimpleTriangle) {
   Model model;
-  loadModel("../models/green_triangle.obj", model, NormalType::kRough);
+  loadModel("../models/testing/green_triangle.obj", model, NormalType::kRough);
   Triangle c(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 1.0f),
              Vec3(0.0f, 1.0f, 0.0f));
   ASSERT_EQ(model.scene_triangles.size(), 1);
@@ -33,7 +33,7 @@ TEST(TestLoadModel, SimpleTriangle) {
 }
 TEST(TestLoadModel, MaterialDiffuse) {
   Model model;
-  loadModel("../models/green_triangle.obj", model, NormalType::kRough);
+  loadModel("../models/testing/green_triangle.obj", model, NormalType::kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
   Material material = model.scene_triangles[0].material;
   EXPECT_THAT(material.diffuse, VecEq(Vec3(0.0f, 0.8f, 0.0f)));
@@ -41,7 +41,7 @@ TEST(TestLoadModel, MaterialDiffuse) {
 }
 TEST(TestLoadModel, MaterialEmitted) {
   Model model;
-  loadModel("../models/white_light.obj", model, NormalType::kRough);
+  loadModel("../models/testing/white_light.obj", model, NormalType::kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
   Material material = model.scene_triangles[0].material;
   EXPECT_THAT(material.diffuse, VecEq(Vec3(0.0f, 0.0f, 0.0f)));
@@ -49,7 +49,7 @@ TEST(TestLoadModel, MaterialEmitted) {
 }
 TEST(TestLoadModel, MaterialSpecular) {
   Model model;
-  loadModel("../models/green_triangle.obj", model, NormalType::kRough);
+  loadModel("../models/testing/green_triangle.obj", model, NormalType::kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
   Material material = model.scene_triangles[0].material;
   EXPECT_THAT(material.specular, VecEq(Vec3(0.2f, 0.2f, 0.2f)));
@@ -57,22 +57,22 @@ TEST(TestLoadModel, MaterialSpecular) {
 }
 TEST(TestLoadModel, MaterialTransparent) {
   Model model;
-  loadModel("../models/greenish_transparent_triangle.obj", model, NormalType::kRough);
-  loadModel("../models/greenish_transparent_triangle.obj", model, NormalType::kRough);
+  loadModel("../models/testing/greenish_transparent_triangle.obj", model, NormalType::kRough);
+  loadModel("../models/testing/greenish_transparent_triangle.obj", model, NormalType::kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
   Material material = model.scene_triangles[0].material;
-  EXPECT_THAT(material.transparent, VecEq(Vec3(1.0f, 0.2f, 0.95f)));
+  EXPECT_THAT(material.transparent, VecEq(Vec3(0.90f, 0.85f, 0.97f)));
 }
 TEST(TestLoadModel, MaterialIndexOfRefraction) {
   Model model;
-  loadModel("../models/greenish_transparent_triangle.obj", model, NormalType::kRough);
+  loadModel("../models/testing/greenish_transparent_triangle.obj", model, NormalType::kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
   Material material = model.scene_triangles[0].material;
   EXPECT_EQ(material.index_of_refraction, 1.5f);
 }
 TEST(TestLoadModel, Normals) {
   Model model;
-  loadModel("../models/green_triangle.obj", model, NormalType::kRough);
+  loadModel("../models/testing/green_triangle.obj", model, NormalType::kRough);
   ASSERT_EQ(model.scene_triangles.size(), 1);
   EXPECT_THAT(model.scene_triangles[0].normals[0],
               VecEq(Vec3(-1.0f, 0.0f, 0.0f)));
