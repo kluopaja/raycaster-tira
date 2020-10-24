@@ -1,0 +1,44 @@
+camera
+  pos     0 0.5 3
+  front   0.0 0.0 -0.1
+  up      0.0 1.0 0.0
+  x_fov   45
+  y_fov   45
+
+model
+  file    ../../../models/ball/0_2_ball_pink_diffuse.obj
+  pos     0.0 0.2 0.0
+  normal  smooth
+
+model
+  file    ../../../models/ball/0_2_ball_green_diffuse.obj
+  pos     0.5 0.2 1
+  normal  smooth
+
+model
+  file    ../../../models/XZ_plane/XZ_plane_diffuse.obj
+  pos     0 0 0
+  normal  rough
+
+
+environment_light
+  color    0.001 0.001 0.001
+  type   uniform
+//  direction 0 0.1 -1
+//  exp 5
+
+point_light
+  color 100 100 100
+  pos -10 5 5
+
+render
+  width       200
+  height      200
+  pixel_rays  200
+  depth       3
+  branching   2
+
+image
+  file      image.ppm
+  truncate  0.99
+  scale_max 1.0
