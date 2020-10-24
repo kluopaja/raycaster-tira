@@ -58,7 +58,7 @@ RunTimes runRandomQueries(const std::string& file, int n_queries) {
   Model model;
   if(!loadModel(file, model, NormalType::kRough)) {
     std::cerr << "Failed loading model" << std::endl;
-    std::exit(1);
+    std::exit(0);
   }
   Tree tree = model.buildKdTree(15, 20);
   Voxel bb = tree.boundingBox();
@@ -148,7 +148,7 @@ void generateKdRenderReport() {
 }  // namespace
 // Prints performance test results to std::cout
 void generateKdReport() {
-  std::cout << std::string("*", 20) << std::endl;
+  std::cout << std::string(20, '*') << std::endl;
   std::cout << "Kd tree performance report" << std::endl;
 
   generateKdStructureReport();
