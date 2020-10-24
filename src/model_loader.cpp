@@ -44,7 +44,7 @@ bool ModelLoader::load(const std::string& file, NormalType normal_type) {
   if (!ai_scene) {
     std::cerr << "ERROR while loading the model: " << importer.GetErrorString()
               << std::endl;
-    return false;
+    std::exit(0);
   }
   loadMaterials(ai_scene);
   loadNode(ai_scene->mRootNode, ai_scene);
