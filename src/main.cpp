@@ -1,7 +1,5 @@
 #include <iostream>
 
-#include "raycaster.h"
-#include "image.h"
 #include "renderer.h"
 
 const std::string kHelp =
@@ -22,13 +20,7 @@ int main(int argc, char* argv[]) {
 
   // this image can be used to check if your image viewer can
   // display the PPM files correctly
-  //generateGammaTestImage(1000, 1000).savePPM("gamma_test.ppm");
-  //renderBallScene();
-  //renderCornellOriginal();
-  //renderCornellGlass();
-  //renderCornellWater();
-  //renderRecursiveLucy();
-  //renderTestBallGlass();
- // renderTestBall1();
-//  renderBunny();
+  if(verbose) {
+    generateGammaTestImage(1000, 1000).savePPM("gamma_test.ppm");
+  }
 }
