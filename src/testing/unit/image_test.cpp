@@ -52,8 +52,7 @@ TEST(TestImage, LinearToSrgb) {
   // 0.5 * 255 in linear color space corresponds
   // to about 188 in Srgb color space
   std::vector<unsigned char> correct_file = {
-      'P',  '6', '\n', '1', ' ', '1', '\n', '2', '5', '5',
-      '\n', 0, 188,  255};
+      'P', '6', '\n', '1', ' ', '1', '\n', '2', '5', '5', '\n', 0, 188, 255};
 
   EXPECT_THAT(file, ElementsAreArray(correct_file));
 }

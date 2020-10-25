@@ -67,11 +67,10 @@ TEST(SurfaceAreaHeuristic, Simple) {
   double intersection_cost = 1.0;
   double cost;
   bool side;
-  std::tie(cost, side) =
-      surfaceAreaHeuristic(l_area, r_area, counts,
-                           traversal_cost, intersection_cost);
-  double correct =
-      traversal_cost + intersection_cost * (l_area * counts.left + r_area * counts.right);
+  std::tie(cost, side) = surfaceAreaHeuristic(
+      l_area, r_area, counts, traversal_cost, intersection_cost);
+  double correct = traversal_cost + intersection_cost * (l_area * counts.left +
+                                                         r_area * counts.right);
   EXPECT_NEAR(cost, correct, EPS);
 }
 TEST(SurfaceAreaHeuristic, TrianglesOnPlane) {
@@ -86,15 +85,16 @@ TEST(SurfaceAreaHeuristic, TrianglesOnPlane) {
   double cost;
   bool side;
 
-  std::tie(cost, side) =
-      surfaceAreaHeuristic(l_area, r_area, counts,
-                           traversal_cost, intersection_cost);
+  std::tie(cost, side) = surfaceAreaHeuristic(
+      l_area, r_area, counts, traversal_cost, intersection_cost);
   double l_correct =
       traversal_cost +
-      intersection_cost * (l_area * (counts.left + counts.plane) + r_area * counts.right);
+      intersection_cost *
+          (l_area * (counts.left + counts.plane) + r_area * counts.right);
   double r_correct =
       traversal_cost +
-      intersection_cost * (l_area * counts.left + r_area * (counts.right + counts.plane));
+      intersection_cost *
+          (l_area * counts.left + r_area * (counts.right + counts.plane));
 
   EXPECT_NEAR(cost, std::min(l_correct, r_correct), EPS);
   EXPECT_EQ(side, l_correct <= r_correct ? 0 : 1);

@@ -55,13 +55,13 @@ class TreeBuilder {
   double traversal_cost;
   double intersection_cost;
 
-  std::unique_ptr<Node> recursiveBuild(
-      Vector<BuildTriangle>& build_triangles, const Voxel& voxel) const;
+  std::unique_ptr<Node> recursiveBuild(Vector<BuildTriangle>& build_triangles,
+                                       const Voxel& voxel) const;
   SplitPlane findPlane(const Vector<BuildTriangle>& clip_triangles,
                        const Voxel& v) const;
 
-  Vector<Event> createEventList(
-      const Vector<BuildTriangle>& build_triangles, int dimension) const;
+  Vector<Event> createEventList(const Vector<BuildTriangle>& build_triangles,
+                                int dimension) const;
 
   SplitResult splitTriangles(const Vector<BuildTriangle>& build_triangles,
                              const SplitPlane& plane) const;
@@ -71,19 +71,18 @@ TreeBuilder::TreeBuilder(double traversal_cost, double intersection_cost)
   assert(traversal_cost > EPS && intersection_cost > EPS);
 }
 
-Tree TreeBuilder::build(
-    const Vector<SceneTriangle*>& scene_triangles) const {
+Tree TreeBuilder::build(const Vector<SceneTriangle*>& scene_triangles) const {
   Voxel voxel = boundingBox(extractTriangles(scene_triangles));
-  Vector<BuildTriangle> build_triangles =
-      createBuildTriangles(scene_triangles);
+  Vector<BuildTriangle> build_triangles = createBuildTriangles(scene_triangles);
   std::unique_ptr<Node> root = recursiveBuild(build_triangles, voxel);
   return Tree(std::move(root));
 }
 // implements the O(n log^2 n) algorithm
 std::unique_ptr<Node> TreeBuilder::recursiveBuild(
     Vector<BuildTriangle>& build_triangles, const Voxel& voxel) const {
-  if(build_triangles.size() == 0) {
-    return std::make_unique<Node>(Vector<Triangle>(), Vector<SceneTriangle*>(), voxel);
+  if (build_triangles.size() == 0) {
+    return std::make_unique<Node>(Vector<Triangle>(), Vector<SceneTriangle*>(),
+                                  voxel);
   }
   // the surface area heuristic is not well defined if the voxel has
   // zero area so we will just terminate
@@ -114,9 +113,8 @@ std::unique_ptr<Node> TreeBuilder::recursiveBuild(
   return std::make_unique<Node>(std::move(left), std::move(right), voxel,
                                 split_plane.plane);
 }
-SplitPlane TreeBuilder::findPlane(
-    const Vector<BuildTriangle>& build_triangles,
-    const Voxel& voxel) const {
+SplitPlane TreeBuilder::findPlane(const Vector<BuildTriangle>& build_triangles,
+                                  const Voxel& voxel) const {
   SplitPlane best_split = {{}, 0, std::numeric_limits<double>::infinity()};
   for (int i = 0; i < 3; ++i) {
     Vector<Event> event_list = createEventList(build_triangles, i);
@@ -172,9 +170,8 @@ SplitPlane TreeBuilder::findPlane(
       std::tie(l_area, r_area) = relativeSubvoxelAreas(voxel, current_plane);
       double cost;
       bool side;
-      std::tie(cost, side) =
-          surfaceAreaHeuristic(l_area, r_area, counts,
-                               traversal_cost, intersection_cost);
+      std::tie(cost, side) = surfaceAreaHeuristic(
+          l_area, r_area, counts, traversal_cost, intersection_cost);
       if (cost < best_split.cost) {
         best_split = {current_plane, side, cost};
       }
@@ -191,13 +188,10 @@ Vector<Event> TreeBuilder::createEventList(
   Vector<Event> event_list;
   for (size_t i = 0; i < build_triangles.size(); ++i) {
     if (build_triangles[i].clip_triangle.isAxisAligned(dimension)) {
-      event_list.pushBack(
-          {1, build_triangles[i].clip_triangle.min(dimension)});
+      event_list.pushBack({1, build_triangles[i].clip_triangle.min(dimension)});
     } else {
-      event_list.pushBack(
-          {0, build_triangles[i].clip_triangle.min(dimension)});
-      event_list.pushBack(
-          {2, build_triangles[i].clip_triangle.max(dimension)});
+      event_list.pushBack({0, build_triangles[i].clip_triangle.min(dimension)});
+      event_list.pushBack({2, build_triangles[i].clip_triangle.max(dimension)});
     }
   }
   quickSort(event_list.begin(), event_list.end());
@@ -238,8 +232,7 @@ Node::Node(std::unique_ptr<Node> left, std::unique_ptr<Node> right,
       voxel(voxel),
       plane(plane) {}
 Node::Node(const Vector<Triangle>& triangles,
-           const Vector<SceneTriangle*>& scene_triangles,
-           const Voxel& voxel)
+           const Vector<SceneTriangle*>& scene_triangles, const Voxel& voxel)
     : triangles(triangles), scene_triangles(scene_triangles), voxel(voxel) {}
 
 ScenePoint Node::getClosestRayIntersection(const Ray& r) const {
@@ -274,45 +267,41 @@ ScenePoint Node::getClosestRayIntersection(const Ray& r) const {
   return left->getClosestRayIntersection(r);
 }
 std::size_t Node::numLeaves() const {
-  if(isLeaf()) return 1;
+  if (isLeaf()) return 1;
   return left->numLeaves() + right->numLeaves();
 }
 std::size_t Node::numNonEmptyLeaves() const {
-  if(isLeaf()) {
-    if(triangles.size() > 0) return 1;
+  if (isLeaf()) {
+    if (triangles.size() > 0) return 1;
     return 0;
   }
   return left->numNonEmptyLeaves() + right->numNonEmptyLeaves();
 }
 std::size_t Node::totalTriangles() const {
-  if(isLeaf()) {
+  if (isLeaf()) {
     return triangles.size();
   }
   return left->totalTriangles() + right->totalTriangles();
 }
 double Node::cost(double traversal_cost, double intersection_cost) const {
   double cost_sum = 0;
-  if(voxel.area() < EPS) return 0;
+  if (voxel.area() < EPS) return 0;
   // I assume that they didn't include the leaves to this
-  if(!isLeaf()) {
+  if (!isLeaf()) {
     cost_sum += voxel.area() * traversal_cost;
   }
-  if(isLeaf()) {
+  if (isLeaf()) {
     cost_sum += voxel.area() * triangles.size() * intersection_cost;
     return cost_sum / voxel.area();
   }
-  cost_sum += left->cost(traversal_cost, intersection_cost)
-              * left->voxel.area();
-  cost_sum += right->cost(traversal_cost, intersection_cost)
-              * right->voxel.area();
+  cost_sum +=
+      left->cost(traversal_cost, intersection_cost) * left->voxel.area();
+  cost_sum +=
+      right->cost(traversal_cost, intersection_cost) * right->voxel.area();
   return cost_sum / voxel.area();
 };
-Voxel Node::boundingBox() const {
-  return voxel;
-}
-std::size_t Tree::numLeaves() const {
-  return root->numLeaves();
-}
+Voxel Node::boundingBox() const { return voxel; }
+std::size_t Tree::numLeaves() const { return root->numLeaves(); }
 std::size_t Tree::numNonEmptyLeaves() const {
   return root->numNonEmptyLeaves();
 }
@@ -322,9 +311,7 @@ double Tree::averageTrianglesInLeaf() const {
 double Tree::cost(double traversal_cost, double intersection_cost) const {
   return root->cost(traversal_cost, intersection_cost);
 };
-Voxel Tree::boundingBox() const {
-  return root->boundingBox();
-}
+Voxel Tree::boundingBox() const { return root->boundingBox(); }
 ScenePoint Tree::getClosestRayIntersection(const Ray& r) const {
   return root->getClosestRayIntersection(r);
 };
@@ -358,10 +345,10 @@ Vector<Triangle> extractTriangles(
 // Corresponds to \lambda in the paper
 inline double cutOffBonus(double l_area, double r_area, TriangleCounts counts) {
   // Check that some empty space is really being cut off
-  if(l_area < 1.0 - EPS && counts.right == 0){
+  if (l_area < 1.0 - EPS && counts.right == 0) {
     return 0.8;
   }
-  if(r_area < 1.0 - EPS && counts.left == 0) {
+  if (r_area < 1.0 - EPS && counts.left == 0) {
     return 0.8;
   }
   return 1.0;
@@ -373,16 +360,16 @@ std::pair<double, bool> surfaceAreaHeuristic(double l_area, double r_area,
   std::pair<double, bool> left;
   // try inserting triangles on plane to the left subtree
   double cut_off_bonus = cutOffBonus(l_area, r_area, counts);
-  left.first =
-      traversal_cost +
-      intersection_cost * (l_area * (counts.left + counts.plane) + r_area * counts.right);
+  left.first = traversal_cost +
+               intersection_cost * (l_area * (counts.left + counts.plane) +
+                                    r_area * counts.right);
 
   left.first *= cut_off_bonus;
   left.second = false;
   std::pair<double, bool> right;
-  right.first =
-      traversal_cost +
-      intersection_cost * (l_area * counts.left + r_area * (counts.right + counts.plane));
+  right.first = traversal_cost +
+                intersection_cost * (l_area * counts.left +
+                                     r_area * (counts.right + counts.plane));
   right.first *= cut_off_bonus;
   right.second = true;
   return std::min(left, right);

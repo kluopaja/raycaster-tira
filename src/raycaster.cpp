@@ -27,7 +27,8 @@
 
 const int kNThreads = 8;
 Vec3 SceneTriangle::normalAt(const Vec2& bary_coords) {
-  Vec3 n = Triangle(normals[0], normals[1], normals[2]).pointFromBary(bary_coords);
+  Vec3 n =
+      Triangle(normals[0], normals[1], normals[2]).pointFromBary(bary_coords);
   n /= n.norm();
   return n;
 }
@@ -37,10 +38,10 @@ void Model::translate(const Vec3& v) {
   }
 }
 void Model::concatenate(const Model& a) {
-  for (auto x: a.scene_triangles) {
+  for (auto x : a.scene_triangles) {
     scene_triangles.pushBack(x);
   }
-  for (auto x: a.materials) {
+  for (auto x : a.materials) {
     materials.pushBack(x);
   }
 }
@@ -62,8 +63,8 @@ Camera::Camera(const Vec3& position, const Vec3& front_vec, const Vec3& up_vec,
   assert(EPS < y_fov && y_fov < kPi - EPS);
   assert(front_vec.norm() > EPS);
   assert(up_vec.norm() > EPS);
-  assert(std::abs(front_vec.dot(up_vec)) < EPS
-         && "Camera up and front vectors should be perpendicular");
+  assert(std::abs(front_vec.dot(up_vec)) < EPS &&
+         "Camera up and front vectors should be perpendicular");
   image_down_vec =
       -2 * up_vec / up_vec.norm() * std::tan(y_fov / 2) * front_vec.norm();
   Vec3 right_vec = front_vec.cross(up_vec);
@@ -78,9 +79,7 @@ Ray Camera::rayFromImagePlane(double x, double y) {
   Vec3 ray_start = image_position + x * image_right_vec + y * image_down_vec;
   return Ray(ray_start, ray_start - position);
 }
-void EnvironmentLight::setUniform() {
-  is_directed = 0;
-}
+void EnvironmentLight::setUniform() { is_directed = 0; }
 void EnvironmentLight::setDirected(const Vec3& direction, double exponent) {
   assert(direction.norm() > EPS);
   assert(exponent >= 0);
@@ -89,12 +88,9 @@ void EnvironmentLight::setDirected(const Vec3& direction, double exponent) {
   this->direction /= this->direction.norm();
   cosine_exp = exponent;
 }
-void EnvironmentLight::setColor(const Vec3& color) {
-  this->color = color;
-}
-Scene::Scene(const Camera& c) :
-      camera(c),
-      sampling_scheme(kImportanceSampling) {}
+void EnvironmentLight::setColor(const Vec3& color) { this->color = color; }
+Scene::Scene(const Camera& c)
+    : camera(c), sampling_scheme(kImportanceSampling) {}
 bool Scene::addModelFromFile(const std::string& file, const Vec3& position,
                              NormalType normal_type) {
   Model new_model;
@@ -108,19 +104,18 @@ bool Scene::addModelFromFile(const std::string& file, const Vec3& position,
 void Scene::addPointLight(const Vec3& position, const Vec3& color) {
   point_lights.pushBack(PointLight(position, color));
 }
-void Scene::setEnvironmentLightUniform() {
-  environment_light.setUniform();
-}
+void Scene::setEnvironmentLightUniform() { environment_light.setUniform(); }
 void Scene::setEnvironmentLightDirected(const Vec3& direction,
                                         double exponent) {
-  assert(direction.norm() > EPS && "Environment light direction should not "
-                                   "be zero");
+  assert(direction.norm() > EPS &&
+         "Environment light direction should not "
+         "be zero");
   assert(exponent >= 0 && "Exponent should be non-negative");
   environment_light.setDirected(direction, exponent);
 }
 void Scene::setEnvironmentLightColor(const Vec3& color) {
-  assert(color[0] > -EPS && color[1] > -EPS && color[2] > -EPS
-        && "Environment light color should not be negative");
+  assert(color[0] > -EPS && color[1] > -EPS && color[2] > -EPS &&
+         "Environment light color should not be negative");
   environment_light.setColor(color);
 }
 void Scene::setSamplingScheme(SamplingScheme s) { sampling_scheme = s; }
@@ -165,14 +160,14 @@ Image Scene::render(int x_resolution, int y_resolution, int n_rays_per_pixel,
   }
   Image image(x_resolution, y_resolution);
   std::for_each(std::execution::par, thread_resources.begin(),
-           thread_resources.end(), [&](ThreadResources& x) {
-             for (auto pixel : x.pixels) {
-               Vec3 pixel_color =
-                   renderPixel(pixel.first, pixel.second, x_resolution,
-                               y_resolution, n_rays_per_pixel, x.thread_mt);
-               image.setColor(pixel.first, pixel.second, pixel_color);
-             }
-           });
+                thread_resources.end(), [&](ThreadResources& x) {
+                  for (auto pixel : x.pixels) {
+                    Vec3 pixel_color = renderPixel(
+                        pixel.first, pixel.second, x_resolution, y_resolution,
+                        n_rays_per_pixel, x.thread_mt);
+                    image.setColor(pixel.first, pixel.second, pixel_color);
+                  }
+                });
 #else
   Image image(x_resolution, y_resolution);
   for (int x_pixel = 0; x_pixel < x_resolution; ++x_pixel) {
@@ -233,13 +228,12 @@ Vec3 Scene::castRay(const Ray& r, int recursion_depth,
   Vec3 light_color(0.0);
   light_color = light_color + sp.scene_triangle->material.emitted;
   // point lights
-  light_color = light_color + totalPointLightColor(intersection_point, normal,
-                                                   out_vector,
-                                                   sp.scene_triangle->material);
+  light_color =
+      light_color + totalPointLightColor(intersection_point, normal, out_vector,
+                                         sp.scene_triangle->material);
   if (recursion_depth < max_recursion_depth) {
     light_color =
-        light_color + indirectLightColor(intersection_point, normal,
-                                         out_vector,
+        light_color + indirectLightColor(intersection_point, normal, out_vector,
                                          sp.scene_triangle->material,
                                          recursion_depth, thread_mt_19937);
   }
@@ -303,7 +297,8 @@ Vec3 Scene::sampleIndirectLight(const Vec3& point, const Vec3& normal,
     in_pdf = 1 / (4 * kPi);
   }
   assert(in_pdf > EPS);
-  Vec3 ray_start = point + 100 * EPS * in_vector;;
+  Vec3 ray_start = point + 100 * EPS * in_vector;
+  ;
 
   Ray in_ray(ray_start, in_vector);
   Vec3 in_color = castRay(in_ray, recursion_depth + 1, thread_mt_19937);

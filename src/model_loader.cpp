@@ -38,9 +38,9 @@ bool ModelLoader::load(const std::string& file, NormalType normal_type) {
   const aiScene* ai_scene = importer.ReadFile(
       file,
       aiProcess_Triangulate |  // every face will have <= 3 vertices
-      normal_flag |
-      aiProcess_ValidateDataStructure |
-      aiProcess_FindDegenerates); // finds degenerate things (e.g. triangles)
+          normal_flag | aiProcess_ValidateDataStructure |
+          aiProcess_FindDegenerates);  // finds degenerate things (e.g.
+                                       // triangles)
   if (!ai_scene) {
     std::cerr << "ERROR while loading the model: " << importer.GetErrorString()
               << std::endl;

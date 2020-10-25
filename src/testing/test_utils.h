@@ -14,15 +14,14 @@ double randomLogUniformReal(double lo_log, double hi_log,
                             std::mt19937& random_engine);
 Vec2 randomBaryCoords(std::mt19937& random_engine);
 Vector<Triangle> randomTriangleVector(double lo, double hi,
-                                           double max_triangle_size, int n,
-                                           std::mt19937 random_engine);
-Vector<SceneTriangle> randomSceneTriangleVector(
-    double lo, double hi, double max_triangle_size, int n,
-    std::mt19937 random_engine);
+                                      double max_triangle_size, int n,
+                                      std::mt19937 random_engine);
+Vector<SceneTriangle> randomSceneTriangleVector(double lo, double hi,
+                                                double max_triangle_size, int n,
+                                                std::mt19937 random_engine);
 bool pointOnTrianglePlane(const Triangle& t, const Vec3& p);
 
-Vector<int> randomIntVector(int lo, int hi, int n,
-                                 std::mt19937& random_engine);
+Vector<int> randomIntVector(int lo, int hi, int n, std::mt19937& random_engine);
 
 Material randomMaterial(std::mt19937& random_engine);
 double mean(const Vector<double>& v);

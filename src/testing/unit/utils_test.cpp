@@ -72,8 +72,7 @@ TEST(Partition, Simple) {
 TEST(Partition, CountRelativeValues) {
   Vector<int> v = {0, 1, 2, 3, 3, 4, 5};
   int n_less, n_same;
-  std::tie(n_less, n_same) =
-      partition(v.begin(), v.end(), v.begin() + 3);
+  std::tie(n_less, n_same) = partition(v.begin(), v.end(), v.begin() + 3);
   EXPECT_THAT(n_less, 3);
   EXPECT_THAT(n_same, 2);
 }
@@ -91,16 +90,16 @@ TEST(Partition, Random) {
     Vector<int> v_copy = v;
     int n_less_correct = 0;
     int n_same_correct = 0;
-    for(auto x: v) {
-      if(x == *pivot) ++n_same_correct;
-      if(x < *pivot) ++ n_less_correct;
+    for (auto x : v) {
+      if (x == *pivot) ++n_same_correct;
+      if (x < *pivot) ++n_less_correct;
     }
     std::sort(v_copy.begin(), v_copy.end());
     Vector<int> c1(v_copy.begin(), v_copy.begin() + n_less_correct);
     Vector<int> c2(v_copy.begin() + n_less_correct,
-                        v_copy.begin() + n_less_correct + n_same_correct);
+                   v_copy.begin() + n_less_correct + n_same_correct);
     Vector<int> c3(v_copy.begin() + n_less_correct + n_same_correct,
-                        v_copy.end());
+                   v_copy.end());
 
     int n_less, n_same;
     std::tie(n_less, n_same) = partition(v.begin(), v.end(), pivot);

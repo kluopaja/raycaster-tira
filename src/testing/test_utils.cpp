@@ -21,8 +21,8 @@ Vec2 randomBaryCoords(std::mt19937& random_engine) {
 }
 // generates triangles into area [lo-max_triangle_size, hi+max_triangle_size]
 Vector<Triangle> randomTriangleVector(double lo, double hi,
-                                           double max_triangle_size, int n,
-                                           std::mt19937 random_engine) {
+                                      double max_triangle_size, int n,
+                                      std::mt19937 random_engine) {
   assert(lo < hi);
   Vector<Triangle> v;
   for (int i = 0; i < n; ++i) {
@@ -41,9 +41,9 @@ Vector<Triangle> randomTriangleVector(double lo, double hi,
 }
 // generates scene triangles into area [lo-max_triangle_size,
 // hi+max_triangle_size]
-Vector<SceneTriangle> randomSceneTriangleVector(
-    double lo, double hi, double max_triangle_size, int n,
-    std::mt19937 random_engine) {
+Vector<SceneTriangle> randomSceneTriangleVector(double lo, double hi,
+                                                double max_triangle_size, int n,
+                                                std::mt19937 random_engine) {
   assert(lo < hi);
   Vector<Triangle> t =
       randomTriangleVector(lo, hi, max_triangle_size, n, random_engine);
@@ -60,7 +60,7 @@ bool pointOnTrianglePlane(const Triangle& t, const Vec3& p) {
 }
 
 Vector<int> randomIntVector(int lo, int hi, int n,
-                                 std::mt19937& random_engine) {
+                            std::mt19937& random_engine) {
   assert(lo <= hi);
   assert(n >= 0);
   std::uniform_int_distribution dist(lo, hi);
@@ -78,7 +78,7 @@ Material randomMaterial(std::mt19937& random_engine) {
   m.specular = randomVec3(0.01, 1.0, random_engine);
   // cap to 1
   for (int i = 0; i < 3; ++i) {
-    if(m.diffuse[i] + m.specular[i] > 1) {
+    if (m.diffuse[i] + m.specular[i] > 1) {
       m.specular[i] = 1 - m.diffuse[i];
     }
   }
@@ -94,7 +94,7 @@ double mean(const Vector<double>& v) {
 double variance(const Vector<double>& v) {
   double mean = test::mean(v);
   double sum_of_squares = 0;
-  for(double x: v) {
+  for (double x : v) {
     sum_of_squares += std::pow(x - mean, 2);
   }
   return sum_of_squares / v.size();

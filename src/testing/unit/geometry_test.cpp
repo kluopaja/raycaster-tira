@@ -7,8 +7,8 @@
 #include <random>
 
 #include "../../kd_tree.h"
-#include "../test_utils.h"
 #include "../../vector.h"
+#include "../test_utils.h"
 
 using ::testing::PrintToString;
 using ::testing::UnorderedElementsAreArray;
@@ -131,10 +131,10 @@ TEST(Vec3Test, ConstructorOneValue) {
   EXPECT_EQ(v[2], -1.2345);
 }
 TEST(Vec3Test, Normalize) {
-  Vec3 v1(std::sqrt(1.0/3));
-  EXPECT_THAT(normalize(v1), VecEq(Vec3(std::sqrt(1.0/3))));
+  Vec3 v1(std::sqrt(1.0 / 3));
+  EXPECT_THAT(normalize(v1), VecEq(Vec3(std::sqrt(1.0 / 3))));
   Vec3 v2(2.0);
-  EXPECT_THAT(normalize(v2), VecEq(Vec3(std::sqrt(1.0/3))));
+  EXPECT_THAT(normalize(v2), VecEq(Vec3(std::sqrt(1.0 / 3))));
   Vec3 v3(123.0, 0.0, 0.0);
   EXPECT_THAT(normalize(v3), VecEq(Vec3(1.0, 0.0, 0.0)));
 }
@@ -281,7 +281,7 @@ TEST(MirrorOver, OverNormal) {
 // correct vector and that both are of correct length
 TEST(MirrorOver, Random) {
   std::mt19937 mt(1337);
-  for(int i = 0; i < 10000; ++i) {
+  for (int i = 0; i < 10000; ++i) {
     Vec3 a = test::randomVec3(0.0, 10.0, mt);
     Vec3 b = test::randomVec3(0.0, 10.0, mt);
     Vec3 mirrored = mirrorOver(a, b);
@@ -881,7 +881,7 @@ TEST(RotateYTo, Simple) {
 TEST(UniformRandomHemispherePoint, PointsOnHemisphere) {
   std::mt19937 mt(1337);
   Vec3 direction = Vec3(1.1, 2.2, 3.3);
-  for(int i = 0; i < 10000; ++i) {
+  for (int i = 0; i < 10000; ++i) {
     Vec3 random_point = uniformRandomHemispherePoint(direction, mt);
     ASSERT_GE(random_point.dot(direction), -EPS);
     ASSERT_NEAR(random_point.norm(), 1, EPS);
@@ -895,11 +895,10 @@ TEST(UniformRandomHemispherePoint, UniformDistribution) {
   // if the distribution is uniform, there should be exactly
   // half as many dots wihin some angle from direction_normal
   // than wihtin some angle from `direction`
-  Vec3 direction_normal(direction[1],
-                        -direction[0], 0.0);
+  Vec3 direction_normal(direction[1], -direction[0], 0.0);
   direction_normal = direction_normal / direction_normal.norm();
   assert(direction.dot(direction_normal) < EPS);
-  Vec3 in_between = direction_normal +  direction;
+  Vec3 in_between = direction_normal + direction;
   in_between = in_between / in_between.norm();
   int n_points = 500000;
   int n_near_direction = 0;
@@ -914,19 +913,19 @@ TEST(UniformRandomHemispherePoint, UniformDistribution) {
     if (random_point.dot(direction_normal) > 0.8) {
       ++n_near_normal;
     }
-    if(random_point.dot(in_between) > 0.8) {
+    if (random_point.dot(in_between) > 0.8) {
       ++n_near_in_between;
     }
   }
   double fraction_near_direction = (double)n_near_direction / n_points;
   double fraction_near_normal = (double)n_near_normal / n_points;
   double fraction_near_in_between = (double)n_near_in_between / n_points;
-  EXPECT_NEAR(fraction_near_normal*2, fraction_near_direction, 0.01);
+  EXPECT_NEAR(fraction_near_normal * 2, fraction_near_direction, 0.01);
   EXPECT_NEAR(fraction_near_in_between, fraction_near_direction, 0.01);
 }
 TEST(UniformRandomSpherePoint, PointsOnSphere) {
   std::mt19937 mt(1337);
-  for(int i = 0; i < 10000; ++i) {
+  for (int i = 0; i < 10000; ++i) {
     Vec3 random_point = uniformRandomSpherePoint(mt);
     ASSERT_NEAR(random_point.norm(), 1, EPS);
   }
@@ -938,8 +937,7 @@ TEST(UniformRandomSpherePoint, UniformDistribution) {
   // if the distribution is uniform, there should be exactly
   // as many dots wihin some angle from direction_normal
   // than wihtin some angle from `direction`
-  Vec3 direction_normal(direction[1],
-                        -direction[0], 0.0);
+  Vec3 direction_normal(direction[1], -direction[0], 0.0);
   direction_normal = normalize(direction_normal);
   assert(direction.dot(direction_normal) < EPS);
   Vec3 opposite = normalize(-1.0 * direction);
@@ -970,7 +968,7 @@ TEST(CosineExponentRandomPoint, PointsOnHemisphere) {
   std::mt19937 mt(1337);
   Vec3 direction = normalize(Vec3(1.1, 2.2, 3.3));
   std::uniform_real_distribution exponent_distribution(0.001, 5.0);
-  for(int i = 0; i < 10000; ++i) {
+  for (int i = 0; i < 10000; ++i) {
     double exponent = exponent_distribution(mt);
     Vec3 random_point = cosineExponentRandomPoint(direction, exponent, mt);
     ASSERT_GE(random_point.dot(direction), -EPS);

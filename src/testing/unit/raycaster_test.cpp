@@ -52,7 +52,8 @@ TEST(EnvironmentLight, UniformLight) {
   EnvironmentLight e;
   e.setColor(Vec3(1.0, 2.0, 3.0));
   EXPECT_THAT(e.colorAtDirection(Vec3(1.0)), VecEq(Vec3(1.0, 2.0, 3.0)));
-  EXPECT_THAT(e.colorAtDirection(Vec3(0.0, 1.0, 0.0)), VecEq(Vec3(1.0, 2.0, 3.0)));
+  EXPECT_THAT(e.colorAtDirection(Vec3(0.0, 1.0, 0.0)),
+              VecEq(Vec3(1.0, 2.0, 3.0)));
   EXPECT_THAT(e.colorAtDirection(Vec3(-1.0)), VecEq(Vec3(1.0, 2.0, 3.0)));
 }
 TEST(EnvironmentLight, DirectedLightOneExponent) {
@@ -60,32 +61,38 @@ TEST(EnvironmentLight, DirectedLightOneExponent) {
   e.setColor(Vec3(1.0, 2.0, 3.));
   e.setDirected(Vec3(1.0, 0.0, 0.0), 1.0);
   // opposite direction
-  EXPECT_THAT(e.colorAtDirection(Vec3(-1.0, 0.0, 0.0)), VecEq(Vec3(0.0, 0.0, 0.0)));
+  EXPECT_THAT(e.colorAtDirection(Vec3(-1.0, 0.0, 0.0)),
+              VecEq(Vec3(0.0, 0.0, 0.0)));
   // perpendicular direction should also be 0
-  EXPECT_THAT(e.colorAtDirection(Vec3(0.0, 1.0, 0.0)), VecEq(Vec3(0.0, 0.0, 0.0)));
+  EXPECT_THAT(e.colorAtDirection(Vec3(0.0, 1.0, 0.0)),
+              VecEq(Vec3(0.0, 0.0, 0.0)));
   // calculate the cos attenuation
-  Vec3 correct = std::cos(kPi/4) * Vec3(1.0, 2.0, 3.);
+  Vec3 correct = std::cos(kPi / 4) * Vec3(1.0, 2.0, 3.);
   EXPECT_THAT(e.colorAtDirection(Vec3(1.0, 1.0, 0.0)), VecEq(correct));
   // direct should also be 1
-  EXPECT_THAT(e.colorAtDirection(Vec3(1.0, 0.0, 0.0)), VecEq(Vec3(1.0, 2.0, 3.0)));
+  EXPECT_THAT(e.colorAtDirection(Vec3(1.0, 0.0, 0.0)),
+              VecEq(Vec3(1.0, 2.0, 3.0)));
 }
 TEST(EnvironmentLight, DirectedLightLargeExponent) {
   EnvironmentLight e;
   e.setColor(Vec3(1.0, 2.0, 3.));
   e.setDirected(Vec3(1.0, 0.0, 0.0), 123.0);
   // opposite direction
-  EXPECT_THAT(e.colorAtDirection(Vec3(-1.0, 0.0, 0.0)), VecEq(Vec3(0.0, 0.0, 0.0)));
+  EXPECT_THAT(e.colorAtDirection(Vec3(-1.0, 0.0, 0.0)),
+              VecEq(Vec3(0.0, 0.0, 0.0)));
   // perpendicular direction should also be 0
-  EXPECT_THAT(e.colorAtDirection(Vec3(0.0, 1.0, 0.0)), VecEq(Vec3(0.0, 0.0, 0.0)));
+  EXPECT_THAT(e.colorAtDirection(Vec3(0.0, 1.0, 0.0)),
+              VecEq(Vec3(0.0, 0.0, 0.0)));
   // calculate the cos attenuation
-  Vec3 correct = std::pow(std::cos(kPi/4), 123.0) * Vec3(1.0, 2.0, 3.);
+  Vec3 correct = std::pow(std::cos(kPi / 4), 123.0) * Vec3(1.0, 2.0, 3.);
   EXPECT_THAT(e.colorAtDirection(Vec3(1.0, 1.0, 0.0)), VecEq(correct));
   // direct should also be 1
-  EXPECT_THAT(e.colorAtDirection(Vec3(1.0, 0.0, 0.0)), VecEq(Vec3(1.0, 2.0, 3.0)));
+  EXPECT_THAT(e.colorAtDirection(Vec3(1.0, 0.0, 0.0)),
+              VecEq(Vec3(1.0, 2.0, 3.0)));
 }
 TEST(RenderTest, EnvironmentLightColor) {
-  Camera camera(Vec3(0, 0.0, 0.0), Vec3(0.0, 0.0, -1.0),
-                Vec3(0.0, 1.0, 0.0), kPi / 5.0, kPi / 5.0);
+  Camera camera(Vec3(0, 0.0, 0.0), Vec3(0.0, 0.0, -1.0), Vec3(0.0, 1.0, 0.0),
+                kPi / 5.0, kPi / 5.0);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
   Image result = scene.render(50, 50, 10, 3, 1);
@@ -97,10 +104,9 @@ TEST(RenderTest, EnvironmentLightColor) {
 // Tests directed environment light with the exponent 1.0
 // Renders very narrow view to various directions
 TEST(RenderTest, EnvironmentLightDirectedExponent1) {
-
   // Opposite way from where the light is coming
-  Camera camera(Vec3(0, 0.0, 0.0), Vec3(0.0, -1.0, 0.0),
-                Vec3(0.0, 0.0, 1.0), kPi / 100.0, kPi / 100.0);
+  Camera camera(Vec3(0, 0.0, 0.0), Vec3(0.0, -1.0, 0.0), Vec3(0.0, 0.0, 1.0),
+                kPi / 100.0, kPi / 100.0);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
   scene.setEnvironmentLightDirected(Vec3(0.0, 1.0, 0.0), 1.0);
@@ -108,18 +114,17 @@ TEST(RenderTest, EnvironmentLightDirectedExponent1) {
   EXPECT_THAT(result.getColor(0, 0), VecEq(Vec3(0.0)));
 
   // Directly towards the light
-  Camera camera2(Vec3(0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0),
-                Vec3(0.0, 0.0, 1.0), kPi / 100.0, kPi / 100.0);
+  Camera camera2(Vec3(0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0), Vec3(0.0, 0.0, 1.0),
+                 kPi / 100.0, kPi / 100.0);
   Scene scene2(camera2);
   scene2.setEnvironmentLightColor(Vec3(1.0));
   scene2.setEnvironmentLightDirected(Vec3(0.0, 1.0, 0.0), 1.0);
   Image result2 = scene2.render(1, 1, 1, 1, 1);
   EXPECT_THAT(result2.getColor(0, 0), VecEq(Vec3(1.0)));
 
-
   // 45 degress away from directly towards the light
-  Camera camera3(Vec3(0, 0.0, 0.0), Vec3(1.0, 1.0, 0.0),
-                Vec3(0.0, 0.0, 1.0), kPi / 100.0, kPi / 100.0);
+  Camera camera3(Vec3(0, 0.0, 0.0), Vec3(1.0, 1.0, 0.0), Vec3(0.0, 0.0, 1.0),
+                 kPi / 100.0, kPi / 100.0);
   Scene scene3(camera3);
   scene3.setEnvironmentLightColor(Vec3(1.0));
   scene3.setEnvironmentLightDirected(Vec3(0.0, 1.0, 0.0), 1.0);
@@ -129,10 +134,9 @@ TEST(RenderTest, EnvironmentLightDirectedExponent1) {
 // Tests directed environment light with exponent5
 // Renders very narrow view to various directions
 TEST(RenderTest, EnvironmentLightDirectedExponent5) {
-
   // Opposite way from where the light is coming
-  Camera camera(Vec3(0, 0.0, 0.0), Vec3(0.0, -1.0, 0.0),
-                Vec3(0.0, 0.0, 1.0), kPi / 100.0, kPi / 100.0);
+  Camera camera(Vec3(0, 0.0, 0.0), Vec3(0.0, -1.0, 0.0), Vec3(0.0, 0.0, 1.0),
+                kPi / 100.0, kPi / 100.0);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
   scene.setEnvironmentLightDirected(Vec3(0.0, 1.0, 0.0), 5.0);
@@ -140,18 +144,17 @@ TEST(RenderTest, EnvironmentLightDirectedExponent5) {
   EXPECT_THAT(result.getColor(0, 0), VecEq(Vec3(0.0)));
 
   // Directly towards the light
-  Camera camera2(Vec3(0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0),
-                Vec3(0.0, 0.0, 1.0), kPi / 100.0, kPi / 100.0);
+  Camera camera2(Vec3(0, 0.0, 0.0), Vec3(0.0, 1.0, 0.0), Vec3(0.0, 0.0, 1.0),
+                 kPi / 100.0, kPi / 100.0);
   Scene scene2(camera2);
   scene2.setEnvironmentLightColor(Vec3(1.0));
   scene2.setEnvironmentLightDirected(Vec3(0.0, 1.0, 0.0), 5.0);
   Image result2 = scene2.render(1, 1, 1, 1, 1);
   EXPECT_THAT(result2.getColor(0, 0), VecEq(Vec3(1.0)));
 
-
   // 45 degress away from directly towards the light
-  Camera camera3(Vec3(0, 0.0, 0.0), Vec3(1.0, 1.0, 0.0),
-                Vec3(0.0, 0.0, 1.0), kPi / 100.0, kPi / 100.0);
+  Camera camera3(Vec3(0, 0.0, 0.0), Vec3(1.0, 1.0, 0.0), Vec3(0.0, 0.0, 1.0),
+                 kPi / 100.0, kPi / 100.0);
   Scene scene3(camera3);
   scene3.setEnvironmentLightColor(Vec3(1.0));
   scene3.setEnvironmentLightDirected(Vec3(0.0, 1.0, 0.0), 5.0);
@@ -169,11 +172,12 @@ TEST(RenderTest, EnvironmentLightDirectedExponent5) {
 //
 // Furnace test with uniform sphere sampling
 TEST(RenderTest, OpaqueDiffuseUniformSampling) {
-  Camera camera(Vec3(0, 0.0, 3.0), Vec3(0.0, 0.0, -1.0),
-                Vec3(0.0, 1.0, 0.0), kPi / 7.0, kPi / 7.0);
+  Camera camera(Vec3(0, 0.0, 3.0), Vec3(0.0, 0.0, -1.0), Vec3(0.0, 1.0, 0.0),
+                kPi / 7.0, kPi / 7.0);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
-  scene.addModelFromFile("../models/testing/ball_diffuse.obj", Vec3(0.0), NormalType::kSmooth);
+  scene.addModelFromFile("../models/testing/ball_diffuse.obj", Vec3(0.0),
+                         NormalType::kSmooth);
   scene.setSamplingScheme(kUniformSphere);
   Image result = scene.render(20, 20, 1000, 4, 1);
   EXPECT_THAT(result.getColor(0, 0), VecNear(Vec3(0.18), 0.03));
@@ -183,11 +187,12 @@ TEST(RenderTest, OpaqueDiffuseUniformSampling) {
 }
 // Furnace test with importance sampling
 TEST(RenderTest, OpaqueDiffuseImportanceSampling) {
-  Camera camera(Vec3(0, 0.0, 3.0), Vec3(0.0, 0.0, -1.0),
-                Vec3(0.0, 1.0, 0.0), kPi / 7.0, kPi / 7.0);
+  Camera camera(Vec3(0, 0.0, 3.0), Vec3(0.0, 0.0, -1.0), Vec3(0.0, 1.0, 0.0),
+                kPi / 7.0, kPi / 7.0);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
-  scene.addModelFromFile("../models/testing/ball_diffuse.obj", Vec3(0.0), NormalType::kSmooth);
+  scene.addModelFromFile("../models/testing/ball_diffuse.obj", Vec3(0.0),
+                         NormalType::kSmooth);
   scene.setSamplingScheme(kImportanceSampling);
   Image result = scene.render(20, 20, 100, 4, 1);
   // With importance sampling the result should be very close to 0.18
@@ -198,11 +203,12 @@ TEST(RenderTest, OpaqueDiffuseImportanceSampling) {
 }
 // Furnace test with transparent diffuse
 TEST(RenderTest, TransparentDiffuseUniformSampling) {
-  Camera camera(Vec3(0, 0.0, 3.0), Vec3(0.0, 0.0, -1.0),
-                Vec3(0.0, 1.0, 0.0), kPi / 7.0, kPi / 7.0);
+  Camera camera(Vec3(0, 0.0, 3.0), Vec3(0.0, 0.0, -1.0), Vec3(0.0, 1.0, 0.0),
+                kPi / 7.0, kPi / 7.0);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
-  scene.addModelFromFile("../models/testing/ball_transparent_diffuse.obj", Vec3(0.0), NormalType::kSmooth);
+  scene.addModelFromFile("../models/testing/ball_transparent_diffuse.obj",
+                         Vec3(0.0), NormalType::kSmooth);
   scene.setSamplingScheme(kImportanceSampling);
   Image result = scene.render(20, 20, 100, 4, 1);
   // With importance sampling the result should be very close to 0.18
@@ -213,11 +219,12 @@ TEST(RenderTest, TransparentDiffuseUniformSampling) {
 }
 // Test mirror in white environment
 TEST(RenderTest, MirrorEnvironment) {
-  Camera camera(Vec3(0, 0.0, 3.0), Vec3(0.0, 0.0, -1.0),
-                Vec3(0.0, 1.0, 0.0), kPi / 1.1, kPi / 1.1);
+  Camera camera(Vec3(0, 0.0, 3.0), Vec3(0.0, 0.0, -1.0), Vec3(0.0, 1.0, 0.0),
+                kPi / 1.1, kPi / 1.1);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
-  scene.addModelFromFile("../models/testing/XY_mirror.obj", Vec3(0.0), NormalType::kSmooth);
+  scene.addModelFromFile("../models/testing/XY_mirror.obj", Vec3(0.0),
+                         NormalType::kSmooth);
   scene.setSamplingScheme(kImportanceSampling);
   Image result = scene.render(100, 100, 100, 4, 1);
   EXPECT_THAT(result.getColor(0, 0), VecNear(Vec3(1.0), 0.001));
@@ -227,20 +234,24 @@ TEST(RenderTest, MirrorEnvironment) {
 }
 // Test that the scene looks the same when looket via a mirror
 TEST(RenderTest, MirrorScene) {
-  Camera camera(Vec3(0, 0.0, 3.0), Vec3(0.0, 0.0, -1.0),
-                Vec3(0.0, 1.0, 0.0), kPi / 4.0, kPi / 4.0);
+  Camera camera(Vec3(0, 0.0, 3.0), Vec3(0.0, 0.0, -1.0), Vec3(0.0, 1.0, 0.0),
+                kPi / 4.0, kPi / 4.0);
   Scene scene_real(camera);
   scene_real.setEnvironmentLightColor(Vec3(1.0));
-  scene_real.addModelFromFile("../models/testing/ball_transparent_diffuse.obj", Vec3(0.0), NormalType::kSmooth);
+  scene_real.addModelFromFile("../models/testing/ball_transparent_diffuse.obj",
+                              Vec3(0.0), NormalType::kSmooth);
   scene_real.setSamplingScheme(kImportanceSampling);
   Image image_real = scene_real.render(200, 200, 100, 4, 1);
 
-  Camera camera2(Vec3(0, 0.0, 2.0), Vec3(0.0, 0.0, 0.45),
-                Vec3(0.0, 1.0, 0.0), kPi / 4.0, kPi / 4.0);
+  Camera camera2(Vec3(0, 0.0, 2.0), Vec3(0.0, 0.0, 0.45), Vec3(0.0, 1.0, 0.0),
+                 kPi / 4.0, kPi / 4.0);
   Scene scene_mirror(camera2);
   scene_mirror.setEnvironmentLightColor(Vec3(1.0));
-  scene_mirror.addModelFromFile("../models/testing/ball_transparent_diffuse.obj", Vec3(0.0), NormalType::kSmooth);
-  scene_mirror.addModelFromFile("../models/testing/XY_mirror.obj", Vec3(0.0, 0.0, 2.5), NormalType::kSmooth);
+  scene_mirror.addModelFromFile(
+      "../models/testing/ball_transparent_diffuse.obj", Vec3(0.0),
+      NormalType::kSmooth);
+  scene_mirror.addModelFromFile("../models/testing/XY_mirror.obj",
+                                Vec3(0.0, 0.0, 2.5), NormalType::kSmooth);
   scene_mirror.setSamplingScheme(kImportanceSampling);
   Image image_mirror = scene_mirror.render(200, 200, 100, 4, 1);
   std::cerr << "Distance between real and mirrored: "
@@ -249,11 +260,12 @@ TEST(RenderTest, MirrorScene) {
 }
 // Test that the mirror color is applied correctly
 TEST(RenderTest, ColorMirrorEnvironment) {
-  Camera camera(Vec3(0, 0.0, 3.0), Vec3(0.0, 0.0, -1.0),
-                Vec3(0.0, 1.0, 0.0), kPi / 1.1, kPi / 1.1);
+  Camera camera(Vec3(0, 0.0, 3.0), Vec3(0.0, 0.0, -1.0), Vec3(0.0, 1.0, 0.0),
+                kPi / 1.1, kPi / 1.1);
   Scene scene(camera);
   scene.setEnvironmentLightColor(Vec3(1.0));
-  scene.addModelFromFile("../models/testing/XY_mirror_blue.obj", Vec3(0.0), NormalType::kSmooth);
+  scene.addModelFromFile("../models/testing/XY_mirror_blue.obj", Vec3(0.0),
+                         NormalType::kSmooth);
   scene.setSamplingScheme(kImportanceSampling);
   Image result = scene.render(100, 100, 100, 4, 1);
   EXPECT_THAT(result.getColor(0, 0), VecNear(Vec3(0.0, 0.0, 1.0), 0.001));

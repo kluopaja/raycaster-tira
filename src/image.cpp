@@ -37,8 +37,8 @@ void Image::truncateToFraction(double c) {
   }
   quickSort(values.begin(), values.end());
   assert(values.size() > 0);
-  std::size_t fraction_pos
-      = std::max((std::size_t)1, (std::size_t)(c * values.size() + EPS)) - 1.0;
+  std::size_t fraction_pos =
+      std::max((std::size_t)1, (std::size_t)(c * values.size() + EPS)) - 1.0;
   double limit = values[fraction_pos];
   for (int y = 0; y < y_resolution; ++y) {
     for (int x = 0; x < x_resolution; ++x) {

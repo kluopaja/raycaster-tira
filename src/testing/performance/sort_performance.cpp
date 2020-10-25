@@ -1,15 +1,15 @@
-#include <iostream>
 #include <algorithm>
-#include <cmath>
 #include <chrono>
+#include <cmath>
 #include <iomanip>
-#include <string>
+#include <iostream>
 #include <random>
+#include <string>
 
 #include "../../utils.h"
 #include "../../vector.h"
-#include "performance_utils.h"
 #include "../test_utils.h"
+#include "performance_utils.h"
 
 namespace {
 struct SortTestResult {
@@ -30,13 +30,15 @@ SortTestResult operator/(const SortTestResult& a, double b) {
 std::ostream& operator<<(std::ostream& out, const SortTestResult& result) {
   out << std::left;
   out << std::setw(25);
-  out << "std::qsort: " << result.qsort_time/1e6 << "ms" << std::endl;
+  out << "std::qsort: " << result.qsort_time / 1e6 << "ms" << std::endl;
   out << std::setw(25);
-  out << "std::sort: " << result.std_sort_time/1e6 << "ms" << std::endl;;
+  out << "std::sort: " << result.std_sort_time / 1e6 << "ms" << std::endl;
+  ;
   out << std::setw(25);
-  out << "quickSort: " << result.quick_sort_time/1e6 << "ms" << std::endl;
+  out << "quickSort: " << result.quick_sort_time / 1e6 << "ms" << std::endl;
   out << std::setw(25);
-  out << "mmQuickSort: " << result.mm_quick_sort_time/1e6 << "ms" << std::endl;
+  out << "mmQuickSort: " << result.mm_quick_sort_time / 1e6 << "ms"
+      << std::endl;
   return out;
 }
 // Comparator function for qsort
@@ -49,8 +51,7 @@ int qsortCompare(const void* a, const void* b) {
 // Compares std::qsort, std::sort, quickSort and mmQuickSort algoritms
 SortTestResult testRandom(int n_elements) {
   std::mt19937 mt(1337);
-  Vector<int> v_qsort = test::randomIntVector(0, n_elements, n_elements,
-                                                   mt);
+  Vector<int> v_qsort = test::randomIntVector(0, n_elements, n_elements, mt);
   Vector<int> v_std_sort = v_qsort;
   Vector<int> v_quick_sort = v_qsort;
   Vector<int> v_mm_quick_sort = v_qsort;
@@ -73,7 +74,7 @@ SortTestResult testRandom(int n_elements) {
   result.mm_quick_sort_time = timer.elapsed();
   return result;
 }
-// Runs sort performance test `n_times` to reduce random variation 
+// Runs sort performance test `n_times` to reduce random variation
 // in the tests.
 // Returns the mean of the individual results.
 SortTestResult testRandomRepeat(int n_elements, int n_times) {
@@ -87,9 +88,10 @@ SortTestResult testRandomRepeat(int n_elements, int n_times) {
 void generateSortReport() {
   int n = 1;
   std::cout << std::string(20, '*') << std::endl;
-  std::cout << "Generating performance report for sorting functions" << std::endl;
+  std::cout << "Generating performance report for sorting functions"
+            << std::endl;
   std::cout << "Sorting random vectors:" << std::endl;
-  for(int i = 0; i <= 7; ++i) {
+  for (int i = 0; i <= 7; ++i) {
     SortTestResult result = testRandomRepeat(n, 100);
     std::cout << "n = " << n << std::endl;
     std::cout << result << std::endl;
