@@ -5,6 +5,7 @@
 #include <iostream>
 #include <limits>
 #include <random>
+
 #include "vector.h"
 
 const double INF = std::numeric_limits<double>::infinity();
@@ -50,9 +51,7 @@ inline double Vec2::dot(const Vec2& b) const {
 inline Vec2 Vec2::multiply(const Vec2& b) const {
   return Vec2(v[0] * b.v[0], v[1] * b.v[1]);
 }
-inline double Vec2::sum() const {
-  return v[0] + v[1];
-}
+inline double Vec2::sum() const { return v[0] + v[1]; }
 inline Vec2& operator+=(Vec2& a, const Vec2& b) {
   a.v[0] += b.v[0];
   a.v[1] += b.v[1];
@@ -121,9 +120,7 @@ class Vec3 {
   double v[3] = {0.0, 0.0, 0.0};
 };
 // assumes a.norm() > 0
-inline Vec3 normalize(const Vec3& a) {
-  return a / a.norm();
-}
+inline Vec3 normalize(const Vec3& a) { return a / a.norm(); }
 std::istream& operator>>(std::istream& in, Vec3& a);
 inline double Vec3::dot(const Vec3& b) const {
   return v[0] * b.v[0] + v[1] * b.v[1] + v[2] * b.v[2];
@@ -132,9 +129,7 @@ inline Vec3 Vec3::cross(const Vec3& b) const {
   return {v[1] * b.v[2] - v[2] * b.v[1], v[2] * b.v[0] - v[0] * b.v[2],
           v[0] * b.v[1] - v[1] * b.v[0]};
 }
-inline double Vec3::sum() const {
-  return v[0] + v[1] + v[2];
-}
+inline double Vec3::sum() const { return v[0] + v[1] + v[2]; }
 inline Vec3 Vec3::multiply(const Vec3& b) const {
   return Vec3(v[0] * b.v[0], v[1] * b.v[1], v[2] * b.v[2]);
 }
@@ -181,7 +176,8 @@ inline double& Vec3::operator[](int index) { return v[index]; }
 inline double Vec3::operator[](int index) const { return v[index]; }
 inline double Vec3::norm() const { return std::sqrt(this->dot(*this)); }
 // Checks if a and b are on the same side of plane defined by normal
-inline bool onSameSideOfPlane(const Vec3& a, const Vec3& b, const Vec3& normal) {
+inline bool onSameSideOfPlane(const Vec3& a, const Vec3& b,
+                              const Vec3& normal) {
   return normal.dot(a) * normal.dot(b) > EPS;
 }
 // Project a on b
@@ -319,16 +315,11 @@ inline bool ClipTriangle::isAxisAligned(int axis) const {
 // is to prevent anyone from modifying the inv_direction.
 class Ray {
  public:
-   Vec3 getOrigin() const {
-     return origin;
-   }
-   Vec3 getDirection() const {
-     return direction;
-   }
-   Vec3 getInvDirection() const {
-     return inv_direction;
-   }
+  Vec3 getOrigin() const { return origin; }
+  Vec3 getDirection() const { return direction; }
+  Vec3 getInvDirection() const { return inv_direction; }
   Ray(Vec3 origin, Vec3 direction);
+
  private:
   // p + sx;
   Vec3 origin;
@@ -336,7 +327,6 @@ class Ray {
   // inv_direction[i] = 1 / direction[i]
   // supposedly speeds up the triangle intersection calculations
   Vec3 inv_direction;
-
 };
 std::ostream& operator<<(std::ostream& out, const Ray& a);
 struct AxisPlane {
@@ -363,10 +353,9 @@ inline Vec3 rotateYTo(const Vec3& a, const Vec3& b) {
   assert(std::abs(a.norm() - 1.0) < EPS);
   assert(std::abs(b.norm() - 1.0) < EPS);
   Vec3 normal_1;
-  if(std::abs(b[0]) < EPS) {
+  if (std::abs(b[0]) < EPS) {
     normal_1 = Vec3(1.0, 0.0, 0.0);
-  }
-  else {
+  } else {
     normal_1 = Vec3(-b[1], b[0], 0.0);
   }
   normal_1 = normal_1 / normal_1.norm();
@@ -424,9 +413,8 @@ Vec3 cosineExponentRandomPoint(Vec3 direction, double exponent, Generator& g) {
   double e_1 = U(g);
   double e_2 = U(g);
   double cos_a = std::pow(e_1, 1.0 / (exponent + 1));
-  double sin_a = std::sqrt(1.0 - cos_a*cos_a);
-  Vec3 p(sin_a * std::cos(2.0 * kPi * e_2),
-         cos_a,
+  double sin_a = std::sqrt(1.0 - cos_a * cos_a);
+  Vec3 p(sin_a * std::cos(2.0 * kPi * e_2), cos_a,
          sin_a * std::sin(2.0 * kPi * e_2));
   return rotateYTo(p, direction);
 }

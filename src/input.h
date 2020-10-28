@@ -9,8 +9,8 @@ struct CameraConfig {
   Vec3 pos{0.0};
   Vec3 front{0.0, 0.0, -1.0};
   Vec3 up{0.0, 1.0, 0.0};
-  double x_fov = kPi/2.0;
-  double y_fov = kPi/2.0;
+  double x_fov = kPi / 2.0;
+  double y_fov = kPi / 2.0;
 };
 struct ModelConfig {
   std::string file;

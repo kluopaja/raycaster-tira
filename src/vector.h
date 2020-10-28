@@ -2,10 +2,10 @@
 #define RAYCASTER_VECTOR_H
 #include <cassert>
 #include <cmath>
-#include <new>
-#include <ostream>
 #include <initializer_list>
 #include <iterator>
+#include <new>
+#include <ostream>
 // A class implementing a dynamic array
 template <class T>
 class Vector {
@@ -133,13 +133,13 @@ Vector<T>::Vector(std::size_t n_elements)
   data = allocateMemory(n_reserved);
   valueInitializeRange(0, n_elements);
 }
-template<class T>
+template <class T>
 Vector<T>::Vector(std::initializer_list<T> v) {
   n_elements = v.size();
   n_reserved = v.size();
   data = allocateMemory(n_reserved);
   T* add_pos = data;
-  for(auto x: v) {
+  for (auto x : v) {
     new (add_pos++) T(x);
   }
 }
@@ -158,7 +158,7 @@ Vector<T>::Vector(const_iterator begin, const_iterator end) {
   n_reserved = n_elements;
   data = allocateMemory(n_reserved);
   T* add_pos = data;
-  for(auto it = begin; it != end; ++it) {
+  for (auto it = begin; it != end; ++it) {
     new (add_pos++) T(*it);
   }
 }
@@ -341,8 +341,8 @@ bool operator==(const Vector<T>& a, const Vector<T>& b) {
   if (a.size() != b.size()) {
     return 0;
   }
-  for(std::size_t i = 0; i < a.size(); ++i) {
-    if(!(a[i] == b[i])) {
+  for (std::size_t i = 0; i < a.size(); ++i) {
+    if (!(a[i] == b[i])) {
       return 0;
     }
   }

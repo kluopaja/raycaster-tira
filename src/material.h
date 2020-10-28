@@ -1,8 +1,8 @@
 #ifndef RAYCASTER_MATERIAL_H
 #define RAYCASTER_MATERIAL_H
+#include <ostream>
 #include <random>
 #include <utility>
-#include <ostream>
 
 #include "geometry.h"
 

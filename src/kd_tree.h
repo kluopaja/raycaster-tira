@@ -62,9 +62,7 @@ class Node {
   AxisPlane plane;
   bool isLeaf() const;
 };
-inline bool Node::isLeaf() const {
-  return (!left && !right);
-}
+inline bool Node::isLeaf() const { return (!left && !right); }
 // A class representing a kd tree
 class Tree {
  public:
@@ -87,6 +85,7 @@ class Tree {
   double cost(double traversal_cost, double intersection_cost) const;
   // Returns the smallest axis aligned bounding box of *this
   Voxel boundingBox() const;
+
  private:
   std::unique_ptr<Node> root;
 };
@@ -117,7 +116,7 @@ struct TriangleCounts {
 // in this split
 std::pair<double, bool> surfaceAreaHeuristic(double l_area, double r_area,
                                              TriangleCounts counts,
-                                              double traversal_cost,
+                                             double traversal_cost,
                                              double intersection_cost);
 // Returns the areas of subvoxels formed by `plane` from `voxel`
 // as a fraction of the area of `voxel`

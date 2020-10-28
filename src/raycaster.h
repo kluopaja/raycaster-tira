@@ -90,30 +90,30 @@ class Camera {
 // Class representing the environment light, that is, that
 // a ray receives if it doesn't intersect with any triangle
 class EnvironmentLight {
-  public:
-   // All directections emit light with intensity `this->color`
-   void setUniform();
-   // L from direction v will have the
-   // radiance of `this->color` * pow(max(0, cos(alpha)), `exponent`)
-   // where alpha is the angle between `direction` and v
-   void setDirected(const Vec3& direction, double exponent);
-   void setColor(const Vec3& color);
-   // Calculates the radiance of light coming from direciton `d`
-   Vec3 colorAtDirection(Vec3 direction);
-  private:
-   // speeds up the queries a bit if this is handled separately
-   bool is_directed = 0;
-   Vec3 color = Vec3(0.0);
-   Vec3 direction = Vec3(0.0);
-   // should be >= 0
-   double cosine_exp = 0;
+ public:
+  // All directections emit light with intensity `this->color`
+  void setUniform();
+  // L from direction v will have the
+  // radiance of `this->color` * pow(max(0, cos(alpha)), `exponent`)
+  // where alpha is the angle between `direction` and v
+  void setDirected(const Vec3& direction, double exponent);
+  void setColor(const Vec3& color);
+  // Calculates the radiance of light coming from direciton `d`
+  Vec3 colorAtDirection(Vec3 direction);
+
+ private:
+  // speeds up the queries a bit if this is handled separately
+  bool is_directed = 0;
+  Vec3 color = Vec3(0.0);
+  Vec3 direction = Vec3(0.0);
+  // should be >= 0
+  double cosine_exp = 0;
 };
 // std::pow(base, 0) always returns 1
 inline Vec3 EnvironmentLight::colorAtDirection(Vec3 direction) {
-  if(!is_directed) {
+  if (!is_directed) {
     return color;
-  }
-  else {
+  } else {
     direction /= direction.norm();
     double cos_a = std::max(0.0, direction.dot(this->direction));
     return color.multiply(std::pow(cos_a, cosine_exp));
